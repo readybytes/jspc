@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0">
+	<name>ProfileStatus</name>
+	<creationDate>2009-08-01</creationDate>
+	<author>Meenal Devpura</author>
+	<authorEmail>shyam@joomlaxi.com</authorEmail>
+	<authorUrl>http://www.joomlaxi.com</authorUrl>
+	<copyright>All rights reserved</copyright>
+	<license>License Info</license>
+	<version>1.0.158</version>
+	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
+	<installfile>install.profilestatus.php</installfile>
+	<uninstallfile>uninstall.profilestatus.php</uninstallfile>
+	<files>
+		<filename>index.html</filename>
+		<filename>libraries/index.html</filename>
+		<filename>libraries/profilestatus.php</filename>
+	</files>
+	<administration>
+		<menu link="option=com_profilestatus" >Profile Status</menu>
+		<submenu>
+			<menu view="othervalue" >Feature Contribution</menu>
+			<menu view="fieldsvalue" >Profile Fields Contribution</menu>
+		</submenu>
+		<files>
+			<filename>index.html</filename>
+			<filename>admin.profilestatus.php</filename>
+			<filename>controller.php</filename>
+
+			<filename>models/index.html</filename>
+			<filename>models/othervalue.php</filename>
+			<filename>models/profilestatus.php</filename>
+			
+			<filename>helpers/index.html</filename>
+			<filename>helpers/profilestatus.php</filename>
+			
+			
+			<filename>views/index.html</filename>
+			<filename>views/fieldsvalue/index.html</filename>
+			<filename>views/fieldsvalue/view.html.php</filename>
+			<filename>views/fieldsvalue/tmpl/index.html</filename>
+			<filename>views/fieldsvalue/tmpl/default.php</filename>
+			<filename>views/fieldsvalue/tmpl/fieldsvalue.edit.php</filename>
+			
+			<filename>views/othervalue/index.html</filename>
+			<filename>views/othervalue/view.html.php</filename>
+			<filename>views/othervalue/tmpl/index.html</filename>
+			<filename>views/othervalue/tmpl/default.php</filename>
+			<filename>views/othervalue/tmpl/othervalue.edit.php</filename>
+			
+			<filename>views/summary/index.html</filename>
+			<filename>views/summary/view.html.php</filename>
+			<filename>views/summary/tmpl/index.html</filename>
+			<filename>views/summary/tmpl/default.php</filename>
+
+			
+
+			<filename>tables/index.html</filename>
+			
+			<filename>tables/othervalue.php</filename>
+			<filename>tables/fieldsvalue.php</filename>
+		</files>
+	</administration>
+</install>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="community">
+	<name>Profile Completion Status</name>
+	<author>Meenal Devpura</author>
+	<creationDate>24th July 2009</creationDate>
+	<copyright>Copyright (C) 2008. All rights reserved.</copyright>
+	<license>http://www.joomlaxi.com</license>
+	<authorEmail>meenal@joomlaxi.com</authorEmail>
+	<authorUrl>www.joomlaxi.com</authorUrl>
+	<version>1.0.140</version>
+	<isapplication>true</isapplication>
+	<description>
+		This plugin Shows Profile Completion Status for JomSocial. 
+		You required to install JomSocial and ProfileCompletion to get this working.
+	</description>
+	
+	<languages>
+	    <language tag="en-GB">en-GB.plg_showprofilestatus.ini</language>
+	</languages>
+	
+	<files>
+		<file plugin="showprofilestatus">showprofilestatus.php</file>
+		<file plugin="showprofilestatus">showprofilestatus/index.html</file>
+		<file plugin="showprofilestatus">showprofilestatus/style.css</file>
+	</files>
+	
+	<params>
+		<param name="coreapp" type="list" default="1" label="Core Application" description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this plugin">
+			<option value="1">Use Global</option>
+			<option value="0">No</option>
+		</param>
+		<param name="@spacer" type="spacer" default="" label="Configure Completion Bar" description="" />		
+		<param name="SPS_Length" type="text" default="200" label="Length of Completion bar in pixels" description=""/>
+		<param name="SPS_Height" type="text" default="25"  label="Height of Completion bar in pixels" description=""/>
+		<param name="SPS_FontSize" type="list" default="3" label="Font Size of text" description="">
+			<option value="1">Tiny</option>
+			<option value="2">Small</option>
+			<option value="3">Normal</option>
+			<option value="4">Big</option>
+			<option value="5">Very Big</option>
+			<option value="6">Huge</option>
+			<option value="7">Very Huge</option>
+		</param>
+		<param name="SPS_FGColor"  type="text" default="#9CD052"  label="Fill Bar Color" description=""/>
+		<param name="SPS_BGColor"  type="text" default="#FFFFFF"  label="Empty Bar Color" description=""/>
+		<param name="SPS_SLColor"  type="text" default="#000000"  label="Side Line Color" description=""/>
+		<param name="SPS_STRColor" type="text" default="#FFFFFF"  label="Text Color" description=""/>
+		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+	</params>
+</install>

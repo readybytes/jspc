@@ -1,0 +1,52 @@
+
+
+.SPS_CompletionBar
+{
+	float:left;
+	margin-top:5px;
+}
+
+.SPS_CompletionText
+{
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.SPS_SpanPer
+{
+	font-size: 18px;
+	font-weight: 700;
+}
+
+.SPS_CompleteMessage
+{
+	float:left;
+	margin:0px;
+	padding:0px;
+	margin-top:5px;
+}
+
+.SPS_CompleteMessage  ul#featurelist 
+{
+	list-style: none;
+	margin: 0pt;
+	padding: 0pt;
+}
+
+.SPS_CompleteMessage  ul#featurelist li
+{
+font-size: 14px;
+color: #999999;
+background-color: transparent;
+background-image: url(../../components/com_community/templates/default/images/add-button.gif);
+background-repeat: no-repeat;
+background-attachment: scroll;
+background-position: 0pt 0pt;
+line-height: 16px;
+height: 16px;
+font-weight: bold;
+margin: 0pt;
+margin-bottom: 5px;
+padding: 0pt;
+padding-left: 20px;
+}
