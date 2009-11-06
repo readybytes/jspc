@@ -1,4 +1,4 @@
-<?php
+	<?php
 
 
 // no direct access
@@ -14,12 +14,14 @@ class plgCommunityShowProfileStatus extends CApplications
 	var $_path		= '';
 	var $_user		= '';
 	var $_my		= '';
+	var $_params	= '';
 	
 	function plgCommunityShowProfileStatus(& $subject, $config)
     {
 		parent::__construct($subject, $config);
 		$this->_path	= dirname( dirname( JPATH_COMPONENT ) ) . DS . 'administrator' . DS . 'components' . DS . 'com_community'; 
-		$this->_params 	= new JParameter($this->_plugin->params);		
+		$plugin =& JPluginHelper::getPlugin('community', $this->_name); 		
+		$this->_params 	= new JParameter($plugin->params);		
     }
 
 	
