@@ -40,11 +40,9 @@ class ProfilestatusViewOthervalue extends JView
 		// Add the necessary buttons
 		JToolBarHelper::back('Home' , 'index.php?option=com_profilestatus&view=othervalue');
 		JToolBarHelper::divider();
-		//JToolBarHelper::trash('save', JText::_( 'Save' ));
-		JToolBarHelper::save(saveOther,Save);
-		//JToolBarHelper::trash('cancel', JText::_( 'Close' ) , false );
+		JToolBarHelper::save('saveOther','Save');
 		JToolBarHelper::cancel( 'cancelOther', 'Close' );
-		parent::display($tpl);
+		parent::display();
 	}
 }
 ?>

@@ -64,7 +64,7 @@ function get_fieldname_from_fieldid($fieldId)
 }
 
 // return row from row id of fields values table
-function getfieldvalue($id)
+	function getfieldvalue($id)
 	{
 		$db			=& JFactory::getDBO();
 		$query = 'SELECT * FROM'.' '
@@ -72,7 +72,10 @@ function getfieldvalue($id)
 				.'WHERE `id`='. $db->Quote($id);
 		$db->setQuery( $query );
 		$fields	= $db->loadObject();
-		//print_r($fields);
+		
+		if(empty($fields))
+			return 0;
+			
 		return $fields;
 	}
 	
@@ -110,13 +113,17 @@ function getfieldvalue($id)
 			return 0;
 	}
 	
-	//return total value of fields and other feature (e.g :-weightage 150 of profile and 300 of other)
+	//return total value of fields and other feature
+	// (e.g :-weightage 150 of profile and 300 of other)
+	//other feature contain field value also so don't need to add field value
 	function get_total_of_field_and_other()
 	{
 		$otherTotal = ProfilestatusHelper::get_totalvalue_of_other();
+		/*
 		//$fieldTotal = ProfilestatusHelper::get_total_fieldvalue();
 		$total = $otherTotal + $fieldTotal;
-		return $total;
+		*/
+		return $otherTotal;
 	}
 	
 	//return individual percentage contribution of any field or feature ($value contain value of that fearture)

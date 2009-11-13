@@ -18,7 +18,7 @@ class ProfilestatusController extends JController {
 	
     function display() {
         if(JRequest::getCmd('view') == '') {
-            JRequest::setVar('view', 'fieldsvalue');
+            JRequest::setVar('view', 'othervalue');
         }
 		
 		//require_once (JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_profilestatus' . DS .'helpers'.DS.'profilestatus.php');
@@ -31,7 +31,6 @@ class ProfilestatusController extends JController {
 		$fieldId = JRequest::getVar('editId', 0 , 'GET');
 		$rowid = ProfilestatusHelper::get_id_from_fieldId_from_fieldsvalue($fieldId);
 		$row = ProfilestatusHelper::getfieldvalue($rowid);
-		
 		$viewName	= JRequest::getCmd( 'view' , 'profilestatus' );
 		
 		// Get the document object
@@ -42,10 +41,10 @@ class ProfilestatusController extends JController {
 		
 		// Get the view
 		$data = array();
-		$data['row'] = $row;
+		$data['rowid'] = $rowid;
 		$data['fieldname'] = ProfilestatusHelper::get_fieldname_from_fieldid($fieldId);
 		$data['fieldid'] = $fieldId;
-		if(!empty($row->value))
+		if(!empty($row))
 			$data['value'] = $row->value;
 		else
 			$data['value'] = 0;

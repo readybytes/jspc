@@ -28,7 +28,7 @@ defined('_JEXEC') or die('Restricted access');
 					<?php echo JText::_( 'Weightage' ); ?> :
 			</td>
 			<td width="50%">
-					<input class="text" type="text" name="percentage" id="percentage"<?php echo $this->row->id;?> value="<?php echo $this->value; ?>" />
+					<input class="text" type="text" name="percentage" id="percentage"<?php echo $this->rowid;?> value="<?php echo $this->value; ?>" />
 			</td>
 		</tr>
 </table>
@@ -37,7 +37,7 @@ defined('_JEXEC') or die('Restricted access');
 
 	<input type="hidden" name="option" value="com_profilestatus" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'profilestatus' );?>" />
-	<input type="hidden" name="cid[]" value="<?php echo $this->row->id; ?>" />
+	<input type="hidden" name="cid[]" value="<?php echo $this->rowid; ?>" />
 	<input type="hidden" name="fieldid" value="<?php echo $this->fieldid; ?>" />
 	<input type="hidden" name="task" value="" />
 	<?php echo JHTML::_( 'form.token' ); ?>

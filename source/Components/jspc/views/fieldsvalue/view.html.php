@@ -66,7 +66,7 @@ class ProfilestatusViewFieldsvalue extends JView
 	
 	function editField($data)
 	{
-		$this->assign('row', $data['row']);
+		$this->assign('rowid', $data['rowid']);
 		$this->assign('fieldname', $data['fieldname']);
 		$this->assign('value', $data['value']);
 		$this->assign('fieldid', $data['fieldid']);
@@ -78,10 +78,9 @@ class ProfilestatusViewFieldsvalue extends JView
 		JToolBarHelper::back('Home' , 'index.php?option=com_profilestatus');
 		JToolBarHelper::divider();
 		//JToolBarHelper::trash('save', JText::_( 'Save' ));
-		JToolBarHelper::save(saveField,Save);
-		//JToolBarHelper::trash('cancel', JText::_( 'Close' ) , false );
+		JToolBarHelper::save('saveField','Save');
 		JToolBarHelper::cancel( 'cancelField', 'Close' );
-		parent::display($tpl);
+		parent::display();
 	}
 	
 	/**
