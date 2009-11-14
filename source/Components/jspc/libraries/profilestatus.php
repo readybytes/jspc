@@ -1,7 +1,5 @@
 <?php
 /**
- * @copyright (C) 2008 by Slashes & Dots Sdn Bhd - All rights reserved!
- * @license Copyrighted Commercial Software
  */
 
 // no direct access
@@ -12,8 +10,10 @@ require_once (JPATH_ROOT.DS.'components'.DS.'com_community'.DS.'libraries'.DS.'c
 
 /*Langauge file will be independent now */
 $lang =& JFactory::getLanguage();
-if($lang)
+if($lang) {
 	$lang->load( 'com_community_jspt' );
+	$lang->load( 'com_profilestatus' );
+}
 	
 /* Also attach style sheet now  */
 $document =& JFactory::getDocument();
@@ -322,31 +322,31 @@ function getCompletionLink($key)
 		switch($key)
 		{
 			case 'photo' 		:
-				$result[]="Add photos";
+				$result[]=JText::_("ADD PHOTOS");
 				$result[]="index.php?option=com_community&view=photos&task=uploader";
 				break;	
 			case 'profile' 		:	
-				$result[]="Edit Profile";
+				$result[]=JText::_("EDIT PROFILE");
 				$result[]="index.php?option=com_community&view=profile&task=edit";
 				break;	
 			case 'groupowner'	:
-				$result[]="Create Group";
+				$result[]=JText::_("CREATE GROUP");
 				$result[]="index.php?option=com_community&view=groups&task=create";
 				break;	
 			case 'groupmember' 	:
-				$result[]="Join Groups";
+				$result[]=JText::_("JOIN GROUPS");
 				$result[]="index.php?option=com_community&view=groups";
 				break;	
 			case 'video' 		:
-				$result[]="Add Videos";
+				$result[]=JText::_("ADD VIDEOS");
 				$result[]="index.php?option=com_community&view=videos&task=myvideos";
 				break;	
 			case 'avatar'		:	
-				$result[]="Change Avatar";
+				$result[]=JText::_("CHANGE AVATAR");
 				$result[]="index.php?option=com_community&view=profile&task=uploadAvatar";
 				break;			
 			case 'album' 		:
-				$result[]="Add Album";
+				$result[]=JText::_("ADD ALBUM");
 				$result[]="index.php?option=com_community&view=photos&task=newalbum";
 				break;	
 			default :

@@ -7,10 +7,13 @@
 	<authorUrl>http://www.joomlaxi.com</authorUrl>
 	<copyright>All rights reserved</copyright>
 	<license>License Info</license>
-	<version>1.0.158</version>
+	<version>1.1.08</version>
 	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
 	<installfile>install.profilestatus.php</installfile>
 	<uninstallfile>uninstall.profilestatus.php</uninstallfile>
+	<languages>
+			<language tag="en-GB">en-GB.com_profilestatus.ini</language>
+	</languages>
 	<files>
 		<filename>index.html</filename>
 		<filename>libraries/index.html</filename>
