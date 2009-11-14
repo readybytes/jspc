@@ -84,7 +84,10 @@ class plgCommunityShowProfileStatus extends CApplications
 					<img src="<?php echo $filename;?>"> 
 					<br /><br />
 					<div style="SPS_CompletionText">
-					Your Profile is <span class="SPS_SpanPer" style="color:<?php echo $this->params->get('SPS_FGColor','#9CD052'); ?>;"><?php echo $profile_completion_percentage;?>%</span> complete. 
+					<?php
+						$percentStyling = '<span class="SPS_SpanPer" style="color:'. $this->params->get('SPS_FGColor','#9CD052').'">'.$profile_completion_percentage.' % </span>';
+						echo sprintf(JText::_('CC PROFILE STATUS COMPLETION'),$percentStyling); 
+						?> 
 					</div>
 				</div>
 				
