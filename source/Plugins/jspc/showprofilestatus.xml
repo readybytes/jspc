@@ -7,7 +7,7 @@
 	<license>http://www.joomlaxi.com</license>
 	<authorEmail>meenal@joomlaxi.com</authorEmail>
 	<authorUrl>www.joomlaxi.com</authorUrl>
-	<version>1.0.159</version>
+	<version>1.1.07</version>
 	<isapplication>true</isapplication>
 	<description>
 		This plugin Shows Profile Completion Status for JomSocial. 
@@ -50,6 +50,10 @@
 		<param name="SPS_SLColor"  type="text" default="#000000"  label="Side Line Color" description=""/>
 		<param name="SPS_STRColor" type="text" default="#FFFFFF"  label="Text Color" description=""/>
 		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="showProfile" type="list" default="1" label="Show Plugin when 100% Status" description="Do you want to show Plugin when user's Profile is 100% complete?">
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>

@@ -44,7 +44,8 @@ class plgCommunityShowProfileStatus extends CApplications
 		
 		$document	= JFactory::getDocument();
 		$document->addStyleSheet('plugins/community/showprofilestatus/style.css');
-		$uri		= JURI::base();			
+		$uri		= JURI::base();	
+		
 		return plgCommunityShowProfileStatus::_getShowProfileStatusHTML($my->_userid); 
 	}
 	
@@ -52,9 +53,11 @@ class plgCommunityShowProfileStatus extends CApplications
 	{		
 			$fillValue = CProfileStatusLibrary::get_fill_weightage_count_of_other($userId);
 			$totalValue = CProfileStatusLibrary::get_totalvalue_of_other();
-
-			if($totalValue == 0)
-				$profile_completion_percentage = 100;
+			$profile_completion_percentage = '';
+			
+			if($totalValue == 0){
+					$profile_completion_percentage = 100;
+			}				
 			else
 				$profile_completion_percentage = ($fillValue/$totalValue)*100;
 			
@@ -64,6 +67,11 @@ class plgCommunityShowProfileStatus extends CApplications
 			arsort($incomplete_feature);
 			
 			$profile_completion_percentage = round($profile_completion_percentage,1	);
+			
+			$showProfile = $this->params->get('showProfile','1');
+			if($showProfile == 0 && $profile_completion_percentage == 100)
+				return false;
+			
 			$filename	= plgCommunityShowProfileStatus::createPercentageBarImageFile($profile_completion_percentage);
 			
 			$my =& CFactory::getUser($userId);
