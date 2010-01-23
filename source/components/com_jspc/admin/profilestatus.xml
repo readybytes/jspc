@@ -7,14 +7,14 @@
 	<authorUrl>http://www.joomlaxi.com</authorUrl>
 	<copyright>All rights reserved</copyright>
 	<license>License Info</license>
-	<version>1.1.08</version>
+	<version>@global.version@.@svn.lastrevision@</version>
 	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
 	<installfile>install.profilestatus.php</installfile>
 	<uninstallfile>uninstall.profilestatus.php</uninstallfile>
-	<languages>
+	<languages folder="site">
 			<language tag="en-GB">en-GB.com_profilestatus.ini</language>
 	</languages>
-	<files>
+	<files folder="site">
 		<filename>index.html</filename>
 		<filename>libraries/index.html</filename>
 		<filename>libraries/profilestatus.php</filename>
@@ -25,7 +25,7 @@
 			<menu view="othervalue" >Feature Contribution</menu>
 			<menu view="fieldsvalue" >Profile Fields Contribution</menu>
 		</submenu>
-		<files>
+		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>admin.profilestatus.php</filename>
 			<filename>controller.php</filename>
