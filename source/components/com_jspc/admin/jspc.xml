@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install type="component" version="1.5.0">
-	<name>ProfileStatus</name>
+	<name>JSPC</name>
 	<creationDate>2009-08-01</creationDate>
 	<author>Meenal Devpura</author>
 	<authorEmail>shyam@joomlaxi.com</authorEmail>
@@ -9,10 +9,10 @@
 	<license>License Info</license>
 	<version>@global.version@.@svn.lastrevision@</version>
 	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
-	<installfile>install.profilestatus.php</installfile>
-	<uninstallfile>uninstall.profilestatus.php</uninstallfile>
+	<installfile>install.jspc.php</installfile>
+	<uninstallfile>uninstall.jspc.php</uninstallfile>
 	<languages folder="site">
-			<language tag="en-GB">en-GB.com_profilestatus.ini</language>
+			<language tag="en-GB">en-GB.com_jspc.ini</language>
 	</languages>
 	<files folder="site">
 		<filename>index.html</filename>
@@ -20,14 +20,14 @@
 		<filename>libraries/profilestatus.php</filename>
 	</files>
 	<administration>
-		<menu link="option=com_profilestatus" >Profile Status</menu>
+		<menu link="option=com_jspc" >Profile Status</menu>
 		<submenu>
 			<menu view="othervalue" >Feature Contribution</menu>
 			<menu view="fieldsvalue" >Profile Fields Contribution</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
-			<filename>admin.profilestatus.php</filename>
+			<filename>admin.jspc.php</filename>
 			<filename>controller.php</filename>
 
 			<filename>models/index.html</filename>
