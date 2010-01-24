@@ -36,6 +36,9 @@
 			
 			<filename>helpers/index.html</filename>
 			<filename>helpers/profilestatus.php</filename>
+
+			<filename>addons/index.html</filename>
+			<filename>addons/addons.php</filename>
 			
 			
 			<filename>views/index.html</filename>
