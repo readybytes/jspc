@@ -4,14 +4,14 @@
 	2. just build the part and put at right location
 	
  -->
-<project name="JSUL Plugin" basedir="." default="build" description="Phing build script for JSUL plugin.">
+<project name="JSPC Plugin" basedir="." default="build" description="Phing build script for JSPC plugin.">
 
 	<target name="config" description="Load configuration file">
-		<property file="plg_userlist.properties"  override="true" />
+		<property file="plg_jspc.properties"  override="true" />
 	</target>
 
-	<target name="build" description="Build Installable Userlist Plugin " depends="config">
-		<echo msg="Building the Userlist plugin...." />
+	<target name="build" description="Build Installable JSPC Plugin " depends="config">
+		<echo msg="Building the JSPC plugin...." />
 
 		<reflexive>
 			<fileset dir="${dir.tmp}">

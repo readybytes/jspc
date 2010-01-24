@@ -27,7 +27,7 @@
 			</fileset>
 		</copy>
 
-			<zip destfile="${global.dir.packages}/JSUL-${global.version}.${svn.lastrevision}-Unzip-First.zip" 
+			<zip destfile="${global.dir.packages}/JSPC-${global.version}.${svn.lastrevision}-Unzip-First.zip" 
 			basedir="JSPC-${global.version}.${svn.lastrevision}-Unzip-First" />
 
 		<delete dir="JSPC-${global.version}.${svn.lastrevision}-Unzip-First" includeemptydirs="true"/>
