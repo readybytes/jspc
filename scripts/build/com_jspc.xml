@@ -4,14 +4,14 @@
 	2. just build the part and put at right location
 	
  -->
-<project name="JSPC Component" basedir="." default="build" description="Phing build script for JSUL component.">
+<project name="JSPC Component" basedir="." default="build" description="Phing build script for JSPC component.">
 
 	<target name="config" description="Load configuration file">
 		<property file="com_jspc.properties"  override="true" />
 	</target>
 
 	<target name="build" description="Build Installable JSPC Component " depends="config">
-		<echo msg="Building the JSUL component...." />
+		<echo msg="Building the JSPC component...." />
 
 		<move 	file="${dir.tmp}/admin/${dir.projectname}.xml" 
 			tofile="${dir.tmp}/${dir.projectname}.xml"
