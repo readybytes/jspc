@@ -5,18 +5,18 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once( JPATH_BASE . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
-require_once( JPATH_BASE . DS . 'components' . DS . 'com_profilestatus' . DS . 'libraries' . DS . 'profilestatus.php');
+require_once( JPATH_BASE . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'profilestatus.php');
 
-class plgCommunityShowProfileStatus extends CApplications
+class plgCommunityJspc extends CApplications
 {
 	var $name 		= "Profile Completion";
-	var $_name		= 'showprofilestatus';
+	var $_name		= 'jspc';
 	var $_path		= '';
 	var $_user		= '';
 	var $_my		= '';
 	var $_params	= '';
 	
-	function plgCommunityShowProfileStatus(& $subject, $config)
+	function plgCommunityJspc(& $subject, $config)
     {
 		parent::__construct($subject, $config);
 		$this->_path	= dirname( dirname( JPATH_COMPONENT ) ) . DS . 'administrator' . DS . 'components' . DS . 'com_community'; 
@@ -27,7 +27,7 @@ class plgCommunityShowProfileStatus extends CApplications
 	
 	function onProfileDisplay()
 	{
-		JPlugin::loadLanguage( 'plg_showprofilestatus', JPATH_ADMINISTRATOR );
+		JPlugin::loadLanguage( 'plg_jspc', JPATH_ADMINISTRATOR );
 		
 		$my					=& CFactory::getUser();
 		$user				=& CFactory::getActiveProfile();
@@ -43,7 +43,7 @@ class plgCommunityShowProfileStatus extends CApplications
 			return;
 		
 		$document	= JFactory::getDocument();
-		$document->addStyleSheet('plugins/community/showprofilestatus/style.css');
+		$document->addStyleSheet('plugins/community/jspc/style.css');
 		$uri		= JURI::base();	
 		
 		return plgCommunityShowProfileStatus::_getShowProfileStatusHTML($my->_userid); 

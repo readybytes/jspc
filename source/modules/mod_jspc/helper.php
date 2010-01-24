@@ -15,9 +15,9 @@ class ProfileCompleteHelper
 			
 			$document	= JFactory::getDocument();
 			if ($this->params->get('SPS_Layout','horizontal')=='vertical')
-				$document->addStyleSheet('modules/mod_showprofilestatus/style.vert.css');
+				$document->addStyleSheet('modules/mod_jspc/style.vert.css');
 			else
-				$document->addStyleSheet('modules/mod_showprofilestatus/style.css');
+				$document->addStyleSheet('modules/mod_jspc/style.css');
 
 			$fillValue  = CProfileStatusLibrary::get_fill_weightage_count_of_other($userId);
 			$totalValue = CProfileStatusLibrary::get_totalvalue_of_other();
@@ -113,7 +113,7 @@ class ProfileCompleteHelper
 		
 		// if file exist return the file name
 		$per		= $per;
-		$filename	= 'modules/mod_showprofilestatus/'. $per. '.jpg';
+		$filename	= 'modules/mod_jspc/'. $per. '.jpg';
 		
 		// For debug mode generate file everytime
 		if(JFile::exists($filename))

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <install version="1.5" type="plugin" group="community">
 	<name>Profile Completion Status</name>
-	<author>Meenal Devpura</author>
+	<author>Team Joomlaxi</author>
 	<creationDate>24th July 2009</creationDate>
 	<copyright>Copyright (C) 2008. All rights reserved.</copyright>
 	<license>http://www.joomlaxi.com</license>
-	<authorEmail>meenal@joomlaxi.com</authorEmail>
+	<authorEmail>shyam@joomlaxi.com</authorEmail>
 	<authorUrl>www.joomlaxi.com</authorUrl>
-	<version>1.1.07</version>
+	<version>@global.version@.@svn.lastrevision@</version>
 	<isapplication>true</isapplication>
 	<description>
 		This plugin Shows Profile Completion Status for JomSocial. 
@@ -15,13 +15,13 @@
 	</description>
 	
 	<languages>
-	    <language tag="en-GB">en-GB.plg_showprofilestatus.ini</language>
+	    <language tag="en-GB">en-GB.plg_jspc.ini</language>
 	</languages>
 	
 	<files>
-		<file plugin="showprofilestatus">showprofilestatus.php</file>
-		<file plugin="showprofilestatus">showprofilestatus/index.html</file>
-		<file plugin="showprofilestatus">showprofilestatus/style.css</file>
+		<file plugin="showprofilestatus">jspc.php</file>
+		<file plugin="showprofilestatus">jspc/index.html</file>
+		<file plugin="showprofilestatus">jspc/style.css</file>
 	</files>
 	
 	<params>
