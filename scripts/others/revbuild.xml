@@ -21,7 +21,7 @@
 			</fileset>
                  </copy>
                 
-                <copy todir="${target}/com_jspc/site">
+                <copy todir="${target}/source/components/com_jspc/site">
 					<fileset dir="${source}/components/com_jspc">
 						<include name="**/*.*" />
 					</fileset>
@@ -45,7 +45,7 @@
                  </copy>
 
 		<copy file="${source}/language/en-GB/en-GB.mod_jspc.ini"
-                        tofile="${target}/source/modules/mod_userlist/en-GB.mod_jspc.ini"
+                        tofile="${target}/source/modules/mod_jspc/en-GB.mod_jspc.ini"
                  />
 
 		<copy todir="${target}/test">

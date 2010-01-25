@@ -61,9 +61,9 @@ class InstallTest extends XiSelTestCase
     $this->assertTrue($this->isTextPresent("Jom Social"));
   }
 
-   /**
-   */
-  function testJspcComponentInstall()
+
+
+  function testInstallJspc()
   {
     // setup default location 
     $this->adminLogin();
@@ -71,7 +71,15 @@ class InstallTest extends XiSelTestCase
     // go to installation
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
     $this->waitPageLoad("30000");
-      
+    $this->installJspcComponent();
+    $this->installJspcPlugin();
+    $this->installJspcModule();
+  }
+
+   /**
+   */
+  function installJspcComponent()
+  {
     $this->type("install_package", COM_JSPC_PKG);
     $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
     $this->waitPageLoad();
@@ -82,16 +90,8 @@ class InstallTest extends XiSelTestCase
   
   /**
    */
-  function testJspcPluginInstall()
+  function installJspcPlugin()
   {
-    // setup default location 
-    $this->adminLogin();
-    
-    // go to installation
-    $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
-    $this->waitPageLoad("30000");
-      
-	// add profiletype-one
     $this->type("install_package", PLG_JSPC_PKG);
     $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
     $this->waitPageLoad();
@@ -100,16 +100,8 @@ class InstallTest extends XiSelTestCase
   
   /**
    */
-  function testJspcModuleInstall()
+  function installJspcModule()
   {
-    // setup default location 
-    $this->adminLogin();
-    
-    // go to installation
-    $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
-    $this->waitPageLoad("30000");
-      
-	// add profiletype-one
     $this->type("install_package", MOD_JSPC_PKG);
     $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
     $this->waitPageLoad();
