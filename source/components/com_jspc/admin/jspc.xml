@@ -20,6 +20,9 @@
 		<filename>libraries/profilestatus.php</filename>
 	</files>
 	<administration>
+		<languages folder="site">
+			<language tag="en-GB">en-GB.com_jspc.ini</language>
+		</languages>
 		<menu link="option=com_jspc" >Profile Status</menu>
 		<submenu>
 			<menu view="othervalue" >Feature Contribution</menu>

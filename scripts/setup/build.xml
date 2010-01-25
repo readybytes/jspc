@@ -33,7 +33,7 @@
 			</fileset>
 			 <filterchain>
 				<replacetokens>
-				    <token key="local.repository.location" 	value="${global.dir.root}"/>
+				    <token key="local.repository.location" 	value="${project.basedir}/../../"/>
 				</replacetokens>
 			</filterchain>
 		</reflexive>
@@ -64,7 +64,7 @@
 
 	<target name="copy_plg_jspc">
 		<property file="../build/build.properties"  override="true" />
-		<property file="../build/plg_userlist.properties"  override="true" />
+		<property file="../build/plg_jspc.properties"  override="true" />
 		<echo msg="Copying ${dir.packages}/${file.package}${svn.lastrevision}${file.extension} " />
 		<copy 	file="${dir.packages}/${file.package}${svn.lastrevision}${file.extension}" 
 				tofile="${joomla.rootpath}/${joomla.folder}/${project.name}${file.extension}" />
@@ -73,7 +73,7 @@
 	<target name="copy_com_jspc">
 		<property file="../build/build.properties"  override="true" />
 
-		<property file="../build/com_userlist.properties"  override="true" />	
+		<property file="../build/com_jspc.properties"  override="true" />	
 		<echo msg="Copying ${dir.packages}/${file.package}${svn.lastrevision}${file.extension} " />
 		<copy 	file="${dir.packages}/${file.package}${svn.lastrevision}${file.extension}" 
 				tofile="${joomla.rootpath}/${joomla.folder}/${project.name}${file.extension}" />
@@ -83,7 +83,7 @@
 	<target name="copy_mod_jspc">
 		<property file="../build/build.properties"  override="true" />
 
-		<property file="../build/mod_userlist.properties"  override="true" />
+		<property file="../build/mod_jspc.properties"  override="true" />
 		<echo msg="Copying ${dir.packages}/${file.package}${svn.lastrevision}${file.extension} " />
 		<copy 	file="${dir.packages}/${file.package}${svn.lastrevision}${file.extension}" 
 				tofile="${joomla.rootpath}/${joomla.folder}/${project.name}${file.extension}" />
