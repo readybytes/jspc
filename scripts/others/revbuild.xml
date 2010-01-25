@@ -8,10 +8,10 @@
         <target name="copy_to_svn" description="copy target">
                 
                 <copy   file="${source}/language/en-GB/en-GB.com_jspc.ini" 
-                        tofile="${source}/components/com_userlist/en-GB.com_jspc.ini" 
+                        tofile="${source}/components/com_jspc/en-GB.com_jspc.ini" 
                          />
                 <copy   file="${source}/administrator/language/en-GB/en-GB.com_jspc.ini" 
-                        tofile="${source}/administrator/components/com_userlist/en-GB.com_jspc.ini" 
+                        tofile="${source}/administrator/components/com_jspc/en-GB.com_jspc.ini" 
                          />
 
                 

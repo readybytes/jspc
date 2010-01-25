@@ -1,0 +1,18 @@
+<phpunit 
+		backupGlobals="false" 
+		backupStaticAttributes="true" 
+		colors="true" 
+		syntaxCheck="false"
+		bootstrap="bootstrap.php"
+		stopOnFailure="true" >
+
+	<testsuite name="AllTest">
+		<file>install/installTest.php</file>
+	</testsuite>
+	
+	<listeners>
+		<listener class="XiTestListener" file="./system/XiTestListener.php" />
+	</listeners>
+</phpunit>
+
+

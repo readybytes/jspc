@@ -20,7 +20,7 @@
 		<filename>libraries/profilestatus.php</filename>
 	</files>
 	<administration>
-		<languages folder="site">
+		<languages folder="admin">
 			<language tag="en-GB">en-GB.com_jspc.ini</language>
 		</languages>
 		<menu link="option=com_jspc" >Profile Status</menu>
