@@ -2,7 +2,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class videos extends jspcAddons
+class groupmember extends jspcAddons
 {
 	private $_debugMode;
 	private $_name;
@@ -20,13 +20,10 @@ class videos extends jspcAddons
 	
 	public function calculateCompletness($userid)
 	{
-		$db		=& JFactory::getDBO();
-		
-		$query  = "SELECT COUNT(*) FROM #__community_videos WHERE `creator`=".$userid." AND `published`='1' AND `status`='ready' ";
-		$db->setQuery( $query );
-		$count = $db->loadResult();
-		
-		$total = $this->addonparams->get('video_total',0);
+		$gModel =& CFactory::getModel('groups');
+		$count = $gModel->getGroupsCount( $userid );
+						
+		$total = $this->addonparams->get('groupmember_total',0);
 		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
 		
 		if(0 == $total)
@@ -35,7 +32,7 @@ class videos extends jspcAddons
 		if($count >= $total)
 			return $contribution;
 		else {
-			/* calclulating percentage according to user videos count */
+			/* calclulating percentage according to user group member count */
 			$percentage =  ( $count / $total ) * $contribution; 
 			return $percentage;
 		}				
@@ -45,8 +42,8 @@ class videos extends jspcAddons
 	function getCompletionLink()
 	{
 		$result = array();
-		$result['text']=JText::_("ADD VIDEOS");
-		$result['link']="index.php?option=com_community&view=videos&task=myvideos";
+		$result['text']=JText::_("JOIN GROUPS");
+		$result['link']="index.php?option=com_community&view=groups";
 		return $result;
 	}
 }

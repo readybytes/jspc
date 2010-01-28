@@ -13,6 +13,15 @@ jimport( 'joomla.filesystem.file' );
 jimport( 'joomla.filesystem.folder' );
 
 
+$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+
+if(!JFolder::exists($communityPath))
+	return;
+
+
+//community files
+require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+	
 //// define our include paths to joomla
 jimport( 'joomla.application.component.model' );
 JModel::addIncludePath(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'models');

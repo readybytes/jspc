@@ -19,9 +19,9 @@
 	</languages>
 	
 	<files>
-		<file plugin="showprofilestatus">jspc.php</file>
-		<file plugin="showprofilestatus">jspc/index.html</file>
-		<file plugin="showprofilestatus">jspc/style.css</file>
+		<file plugin="jspc">jspc.php</file>
+		<file plugin="jspc">jspc/index.html</file>
+		<file plugin="jspc">jspc/style.css</file>
 	</files>
 	
 	<params>

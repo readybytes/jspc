@@ -171,19 +171,54 @@ abstract class jspcAddons
 		if(!$this->coreparams)
 			$this->setCoreParams();
 		$this->coreparams->bind($data['coreparams']);
+		$this->featurename = $data['featurename'];
+		$this->published = $data['published'];
+	}
+	
+	
+	function getFeatureContribution($userid)
+	{
+		/*XITODO : for profile fields we have to overite this fn
+		 * b'coz some fields may be not aplicable to user according to profiletype
+		 * and in that case total may change so let to handle this fields class
+		 */ 
+		$total = $this->coreparams->get('jspc_core_total_contribution',0);
+		return $total;
 	}
 	
 	
 	
+	function isApplicable($userid)
+	{
+		/*XITODO : check according to addon params and core params
+		 * we will give profiletype facility in core params
+		 * user accesibility option
+		 * for ex :- if some fields are not available to user 
+		 * according to fields disable
+		 * then this fn should return false*/
+		$isApplicableAccToAddon = $this->checkAddonAccesibility($userid);
+		$isApplicableAccToCore =  $this->checkCoreAccesibility($userid);
+		
+		if($isApplicableAccToAddon && $isApplicableAccToCore)
+			return true;
+			
+		return false;
+	}
+	
+	
+	public function checkCoreAccesibility($userid)
+	{
+		return true;
+	}
+	
+	public function checkAddonAccesibility($userid)
+	{
+		return true;
+	}
 	
 	public function getMe()
 	{
 		return get_class($this);
 	}
-	
-	
-	abstract public function isApplicable($userid);
-	
-	
 	
 }

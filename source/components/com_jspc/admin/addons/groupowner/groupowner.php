@@ -17,18 +17,37 @@ class groupowner extends jspcAddons
 		$this->addonparams = new JParameter('',$xmlpath);
 	}
 	
-	
-	public function isApplicable($userid)
-	{} 
-	
-	
 	public function calculateCompletness($userid)
-	{}
+	{
+		$db		=& JFactory::getDBO();
+		
+		$query	= 'SELECT COUNT(*) FROM ' 
+		. $db->nameQuote( '#__community_groups' ) . ' '
+		. 'WHERE ' . $db->nameQuote( 'ownerid' ) . '=' . $db->Quote( $userid );
+		
+		$db->setQuery( $query );
+		$count	= $db->loadResult();
+					
+		$total = $this->addonparams->get('groupowner_total',0);
+		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
+		
+		if(0 == $total)
+			return $contribution;
+		
+		if($count >= $total)
+			return $contribution;
+		else {
+			/* calclulating percentage according to user group creator count */
+			$percentage =  ( $count / $total ) * $contribution; 
+			return $percentage;
+		}				
+	}
 	
-	
-	
-	
-	
-	public function saveParams()
-	{}
+	function getCompletionLink()
+	{
+		$result = array();
+		$result['text']=JText::_("CREATE GROUP");
+		$result['link']="index.php?option=com_community&view=groups&task=create";
+		return $result;
+	}
 }

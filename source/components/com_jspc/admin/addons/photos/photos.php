@@ -35,14 +35,43 @@ class photos extends jspcAddons
 	}
 	
 	
-	public function isApplicable($userid)
-	{} 
+	public function checkAddonAccesibility($userid)
+	{
+		/*XITODO : check according to addon params
+		 * user accesibility option
+		 * for ex :- if photo is not available to user according to profiletype rule
+		 * then this fn should return false*/
+		return true;
+	} 
 	
 	
 	public function calculateCompletness($userid)
-	{}
+	{
+		/*For photos we have to check user photo count
+		 * and compare with required photo count */
+		$pModel =& CFactory::getModel('photos');
+		$count = $pModel->getPhotosCount($userid);
+		$total = $this->addonparams->get('photo_total',0);
+		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
+		
+		if(0 == $total)
+			return $contribution;
+		
+		if($count >= $total)
+			return $contribution;
+		else {
+			/* calclulating percentage according to user photo count */
+			$percentage =  ( $count / $total ) * $contribution; 
+			return $percentage;
+		}				
+	}
 	
+	function getCompletionLink()
+	{
+		$result = array();
+		$result['text']=JText::_("ADD PHOTOS");
+		$result['link']="index.php?option=com_community&view=photos&task=uploader";
+		return $result;
+	}
 	
-	public function saveParams()
-	{}
 }

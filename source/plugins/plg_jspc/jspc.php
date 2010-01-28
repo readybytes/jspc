@@ -5,7 +5,7 @@
 defined('_JEXEC') or die('Restricted access');
 
 require_once( JPATH_BASE . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
-require_once( JPATH_BASE . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'profilestatus.php');
+require_once( JPATH_BASE . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'jspc.php');
 
 class plgCommunityJspc extends CApplications
 {
@@ -46,13 +46,13 @@ class plgCommunityJspc extends CApplications
 		$document->addStyleSheet('plugins/community/jspc/style.css');
 		$uri		= JURI::base();	
 		
-		return plgCommunityShowProfileStatus::_getShowProfileStatusHTML($my->_userid); 
+		return self::_getShowProfileStatusHTML($my->_userid); 
 	}
 	
 	function _getShowProfileStatusHTML($userId)
 	{		
-			$fillValue = CProfileStatusLibrary::get_fill_weightage_count_of_other($userId);
-			$totalValue = CProfileStatusLibrary::get_totalvalue_of_other();
+			$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
+			$totalValue = JspcLibrary::calulateTotalCount($userId);
 			$profile_completion_percentage = '';
 			
 			if($totalValue == 0){
@@ -62,7 +62,7 @@ class plgCommunityJspc extends CApplications
 				$profile_completion_percentage = ($fillValue/$totalValue)*100;
 			
 			//get array of those feature which is not complete
-			$incomplete_feature = CProfileStatusLibrary::get_incomplete_feature_array($userId);
+			$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
 			//sort the array in descending order with not changing key
 			arsort($incomplete_feature);
 			
@@ -72,7 +72,7 @@ class plgCommunityJspc extends CApplications
 			if($showProfile == 0 && $profile_completion_percentage == 100)
 				return false;
 			
-			$filename	= plgCommunityShowProfileStatus::createPercentageBarImageFile($profile_completion_percentage);
+			$filename	= self::createPercentageBarImageFile($profile_completion_percentage);
 			
 			$my =& CFactory::getUser($userId);
 			$myLink=CRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);
@@ -108,14 +108,14 @@ class plgCommunityJspc extends CApplications
 						$total =  100 - $profile_completion_percentage;
 						foreach($incomplete_feature as $key => $value)
 						{
-							$nextTask	= CProfileStatusLibrary::getCompletionLink($key);
+							$nextTask	= JspcLibrary::getCompletionLink($key);
 							$value 		= round($value,1);
 							if($value > $total)
 								$value = $total;
 							$total -=$value;?>
 							<li> <?php echo $value; ?>% &nbsp;
-								<a class="SPS_JSMessage" href="<?php echo CRoute::_($nextTask[1],false); ?>"> 
-									<?php echo $nextTask[0];?> 
+								<a class="SPS_JSMessage" href="<?php echo CRoute::_($nextTask['link'],false); ?>"> 
+									<?php echo $nextTask['text'];?> 
 								</a>
 							</li><?php
 						}?>
@@ -136,7 +136,7 @@ class plgCommunityJspc extends CApplications
 		
 		// if file exist return the file name
 		$per		= $per;
-		$filename	= 'plugins/community/showprofilestatus/'. $per. '.jpg';
+		$filename	= 'plugins/community/jspc/'. $per. '.jpg';
 		
 		// For debug mode generate file everytime
 		if(JFile::exists($filename))
@@ -156,19 +156,19 @@ class plgCommunityJspc extends CApplications
 		$img 		= 	ImageCreateTrueColor($width, $height);
 
 		// $bg 		= imagecolorallocate($img, 255, 255, 255);
-		$bgColor	= plgCommunityShowProfileStatus::getColor($img,
+		$bgColor	= self::getColor($img,
 									$this->params->get('SPS_BGColor','#FFFFFF'));
 		
 		//rgb(156, 208, 82)
-		$fgColor	= plgCommunityShowProfileStatus::getColor($img,
+		$fgColor	= self::getColor($img,
 									$this->params->get('SPS_FGColor','#9CD052'));
 
 		//rgb 50, 55, 55
-		$slColor	= plgCommunityShowProfileStatus::getColor($img,
+		$slColor	= self::getColor($img,
 									$this->params->get('SPS_SLColor','#000000'));
 		
 		// 255 255 255
-		$strColor 	= plgCommunityShowProfileStatus::getColor($img,
+		$strColor 	= self::getColor($img,
 									$this->params->get('SPS_STRColor','#FFFFFF'));
 		
 		// calculate bar fill length
@@ -191,7 +191,7 @@ class plgCommunityJspc extends CApplications
 	function getColor($img , $hexcode)
 	{
 		assert($img);
-		$color	=	plgCommunityShowProfileStatus::html2rgb($hexcode);
+		$color	=	self::html2rgb($hexcode);
 		//print_r($hexcode . "=>" . $color[0] .",". $color[1] .",". $color[2]);
 		return imagecolorallocate($img, $color[0],$color[1],$color[2]);
 	}

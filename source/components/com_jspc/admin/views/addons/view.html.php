@@ -49,7 +49,7 @@ class JspcViewAddons extends JView
 		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
 		JToolBarHelper::divider();
 		JToolBarHelper::trash('remove', JText::_( 'DELETE' ));
-		JToolBarHelper::addNew('edit', JText::_( 'ADD RULE' ));
+		JToolBarHelper::addNew('edit', JText::_( 'ADD FEATURE' ));
 		JToolBarHelper::divider();
 		JToolBarHelper::publishList('publish', JText::_( 'PUBLISHED' ));
 		JToolBarHelper::unpublishList('unpublish', JText::_( 'UNPUBLISHED' ));
@@ -70,6 +70,9 @@ class JspcViewAddons extends JView
 			$binddata = array();
 			$binddata['addonparams'] = $data['addonInfo']->addonparams;
 			$binddata['coreparams'] = $data['addonInfo']->coreparams;
+			$binddata['featurename'] = $data['addonInfo']->featurename;
+			$binddata['published'] = $data['addonInfo']->published;
+			
 			$addonObject->bind($binddata);
 			$addonObject->getHtml($coreParamsHtml,$addonParamsHtml,$standardHtml);
 			

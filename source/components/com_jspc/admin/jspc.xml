@@ -18,6 +18,7 @@
 		<filename>index.html</filename>
 		<filename>libraries/index.html</filename>
 		<filename>libraries/profilestatus.php</filename>
+		<filename>libraries/jspc.php</filename>
 	</files>
 	<administration>
 		<languages folder="admin">
@@ -56,12 +57,15 @@
 			<filename>addons/videos/index.html</filename>
 			<filename>addons/videos/videos.php</filename>
 			<filename>addons/videos/videos.xml</filename>
-			<filename>addons/groupjoin/index.html</filename>
-			<filename>addons/groupjoin/groupjoin.php</filename>
-			<filename>addons/groupjoin/groupjoin.xml</filename>
+			<filename>addons/groupmember/index.html</filename>
+			<filename>addons/groupmember/groupmember.php</filename>
+			<filename>addons/groupmember/groupmember.xml</filename>
 			<filename>addons/groupowner/index.html</filename>
 			<filename>addons/groupowner/groupowner.php</filename>
 			<filename>addons/groupowner/groupowner.xml</filename>
+			<filename>addons/albums/index.html</filename>
+			<filename>addons/albums/albums.php</filename>
+			<filename>addons/albums/albums.xml</filename>
 			
 			
 			<filename>views/index.html</filename>

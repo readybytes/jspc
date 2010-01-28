@@ -11,6 +11,11 @@ defined('_JEXEC') or die('Restricted access');
 jimport( 'joomla.application.component.controller' );
 jimport('joomla.application.component.model');
 
+$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+
+if(!JFolder::exists($communityPath))
+	return;
+
 // add include files
 require_once JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php';
 
