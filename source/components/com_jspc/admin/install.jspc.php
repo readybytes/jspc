@@ -46,15 +46,30 @@ function setup_database()
 
 function create_tables()
 {
-	$db	=& JFactory::getDBO();
-	$query = 'CREATE TABLE IF NOT EXISTS `#__profilestatus_fields_values` ( `id` int(10) NOT NULL AUTO_INCREMENT,`field_id` int(10) NOT NULL,`value` text NOT NULL,PRIMARY KEY (`id`),KEY `field_id` (`field_id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8';
-	$db->setQuery($query);
-	$db->query();
+	$allQueries  	= array();
 	
-	$query = 'CREATE TABLE IF NOT EXISTS `#__profilestatus_other_values` ( `id` int(10) NOT NULL AUTO_INCREMENT,`name` text NOT NULL,`key` text NOT NULL,`total` int(11) NOT NULL default \'0\',`value` int(11) NOT NULL default \'0\',PRIMARY KEY (`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8';
-	$db->setQuery($query);
-	$db->query();
-	return true;//reinstall now
+	$allQueries[] = 'CREATE TABLE IF NOT EXISTS `#__profilestatus_fields_values` ( `id` int(10) NOT NULL AUTO_INCREMENT,`field_id` int(10) NOT NULL,`value` text NOT NULL,PRIMARY KEY (`id`),KEY `field_id` (`field_id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8';
+	
+	$allQueries[] = 'CREATE TABLE IF NOT EXISTS `#__profilestatus_other_values` ( `id` int(10) NOT NULL AUTO_INCREMENT,`name` text NOT NULL,`key` text NOT NULL,`total` int(11) NOT NULL default \'0\',`value` int(11) NOT NULL default \'0\',PRIMARY KEY (`id`)) ENGINE=MyISAM  DEFAULT CHARSET=utf8';
+	
+	$allQueries[] = 'CREATE TABLE IF NOT EXISTS `#__jspc_addons` (
+  			`id` int(21) NOT NULL auto_increment,
+  			`name` varchar(64) NOT NULL,
+  			`featurename` varchar(250) NOT NULL,
+  			`coreparams` text NOT NULL,
+  			`addonparams` text NOT NULL,
+  			`published` tinyint(1) NOT NULL,
+  			PRIMARY KEY  (`id`)
+			) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1;';
+	
+	$db=& JFactory::getDBO();
+	foreach($allQueries as $query) {
+		$db->setQuery( $query );
+		$db->query();
+	}
+	
+	return true;
+	
 }
 
 function insert_default_values()

@@ -1,207 +1,189 @@
 <?php
 /**
- * Joomla! 1.5 component profilestatus
+ * Joomla! 1.5 component jspc
  *
- * @version $Id: helper.php 2009-07-01 01:02:25 svn $
- * @author Meenal Devpura
+ * @version $Id: addons.php
+ * @author Team Joomlaxi
  * @package Joomla
- * @subpackage profilestatus
+ * @subpackage jspc
  * @license GNU/GPL
  *
  * Joomla component for jomsocial to show completion of profile
- *
- * This component file was created using the Joomla Component Creator by Not Web Design
- * http://www.notwebdesign.com/joomla_component_creator/
- *
+ * This file class will call of any feature ( rule ) request.
+ * 
  */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-/**
- * profilestatus Helper
- *
- * @package Joomla
- * @subpackage profilestatus
- * @since 1.5
- */
-class ProfilestatusHelper {
-
-//return all fields available in jomsocial
-function get_jomsocial_profile_fields()
-{
-	$db		=& JFactory::getDBO();
-		
-	$query	= 'SELECT * FROM ' . $db->nameQuote( '#__community_fields' ) . ' '
-			. 'ORDER BY ordering';
-			
-	$db->setQuery( $query );
-	
-	$result = $db->loadObjectlist();
-	if(!empty($result))
-		return $result;
-	else
-		false;
-}
-
-//return fieldname form field id from community fields table
-function get_fieldname_from_fieldid($fieldId)
+class addonFactory
 {
 	
-	$db		=& JFactory::getDBO();
-		
-	$query	= 'SELECT * FROM ' . $db->nameQuote( '#__community_fields' ) . ' '
-			. 'WHERE `id`='. $db->Quote($fieldId);
-			
-	$db->setQuery( $query );
+	private function __construct()
+	{}
 	
-	$result = $db->loadObjectList();
-
-	if(!empty($result[0]->name))
-		return $result[0]->name;
-	else
-		return $result[0]->fieldcode;;
-}
-
-// return row from row id of fields values table
-	function getfieldvalue($id)
+	
+	static function getObject()
+	{}
+		
+	
+	
+	public function getAddonsInfo($filter='',$join='AND')
 	{
 		$db			=& JFactory::getDBO();
-		$query = 'SELECT * FROM'.' '
-				. $db->nameQuote('#__profilestatus_fields_values').' '
-				.'WHERE `id`='. $db->Quote($id);
-		$db->setQuery( $query );
-		$fields	= $db->loadObject();
 		
-		if(empty($fields))
-			return 0;
-			
-		return $fields;
-	}
-	
-	//return id of field values table from field id
-	function get_id_from_fieldId_from_fieldsvalue($fieldId)
-	{
-		$db			=& JFactory::getDBO();
-		$query = 'SELECT id FROM'.' '
-				. $db->nameQuote('#__profilestatus_fields_values').' '
-				.'WHERE `field_id`='. $db->Quote($fieldId);
-		
-		$db->setQuery( $query );
-		$field	= $db->loadResult();
-		//print_r($field);
-		if(!empty($field))
-			return $field;
-		else
-			return 0;
-	}
-	
-	//return total weightage of other ( e.g. :- 300 )
-	function get_totalvalue_of_other()
-	{
-		$db			=& JFactory::getDBO();
-		$query = 'SELECT SUM(value) as total FROM'.' '
-				. $db->nameQuote('#__profilestatus_other_values');
-				
-		$db->setQuery( $query );
-		$result	= $db->loadResult();
-		
-		//print_r($fields);
-		if(!empty($result))
-			return $result;
-		else
-			return 0;
-	}
-	
-	//return total value of fields and other feature
-	// (e.g :-weightage 150 of profile and 300 of other)
-	//other feature contain field value also so don't need to add field value
-	function get_total_of_field_and_other()
-	{
-		$otherTotal = ProfilestatusHelper::get_totalvalue_of_other();
-		/*
-		//$fieldTotal = ProfilestatusHelper::get_total_fieldvalue();
-		$total = $otherTotal + $fieldTotal;
-		*/
-		return $otherTotal;
-	}
-	
-	//return individual percentage contribution of any field or feature ($value contain value of that fearture)
-	function get_individual_percentage_contribution($value)
-	{
-		$total = ProfilestatusHelper::get_total_of_field_and_other();
-		if($total != 0)
-			$percentage = ($value/$total)*100;
-		else
-			$percentage = 0;
-		return $percentage;
-	}
-	
-	//return percentage contribution of any field or feature ($value contain value of that fearture) according to profile weightage
-	//e.g. :- suppose profile is having weightage of 30 and total weightage of others = 400
-	//then % contribution of profile = 30/400*100 = 7.5%
-	//now if profile field weightage = 300 then if profile is complete then we will say total status is 7.5 % complete
-	//and we do calculation on 7.5
-	//300 = 7.5 then 50 = 7.5/300*50 = 1.25
-	function get_field_percentage_contribution($value)
-	{
-		//get value of profile
-		$profilevalue = ProfilestatusHelper::get_othervalue_from_key('profile');
-		$fieldTotal = ProfilestatusHelper::get_total_fieldvalue();
-		//profile % form overall
-		if($profilevalue != 0)
-			$profilepercent = ProfilestatusHelper::get_individual_percentage_contribution($profilevalue);
-		else
-			return 0;
-		//$total = ProfilestatusHelper::get_total_of_field_and_other();
-		$percentage = ($value/$fieldTotal)*$profilepercent;
-		return $percentage;
-	}
-	
-	
-	//get other value form key ( e.q :- for profile)
-	function get_othervalue_from_key($key)
-	{
-		$db			=& JFactory::getDBO();
-		$query = 'SELECT * FROM'.' '
-				. $db->nameQuote('#__profilestatus_other_values').' '
-				.'WHERE `key`='. $db->Quote($key);
-		$db->setQuery( $query );
-		$field	= $db->loadObject();
-		//print_r($fields);
-		if(!empty($field))
-			return $field->value;
-		else
-			return 0;
-	}
-	
-	// return total value count of fields
-	function get_total_fieldvalue()
-	{
-		$fields = ProfilestatusHelper::get_jomsocial_profile_fields();
-		$total = 0;
-		if(!empty($fields))
-		{
-			foreach($fields as $field)
-			{
-				$id = ProfilestatusHelper::get_id_from_fieldId_from_fieldsvalue($field->id);
-				$row = ProfilestatusHelper::getfieldvalue($id);
-				if(!empty($row->value))
-					$total = $total + $row->value;
+		$filterSql = ''; 
+		if(!empty($filter)){
+			$filterSql = ' WHERE ';
+			$counter = 0;
+			foreach($filter as $name => $info) {
+				$filterSql .= $counter ? ' '.$join.' ' : '';
+				$filterSql .= $db->nameQuote($name).'='.$db->Quote($info);
+				$counter++;
 			}
 		}
-		return $total;
-	}
 
-	// return all rows of other_values table
-	function getData()
-	{
-		$db			=& JFactory::getDBO();
-		$query = 'SELECT * FROM'.' '
-				. $db->nameQuote('#__profilestatus_other_values');
-		$db->setQuery( $query );
-		$fields	= $db->loadObjectList();
-		return $fields;
+		$query = 'SELECT * FROM '.$db->nameQuote('#__jspc_addons')
+				.$filterSql;
+				
+		$db->setQuery($query);
+		$addonsinfo = $db->loadObjectList();
+		
+		return $addonsinfo;
 	}
+	
+	
+	
+	public function getAddons()
+	{
+		$path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons';
+	
+		jimport( 'joomla.filesystem.folder' );
+		$addons = array();
+		$addons = JFolder::folders($path);
+		return $addons;
+	}
+	
+	
+	public function getAddonObject($addonName)
+	{
+		$path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . $addonName . DS . $addonName.'.php';
+		jimport( 'joomla.filesystem.file' );
+		if(!JFile::exists($path))
+			return false;
+
+		require_once $path;
+			
+		//$instance will comtain all addon object according to rule
+		//Every rule will have different object
+		static $instance = array();
+		if(isset($instance[$addonName]))
+			return $instance[$addonName];
+			
+		$instance[$addonName] = new $addonName(0);	
+		return $instance[$addonName];
+	}
+	
+	
+	public function getValueFromParams($what,$from,$default=0)
+	{
+		$params = new JParameter( $from );
+		$value = $params->get($what,$default);
+		return $value;
+	}
+	
+	
+	
 }
-?>
+
+
+
+
+
+abstract class jspcAddons
+{
+
+	public $coreparams;
+	public $standardparam;
+	public $featurename;
+	public $published;
+	
+	final public function setCoreParams()
+	{
+		if($this->coreparams)
+			return;
+			
+		$xmlpath = $path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . 'coreparams.xml';
+		$this->coreparams = new JParameter('',$xmlpath);
+	}
+	
+	
+	public function getHtml(&$coreParamsHtml,&$addonParamsHtml,&$standardHtml)
+	{
+		//Imp : Function will always call core field html
+		$coreParamsHtml = $this->getCoreParamsHtml();
+		$addonParamsHtml = $this->getAddonParamsHtml();
+		$standardHtml = "Write html for published field , just write a text box";
+	}
+	
+	
+	public function getAddonParamsHtml()
+	{
+		$addonParamsHtml = $this->addonparams->render('addonparams');
+		
+		if($addonParamsHtml)
+			return $addonParamsHtml;
+		
+		$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+		
+		return $addonParamsHtml;
+	}
+	
+	
+	final public function getCoreParamsHtml()
+	{
+		$this->setCoreParams();
+		$coreParamsHtml = $this->coreparams->render('coreparams');
+		
+		if($coreParamsHtml)
+			return $coreParamsHtml;
+		
+		$coreParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+		
+		return $coreParamsHtml;
+	}
+	
+	
+	function collectParamsFromPost($postdata)
+	{
+		assert($postdata['addonparams']);
+		$registry	=& JRegistry::getInstance( 'jspc' );
+		$registry->loadArray($postdata['addonparams'],'jspc_addonparams');
+		$addonparams =  $registry->toString('INI' , 'jspc_addonparams' );
+		return $addonparams;
+	}
+	
+	
+	
+	function bind($data)
+	{
+		$this->addonparams->bind($data['addonparams']);
+		if(!$this->coreparams)
+			$this->setCoreParams();
+		$this->coreparams->bind($data['coreparams']);
+	}
+	
+	
+	
+	
+	public function getMe()
+	{
+		return get_class($this);
+	}
+	
+	
+	abstract public function isApplicable($userid);
+	
+	
+	
+}

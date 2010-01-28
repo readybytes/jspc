@@ -25,23 +25,43 @@
 		</languages>
 		<menu link="option=com_jspc" >Profile Status</menu>
 		<submenu>
+			<menu view="addons" >Completness Criteria</menu>
 			<menu view="othervalue" >Feature Contribution</menu>
 			<menu view="fieldsvalue" >Profile Fields Contribution</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>admin.jspc.php</filename>
-			<filename>controller.php</filename>
+			<filename>includes.jspc.php</filename>
+
+			<filename>controllers/index.html</filename>
+			<filename>controllers/addons.php</filename>
 
 			<filename>models/index.html</filename>
 			<filename>models/othervalue.php</filename>
 			<filename>models/profilestatus.php</filename>
+			<filename>models/addons.php</filename>
 			
 			<filename>helpers/index.html</filename>
 			<filename>helpers/profilestatus.php</filename>
+			<filename>helpers/core.php</filename>
+			<filename>helpers/jspc.php</filename>
 
 			<filename>addons/index.html</filename>
 			<filename>addons/addons.php</filename>
+			<filename>addons/coreparams.xml</filename>
+			<filename>addons/photos/index.html</filename>
+			<filename>addons/photos/photos.php</filename>
+			<filename>addons/photos/photos.xml</filename>
+			<filename>addons/videos/index.html</filename>
+			<filename>addons/videos/videos.php</filename>
+			<filename>addons/videos/videos.xml</filename>
+			<filename>addons/groupjoin/index.html</filename>
+			<filename>addons/groupjoin/groupjoin.php</filename>
+			<filename>addons/groupjoin/groupjoin.xml</filename>
+			<filename>addons/groupowner/index.html</filename>
+			<filename>addons/groupowner/groupowner.php</filename>
+			<filename>addons/groupowner/groupowner.xml</filename>
 			
 			
 			<filename>views/index.html</filename>
@@ -63,8 +83,17 @@
 			<filename>views/summary/tmpl/default.php</filename>
 
 			
+			<filename>views/addons/index.html</filename>
+			<filename>views/addons/view.html.php</filename>
+			<filename>views/addons/tmpl/index.html</filename>
+			<filename>views/addons/tmpl/default.php</filename>
+			<filename>views/addons/tmpl/addon.edit.php</filename>
+			<filename>views/addons/tmpl/param.edit.php</filename>
+			
 
 			<filename>tables/index.html</filename>
+			
+			<filename>tables/addons.php</filename>
 			
 			<filename>tables/othervalue.php</filename>
 			<filename>tables/fieldsvalue.php</filename>

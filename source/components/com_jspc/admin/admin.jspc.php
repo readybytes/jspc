@@ -1,38 +1,56 @@
 <?php
 /**
- * Joomla! 1.5 component profilestatus
  *
- * @version $Id: controller.php 2009-07-01 01:02:25 svn $
- * @author Meenal Devpura
- * @package Joomla
- * @subpackage profilestatus
- * @license GNU/GPL
- *
- * Joomla component for jomsocial to show completion of profile
- *
+ //@TODO : Include all helper files or other files in one common file and include that file
  */
 
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
+//Import Joomla Dependency
 jimport( 'joomla.application.component.controller' );
-require_once( JPATH_COMPONENT.DS.'helpers'.DS.'profilestatus.php' );
+jimport('joomla.application.component.model');
 
-// Require the base controller
-require_once (JPATH_COMPONENT.DS.'controller.php');
+// add include files
+require_once JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php';
 
-$controller	= new ProfilestatusController( );
-//print_r("<br /> in profilestatus.php file ");
-//print_r($controller);
+if(JRequest::getCmd('view') == '') {
+            JRequest::setVar('view', 'addons');
+}
+
+$controller	= JRequest::getCmd( 'view');
+
+if(!empty( $controller )){
+	$controller	= JString::strtolower( $controller );
+	$path		= JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jspc'.DS.'controllers'.DS.$controller.'.php';
+
+	// Test if the controller really exists
+	if(file_exists($path))
+		require_once( $path );
+	else
+		JError::raiseError( 500 , JText::_( 'Invalid Controller. File does not exists in this context.' ) );
+}
+
+$class	= 'JspcController' . JString::ucfirst( $controller );
+
+// Test if the object really exists in the current context
+if( class_exists( $class ) )
+	$controller	= new $class();
+else
+	JError::raiseError( 500 , 'Invalid Controller Object. Class definition does not exists in this context.' );
+
 // Perform the Request task
 $task = JRequest::getCmd('task');
-//print_r("task = ".$task." to be done ");
-if($task == '')
+
+/*if($task == '')
 {
 	JRequest::setVar('task', 'display');
 	$task='display';
 }
-$controller->execute($task);
-//$controller->redirect();
-// NOW RUN
-?>
+*/
+// Task's are methods of the controller. Perform the Request task
+$controller->execute( $task );
+	
+// Redirect if set by the controller
+$controller->redirect();
+

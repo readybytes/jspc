@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<params>
+	<param name="group_owner_total" type="text" default="" label="TOTAL GROUP OWNER COUNT.LABEL" description="NO OF TOTAL GROUP OWNER REQUIRE TO COMPLETE FOR COMPLETING USER PROFILE.DESC" />
+</params>
+</config>

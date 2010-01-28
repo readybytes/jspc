@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="jspc_core_total_contribution" type="text" default="" label="TOTAL ADDON CONTRIBUTION" description="TOTAL CONTRIBUTION OF FOLLOWING RULE" />
+	</params>
+</config>
