@@ -2,5 +2,6 @@
 <config>
 	<params>
 		<param name="jspc_core_total_contribution" type="text" default="" label="TOTAL ADDON CONTRIBUTION" description="TOTAL CONTRIBUTION OF FOLLOWING RULE" />
+		<param name="jspc_core_display_text" type="text" default="" label="DISPLAY TEXT" description="WRITE HERE TEXT TO DISPLAY WHEN FEATURE IS INCOMPLETE.Desc" />
 	</params>
 </config>

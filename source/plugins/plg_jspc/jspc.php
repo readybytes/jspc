@@ -108,13 +108,13 @@ class plgCommunityJspc extends CApplications
 						$total =  100 - $profile_completion_percentage;
 						foreach($incomplete_feature as $key => $value)
 						{
-							$nextTask	= JspcLibrary::getCompletionLink($key);
+							$nextTask	= JspcLibrary::getCompletionLink($key,$userId);
 							$value 		= round($value,1);
 							if($value > $total)
 								$value = $total;
 							$total -=$value;?>
 							<li> <?php echo $value; ?>% &nbsp;
-								<a class="SPS_JSMessage" href="<?php echo CRoute::_($nextTask['link'],false); ?>"> 
+								<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
 									<?php echo $nextTask['text'];?> 
 								</a>
 							</li><?php

@@ -51,21 +51,30 @@
 			<filename>addons/index.html</filename>
 			<filename>addons/addons.php</filename>
 			<filename>addons/coreparams.xml</filename>
+			
 			<filename>addons/photos/index.html</filename>
 			<filename>addons/photos/photos.php</filename>
 			<filename>addons/photos/photos.xml</filename>
+			
 			<filename>addons/videos/index.html</filename>
 			<filename>addons/videos/videos.php</filename>
 			<filename>addons/videos/videos.xml</filename>
+			
 			<filename>addons/groupmember/index.html</filename>
 			<filename>addons/groupmember/groupmember.php</filename>
 			<filename>addons/groupmember/groupmember.xml</filename>
+			
 			<filename>addons/groupowner/index.html</filename>
 			<filename>addons/groupowner/groupowner.php</filename>
 			<filename>addons/groupowner/groupowner.xml</filename>
+			
 			<filename>addons/albums/index.html</filename>
 			<filename>addons/albums/albums.php</filename>
 			<filename>addons/albums/albums.xml</filename>
+			
+			<filename>avatar/avatar/index.html</filename>
+			<filename>avatar/avatar/avatar.php</filename>
+			<filename>avatar/avatar/avatar.xml</filename>
 			
 			
 			<filename>views/index.html</filename>

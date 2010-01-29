@@ -216,9 +216,30 @@ abstract class jspcAddons
 		return true;
 	}
 	
+	
+	public function getDisplayText($userid)
+	{
+		$text = $this->coreparams->get('jspc_core_display_text','');
+		/*here i will return remaining no's , so if user want to show msg like
+		 * 3 photo need to be added to complete profile
+		 * that he can
+		 */
+		if(empty($text)) { 
+			//write some dummy text
+			$classname = $this->getMe();
+			$text = sprintf(JText::_('ADD %s',false),JText::_($classname));
+			return $text;
+		}
+		$text = sprintf(JText::_($text,false),$this->getRemainingCount($userid));
+		return $text;
+	}
+	
 	public function getMe()
 	{
-		return get_class($this);
+		$name =  get_class($this);
+		return $name;
 	}
+	
+	abstract public function getRemainingCount($userid);
 	
 }

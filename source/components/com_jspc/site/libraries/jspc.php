@@ -153,11 +153,11 @@ class JspcLibrary
 	}
 	
 	
-	function getCompletionLink($addonName)
+	function getCompletionLink($addonName,$userid)
 	{
 		//assert($addonName);
 		$addonObject = addonFactory::getAddonObject($addonName);
-		$info  = $addonObject->getCompletionLink();
+		$info  = $addonObject->getCompletionLink($userid);
 		return $info;
 	}
 }
