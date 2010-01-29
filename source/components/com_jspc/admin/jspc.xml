@@ -72,9 +72,9 @@
 			<filename>addons/albums/albums.php</filename>
 			<filename>addons/albums/albums.xml</filename>
 			
-			<filename>avatar/avatar/index.html</filename>
-			<filename>avatar/avatar/avatar.php</filename>
-			<filename>avatar/avatar/avatar.xml</filename>
+			<filename>addons/avatar/index.html</filename>
+			<filename>addons/avatar/avatar.php</filename>
+			<filename>addons/avatar/avatar.xml</filename>
 			
 			
 			<filename>views/index.html</filename>
