@@ -118,7 +118,7 @@ abstract class jspcAddons
 			$this->addonparams = new JParameter('',$xmlpath);
 
 		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';
-		if(JFile::exists($corexmlpath)
+		if(JFile::exists($corexmlpath))
 			$this->coreparams = new JParameter('',$corexmlpath);
 	}
 	
