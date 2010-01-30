@@ -19,6 +19,21 @@ class JspcTableAddons extends JTable
 		parent::__construct( '#__jspc_addons' , 'id' , $db );
 	}
 	
+	/*
+	function load($id,$addon)
+	{
+		if(!$id) {
+			$this->name				= $addon;
+			$this->featurename		= '';
+			$this->coreparams		= '';
+			$this->addonparams		= '';
+			$this->published		= 1;
+		}
+		
+		parent::load($id);
+	}
+	*/
+	
 	/**
 	 * Save the configuration
 	 **/	 	

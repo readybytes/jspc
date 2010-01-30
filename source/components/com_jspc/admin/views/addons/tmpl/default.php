@@ -74,7 +74,7 @@ function submitbutton( action )
 			</td>
 			<td>
 				<span class="editlinktip" title="<?php echo $addon->featurename; ?>" id="featurename<?php echo $addon->id;?>">
-					<?php $link = JRoute::_('index.php?option=com_jspc&view=addons&task=edit&editId='.$addon->id, false); ?>
+					<?php $link = JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$addon->id, false); ?>
 						<A HREF="<?php echo $link; ?>"><?php echo $addon->featurename; ?></A>
 				</span>
 			</td>

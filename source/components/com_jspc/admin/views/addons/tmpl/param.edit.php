@@ -38,7 +38,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 				</label>
 			</td>
 			<td>
-				<?php echo $this->addonInfo->name; ?>
+				<?php echo $this->addonInfo['name']; ?>
 			</td>
 		</tr>
 		<tr>
@@ -48,7 +48,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 				</label>
 			</td>
 			<td>
-				<input class="text_area" type="text" name="featurename" id="featurename" size="35" value="<?php echo $this->addonInfo->featurename; ?>" />
+				<input class="text_area" type="text" name="featurename" id="featurename" size="35" value="<?php echo $this->addonInfo['featurename']; ?>" />
 			</td>
 		</tr>
 		<tr>
@@ -56,7 +56,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 				<?php echo JText::_( 'PUBLISHED' ); ?>:
 			</td>
 			<td>
-				<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo->published ); ?>
+				<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
 			</td>
 		</tr>
 		</table>
@@ -93,8 +93,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 <div class="clr"></div>
 
 	<input type="hidden" name="option" value="com_jspc" />
-	<input type="hidden" name="id" value="<?php echo $this->addonInfo->id?>" />
-	<input type="hidden" name="name" value="<?php echo $this->addonInfo->name?>" />
+	<input type="hidden" name="id" value="<?php echo $this->addonInfo['id'];?>" />
+	<input type="hidden" name="name" value="<?php echo $this->addonInfo['name'];?>" />
 	<input type="hidden" name="cid[]" value="" />
 	<input type="hidden" name="view" value="addons" />
 	<input type="hidden" name="task" value="" />

@@ -19,15 +19,6 @@ defined('_JEXEC') or die('Restricted access');
 class addonFactory
 {
 	
-	private function __construct()
-	{}
-	
-	
-	static function getObject()
-	{}
-		
-	
-	
 	public function getAddonsInfo($filter='',$join='AND')
 	{
 		$db			=& JFactory::getDBO();
@@ -67,10 +58,14 @@ class addonFactory
 	
 	public function getAddonObject($addonName)
 	{
-		$path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . $addonName . DS . $addonName.'.php';
+		$path	= dirname(__FILE__). DS . $addonName . DS . $addonName.'.php';
 		jimport( 'joomla.filesystem.file' );
 		if(!JFile::exists($path))
+		{
+			//XITODO: err message
+			JError::raiseError(400,JText::_("INVALID ADDON FILE"));
 			return false;
+		}
 
 		require_once $path;
 			
@@ -80,6 +75,7 @@ class addonFactory
 		if(isset($instance[$addonName]))
 			return $instance[$addonName];
 			
+		//XITODO send debugmode
 		$instance[$addonName] = new $addonName(0);	
 		return $instance[$addonName];
 	}
@@ -102,18 +98,61 @@ class addonFactory
 
 abstract class jspcAddons
 {
+	protected $id;
+	protected $name;
+	protected $coreparams;
+	protected $featurename;
+	protected $published;
+	protected $addonparams;
+	protected $percentage;//it must not be saved in database .calculate everytime
+	protected $debugMode;
+	
+	function __construct($className,$debugMode)
+	{
+		jimport( 'joomla.filesystem.files' );
+		$this->debugMode = $debugMode;
+		$this->name = $className;
+		$xmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
+		if(JFile::exists($xmlpath)
+			&& !$this->addonparams)
+			$this->addonparams = new JParameter('',$xmlpath);
 
-	public $coreparams;
-	public $standardparam;
-	public $featurename;
-	public $published;
+		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';
+		if(JFile::exists($corexmlpath)
+			$this->coreparams = new JParameter('',$corexmlpath);
+	}
+	
+	
+	function load($id)
+	{
+		$info = array();
+		if(0 == $id) {
+			$this->id = 0;
+			$this->featurename = '';
+			$this->published = 1;
+		}
+		if($id) {
+			$filter = array();
+			$filter['id'] = $id;
+			$info = addonFactory::getAddonsInfo($filter);
+			if($info) {
+				$this->id = $info[0]->id;
+				$this->name = $info[0]->name;
+				$this->featurename = $info[0]->featurename;
+				$this->coreparams = $info[0]->coreparams;
+				$this->addonparams = $info[0]->addonparams;
+			}
+		}
+	}
+	
+	
 	
 	final public function setCoreParams()
 	{
 		if($this->coreparams)
 			return;
 			
-		$xmlpath = $path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . 'coreparams.xml';
+		$xmlpath = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . 'coreparams.xml';
 		$this->coreparams = new JParameter('',$xmlpath);
 	}
 	
@@ -143,7 +182,9 @@ abstract class jspcAddons
 	final public function getCoreParamsHtml()
 	{
 		$this->setCoreParams();
-		$coreParamsHtml = $this->coreparams->render('coreparams');
+		$coreParamsHtml = '';
+		$coreParamsHtml .= "<td width='40%' class='paramlist_key'>".JText::_('CONTRIBUTION IN PERCENTAGE',false)." ( ".round($this->percentage,2)." % )</td>";
+		$coreParamsHtml .= $this->coreparams->render('coreparams');
 		
 		if($coreParamsHtml)
 			return $coreParamsHtml;
@@ -173,6 +214,8 @@ abstract class jspcAddons
 		$this->coreparams->bind($data['coreparams']);
 		$this->featurename = $data['featurename'];
 		$this->published = $data['published'];
+		if(isset($data['percentage']))
+			$this->percentage = $data['percentage'];
 	}
 	
 	

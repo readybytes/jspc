@@ -49,7 +49,7 @@ class JspcViewAddons extends JView
 		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
 		JToolBarHelper::divider();
 		JToolBarHelper::trash('remove', JText::_( 'DELETE' ));
-		JToolBarHelper::addNew('edit', JText::_( 'ADD FEATURE' ));
+		JToolBarHelper::addNew('add', JText::_( 'ADD FEATURE' ));
 		JToolBarHelper::divider();
 		JToolBarHelper::publishList('publish', JText::_( 'PUBLISHED' ));
 		JToolBarHelper::unpublishList('unpublish', JText::_( 'UNPUBLISHED' ));
@@ -57,53 +57,31 @@ class JspcViewAddons extends JView
 	
 	
 
-	function edit($data,$tpl = null)
+	function add($tpl = null)
 	{
-		$coreParamsHtml = '';
-		$addonParamsHtml = '';
-		$standardHtml = '';
-		
-		if(isset($data['addonInfo'])){
-			
-			//call htmlrender fn
-			$addonObject = addonFactory::getAddonObject($data['addonInfo']->name);
-			$binddata = array();
-			$binddata['addonparams'] = $data['addonInfo']->addonparams;
-			$binddata['coreparams'] = $data['addonInfo']->coreparams;
-			$binddata['featurename'] = $data['addonInfo']->featurename;
-			$binddata['published'] = $data['addonInfo']->published;
-			
-			$addonObject->bind($binddata);
-			$addonObject->getHtml($coreParamsHtml,$addonParamsHtml,$standardHtml);
-			
-			$this->assignRef('coreParamsHtml',		$coreParamsHtml);
-			$this->assignRef('addonParamsHtml',		$addonParamsHtml);
-			$this->assignRef('standardHtml',		$standardHtml);
-			$this->assign('addonInfo',$data['addonInfo']);
-		}
-		
-		//$this->assign( 'id' , $data['addonInfo']->id );
-		if(!$data['id']) {
-			$addons = addonFactory::getAddons();
-			$this->assign( 'addons' , $addons );
-		}
+		$addons = addonFactory::getAddons();
+		$this->assign( 'addons' , $addons );
 		parent::display($tpl);
 	}
 	
 	
-	function renderaddon($addonInfo,$tpl = null)
+	function renderaddon($data,$tpl = null)
 	{
 		$coreParamsHtml = '';
 		$addonParamsHtml = '';
 		$standardHtml = '';
+		
 		//call htmlrender fn
-		$addonObject = addonFactory::getAddonObject($addonInfo->name);
+		$addonObject = addonFactory::getAddonObject($data['name']);
+		
+		$addonObject->bind($data);
 		$addonObject->getHtml($coreParamsHtml,$addonParamsHtml,$standardHtml);
-				
+		
 		$this->assignRef('coreParamsHtml',		$coreParamsHtml);
 		$this->assignRef('addonParamsHtml',		$addonParamsHtml);
 		$this->assignRef('standardHtml',		$standardHtml);
-		$this->assign('addonInfo',$addonInfo);
+		$this->assign('addonInfo',$data);
 		parent::display($tpl);
 	}
+	
 }

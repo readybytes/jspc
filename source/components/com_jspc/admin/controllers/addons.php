@@ -16,10 +16,8 @@ class JspcControllerAddons extends JController
     }
     
 
-    function edit()
+    function add()
 	{
-		$id = JRequest::getVar('editId', 0 , 'GET');
-		
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
 		
 		// Get the document object
@@ -30,28 +28,11 @@ class JspcControllerAddons extends JController
 		
 		$view		=& $this->getView( $viewName , $viewType );
 		
-		$data = array();
-		
-		if($id) {
-			$filter = array();
-			$filter['id'] = $id;
-			$info = addonFactory::getAddonsInfo($filter);
-			if($info) {
-				$data['addonInfo'] = $info[0];
-				$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
-			}
-			else
-				$layout		= JRequest::getCmd( 'layout' , 'addon.edit' );
-		}
-		else
-			$layout		= JRequest::getCmd( 'layout' , 'addon.edit' );
+		$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
 			
 		$view->setLayout( $layout );
-		
-		$data['id'] = $id;
-			
-		
-		echo $view->edit($data);
+
+		echo $view->add();
 	}
 	
 	
@@ -69,22 +50,52 @@ class JspcControllerAddons extends JController
 		$viewType	= $document->getType();
 		
 		$view		=& $this->getView( $viewName , $viewType );
-		if(!$addon) {
-			$layout		= JRequest::getCmd( 'layout' , 'addon.edit' );
+		
+		if(!$addon && !$id) {
+			$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
 			$view->setLayout( $layout );
-			echo $view->edit(0);
+			echo $view->add();
 			return;
 		}
 		
-		$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
+		$data = array();
+		$data['id'] = $id;
+		
+		if($addon) {
+			$data['name'] = $addon;
+			$data['featurename'] = '';
+			$data['published'] = 1;
+			$data['coreparams'] = '';
+			$data['addonparams'] = '';
+			$data['percentage'] = 0;
+		}
+		
+		
+		if($id) {
+			$filter = array();
+			$filter['id'] = $id;
+			$info = addonFactory::getAddonsInfo($filter);
+			if(!$info) {
+				$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
+				$view->setLayout( $layout );
+				echo $view->add();
+				return;
+			}
 			
+			$total = JspcHelper::getAllTotals(true);
+			$featureContribution = JspcHelper::getTotalContributionOfCriteria($id);
+		
+			$data['name'] = $info[0]->name;
+			$data['featurename'] = $info[0]->featurename;
+			$data['published'] = $info[0]->published;
+			$data['coreparams'] = $info[0]->coreparams;
+			$data['addonparams'] = $info[0]->addonparams;
+			$data['percentage'] = ( $featureContribution / $total ) * 100 ;
+		}
+		
+		$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
 		$view->setLayout( $layout );
-		$addonInfo = new stdClass();
-		$addonInfo->id = $id;
-		$addonInfo->name = $addon;
-		$addonInfo->featurename = '';
-		$addonInfo->published = 1;
-		echo $view->renderaddon($addonInfo);
+		echo $view->renderaddon($data);
 	}
 	
 	

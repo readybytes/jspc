@@ -76,6 +76,9 @@
 			<filename>addons/avatar/avatar.php</filename>
 			<filename>addons/avatar/avatar.xml</filename>
 			
+			<filename>addons/profilefields/index.html</filename>
+			<filename>addons/profilefields/profilefields.php</filename>
+			<filename>addons/profilefields/helper.php</filename>
 			
 			<filename>views/index.html</filename>
 			<filename>views/fieldsvalue/index.html</filename>
@@ -100,7 +103,7 @@
 			<filename>views/addons/view.html.php</filename>
 			<filename>views/addons/tmpl/index.html</filename>
 			<filename>views/addons/tmpl/default.php</filename>
-			<filename>views/addons/tmpl/addon.edit.php</filename>
+			<filename>views/addons/tmpl/addon.add.php</filename>
 			<filename>views/addons/tmpl/param.edit.php</filename>
 			
 

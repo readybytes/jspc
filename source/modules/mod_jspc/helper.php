@@ -6,7 +6,7 @@ class ProfileCompleteHelper
 {
 	var $params = '';
 
-		function _getShowProfileStatusHTML($userId, &$mod_params)
+		function getJspcHTML($userId, &$mod_params)
 		{
 			if(empty($userId) || $userId == '0' || $userId == 0)
 				return "";
@@ -19,8 +19,8 @@ class ProfileCompleteHelper
 			else
 				$document->addStyleSheet('modules/mod_jspc/style.css');
 
-			$fillValue  = CProfileStatusLibrary::get_fill_weightage_count_of_other($userId);
-			$totalValue = CProfileStatusLibrary::get_totalvalue_of_other();
+			$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
+			$totalValue = JspcLibrary::calulateTotalCount($userId);
 
 			if($totalValue == 0)
 				$profile_completion_percentage = 100;
@@ -28,14 +28,14 @@ class ProfileCompleteHelper
 				$profile_completion_percentage = ($fillValue/$totalValue)*100;
 					
 			//get array of those feature which is not complete
-			$incomplete_feature = CProfileStatusLibrary::get_incomplete_feature_array($userId);
+			$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
 			arsort($incomplete_feature);
 					
 			$profile_completion_percentage = round($profile_completion_percentage,1	);
 			$filename	= ProfileCompleteHelper::createPercentageBarImageFile($profile_completion_percentage);
 			
 			$my =& CFactory::getUser();
-			$myLink=CRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);
+			$myLink=JRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);
 			$myName	=$my->getDisplayName();
 			if ($this->params->get('SPS_Layout','horizontal')=='vertical')
 				$myAvatar=$my->getAvatar();
@@ -86,14 +86,14 @@ class ProfileCompleteHelper
 						$total =  100 - $profile_completion_percentage;
 						foreach($incomplete_feature as $key => $value)
 						{
-							$nextTask	= CProfileStatusLibrary::getCompletionLink($key);
+							$nextTask	= JspcLibrary::getCompletionLink($key,$userId);
 							$value 		= round($value,1);
 							if($value > $total)
 								$value = $total;
-							$total -=$value;?>
+							$total -= $value;?>
 							<li> <?php echo $value; ?>% &nbsp;
-								<a class="SPS_JSMessage" href="<?php echo CRoute::_($nextTask[1],false); ?>"> 
-									<?php echo $nextTask[0];?> 
+								<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
+									<?php echo $nextTask['text'];?> 
 								</a>
 							</li><?php
 						}?>

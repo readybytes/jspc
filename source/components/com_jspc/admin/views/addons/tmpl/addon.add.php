@@ -8,19 +8,30 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 ?>
 
 <script language="javascript" type="text/javascript">
+
+	function checkForm()
+	{
+		var form = document.adminForm;		
+		if( form.addon.value == 0 )
+		{
+			return false;
+		}
+		return true;
+	}
+	
 	function submitbutton(action) {
 		var form = document.adminForm;
 		switch(action)
 		{
-		case 'next':			
-			if( form.addon.value == 0 )
-			{
-				alert( "<?php echo JText::_( 'PLEASE SELECT A ADDON FROM LIST', true ); ?>" );
-				break;
-			}
-		case 'cancel':
-		default:
-			submitform( action );
+			case 'renderaddon' :
+				if( form.addon.value == 0 )
+				{
+					alert( "<?php echo JText::_( 'PLEASE SELECT A ADDON FROM LIST'); ?>" );
+					break;
+				} 
+			case 'cancel':
+			default:
+				submitform( action );
 		}
 	}
 </script>
@@ -30,7 +41,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 </div>
 <div id="error-notice" style="color: red; font-weight:700;"></div>
 <div style="clear: both;"></div>
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm" onSubmit="return checkForm();" >
 <table cellspacing="0" class="admintable" border="0" width="100%">
 	<tbody>
 		<tr>
@@ -57,7 +68,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 
 <div class="clr"></div>
 
-	<input type="submit" name="addonnext" value="<?php echo JText::_('NEXT');?>" onclick="submitbutton('next')"/>
+	<input type="submit" name="addonnext" value="<?php echo JText::_('NEXT');?>" onclick="submitbutton('renderaddon');"/>
 	
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'addons' );?>" />
