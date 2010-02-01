@@ -48,6 +48,14 @@
 		    <include name="**/*.php"/>
 		  </fileset>
 		</phplint>
+
+		<!-- apply lint -->
+		<analyze analyzerPath="/usr/bin/zca" disable="var-ref-notmodified,if-if-else,expr-unused,include-var" >
+			<fileset dir="${global.dir.tmp}">
+			    <include name="**/*.php"/>
+			</fileset>
+		</analyze>
+
 	</target>
 
 	<target name="get_svn_lastrevision" depends="config">
