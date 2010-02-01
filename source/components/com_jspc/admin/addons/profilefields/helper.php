@@ -6,7 +6,7 @@ class helper
 {
 
 	//return all fields available in jomsocial
-	function getJomsocialProfileFields($filter = '')
+	function getJomsocialProfileFields($filter = '',$join='AND')
 	{
 		$db			=& JFactory::getDBO();
 		
@@ -32,7 +32,7 @@ class helper
 	}
 	
 	
-	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal,$featureContribution)
+	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
 	{
 		$fields = self::getJomsocialProfileFields();
 		$html = '';

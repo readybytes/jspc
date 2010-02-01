@@ -44,7 +44,7 @@ class profilefields extends jspcAddons
 			}
 		}
 		
-		$addonParamsHtml = helper::getFieldsHtml($this->addonparams,$fieldsPercentage,$fieldsPercentageInTotal,$featureContribution);
+		$addonParamsHtml = helper::getFieldsHtml($this->addonparams,$fieldsPercentage,$fieldsPercentageInTotal);
 		
 		return $addonParamsHtml;
 	}
