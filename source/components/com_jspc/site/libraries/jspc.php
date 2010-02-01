@@ -5,15 +5,6 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-require_once (JPATH_ROOT.DS.'components'.DS.'com_community'.DS.'defines.community.php');
-require_once (JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php');
-
-/*Langauge file will be independent now */
-$lang =& JFactory::getLanguage();
-if($lang) 
-	$lang->load( 'com_jspc' );
-
-
 class JspcLibrary
 {
 	

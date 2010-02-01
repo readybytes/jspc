@@ -32,7 +32,9 @@ class ProfileCompleteHelper
 			arsort($incomplete_feature);
 					
 			$profile_completion_percentage = round($profile_completion_percentage,1	);
-			$filename	= ProfileCompleteHelper::createPercentageBarImageFile($profile_completion_percentage);
+			
+			$imageGenerator = new JspcImageGenerator($this->params);
+			$filename	= $imageGenerator->createPercentageBarImageFile('mod_',$profile_completion_percentage);
 			
 			$my =& CFactory::getUser();
 			$myLink=JRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);

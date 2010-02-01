@@ -41,15 +41,26 @@ class JspcViewAddons extends JView
 	
 	function setToolBar()
 	{
-
+		?>
+		<style type="text/css">
+		#toolbar-aboutus
+		{
+	 		background-image:  url(../administrator/components/com_jspc/assets/images/icon-aboutus.png);
+	 		background-repeat:no-repeat;
+	 		background-position: top center;
+	 	}
+		</style>
+		<?php 
+		
 		// Set the titlebar text
 		JToolBarHelper::title( JText::_( 'PROFILE COMPLETENESS' ), 'addons' );
 
 		// Add the necessary buttons
 		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
+		JToolBarHelper::custom('aboutus','aboutus','',JText::_('ABOUT US'),0,0); 
 		JToolBarHelper::divider();
-		JToolBarHelper::trash('remove', JText::_( 'DELETE' ));
 		JToolBarHelper::addNew('add', JText::_( 'ADD FEATURE' ));
+		JToolBarHelper::trash('remove', JText::_( 'DELETE' ));
 		JToolBarHelper::divider();
 		JToolBarHelper::publishList('publish', JText::_( 'PUBLISHED' ));
 		JToolBarHelper::unpublishList('unpublish', JText::_( 'UNPUBLISHED' ));
@@ -83,5 +94,13 @@ class JspcViewAddons extends JView
 		$this->assign('addonInfo',$data);
 		parent::display($tpl);
 	}
+	
+	
+	function aboutus($tpl = null)
+	{
+		$this->setToolbar();
+		parent::display( $tpl);
+	}
+	
 	
 }

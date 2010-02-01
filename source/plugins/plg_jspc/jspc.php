@@ -4,8 +4,6 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-require_once( JPATH_BASE . DS . 'components' . DS . 'com_community' . DS . 'libraries' . DS . 'core.php');
-require_once( JPATH_BASE . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'jspc.php');
 
 class plgCommunityJspc extends CApplications
 {
@@ -15,41 +13,69 @@ class plgCommunityJspc extends CApplications
 	var $_user		= '';
 	var $_my		= '';
 	var $_params	= '';
+	var $plugin		= '';
+	var $isIncludes = '';
 	
 	function plgCommunityJspc(& $subject, $config)
     {
 		parent::__construct($subject, $config);
 		$this->_path	= dirname( dirname( JPATH_COMPONENT ) ) . DS . 'administrator' . DS . 'components' . DS . 'com_community'; 
-		$plugin =& JPluginHelper::getPlugin('community', $this->_name); 		
-		$this->_params 	= new JParameter($plugin->params);		
+		$this->plugin =& JPluginHelper::getPlugin('community', $this->_name); 		
+		$this->_params 	= new JParameter($this->plugin->params);		
+    }
+    
+    
+    function includes()
+    {
+		if($this->isIncludes)
+			return true;
+		$this->isIncludes = true;	
+    	jimport( 'joomla.filesystem.folder' );
+		
+		$jspcPath = JPATH_ROOT.DS.DS.'components'.DS.'com_jspc';
+
+		if(!JFolder::exists($jspcPath))
+			return false;
+		
+		require_once( JPATH_ROOT . DS . 'components' . DS . 'com_jspc'  . DS . 'includes.jspc.php');
+
+		$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+
+		if(!JFolder::exists($communityPath))
+			return false;
+		
+		//community files
+		require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+		require_once (JPATH_ROOT. DS.'components'.DS.'com_community'.DS.'helpers'.DS.'owner.php');
+			
+		JPlugin::loadLanguage( 'plg_jspc', JPATH_ADMINISTRATOR );
+		
+		$document	= JFactory::getDocument();
+		$document->addStyleSheet('plugins/community/jspc/style.css');
+		return true;
     }
 
 	
 	function onProfileDisplay()
 	{
-		JPlugin::loadLanguage( 'plg_jspc', JPATH_ADMINISTRATOR );
+		if(!$this->includes())
+			return;
 		
 		$my					=& CFactory::getUser();
 		$user				=& CFactory::getActiveProfile();
 		
-		require_once (JPATH_ROOT. DS.'components'.DS.'com_community'.DS.'helpers'.DS.'owner.php');
 		// Do not stop admins
 		if(isSuperAdministrator())
-		{
-			// show active profile
 			$my	= $user;
-		}
 		else if ($my->_userid != $user->_userid)
 			return;
 		
-		$document	= JFactory::getDocument();
-		$document->addStyleSheet('plugins/community/jspc/style.css');
 		$uri		= JURI::base();	
 		
-		return self::_getShowProfileStatusHTML($my->_userid); 
+		return self::_getJspcHTML($my->_userid); 
 	}
 	
-	function _getShowProfileStatusHTML($userId)
+	function _getJspcHTML($userId)
 	{		
 			$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
 			$totalValue = JspcLibrary::calulateTotalCount($userId);
@@ -68,11 +94,12 @@ class plgCommunityJspc extends CApplications
 			
 			$profile_completion_percentage = round($profile_completion_percentage,1	);
 			
-			$showProfile = $this->params->get('showProfile','1');
+			$showProfile = $this->_params->get('showProfile','1');
 			if($showProfile == 0 && $profile_completion_percentage == 100)
 				return false;
 			
-			$filename	= self::createPercentageBarImageFile($profile_completion_percentage);
+			$imageGenerator = new JspcImageGenerator($this->_params);
+			$filename	= $imageGenerator->createPercentageBarImageFile('plg_',$profile_completion_percentage);
 			
 			$my =& CFactory::getUser($userId);
 			$myLink=CRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);

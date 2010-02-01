@@ -242,5 +242,20 @@ class JspcControllerAddons extends JController
 	}
 	
 	
+	function aboutus()
+	{
+		$viewName	= JRequest::getCmd( 'view' , 'addons' );
+				// Get the document object
+		$document	=& JFactory::getDocument();
+		// Get the view type
+		$viewType	= $document->getType();
+	
+		$view		=& $this->getView( $viewName , $viewType );
+
+		$layout		= JRequest::getCmd( 'layout' , 'aboutus' );
+		$view->setLayout( $layout );
+		//echo parent::display();
+		echo $view->aboutus();
+	}
 	
 }

@@ -16,19 +16,22 @@
 	</languages>
 	<files folder="site">
 		<filename>index.html</filename>
+		<filename>includes.jspc.php</filename>
+		
+		<filename>jspc/index.html</filename>
+		
 		<filename>libraries/index.html</filename>
 		<filename>libraries/profilestatus.php</filename>
 		<filename>libraries/jspc.php</filename>
+		<filename>libraries/imagegenerator.php</filename>
 	</files>
 	<administration>
 		<languages folder="admin">
 			<language tag="en-GB">en-GB.com_jspc.ini</language>
 		</languages>
-		<menu link="option=com_jspc" >Profile Status</menu>
+		<menu link="option=com_jspc" img="components/com_jspc/assets/images/icon-jspc.png">Profile Status</menu>
 		<submenu>
-			<menu view="addons" >Completness Criteria</menu>
-			<menu view="othervalue" >Feature Contribution</menu>
-			<menu view="fieldsvalue" >Profile Fields Contribution</menu>
+			<menu view="addons" img="components/com_jspc/assets/images/icon-jspc.png">Completness Criteria</menu>
 		</submenu>
 		<files folder="admin">
 			<filename>index.html</filename>
@@ -81,23 +84,6 @@
 			<filename>addons/profilefields/helper.php</filename>
 			
 			<filename>views/index.html</filename>
-			<filename>views/fieldsvalue/index.html</filename>
-			<filename>views/fieldsvalue/view.html.php</filename>
-			<filename>views/fieldsvalue/tmpl/index.html</filename>
-			<filename>views/fieldsvalue/tmpl/default.php</filename>
-			<filename>views/fieldsvalue/tmpl/fieldsvalue.edit.php</filename>
-			
-			<filename>views/othervalue/index.html</filename>
-			<filename>views/othervalue/view.html.php</filename>
-			<filename>views/othervalue/tmpl/index.html</filename>
-			<filename>views/othervalue/tmpl/default.php</filename>
-			<filename>views/othervalue/tmpl/othervalue.edit.php</filename>
-			
-			<filename>views/summary/index.html</filename>
-			<filename>views/summary/view.html.php</filename>
-			<filename>views/summary/tmpl/index.html</filename>
-			<filename>views/summary/tmpl/default.php</filename>
-
 			
 			<filename>views/addons/index.html</filename>
 			<filename>views/addons/view.html.php</filename>
@@ -105,14 +91,20 @@
 			<filename>views/addons/tmpl/default.php</filename>
 			<filename>views/addons/tmpl/addon.add.php</filename>
 			<filename>views/addons/tmpl/param.edit.php</filename>
-			
+			<filename>views/addons/tmpl/news.php</filename>
+			<filename>views/addons/tmpl/updates.php</filename>
+			<filename>views/addons/tmpl/welcome.php</filename>
+			<filename>views/addons/tmpl/aboutus.php</filename>
 
 			<filename>tables/index.html</filename>
 			
 			<filename>tables/addons.php</filename>
 			
-			<filename>tables/othervalue.php</filename>
-			<filename>tables/fieldsvalue.php</filename>
+			<filename>assets/index.html</filename>
+			
+			<filename>assets/images/index.html</filename>
+			<filename>assets/images/icon-aboutus.png</filename>
+			<filename>assets/images/icon-jspc.png</filename>
 		</files>
 	</administration>
 </install>
