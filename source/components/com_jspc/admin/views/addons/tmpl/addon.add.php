@@ -52,11 +52,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 				<option value="0">SELECT ADDON</option>
 				<?php
 					if(!empty($this->addons)) 
-					foreach($this->addons as $addon) {
-					   
-					   //$selected	= ( JString::trim($id) == $this->row->comid ) ? ' selected="true"' : '';
-						?>
-					    <option value="<?php echo $addon;?>" <?php //echo $selected;?> ><?php echo JText::_($addon);?></option>
+					foreach($this->addons as $addon) { ?>
+					    <option value="<?php echo $addon;?>" ><?php echo JText::_($addon);?></option>
 					<?php 
 					}
 				?>

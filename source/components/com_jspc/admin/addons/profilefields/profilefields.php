@@ -145,5 +145,7 @@ class profilefields extends jspcAddons
 			return $fillcount;
 		else
 			assert(0);
+		
+		return $fillcount;
 	}
 }

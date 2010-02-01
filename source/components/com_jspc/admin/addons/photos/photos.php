@@ -10,23 +10,6 @@ class photos extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-	/* 
-	 * $debugMode will contain debug session parameter
-	 * $addonInfo will contain row (id and params) as key value pair
-	 * Function will return instance of individual rule 
-	 * */
-	static function getInstance($debugMode,$addonInfo)
-	{	
-		//$instance will comtain all addon object according to rule
-		//Every rule will have different object
-		static $instance = array();
-		if(isset($instance[$addonInfo->id]))
-			return $instance[$params->id];
-			
-		$instance[$params->id] = new photos($debugMode,$params);	
-		return $instance[$params->id];
-	}
-	
 	
 	public function checkAddonAccesibility($userid)
 	{

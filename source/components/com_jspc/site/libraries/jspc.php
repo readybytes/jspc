@@ -160,9 +160,9 @@ class JspcLibrary
 		//community files
 		require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
 	
-		
+		$user =& CFactory::getUser($userid);		
+
 		$info = array();
-		$user =& CFactory::getUser($userid);
 		$info['userlink']	= CRoute::_('index.php?option=com_community&view=profile&userid='.$user->_userid);
 		$info['name']		= $user->getDisplayName();
 		$info['avatar']		= $user->getThumbAvatar();

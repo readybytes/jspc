@@ -70,8 +70,6 @@ class plgCommunityJspc extends CApplications
 		else if ($my->_userid != $user->_userid)
 			return;
 		
-		$uri		= JURI::base();	
-		
 		return $this->_getJspcHTML($my->_userid); 
 	}
 	
