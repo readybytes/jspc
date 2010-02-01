@@ -24,7 +24,7 @@
 		<file >helper.php</file>
 	</files>
 	
-	<params>
+	<params addpath="/administrator/components/com_jspc/elements" >
 		<param name="SPS_Layout" type="list" default="horizontal" label="Layout" description="">
 			<option value="horizontal">Horizontal</option>
 			<option value="vertical">Vertical</option>
@@ -45,10 +45,10 @@
 			<option value="6">Huge</option>
 			<option value="7">Very Huge</option>
 		</param>
-		<param name="SPS_FGColor"  type="text" default="#9CD052"  label="Fill Bar Color" description=""/>
-		<param name="SPS_BGColor"  type="text" default="#FFFFFF"  label="Empty Bar Color" description=""/>
-		<param name="SPS_SLColor"  type="text" default="#000000"  label="Side Line Color" description=""/>
-		<param name="SPS_STRColor" type="text" default="#FFFFFF"  label="Text Color" description=""/>
+		<param name="SPS_FGColor"  type="colorbox" default="9CD052"  label="Fill Bar Color" description=""/>
+		<param name="SPS_BGColor"  type="colorbox" default="FFFFFF"  label="Empty Bar Color" description=""/>
+		<param name="SPS_SLColor"  type="colorbox" default="000000"  label="Side Line Color" description=""/>
+		<param name="SPS_STRColor" type="colorbox" default="FFFFFF"  label="Text Color" description=""/>
 		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="">
 			<option value="0">No</option>
 			<option value="1">Yes</option>

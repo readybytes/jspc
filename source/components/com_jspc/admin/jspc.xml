@@ -105,6 +105,16 @@
 			<filename>assets/images/index.html</filename>
 			<filename>assets/images/icon-aboutus.png</filename>
 			<filename>assets/images/icon-jspc.png</filename>
+			
+			<filename>elements/index.html</filename>
+			<filename>elements/colorbox.php</filename>
+			<filename>elements/colorbox/index.html</filename>
+			<filename>elements/colorbox/arrow.gif</filename>
+			<filename>elements/colorbox/cross.gif</filename>
+			<filename>elements/colorbox/demo.html</filename>
+			<filename>elements/colorbox/hs.png</filename>
+			<filename>elements/colorbox/hv.png</filename>
+			<filename>elements/colorbox/jscolor.js</filename>
 		</files>
 	</administration>
 </install>

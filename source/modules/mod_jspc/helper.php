@@ -68,7 +68,7 @@ class ProfileCompleteHelper
 					<img src="<?php echo $filename;?>"> 
 					<br /><br />
 					<div style="SPS_CompletionText">
-					Your Profile is <span class="SPS_SpanPer" style="color:<?php echo $this->params->get('SPS_FGColor','#9CD052'); ?>;"><?php echo $profile_completion_percentage;?>%</span> complete. 
+					Your Profile is <span class="SPS_SpanPer" style="color:#<?php echo $this->params->get('SPS_FGColor','9CD052'); ?>;"><?php echo $profile_completion_percentage;?>%</span> complete. 
 					</div>
 				</div>
 				
@@ -108,90 +108,4 @@ class ProfileCompleteHelper
 			ob_end_clean();
 			return $contents;
 		}
-	
-	function createPercentageBarImageFile($per)
-	{
-		jimport('joomla.filesystem.file');
-		
-		// if file exist return the file name
-		$per		= $per;
-		$filename	= 'modules/mod_jspc/'. $per. '.jpg';
-		
-		// For debug mode generate file everytime
-		if(JFile::exists($filename))
-		{
-			if($this->params->get('SPS_ImageDebugMode'))
-				JFile::delete($filename);
-			else
-				return $filename;
-		}
-			
-		// These should be added in plugin configuration
-		$width		=	$this->params->get('SPS_Length'); // 200;
-		$height		=	$this->params->get('SPS_Height'); // 25;
-		$fontsize	= 	$this->params->get('SPS_FontSize'); // 3;
-		
-		$strPercent	= 	$per . "%";
-		$img 		= 	ImageCreateTrueColor($width, $height);
-
-		// $bg 		= imagecolorallocate($img, 255, 255, 255);
-		$bgColor	= ProfileCompleteHelper::getColor($img,
-									$this->params->get('SPS_BGColor','#FFFFFF'));
-		
-		//rgb(156, 208, 82)
-		$fgColor	= ProfileCompleteHelper::getColor($img,
-									$this->params->get('SPS_FGColor','#9CD052'));
-
-		//rgb 50, 55, 55
-		$slColor	= ProfileCompleteHelper::getColor($img,
-									$this->params->get('SPS_SLColor','#000000'));
-		
-		// 255 255 255
-		$strColor 	= ProfileCompleteHelper::getColor($img,
-									$this->params->get('SPS_STRColor','#FFFFFF'));
-		
-		// calculate bar fill length
-		$per		= $width*	$per	/	100;
-		$per		= round($per);
-		
-		imagefilledrectangle($img,	1,		1,	$width,	$height,	$bgColor);
-		imagefilledrectangle($img,	1,		1,	$per,	$height,	$fgColor);
-		
-		imagerectangle		($img,	0,		0,	$width-1,	$height-1,	$slColor);
-		imagestring 		($img,	$fontsize, $per/2, $height/5, $strPercent, $strColor); 
-		
-		$result	=	 imagejpeg($img,$filename);
-		imagedestroy($img);
-		// if file creation is successfull return filename , else false
-		return $result ? $filename :  false;
-	}
-	
-	
-	function getColor($img , $hexcode)
-	{
-		assert($img);
-		$color	=	ProfileCompleteHelper::html2rgb($hexcode);
-		//print_r($hexcode . "=>" . $color[0] .",". $color[1] .",". $color[2]);
-		return imagecolorallocate($img, $color[0],$color[1],$color[2]);
-	}
-	
-	// convert color into RGB
-	function html2rgb($color)
-	{
-	    if ($color[0] == '#')
-	        $color = substr($color, 1);
-
-	    if (strlen($color) == 6)
-	        list($r, $g, $b) = array($color[0].$color[1],
-	                                 $color[2].$color[3],
-	                                 $color[4].$color[5]);
-	    elseif (strlen($color) == 3)
-	        list($r, $g, $b) = array($color[0].$color[0], $color[1].$color[1], $color[2].$color[2]);
-	    else
-	        return false;
-
-	    $r = hexdec($r); $g = hexdec($g); $b = hexdec($b);
-
-	    return array($r, $g, $b);
-	}
 }

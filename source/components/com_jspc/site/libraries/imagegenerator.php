@@ -15,15 +15,15 @@ class JspcImageGenerator
 	
 	function __construct($params)
 	{
-		$this->params = $params;
-		$this->width		=	$this->params->get('SPS_Length'); // 200;
-		$this->height		=	$this->params->get('SPS_Height'); // 25;
-		$this->fontsize		= 	$this->params->get('SPS_FontSize'); // 3;
+		$this->params 		= $params;
+		$this->width		=	$this->params->get('SPS_Length',200); // 200;
+		$this->height		=	$this->params->get('SPS_Height',25); // 25;
+		$this->fontsize		= 	$this->params->get('SPS_FontSize',3); // 3;
 		
-		$this->bgColor		= 	$this->html2rgb($this->params->get('SPS_BGColor','#FFFFFF'));
-		$this->fgColor		= 	$this->html2rgb($this->params->get('SPS_FGColor','#9CD052'));
-		$this->slColor		= 	$this->html2rgb($this->params->get('SPS_SLColor','#000000'));
-		$this->strColor 	= 	$this->html2rgb($this->params->get('SPS_STRColor','#FFFFFF'));	
+		$this->bgColor		= 	$this->html2rgb($this->params->get('SPS_BGColor','FFFFFF'));
+		$this->fgColor		= 	$this->html2rgb($this->params->get('SPS_FGColor','9CD052'));
+		$this->slColor		= 	$this->html2rgb($this->params->get('SPS_SLColor','000000'));
+		$this->strColor 	= 	$this->html2rgb($this->params->get('SPS_STRColor','FFFFFF'));	
 	}
 	
 
