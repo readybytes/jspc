@@ -21,7 +21,6 @@
 		<filename>jspc/index.html</filename>
 		
 		<filename>libraries/index.html</filename>
-		<filename>libraries/profilestatus.php</filename>
 		<filename>libraries/jspc.php</filename>
 		<filename>libraries/imagegenerator.php</filename>
 	</files>
@@ -42,12 +41,9 @@
 			<filename>controllers/addons.php</filename>
 
 			<filename>models/index.html</filename>
-			<filename>models/othervalue.php</filename>
-			<filename>models/profilestatus.php</filename>
 			<filename>models/addons.php</filename>
 			
 			<filename>helpers/index.html</filename>
-			<filename>helpers/profilestatus.php</filename>
 			<filename>helpers/core.php</filename>
 			<filename>helpers/jspc.php</filename>
 
