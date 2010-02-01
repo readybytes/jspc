@@ -37,7 +37,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 </script>
 	
 <div style="background-color: #F9F9F9; border: 1px solid #D5D5D5; margin-bottom: 10px; padding: 5px;font-weight: bold;">
-	<?php echo JText::_('DISABLE CAPTCHA FOR FOLLOWING GROUP IRRESEPECT OF COMPONENT ENABLE');?>
+	<?php echo JText::_('SELECT CRITERIA TO USE');?>
 </div>
 <div id="error-notice" style="color: red; font-weight:700;"></div>
 <div style="clear: both;"></div>
