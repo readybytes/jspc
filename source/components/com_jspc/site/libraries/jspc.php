@@ -144,4 +144,31 @@ class JspcLibrary
 		$percentage = ( $featureContribution / $total ) * 100 ;
 		return $percentage;
 	}
+	
+	
+	function getDisplayInformationOfUser($userid,$whichAvatar='thumb')
+	{
+		
+		jimport( 'joomla.filesystem.folder' );
+		$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+
+		if(!JFolder::exists($communityPath)) {
+			JError::raiseError(JText::_("UNABLE TO GET INFORMATION"));
+			return;
+		}
+		
+		//community files
+		require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+	
+		
+		$info = array();
+		$user =& CFactory::getUser($userid);
+		$info['userlink']	= CRoute::_('index.php?option=com_community&view=profile&userid='.$user->_userid);
+		$info['name']		= $user->getDisplayName();
+		$info['avatar']		= $user->getThumbAvatar();
+		if($whichAvatar === 'avatar')
+			$info['avatar']		= $user->getAvatar();
+		
+		return $info;
+	}
 }

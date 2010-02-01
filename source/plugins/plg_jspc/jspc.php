@@ -72,88 +72,98 @@ class plgCommunityJspc extends CApplications
 		
 		$uri		= JURI::base();	
 		
-		return self::_getJspcHTML($my->_userid); 
+		return $this->_getJspcHTML($my->_userid); 
 	}
 	
 	function _getJspcHTML($userId)
 	{		
-			$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
-			$totalValue = JspcLibrary::calulateTotalCount($userId);
-			$profile_completion_percentage = '';
-			
-			if($totalValue == 0){
-					$profile_completion_percentage = 100;
-			}				
-			else
-				$profile_completion_percentage = ($fillValue/$totalValue)*100;
-			
-			//get array of those feature which is not complete
-			$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
-			//sort the array in descending order with not changing key
-			arsort($incomplete_feature);
-			
-			$profile_completion_percentage = round($profile_completion_percentage,1	);
-			
-			$showProfile = $this->_params->get('showProfile','1');
-			if($showProfile == 0 && $profile_completion_percentage == 100)
-				return false;
-			
-			$imageGenerator = new JspcImageGenerator($this->_params);
-			$filename	= $imageGenerator->createPercentageBarImageFile('plg_',$profile_completion_percentage);
-			
-			$my =& CFactory::getUser($userId);
-			$myLink=CRoute::_('index.php?option=com_community&view=profile&userid='.$my->id);
-			$myName	=$my->getDisplayName();
-			$myAvatar=$my->getThumbAvatar();
-			
-			ob_start();	
+		$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
+		$totalValue = JspcLibrary::calulateTotalCount($userId);
+		$profile_completion_percentage = '';
+		
+		if($totalValue == 0){
+				$profile_completion_percentage = 100;
+		}				
+		else
+			$profile_completion_percentage = ($fillValue/$totalValue)*100;
+		
+		//get array of those feature which is not complete
+		$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
+		//sort the array in descending order with not changing key
+		arsort($incomplete_feature);
+		
+		$profile_completion_percentage = round($profile_completion_percentage,1	);
+		
+		$showProfile = $this->_params->get('showProfile','1');
+		if($showProfile == 0 && $profile_completion_percentage == 100)
+			return false;
+		
+		$imageGenerator = new JspcImageGenerator($this->_params);
+		$filename	= $imageGenerator->createPercentageBarImageFile('plg_',$profile_completion_percentage);
+		
+		$data = JspcLibrary::getDisplayInformationOfUser($userId);
+		$data['userId']							= $userId;
+		$data['filename'] 						= $filename;
+		$data['incomplete_feature']				= $incomplete_feature ;
+		$data['profile_completion_percentage']	= $profile_completion_percentage;
+		
+		$percentStyling = '<span class="SPS_SpanPer" style="color:#'. $this->_params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
+		$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION'),$percentStyling);
+		
+		$data['displayText']					= $displayText;
+		return $this->_getDisplay($data);
+	}
+	
+	
+	
+	function _getDisplay($data = array())
+	{
+		ob_start();	
 			?>
 			<div id="application-group">
 				<div style="float:left">
-					<img src="<?php echo $myAvatar; ?>" 
-								alt="<?php echo $myName; ?>" 
+					<img src="<?php echo $data['avatar']; ?>" 
+								alt="<?php echo $data['name']; ?>" 
 								style="padding: 2px; border: solid 1px #ccc;" />
 				</div>
 				
 				<div class="SPS_CompletionBar">
-					<img src="<?php echo $filename;?>"> 
+					<img src="<?php echo $data['filename'];?>"> 
 					<br /><br />
 					<div style="SPS_CompletionText">
 					<?php
-						$percentStyling = '<span class="SPS_SpanPer" style="color:#'. $this->_params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
-						echo sprintf(JText::_('CC PROFILE STATUS COMPLETION'),$percentStyling); 
-						?> 
+						echo $data['displayText'];	 
+					?> 
 					</div>
 				</div>
 				
 				<?php 
-			   	if($profile_completion_percentage != 100)
-			   	{?>				
-		   		<div class="SPS_CompleteMessage">
-					<ul id="featurelist">
-					<?php
-						$total =  100 - $profile_completion_percentage;
-						foreach($incomplete_feature as $key => $value)
-						{
-							$nextTask	= JspcLibrary::getCompletionLink($key,$userId);
-							$value 		= round($value,1);
-							if($value > $total)
-								$value = $total;
-							$total -=$value;?>
-							<li> <?php echo $value; ?>% &nbsp;
-								<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
-									<?php echo $nextTask['text'];?> 
-								</a>
-							</li><?php
-						}?>
-					</ul>
-				</div><?php 
+			   	if($data['profile_completion_percentage'] != 100) {?>				
+			   		<div class="SPS_CompleteMessage">
+						<ul id="featurelist">
+						<?php
+							$total =  100 - $data['profile_completion_percentage'];
+							foreach($data['incomplete_feature'] as $key => $value)
+							{
+								$nextTask	= JspcLibrary::getCompletionLink($key,$data['userId']);
+								$value 		= round($value,1);
+								if($value > $total)
+									$value = $total;
+								$total -=$value;?>
+								<li> <?php echo $value; ?>% &nbsp;
+									<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
+										<?php echo $nextTask['text'];?> 
+									</a>
+								</li><?php
+							}?>
+						</ul>
+					</div><?php 
 				}?>
 			</div>
 			<div style='clear:both;'></div>
-<?php
-		$contents	= ob_get_contents();
-		ob_end_clean();
-		return $contents;
+			<?php
+			$contents	= ob_get_contents();
+			ob_end_clean();
+			return $contents;
 	}
 }
