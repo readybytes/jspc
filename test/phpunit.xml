@@ -8,6 +8,15 @@
 
 	<testsuite name="AllTest">
 		<file>install/installTest.php</file>
+		<file>setup/setupTest.php</file>
+		<file>test/unit/front/albumTest.php</file>
+		<file>test/unit/front/createGroupTest.php</file>
+		<file>test/unit/front/photosTest.php</file>
+		<file>test/unit/front/avtarTest.php</file>
+		<file>test/unit/front/videosTest.php</file>
+		<file>test/unit/front/profileTest.php</file>
+		<file>test/unit/front/groupMemberTest.php</file>
+		<file>test/unit/front/featureTest.php</file>
 	</testsuite>
 	
 	<listeners>

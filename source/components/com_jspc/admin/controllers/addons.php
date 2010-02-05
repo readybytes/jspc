@@ -38,8 +38,8 @@ class JspcControllerAddons extends JController
 	
 	function renderaddon()
 	{
-		$id = JRequest::getVar('editId', 0 , 'GET');
-		$addon = JRequest::getVar('addon', 0 , 'POST');
+		$id = JRequest::getVar('editId', 0 );
+		$addon = JRequest::getVar('addon', 0 ) ;
 		
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
 		
@@ -67,30 +67,27 @@ class JspcControllerAddons extends JController
 			$data['published'] = 1;
 			$data['coreparams'] = '';
 			$data['addonparams'] = '';
-			$data['percentage'] = 0;
 		}
 		
 		
-		if($id) {
-			$filter = array();
-			$filter['id'] = $id;
-			$info = addonFactory::getAddonsInfo($filter);
+		if($id){
+			
+			$filter		  	= array();
+			$filter['id'] 	= $id;
+			$info 			= addonFactory::getAddonsInfo($filter);
+			
 			if(!$info) {
 				$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
 				$view->setLayout( $layout );
 				echo $view->add();
 				return;
 			}
-			
-			$total = JspcHelper::getAllTotals(true);
-			$featureContribution = JspcHelper::getTotalContributionOfCriteria($id);
-		
-			$data['name'] = $info[0]->name;
-			$data['featurename'] = $info[0]->featurename;
-			$data['published'] = $info[0]->published;
-			$data['coreparams'] = $info[0]->coreparams;
-			$data['addonparams'] = $info[0]->addonparams;
-			$data['percentage'] = ( $featureContribution / $total ) * 100 ;
+					
+			$data['name'] 			= $info[0]->name;
+			$data['featurename'] 	= $info[0]->featurename;
+			$data['published'] 		= $info[0]->published;
+			$data['coreparams'] 	= $info[0]->coreparams;
+			$data['addonparams'] 	= $info[0]->addonparams;
 		}
 		
 		$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
@@ -99,13 +96,12 @@ class JspcControllerAddons extends JController
 	}
 	
 	
-	
-	function save()
+	function processSave()
 	{
 		//save addonparam and core param in individual columns
 		// Test if this is really a post request
 		$method	= JRequest::getMethod();
-		
+		$id = JRequest::getVar('editId', 0 );
 		if( $method == 'GET' )
 		{
 			JError::raiseError( 500 , JText::_('CC ACCESS METHOD NOT ALLOWED') );
@@ -146,15 +142,30 @@ class JspcControllerAddons extends JController
 		$addons->bind($data);
 		$msg = '';
 		// Save it
-		if(!$addons->store() )
+		if(! ($id = $addons->store()) )
 			$msg = JText::_('ERROR IN SAVING CRITERIA');
 		else
-			$msg = JText::_('CRITERIA SAVED');
-		
-		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
-		$mainframe->redirect($link, $msg);
+			$msg = JText::_('CRITERIA SAVED');	
+
+		return $id;
 	}
 	
+	function save()
+	{
+		$this->processSave();
+		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
+		$mainframe	=& JFactory::getApplication();
+		$mainframe->redirect($link, $msg);		
+		
+	}
+	
+	function apply()
+	{
+		$id = $this->processSave();
+		$link = JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$id, false);
+		$mainframe	=& JFactory::getApplication();
+		$mainframe->redirect($link, $msg);				
+	}
 	
 	function remove()
 	{
@@ -257,5 +268,6 @@ class JspcControllerAddons extends JController
 		//echo parent::display();
 		echo $view->aboutus();
 	}
+
 	
 }

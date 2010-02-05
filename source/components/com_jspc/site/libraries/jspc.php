@@ -22,16 +22,7 @@ class JspcLibrary
 			return 100;
 
 		foreach($allPublishFeature as $feature) {
-			$featureObject = addonFactory::getAddonObject($feature->name);
-			
-			$binddata = array();
-			$binddata['addonparams'] = $feature->addonparams;
-			$binddata['coreparams'] = $feature->coreparams;
-			$binddata['featurename'] = $feature->featurename;
-			$binddata['published'] = $feature->published;
-			$binddata['percentage'] = self::calculateFeatureContributionInPercentage($feature->id,$userid);
-			
-			$featureObject->bind($binddata);
+			$featureObject = JspcLibrary::getFeatureIDAddonObject($feature->id);
 			if($featureObject->isApplicable($userid)){
 				$fillvalue  = $featureObject->calculateCompletness($userid);
 				$totalFillFeature = $totalFillFeature + $fillvalue; 
@@ -56,16 +47,7 @@ class JspcLibrary
 			return 100;
 			
 		foreach($allPublishFeature as $feature) {
-			$featureObject = addonFactory::getAddonObject($feature->name);
-			
-			$binddata = array();
-			$binddata['addonparams'] = $feature->addonparams;
-			$binddata['coreparams'] = $feature->coreparams;
-			$binddata['featurename'] = $feature->featurename;
-			$binddata['published'] = $feature->published;
-			
-			$featureObject->bind($binddata);
-			
+			$featureObject = JspcLibrary::getFeatureIDAddonObject($feature->id);
 			if($featureObject->isApplicable($userid)){
 				$totalvalue  = $featureObject->getFeatureContribution($userid);
 				$totalFeature = $totalFeature + $totalvalue; 
@@ -75,8 +57,17 @@ class JspcLibrary
 		return $totalFeature;
 	}
 	
+	function calculateFeatureContributionInPercentage($userid)
+	{
+		$total = self::calulateTotalCount($userid);
+		$featureContribution = JspcHelper::getTotalContributionOfCriteria($this->id);
+		$percentage = ( $featureContribution / $total ) * 100 ;
+		return $percentage;
+	}
 	
-	//fn will return array of those feature that require to complete to make profile 100 % complete , value should be total count of that feature
+	
+	//fn will return array of those feature that require to complete 
+	// to make profile 100 % complete , value should be total count of that feature
 	function getIncompleteFeatures($userid)
 	{
 		$incompleteFeature = array();
@@ -89,17 +80,9 @@ class JspcLibrary
 
 		$totals = self::calulateTotalCount($userid,true);
 			
-		foreach($allPublishFeature as $feature) {
-			$featureObject = addonFactory::getAddonObject($feature->name);
-			
-			$binddata = array();
-			$binddata['addonparams'] = $feature->addonparams;
-			$binddata['coreparams'] = $feature->coreparams;
-			$binddata['featurename'] = $feature->featurename;
-			$binddata['published'] = $feature->published;
-			$binddata['percentage'] = self::calculateFeatureContributionInPercentage($feature->id,$userid);
-			
-			$featureObject->bind($binddata);
+		foreach($allPublishFeature as $feature) 
+		{
+			$featureObject = self::getFeatureIDAddonObject($feature->id);
 			
 			if($featureObject->isApplicable($userid)){
 				$fillvalue  = $featureObject->calculateCompletness($userid);
@@ -110,42 +93,23 @@ class JspcLibrary
 			}
 		}
 		
-		
+		arsort($incompleteFeature);
 		return $incompleteFeature;
 	}
 	
-	
-	
-	function getCompletionLink($featureid,$userid)
+	/*
+	 * This allow you to call any function on any particular object
+	 */
+	function callAddonFunction($featureid, $functionName, $userid)
 	{
-		$filter = array();
-		$filter['published'] = 1;
-		$filter['id'] = $featureid;
-		$featureInfo = addonFactory::getAddonsInfo($filter);
+		$featureObject = self::getFeatureIDAddonObject($featureid);
 		
-		
-		if(empty($featureInfo)) {
-			$info = array();
-			$info['text'] = '';
-			$info['link'] = '';
-			return $info;
-		}
-		
-		$addonObject = addonFactory::getAddonObject($featureInfo[0]->name);
-		$info  = $addonObject->getCompletionLink($userid);
-		return $info;
+		//we need to change these things
+		//XITODO : and also add error handling routines
+		return  $featureObject->$functionName($userid);
 	}
 	
-	
-	function calculateFeatureContributionInPercentage($featureid,$userid)
-	{
-		$total = self::calulateTotalCount($userid);
-		$featureContribution = JspcHelper::getTotalContributionOfCriteria($featureid);
-		$percentage = ( $featureContribution / $total ) * 100 ;
-		return $percentage;
-	}
-	
-	
+
 	function getDisplayInformationOfUser($userid,$whichAvatar='thumb')
 	{
 		
@@ -170,5 +134,52 @@ class JspcLibrary
 			$info['avatar']		= $user->getAvatar();
 		
 		return $info;
+	}
+	
+	function calulatePCPercentage($userId)
+	{
+		$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
+		$totalValue = JspcLibrary::calulateTotalCount($userId);
+		
+		if($totalValue == 0)
+			$profile_completion_percentage = 100;
+		else
+			$profile_completion_percentage = ($fillValue/$totalValue)*100;
+			
+		$profile_completion_percentage = round($profile_completion_percentage,1	);
+		return $profile_completion_percentage;
+	}
+	
+	function roundOffPercentage(&$featureData, $pcPercentage)
+	{
+		$total =  100 - $pcPercentage;
+		foreach($featureData as $key => $value)
+		{
+			$value	= round($value,1);
+			
+			if($value > $total)
+				$value = $total;
+
+			$total -= $value;
+			$featureData[$key]=$value;
+		}
+	}
+	
+	function getFeatureIDAddonObject($featureId)
+	{
+		//find the params of object
+		$filter = array();
+		$filter['published'] = 1;
+		$filter['id'] = $featureId;
+		$feature = addonFactory::getAddonsInfo($filter);
+		
+		//if feature is not available OR unpublished
+		assert($feature);
+		
+		$featureObject = addonFactory::getAddonObject($feature[0]->name);
+		assert($featureObject);
+		
+		$featureObject->load($featureId);
+		return $featureObject; 
 	}
 }

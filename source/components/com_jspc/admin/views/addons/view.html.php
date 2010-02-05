@@ -80,18 +80,25 @@ class JspcViewAddons extends JView
 	{
 		$coreParamsHtml = '';
 		$addonParamsHtml = '';
-		$standardHtml = '';
 		
 		//call htmlrender fn
 		$addonObject = addonFactory::getAddonObject($data['name']);
 		
 		$addonObject->bind($data);
-		$addonObject->getHtml($coreParamsHtml,$addonParamsHtml,$standardHtml);
+		$addonObject->getHtml($coreParamsHtml,$addonParamsHtml);
+		
+		//calculate percentage
+		$total 				 = JspcHelper::getAllTotals(true);
+		$featureContribution = JspcHelper::getTotalContributionOfCriteria($data['id']);
+		if($total != 0)
+			$percentage = ($featureContribution / $total ) * 100;
+		else
+			$percentage = 100;
 		
 		$this->assignRef('coreParamsHtml',		$coreParamsHtml);
 		$this->assignRef('addonParamsHtml',		$addonParamsHtml);
-		$this->assignRef('standardHtml',		$standardHtml);
 		$this->assign('addonInfo',$data);
+		$this->assign('percentage',$percentage);
 		parent::display($tpl);
 	}
 	

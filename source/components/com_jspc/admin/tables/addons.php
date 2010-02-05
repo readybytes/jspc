@@ -8,6 +8,7 @@ defined('_JEXEC') or die('Restricted access');
  */
 class JspcTableAddons extends JTable
 {
+	var $id				= null;
 	var $name			= null;
 	var $featurename	= null;
 	var $coreparams		= null;
@@ -23,6 +24,7 @@ class JspcTableAddons extends JTable
 	function load($id,$addon)
 	{
 		if(!$id) {
+			$this->id				= 0;
 			$this->name				= $addon;
 			$this->featurename		= '';
 			$this->coreparams		= '';
@@ -39,7 +41,8 @@ class JspcTableAddons extends JTable
 	 **/	 	
 	function store()
 	{
-		return parent::store();
+		parent::store();
+		return $this->id;
 	}
 	
 	

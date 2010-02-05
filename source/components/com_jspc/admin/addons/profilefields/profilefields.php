@@ -83,16 +83,8 @@ class profilefields extends jspcAddons
 	
 	public function getRemainingCount($userid)
 	{
-		$count = $this->get_count_of_profile_fields($userid,'fill');				
-		$total = $this->get_count_of_profile_fields($userid,'total');
-		
-		if(0 == $total)
-			return 0;
-			
-		if($count >= $total)
-			return 0;
-			
-		return ($total - $count);
+		$count = $this->get_count_of_profile_fields($userid,'empty');
+		return $count;				
 	}
 	
 	
@@ -109,7 +101,7 @@ class profilefields extends jspcAddons
 		$db		=& JFactory::getDBO();
 		$totalcount = 0; 
 		$fillcount = 0; 
-		
+		$empty = 0;
 		if(!empty($fields))
 		{
 			foreach($fields as $name => $fieldGroup)
@@ -134,15 +126,21 @@ class profilefields extends jspcAddons
 						
 						if(!empty($result))
 							$fillcount = $fillcount + $value;
+						else if($value)
+							$empty++;
 					}
+					else if($value)
+							$empty++;
 				}
 			}
 		}
 		
-		if($what == 'total')
+		if($what === 'total')
 			return $totalcount;
-		else if($what == 'fill')
+		else if($what === 'fill')
 			return $fillcount;
+		else if($what === 'empty')
+			return $empty;
 		else
 			assert(0);
 		

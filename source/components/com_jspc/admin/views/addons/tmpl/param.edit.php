@@ -5,6 +5,7 @@
 <?php 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
 JToolBarHelper::divider();
+JToolBarHelper::apply('apply', JText::_('APPLY'));
 JToolBarHelper::save('save',JText::_('SAVE'));
 JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 ?>
@@ -57,6 +58,14 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 			</td>
 			<td>
 				<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" class="key">
+				<?php echo JText::_('CONTRIBUTION IN PERCENTAGE'); ?>:
+			</td>
+			<td>
+				<?php echo round($this->percentage,2)." %"; ?>
 			</td>
 		</tr>
 		</table>

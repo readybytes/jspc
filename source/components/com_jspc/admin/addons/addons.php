@@ -39,11 +39,11 @@ class addonFactory
 				
 		$db->setQuery($query);
 		$addonsinfo = $db->loadObjectList();
-		
+		//XITODO : Remove assert from here and move it somewhere else
+		//assert($addonsinfo);
 		return $addonsinfo;
 	}
-	
-	
+
 	
 	public function getAddons()
 	{
@@ -104,7 +104,6 @@ abstract class jspcAddons
 	protected $featurename;
 	protected $published;
 	protected $addonparams;
-	protected $percentage;//it must not be saved in database .calculate everytime
 	protected $debugMode;
 	
 	function __construct($className,$debugMode)
@@ -112,12 +111,15 @@ abstract class jspcAddons
 		jimport( 'joomla.filesystem.files' );
 		$this->debugMode = $debugMode;
 		$this->name = $className;
-		$xmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
-		if(JFile::exists($xmlpath)
-			&& !$this->addonparams)
-			$this->addonparams = new JParameter('',$xmlpath);
 
-		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';
+		//load addon xml if we need to do it
+		// this->addonparams can be set by child constructor, 
+		// then we do not need to create addon params
+		$addonXmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
+		if(empty($this->addonparams) && JFile::exists($addonXmlpath))
+			$this->addonparams = new JParameter('',$addonXmlpath);
+		
+		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';		
 		if(JFile::exists($corexmlpath))
 			$this->coreparams = new JParameter('',$corexmlpath);
 	}
@@ -131,21 +133,22 @@ abstract class jspcAddons
 			$this->featurename = '';
 			$this->published = 1;
 		}
-		if($id) {
+		else {
 			$filter = array();
 			$filter['id'] = $id;
 			$info = addonFactory::getAddonsInfo($filter);
+			
 			if($info) {
-				$this->id = $info[0]->id;
-				$this->name = $info[0]->name;
-				$this->featurename = $info[0]->featurename;
-				$this->coreparams = $info[0]->coreparams;
-				$this->addonparams = $info[0]->addonparams;
+				$this->id 			= $info[0]->id;
+				$this->name 		= $info[0]->name;
+				$this->published 	= $info[0]->published;
+				$this->featurename 	= $info[0]->featurename;
+				
+				$this->coreparams->bind($info[0]->coreparams);
+				$this->addonparams->bind($info[0]->addonparams);
 			}
 		}
 	}
-	
-	
 	
 	final public function setCoreParams()
 	{
@@ -157,12 +160,11 @@ abstract class jspcAddons
 	}
 	
 	
-	public function getHtml(&$coreParamsHtml,&$addonParamsHtml,&$standardHtml)
+	public function getHtml(&$coreParamsHtml,&$addonParamsHtml)
 	{
 		//Imp : Function will always call core field html
 		$coreParamsHtml = $this->getCoreParamsHtml();
 		$addonParamsHtml = $this->getAddonParamsHtml();
-		$standardHtml = "Write html for published field , just write a text box";
 	}
 	
 	
@@ -182,9 +184,7 @@ abstract class jspcAddons
 	final public function getCoreParamsHtml()
 	{
 		$this->setCoreParams();
-		$coreParamsHtml = '';
-		$coreParamsHtml .= "<td width='40%' class='paramlist_key'>".JText::_('CONTRIBUTION IN PERCENTAGE',false)." ( ".round($this->percentage,2)." % )</td>";
-		$coreParamsHtml .= $this->coreparams->render('coreparams');
+		$coreParamsHtml = $this->coreparams->render('coreparams');
 		
 		if($coreParamsHtml)
 			return $coreParamsHtml;
@@ -209,15 +209,13 @@ abstract class jspcAddons
 	function bind($data)
 	{
 		$this->addonparams->bind($data['addonparams']);
-		if(!$this->coreparams)
-			$this->setCoreParams();
+		
+		if(!$this->coreparams) 	$this->setCoreParams();
 		$this->coreparams->bind($data['coreparams']);
-		$this->featurename = $data['featurename'];
-		$this->published = $data['published'];
-		if(isset($data['percentage']))
-			$this->percentage = $data['percentage'];
+		
+		$this->featurename 	= $data['featurename'];
+		$this->published 	= $data['published'];
 	}
-	
 	
 	function getFeatureContribution($userid)
 	{
@@ -284,5 +282,11 @@ abstract class jspcAddons
 	}
 	
 	abstract public function getRemainingCount($userid);
+	
+	abstract public function getCompletionLink($userid);
+	
+	abstract public function calculateCompletness($userid);
+
+	
 	
 }

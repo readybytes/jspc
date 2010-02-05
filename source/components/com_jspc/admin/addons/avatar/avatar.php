@@ -49,7 +49,7 @@ class avatar extends jspcAddons
 		$my =& CFactory::getUser($userid);
 		$pathofAvatar  =$my->getAvatar();
 		$count = 0;
-		if(!empty($pathofAvatar) || strpos($pathofAvatar,"default.jpg"))
+		if(!empty($pathofAvatar) && !strpos($pathofAvatar,"default.jpg"))
 			$count = 1;
 			
 		return $count;
