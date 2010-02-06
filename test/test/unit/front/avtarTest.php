@@ -17,5 +17,14 @@ class AvtarTest extends XiUnitTestCase
 		$this->verifyPercentage(63,4,$compare);
 	}
 	
+	function testAvtarAfterUpload()
+	{
+		$compare['fillValue']  = 40;
+		$compare['totalValue'] = 40;
+		$compare['percentage'] = 100;
+		$compare['incomplete'] = 0;
+		$compare['remain']=0;
+		$this->verifyPercentage(64,4,$compare);
+	}
 	
 }

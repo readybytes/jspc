@@ -26,6 +26,10 @@ class XiDBCheck
     {
         $this->log[]= "\n --> Comparing table ".$tableName;
         
+        //sometimes it creates issue :
+        if(!$this->excludeR || array_key_exists($tableName, $this->excludeR)==false)
+        	$this->excludeR[$tableName]="";
+        
         $tmpCol = $this->db->getTableFields($tableName, false);
         $allcol = array_keys ($tmpCol[$tableName]);
         $ec 	= $this->excludeC[$tableName];
@@ -65,7 +69,8 @@ class XiDBCheck
 
          $this->log[]=  "\n auTable :".var_export($auTable,true);
          $this->log[]=  "\n logTable :".var_export($logTable,true);
-        $count=count($auTable);	
+        $count=count($auTable);
+        $isError = false;	
         for($i=0 ; $i<$count;$i++)
         {    
         	$auArr = $auTable[$i];
@@ -86,7 +91,7 @@ class XiDBCheck
                         ;
                 $this->errorLog[]=$error;
 				$this->log[]= $error;
-                return false;
+                $isError = true;
             }
             else
             {
@@ -94,10 +99,14 @@ class XiDBCheck
             }
             
         }
+        
+        if($isError)
+        	return false;
+        	
         $this->log[]= " \n ==  Table ".$tableName. " Matched == \n ";
         return true;        
     }
-    
+       
     function addTable($tableName)
     {
         //if(!in_array($testTables,$tableName))

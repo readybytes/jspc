@@ -17,7 +17,10 @@ class ProfileCompletenessTest extends XiSelTestCase
   	$this->addFeatureOne();
   	$this->addFeatureTwo();
   	$this->addFeatureThree();
-  	
+  	$this->addFeatureFour();
+  	$this->addFeatureFive();
+  	$this->addFeatureSix();
+  	$this->addFeatureSeven();
   }
   
   function testPublish()
@@ -31,15 +34,12 @@ class ProfileCompletenessTest extends XiSelTestCase
   	$this->click("//td[@id='published1']/a");
     $this->waitPageLoad();
   	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
-  	
-  	$this->click("//td[@id='published2']/a");
+  	 	
+  	$this->click("toggle");
+    $this->click("//td[@id='toolbar-publish']/a/span");
     $this->waitPageLoad();
-  	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
-  	
-  	$this->click("//td[@id='published3']/a");
-    $this->waitPageLoad();
-  	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
-  	
+    $this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
+    
   	$this->click("//td[@id='published3']/a");
     $this->waitPageLoad();
   	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
@@ -57,13 +57,10 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->waitPageLoad();
   	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
   	
-  	$this->click("//td[@id='published2']/a");
+  	$this->click("toggle");
+    $this->click("//td[@id='toolbar-unpublish']/a/span");
     $this->waitPageLoad();
-  	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
-  	
-  	$this->click("//td[@id='published3']/a");
-    $this->waitPageLoad();
-  	$this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
+    $this->assertTrue($this->isElementPresent("//dl[@id='system-message']/dd/ul/li"));
   	
   	$this->click("//td[@id='published3']/a");
     $this->waitPageLoad();
@@ -215,6 +212,83 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->waitPageLoad();
      
   }
+  
+function addFeatureFour()
+  {
+  	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
+  	$this->waitPageLoad();
+    $this->click("//td[@id='toolbar-new']/a/span");
+    $this->waitPageLoad();
+    $this->select("addon", "label=Community Avatar");
+    $this->click("//input[@type='submit']");
+    $this->waitPageLoad();
+    $this->type("featurename", "Avtar");
+    $this->type("coreparamsjspc_core_total_contribution", "100");
+    $this->type("coreparamsjspc_core_display_text", "%s Avtar");
+    $this->click("//td[@id='toolbar-apply']/a/span");
+    $this->waitPageLoad();
+    $this->click("//td[@id='toolbar-cancel']/a/span");
+    $this->waitPageLoad();
+  }
+  
+  function addFeatureFive()
+  {
+  	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
+  	$this->waitPageLoad();
+    $this->click("//td[@id='toolbar-new']/a/span");
+    $this->waitPageLoad();
+    $this->select("addon", "label=No of Group Created by User");
+    $this->click("//input[@type='submit']");
+    $this->waitPageLoad();
+    $this->type("featurename", "Group Member");
+    $this->type("coreparamsjspc_core_total_contribution", "100");
+    $this->type("coreparamsjspc_core_display_text", "%s Group Member");
+    $this->type("addonparamsgroupowner_total", "10");
+    $this->click("//td[@id='toolbar-apply']/a/span");
+    $this->waitPageLoad();
+    $this->click("//td[@id='toolbar-cancel']/a/span");
+    $this->waitPageLoad();
+  }
+  
+  function addFeatureSix()
+  {
+  	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
+  	$this->waitPageLoad();
+    $this->click("//td[@id='toolbar-new']/a/span");
+    $this->waitPageLoad();
+     $this->select("addon", "label=Community Photos");
+    $this->click("//input[@type='submit']");
+    $this->waitPageLoad();
+    $this->type("featurename", "Photos");
+    $this->type("coreparamsjspc_core_total_contribution", "100");
+    $this->type("coreparamsjspc_core_display_text", "%s Photos");
+    $this->type("addonparamsphoto_total", "10");
+    $this->click("//td[@id='toolbar-apply']/a/span");
+    $this->waitPageLoad();
+    $this->click("//td[@id='toolbar-cancel']/a/span");
+    $this->waitPageLoad();
+  }
+  
+  function addFeatureSeven()
+  {
+  	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
+  	$this->waitPageLoad();
+    $this->click("//td[@id='toolbar-new']/a/span");
+    $this->waitPageLoad();
+    $this->select("addon", "label=Community Videos");;
+    $this->click("//input[@type='submit']");
+    $this->waitPageLoad();
+    $this->type("featurename", "Videos");
+    $this->type("coreparamsjspc_core_total_contribution", "100");
+    $this->type("coreparamsjspc_core_display_text", "%s Videos");
+    $this->type("addonparamsvideo_total", "10");
+    $this->click("//td[@id='toolbar-apply']/a/span");
+    $this->waitPageLoad();
+    $this->click("//td[@id='toolbar-cancel']/a/span");
+    $this->waitPageLoad();
+  }
+  
+  
 }
 
 
