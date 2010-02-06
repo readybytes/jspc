@@ -143,7 +143,7 @@ class plgCommunityJspc extends CApplications
 							$total =  100 - $data['profile_completion_percentage'];
 							foreach($data['incomplete_feature'] as $key => $value)
 							{
-								$nextTask	= JspcLibrary::getCompletionLink($key,$data['userId']);
+								$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
 								$value 		= round($value,1);
 								if($value > $total)
 									$value = $total;

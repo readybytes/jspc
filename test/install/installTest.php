@@ -74,6 +74,10 @@ class InstallTest extends XiSelTestCase
     $this->installJspcComponent();
     $this->installJspcPlugin();
     $this->installJspcModule();
+    $this->changePluginState('jspc',1);
+    $this->verifyPluginState('jspc',true);
+    $this->changeModuleState('mod_jspc',1);
+    $this->verifyModuleState('mod_jspc',true);
   }
 
    /**

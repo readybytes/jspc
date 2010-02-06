@@ -1,6 +1,6 @@
 <?php
 /* This testcase should run on fresh install */
-class SetupTest extends XiUnitTestCase 
+class SetupTest extends XiSelTestCase
 {
   //define this function if you require DB setup
   function getSqlPath()
@@ -10,6 +10,9 @@ class SetupTest extends XiUnitTestCase
 
   function testSetupUser()
   {
+  	$this->frontLogin("gaurav","gaurav");
+  	$this->assertFalse($this->isTextPresent("Username and password do not match or you do not have an account yet"));
+  	
   }
 } 
     

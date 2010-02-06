@@ -31,9 +31,14 @@ class profilefields extends jspcAddons
 			
 		$fieldstotal = helper::calculateTotal($this->addonparams,$fields,0);
 		$coretotal = $this->coreparams->get('jspc_core_total_contribution',0);
-		//$allFeatureTotal = JspcHelper::getAllTotals(true);
-		$featureContribution = $this->percentage;//( $coretotal / $coretotal ) * 100;
 		
+		//calculate percentage
+		$total 				 = JspcHelper::getAllTotals(true);
+		$featureContribution = 0;
+		if($total != 0)
+			$featureContribution = ($coretotal / $total ) * 100;
+		else
+			$featureContribution = 100;
 		foreach($fields as $f) {
 			if($f->type != 'group') {
 				$fieldValue = $this->addonparams->get($f->id,0);

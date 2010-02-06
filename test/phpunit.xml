@@ -17,6 +17,7 @@
 		<file>test/unit/front/profileTest.php</file>
 		<file>test/unit/front/groupMemberTest.php</file>
 		<file>test/unit/front/featureTest.php</file>
+		<file>test/sel/admin/profileCompletenessTest.php</file>
 	</testsuite>
 	
 	<listeners>
