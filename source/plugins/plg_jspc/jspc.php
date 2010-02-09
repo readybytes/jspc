@@ -29,11 +29,12 @@ class plgCommunityJspc extends CApplications
     {
 		if($this->isIncludes)
 			return true;
+			
 		$this->isIncludes = true;	
     	jimport( 'joomla.filesystem.folder' );
 		
 		$jspcPath = JPATH_ROOT.DS.DS.'components'.DS.'com_jspc';
-
+		
 		if(!JFolder::exists($jspcPath))
 			return false;
 		
@@ -58,11 +59,12 @@ class plgCommunityJspc extends CApplications
 	
 	function onProfileDisplay()
 	{
+		//xitodo : display message to admin
 		if(!$this->includes())
 			return;
 		
-		$my					=& CFactory::getUser();
-		$user				=& CFactory::getActiveProfile();
+		$my			=& CFactory::getUser();
+		$user		=& CFactory::getActiveProfile();
 		
 		// Do not stop admins
 		if(isSuperAdministrator())
@@ -75,37 +77,30 @@ class plgCommunityJspc extends CApplications
 	
 	function _getJspcHTML($userId)
 	{		
-		$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
-		$totalValue = JspcLibrary::calulateTotalCount($userId);
-		$profile_completion_percentage = '';
-		
-		if($totalValue == 0){
-				$profile_completion_percentage = 100;
-		}				
-		else
-			$profile_completion_percentage = ($fillValue/$totalValue)*100;
+		$fillValue 	= JspcLibrary::calulateFillCountOfUser($userId);
+		$totalValue = JspcLibrary::calulateTotalCount($userId);		
+		$profile_completion_percentage = JspcLibrary::calulatePCPercentage($userId);
 		
 		//get array of those feature which is not complete
 		$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
-		//sort the array in descending order with not changing key
-		arsort($incomplete_feature);
+		JspcLibrary::roundOffPercentage($incomplete_feature, $profile_completion_percentage);
 		
-		$profile_completion_percentage = round($profile_completion_percentage,1	);
-		
+		//if profile is 100% complete then do not show plugin
 		$showProfile = $this->_params->get('showProfile','1');
 		if($showProfile == 0 && $profile_completion_percentage == 100)
-			return false;
+			return;
 		
+		//generate image
 		$imageGenerator = new JspcImageGenerator($this->_params);
 		$filename	= $imageGenerator->createPercentageBarImageFile('plg_',$profile_completion_percentage);
-		
-		$data = JspcLibrary::getDisplayInformationOfUser($userId);
+
+		$data = JspcLibrary::getDisplayInformationOfUser($userId,'avatar');
 		$data['userId']							= $userId;
 		$data['filename'] 						= $filename;
 		$data['incomplete_feature']				= $incomplete_feature ;
 		$data['profile_completion_percentage']	= $profile_completion_percentage;
 		
-		$percentStyling = '<span class="SPS_SpanPer" style="color:#'. $this->_params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
+		$percentStyling = '<span class="jspc_percentage" style="color:#'. $this->_params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
 		$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION'),$percentStyling);
 		
 		$data['displayText']					= $displayText;
@@ -116,47 +111,69 @@ class plgCommunityJspc extends CApplications
 	
 	function _getDisplay($data = array())
 	{
+		$avatarWidth=$this->_params->get('SPS_AvatarWidth',75);
+		$avatarHeight=$this->_params->get('SPS_AvatarHeight',75);
+		
 		ob_start();	
-			?>
-			<div id="application-group">
-				<div style="float:left">
-					<img src="<?php echo $data['avatar']; ?>" 
-								alt="<?php echo $data['name']; ?>" 
-								style="padding: 2px; border: solid 1px #ccc;" />
-				</div>
-				
-				<div class="SPS_CompletionBar">
-					<img src="<?php echo $data['filename'];?>"> 
-					<br /><br />
-					<div style="SPS_CompletionText">
+		?>
+		<div id="application-group">
+		
+		<!--  show-avatar#start --> 
+		<div class="jspc_avatar">
+			<img src="<?php echo $data['avatar']; ?>" 
+						alt="<?php echo $data['name']; ?>" 
+						width="<?php echo $avatarWidth; ?>"
+						height="<?php echo $avatarHeight; ?>"
+						/>
+		</div>
+		<!--  show-avatar#done -->
+		
+		<!-- show-completion-bar -->		
+		<div class="jspc_column2" style="width:<?php echo $this->_params->get('SPS_Length','1') +20 ; ?>px;">
+			<div class="jspc_completion_bar">
+				<img src="<?php echo $data['filename'];?>">
+			</div> 
+			<div style="jspc_completion_text"><?php
+						echo $data['displayText']; ?>
+			</div>
+		</div>
+		<!-- show-completion-bar#Done -->
+		
+		<!-- show-column3 -->	
+		<?php 
+		if($data['profile_completion_percentage'] != 100)
+		{?>				
+			<div class="jspc_column3">
+			<ul id="jspc_completion_links">
+			<?php
+				$total =  100 - $data['profile_completion_percentage'];
+				$visibleFeatureCount=$this->_params->get('SPS_VisibleFeatureNumber','all');
+				if(!is_numeric($visibleFeatureCount) && strtolower($visibleFeatureCount)!='all')
+					$visibleFeatureCount=0;
+				foreach($data['incomplete_feature'] as $key => $value)
+				{
+					if(!$visibleFeatureCount) 
+						break;
+					
+					$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+					?>
+					<li> 
+						<span class="jspc_link_percent"> <?php echo $value; ?>% &nbsp; </span>
+						<span class="jspc_link_text"> 
+							 <a href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
+								<?php echo $nextTask['text'];?> 
+							</a>
+						</span>
+					</li>
 					<?php
-						echo $data['displayText'];	 
-					?> 
-					</div>
-				</div>
-				
-				<?php 
-			   	if($data['profile_completion_percentage'] != 100) {?>				
-			   		<div class="SPS_CompleteMessage">
-						<ul id="featurelist">
-						<?php
-							$total =  100 - $data['profile_completion_percentage'];
-							foreach($data['incomplete_feature'] as $key => $value)
-							{
-								$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
-								$value 		= round($value,1);
-								if($value > $total)
-									$value = $total;
-								$total -=$value;?>
-								<li> <?php echo $value; ?>% &nbsp;
-									<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
-										<?php echo $nextTask['text'];?> 
-									</a>
-								</li><?php
-							}?>
-						</ul>
-					</div><?php 
+					if(is_numeric($visibleFeatureCount)) 
+						$visibleFeatureCount--;
 				}?>
+			</ul>
+			</div><?php 
+		}?>
+		<!-- show-column3#done -->
+			
 			</div>
 			<div style='clear:both;'></div>
 			<?php

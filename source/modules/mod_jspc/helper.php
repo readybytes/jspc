@@ -30,39 +30,44 @@ class ProfileCompleteHelper
 		
 		$imageGenerator = new JspcImageGenerator($params);
 		$filename		= $imageGenerator->createPercentageBarImageFile('mod_',$profile_completion_percentage);
-		
-		$whichAvatar = 'thumb';
-		if ($params->get('SPS_Layout','horizontal')=='vertical')
-			$whichAvatar	= 'avatar';
 			
-		$data = JspcLibrary::getDisplayInformationOfUser($userId,$whichAvatar);
+		$data = JspcLibrary::getDisplayInformationOfUser($userId,'avatar');
 		$data['userId']							= $userId;
 		$data['filename'] 						= $filename;
 		$data['incomplete_feature']				= $incomplete_feature ;
 		$data['profile_completion_percentage']	= $profile_completion_percentage;
 		
-		$percentStyling = '<span class="SPS_SpanPer" style="color:#'. $params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
+		$percentStyling = '<span class="jspc_percentage" style="color:#'. $params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
 		$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION'),$percentStyling);
 		
 		$data['displayText']					= $displayText;
 		$data['params']							= $params;
 		return self::_getDisplay($data);
-		
 	}
 	
 	
 	function _getDisplay($data = array())
 	{
 		ob_start();	?>
-		<?php // if avatar required
+		<?php 
+		// if avatar required
 		if ($data['params']->get('SPS_ShowAvatar',0))
-		{	?>
-		<div style="float:left">
+		{
+			$avatarWidth=$data['params']->get('SPS_AvatarWidth', 100);
+			$avatarHeight=$data['params']->get('SPS_AvatarHeight', 100);
+			?>
+		<div id="application-group">
+		
+		<!--  show-avatar#start --> 
+		<div class="jspc_avatar">
 			<img src="<?php echo $data['avatar']; ?>" 
 						alt="<?php echo $data['name']; ?>" 
-						style="padding: 2px; border: solid 1px #ccc;" />
+						width="<?php echo $avatarWidth; ?>"
+						height="<?php echo $avatarHeight; ?>"
+						/>
 		</div>
-			<?php
+		<!--  show-avatar#done -->
+		<?php
 		}	
 		
 		// Vertical spacing
@@ -72,11 +77,16 @@ class ProfileCompleteHelper
 			<?php
 		}	?>
 		
-		<div class="SPS_CompletionBar">
-			<img src="<?php echo $data['filename'];?>"> 
-			<br /><br />
-			<?php echo $data['displayText'];?> 
+		<!-- show-completion-bar -->		
+		<div class="jspc_column2" style="width:<?php echo $data['params']->get('SPS_Length','1') +20 ; ?>px;">
+			<div class="jspc_completion_bar">
+				<img src="<?php echo $data['filename'];?>">
+			</div> 
+			<div style="jspc_completion_text"><?php
+						echo $data['displayText']; ?>
+			</div>
 		</div>
+		<!-- show-completion-bar#Done -->
 		
 		<?php // Vertical spacing
 		if ($data['params']->get('SPS_Layout','horizontal')=='vertical')
@@ -88,23 +98,38 @@ class ProfileCompleteHelper
 		<?php 
 		if($data['profile_completion_percentage'] != 100)
 	   	{?>				
-	   		<div class="SPS_CompleteMessage">
-				<ul id="featurelist">
-				<?php
-					foreach($data['incomplete_feature'] as $key => $value)
-					{
-							$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
-						?>
-						<li> <?php echo $value; ?>% &nbsp;
-							<a class="SPS_JSMessage" href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
+	   		<div class="jspc_column3">
+			<ul id="jspc_completion_links">
+			<?php
+				$visibleFeatureCount=$data['params']->get('SPS_VisibleFeatureNumber','all');
+				if(!is_numeric($visibleFeatureCount) && strtolower($visibleFeatureCount)!='all')
+					$visibleFeatureCount=0;
+				foreach($data['incomplete_feature'] as $key => $value)
+				{
+					if(!$visibleFeatureCount)
+						break;
+					
+					$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+					?>
+					<li> 
+						<span class="jspc_link_percent"> <?php echo $value; ?>% &nbsp; </span>
+						<span class="jspc_link_text"> 
+							 <a href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
 								<?php echo $nextTask['text'];?> 
 							</a>
-						</li><?php
-					}?>
-				</ul>
+						</span>
+					</li>
+					<?php
+					if(is_numeric($visibleFeatureCount)) 
+						$visibleFeatureCount--;
+				}?>
+			</ul>
 			</div><?php 
 		}?>
-		<div class="clr"></div>
+		<!-- show-column3#done -->
+			
+		</div>
+		<div style='clear:both;'></div>
 		<?php
 		$contents	= ob_get_contents();
 		ob_end_clean();

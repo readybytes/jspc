@@ -33,6 +33,10 @@
 			<option value="1">Use Global</option>
 			<option value="0">No</option>
 		</param>
+		<param name="@spacer" type="spacer" default="" label="Configure Avatar" description="" />		
+		<param name="SPS_AvatarWidth" type="text" default="75" label="Width of Avatar in Pixel" description=""/>
+		<param name="SPS_AvatarHeight" type="text" default="75" label="Height of Avatar in Pixel" description=""/>
+				
 		<param name="@spacer" type="spacer" default="" label="Configure Completion Bar" description="" />		
 		<param name="SPS_Length" type="text" default="200" label="Length of Completion bar in pixels" description=""/>
 		<param name="SPS_Height" type="text" default="25"  label="Height of Completion bar in pixels" description=""/>
@@ -49,7 +53,7 @@
 		<param name="SPS_BGColor"  type="colorbox" default="FFFFFF"  label="Empty Bar Color" description=""/>
 		<param name="SPS_SLColor"  type="colorbox" default="000000"  label="Side Line Color" description=""/>
 		<param name="SPS_STRColor" type="colorbox" default="FFFFFF"  label="Text Color" description=""/>
-		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="">
+		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="" >
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
@@ -57,5 +61,6 @@
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
+		<param name="SPS_VisibleFeatureNumber" type="text" default="All" label="Number of Visible Feature to complete Profile" description="Write All to display all feature else write count" />
 	</params>
 </install>

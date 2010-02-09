@@ -2,7 +2,6 @@ TRUNCATE TABLE `#__jspc_addons`;
 DROP TABLE IF EXISTS `au_#__jspc_addons`;
 CREATE TABLE `au_#__jspc_addons` SELECT * FROM `#__jspc_addons`;
 
-
 INSERT INTO `#__jspc_addons` (`id`, `name`, `featurename`, `coreparams`, `addonparams`, `published`) VALUES
 (1, 'albums', 'Album', 'jspc_core_total_contribution=100\njspc_core_display_text=Add % Album\n\n', 'album_total=10\n\n', 0),
 (2, 'groupmember', 'Group Member', 'jspc_core_total_contribution=100\njspc_core_display_text=%s Group Member\n\n', 'groupmember_total=10\n\n', 0),

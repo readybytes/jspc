@@ -65,7 +65,10 @@ class JspcImageGenerator
 		imagefilledrectangle($img,	1,		1,	$per,	$this->height,	$this->fgColor);
 		
 		imagerectangle		($img,	0,		0,	$this->width-1,	$this->height-1,	$this->slColor);
-		imagestring 		($img,	$this->fontsize, $per/2, $this->height/5, $strPercent, $this->strColor); 
+		
+		// get the center of fillbar
+		$per_x=$this->calculateCenterOfFillbar($img,$strPercent,$per);
+		imagestring 		($img,	$this->fontsize, $per_x, $this->height/5, $strPercent, $this->strColor); 
 		
 		$result	=	 imagejpeg($img,$filename);
 		imagedestroy($img);
@@ -92,4 +95,36 @@ class JspcImageGenerator
 
 	    return array($r, $g, $b);
 	}
+	
+	// using this calculation the percentage will appear in the center of fill bar
+	function calculateCenterOfFillbar($img,$strPercent, $per)
+	{		
+		$per_width = imagefontwidth($this->fontsize)*strlen($strPercent);
+		if($per_width > $per)
+		{
+			$per=$this->width;
+			$this->strColor=$this->color_inverse();
+			$this->strColor = imagecolorallocate($img,$this->strColor[0],$this->strColor[1],$this->strColor[2]);
+		}
+ 		$center = ceil($per/2);
+ 		$x = $center - (ceil($per_width/2));
+ 		return $x;
+	}
+	
+
+	function color_inverse()
+	{
+		$color=$this->params->get('SPS_BGColor','9CD052');	
+		$color = str_replace('#', '', $color);
+	    if (strlen($color) != 6){ return '000000'; }
+	    $rgb = '';
+	    for ($x=0;$x<3;$x++){
+	        $c = 255 - hexdec(substr($color,(2*$x),2));
+	        $c = ($c < 0) ? 0 : dechex($c);
+	        $rgb .= (strlen($c) < 2) ? '0'.$c : $c;
+	    }
+	    return $this->html2rgb($rgb);
+	}
+
+		
 }

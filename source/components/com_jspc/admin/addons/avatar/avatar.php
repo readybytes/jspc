@@ -46,7 +46,7 @@ class avatar extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$my =& CFactory::getUser($userid);
+		$my 	=& CFactory::getUser($userid);		
 		$pathofAvatar  =$my->getAvatar();
 		$count = 0;
 		if(!empty($pathofAvatar) && !strpos($pathofAvatar,"default.jpg"))

@@ -64,9 +64,9 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 </table>
 
 <div class="clr"></div>
-
+	<div id="next" style="width:28.5%; direction:rtl; margin-top:10px;">
 	<input type="submit" name="addonnext" value="<?php echo JText::_('NEXT');?>" onclick="submitbutton('renderaddon');"/>
-	
+	</div>
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'addons' );?>" />
 	<input type="hidden" name="id" value="" />
