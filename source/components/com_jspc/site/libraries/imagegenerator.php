@@ -66,9 +66,9 @@ class JspcImageGenerator
 		
 		imagerectangle		($img,	0,		0,	$this->width-1,	$this->height-1,	$this->slColor);
 		
-		// get the center of fillbar
-		$per_x=$this->calculateCenterOfFillbar($img,$strPercent,$per);
-		imagestring 		($img,	$this->fontsize, $per_x, $this->height/5, $strPercent, $this->strColor); 
+		// get the position of text in fillbar
+		$position=$this->calculatePositionOfFillbarText($img,$strPercent,$per);
+		imagestring 		($img,	$this->fontsize, $position['x'], $position['y'], $strPercent, $this->strColor); 
 		
 		$result	=	 imagejpeg($img,$filename);
 		imagedestroy($img);
@@ -97,7 +97,7 @@ class JspcImageGenerator
 	}
 	
 	// using this calculation the percentage will appear in the center of fill bar
-	function calculateCenterOfFillbar($img,$strPercent, $per)
+	function calculatePositionOfFillbarText($img,$strPercent, $per)
 	{		
 		$per_width = imagefontwidth($this->fontsize)*strlen($strPercent);
 		if($per_width > $per)
@@ -107,8 +107,9 @@ class JspcImageGenerator
 			$this->strColor = imagecolorallocate($img,$this->strColor[0],$this->strColor[1],$this->strColor[2]);
 		}
  		$center = ceil($per/2);
- 		$x = $center - (ceil($per_width/2));
- 		return $x;
+ 		$position['x'] = $center - (ceil($per_width/2));
+ 		$position['y'] = ($this->height/2)-(imagefontheight($this->fontsize)/2);
+ 		return $position;
 	}
 	
 

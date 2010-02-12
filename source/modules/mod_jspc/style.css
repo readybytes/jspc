@@ -68,7 +68,8 @@ div.jspc_completion_text
 	font-size: 14px;
 	color: #999999;
 	background-color: transparent;
-	background-image: url(../../../components/com_community/templates/default/images/add-button.gif);
+/*XITODO : copy image and use it from our component*/
+	background-image: url(../../components/com_community/templates/default/images/add-button.gif);
 	background-repeat: no-repeat;
 	background-attachment: scroll;
 	background-position: 0pt 0pt;

@@ -23,24 +23,72 @@ class JspcHelper
 	}
 	
 	
-	function getAllTotals($isCheckPublished=true)
+	
+	function getAllTotals($isCheckPublished=true, $isXiptExist=false)
 	{
-		$total = 0;
-		$addonsinfo = addonFactory::getAddonsInfo();
+		$total = $isXiptExist ? array() : 0 ;
+		
+		$addonsinfo = addonFactory::getAddonsInfo();		
 		if(empty($addonsinfo))
 			return $total;
 			
-		foreach($addonsinfo as $info) {
-			if($isCheckPublished && $info->published) {
+		foreach($addonsinfo as $info) 
+		{
+			if($isCheckPublished==false)
+				continue;
+				
+			if($info->published == false)
+				continue;
+			$contribution = addonFactory::getValueFromParams('jspc_core_total_contribution',$info->coreparams,0);
 			
-				//add value into total contribution
-				$value = addonFactory::getValueFromParams('jspc_core_total_contribution',$info->coreparams,0);				
-				$total = $total + $value;
+			if($isXiptExist == false)
+			{
+				$total = $total + $contribution;	
+				continue;
+			}
+			
+			$ptype = addonFactory::getValueFromParams('jspc_profiletype',$info->coreparams,0);
+			if($ptype)
+			{
+				if(array_key_exists($ptype, $total)==false)
+				$total[$ptype] = 0;
+				
+				$total[$ptype] = $total[$ptype] + $contribution;
+				continue;
+			}	
+				
+			$profileTypeArray=XiPTHelperProfiletypes::getProfiletypeArray();
+				
+			foreach($profileTypeArray as $ptypeId)
+			{
+				if(array_key_exists($ptypeId, $total)==false)
+				$total[$ptypeId] = 0;
+				
+				$total[$ptypeId] = $total[$ptypeId] + $contribution;
 			}
 		}
-		
 		return $total;
+}
+
+	function checkXiptExists()
+	{
+		jimport( 'joomla.filesystem.file' );
+		jimport( 'joomla.filesystem.folder' );
+
+		$xiptPath = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_xipt';
+		
+		if(!JFolder::exists($xiptPath))
+			return false;
+
+		$xiptPath = JPATH_ROOT.DS.'components'.DS.'com_xipt';
+
+		if(!JFolder::exists($xiptPath))
+			return false;
+
+		require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_xipt' . DS . 'helpers' . DS . 'profiletypes.php' );
+		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'libraries' . DS . 'profiletypes.php' );
+
+		return true;
 	}
 	
 }
-?>

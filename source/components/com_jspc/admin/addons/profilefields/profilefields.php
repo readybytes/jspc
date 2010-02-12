@@ -22,7 +22,7 @@ class profilefields extends jspcAddons
 		$fields = helper::getJomsocialProfileFields($filter);
 		
 		if(empty($fields)) {
-			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('CLICK ON APPLY BUTTON TO SEE THE ADDONS PARAMETERS')."</div>";
 			return $addonParamsHtml;
 		}
 		
@@ -32,6 +32,7 @@ class profilefields extends jspcAddons
 		$fieldstotal = helper::calculateTotal($this->addonparams,$fields,0);
 		$coretotal = $this->coreparams->get('jspc_core_total_contribution',0);
 		
+		$isXiptExist=JspcHelper::checkXiptExists();
 		//calculate percentage
 		$total 				 = JspcHelper::getAllTotals(true);
 		$featureContribution = 0;

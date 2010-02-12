@@ -55,6 +55,6 @@
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
-		<param name="SPS_VisibleFeatureNumber" type="text" default="All" label="Number of Visible Feature to complete Profile" description="Write all to display all feature else write count">
+		<param name="SPS_VisibleFeatureNumber" type="text" default="All" label="Number of Visible Feature to complete Profile" description="Write all to display all feature else write count" />
 	</params>
 </install>

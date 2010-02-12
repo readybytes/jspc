@@ -111,6 +111,7 @@
 			<filename>elements/colorbox/hs.png</filename>
 			<filename>elements/colorbox/hv.png</filename>
 			<filename>elements/colorbox/jscolor.js</filename>
+			<filename>elements/profiletypes.php</filename>
 		</files>
 	</administration>
 </install>

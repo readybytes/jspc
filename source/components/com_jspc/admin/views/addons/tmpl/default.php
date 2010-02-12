@@ -44,14 +44,38 @@ function submitbutton( action )
 			<th>
 				<?php echo JText::_( 'ADDON NAME' ); ?>
 			</th>
+			<?php if($this->isXiptExist){?>
 			<th>
-				<?php echo JText::_( 'TOTAL' ); ?>
+				<?php echo JText::_( 'PROFILE TYPE' ); ?>
 			</th>
+			<?php }?>
+			<th>
+				<?php echo JText::_( 'TOTAL WEIGHTAGE' ); ?>
+			</th>
+			<th width="1px"></th>
+			<?php 
+			if($this->isXiptExist == false)
+			{?>
+				<th width="5%">
+				<?php echo JText::_( 'TOTAL CONTRIBUTION IN PERCENTAGE' ); ?>
+				</th><?php 
+			}
+			else
+			{
+				foreach($this->profileTypeArray as $ptypeId)
+				{
+				?>
+				<th>
+					<?php 
+							//XITODO : Remove function call from template						
+							echo XiPTHelperProfiletypes::getProfiletypeName($ptypeId); ?>
+				</th>
+				<?php 
+				}	
+			}?>
+			<th width="1%"></th>
 			<th width="5%">
 				<?php echo JText::_( 'PUBLISHED' ); ?>
-			</th>
-			<th>
-				<?php echo JText::_( 'TOTAL CONTRIBUTION IN PERCENTAGE' ); ?>
 			</th>
 		</tr>		
 	</thead>
@@ -81,9 +105,38 @@ function submitbutton( action )
 			<td>
 				<?php echo $addon->name; ?>
 			</td>
+			<?php if($this->isXiptExist){?>
+			<td>
+				<?php echo $this->addonProfiletype[$addon->id]; ?>
+			</td>
+			<?php }?>
 			<td>
 				<?php echo $this->totals[$addon->id]; ?>
 			</td>
+			<td></td>
+			<?php 
+			if($this->isXiptExist)
+			{		
+				foreach($this->profileTypeArray as $ptypeId)
+				{
+				?>	
+				<td>
+					<?php 
+						if(array_key_exists($ptypeId, $this->publishPercentage[$addon->id]))
+							echo round($this->publishPercentage[$addon->id][$ptypeId],2)." %";
+						else
+							echo " - "; 
+					?>
+				</td>	
+				<?php 
+				}
+			}
+			else {?>
+			<td>
+			<?php echo round($this->publishPercentage[$addon->id],2)." %"; ?>
+			</td>
+			<?php } ?>
+			<td></td>
 			<td align="center" id="published<?php echo $addon->id;?>">
 				<a href="javascript:void(0);" onclick="return listItemTask('cb<?php echo $i-1;?>','<?php echo $addon->published ? 'unpublish' : 'publish' ?>')">
 							<?php if($addon->published)
@@ -98,10 +151,7 @@ function submitbutton( action )
 							} //echo $published;
 						?>
 				</a>
-			</td>	
-			<td>
-				<?php echo $this->publishPercentage[$addon->id]." %"; ?>
-			</td>	
+			</td>
 		</tr>
 <?php
 		

@@ -65,7 +65,22 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 				<?php echo JText::_('CONTRIBUTION IN PERCENTAGE'); ?>:
 			</td>
 			<td>
-				<?php echo round($this->percentage,2)." %"; ?>
+				<?php 
+				if(!$this->isXiptExist)
+					echo  round($this->percentage,2)." %";
+				else
+				{
+					foreach($this->profileTypeArray as $ptypeId)
+					{						
+						echo $this->profileTypeName[$ptypeId];
+						if(array_key_exists($ptypeId, $this->percentage))
+					 		echo " : " . round($this->percentage[$ptypeId],2)." %";
+					 	else
+				 		    echo " : -"; 
+				 	 	?><br/><?php    
+					}
+				}	
+				?>
 			</td>
 		</tr>
 		</table>

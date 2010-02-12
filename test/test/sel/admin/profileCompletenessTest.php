@@ -175,19 +175,7 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("featurename", "Profile");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Profile");
-    $this->type("addonparams[2]", "10");
-    $this->type("addonparams[3]", "10");
-    $this->type("addonparams[4]", "10");
-    $this->type("addonparams[5]", "10");
-    $this->type("addonparams[7]", "10");
-    $this->type("addonparams[8]", "10");
-    $this->type("addonparams[9]", "10");
-    $this->type("addonparams[10]", "10");
-    $this->type("addonparams[11]", "10");
-    $this->type("addonparams[12]", "10");
-    $this->click("link=Close");
-    $this->waitPageLoad();
-  	
+    $this->click("//td[@id='toolbar-cancel']/a/span");
     $this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
     $this->click("//td[@id='toolbar-new']/a/span");
     $this->waitPageLoad();
@@ -197,6 +185,10 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("featurename", "Profile");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Profile");
+    
+   // $this->click("//td[@id='toolbar-apply']/a/span");
+   // $this->waitPageLoad();
+    
     $this->type("addonparams[2]", "10");
     $this->type("addonparams[3]", "101");
     $this->type("addonparams[3]", "10");

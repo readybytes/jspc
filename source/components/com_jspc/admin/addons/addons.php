@@ -208,13 +208,26 @@ abstract class jspcAddons
 	
 	function bind($data)
 	{
-		$this->addonparams->bind($data['addonparams']);
+		if(is_object($data)){
+			
+			$this->addonparams->bind($data->addonparams);
 		
-		if(!$this->coreparams) 	$this->setCoreParams();
-		$this->coreparams->bind($data['coreparams']);
+			if(!$this->coreparams) 	$this->setCoreParams();
+			$this->coreparams->bind($data->coreparams);
+			
+			$this->featurename 	= $data->featurename;
+			$this->published 	= $data->published;
+		}
+		if(is_array($data)){
+			
+			$this->addonparams->bind($data['addonparams']);
 		
-		$this->featurename 	= $data['featurename'];
-		$this->published 	= $data['published'];
+			if(!$this->coreparams) 	$this->setCoreParams();
+			$this->coreparams->bind($data['coreparams']);
+			
+			$this->featurename 	= $data['featurename'];
+			$this->published 	= $data['published'];
+		}
 	}
 	
 	function getFeatureContribution($userid)
@@ -237,6 +250,7 @@ abstract class jspcAddons
 		 * for ex :- if some fields are not available to user 
 		 * according to fields disable
 		 * then this fn should return false*/
+				
 		$isApplicableAccToAddon = $this->checkAddonAccesibility($userid);
 		$isApplicableAccToCore =  $this->checkCoreAccesibility($userid);
 		
@@ -254,7 +268,22 @@ abstract class jspcAddons
 	
 	public function checkAddonAccesibility($userid)
 	{
-		return true;
+		$xipt_exist=JspcHelper::checkXiptExists();
+		if(!$xipt_exist)
+			return true;
+		
+		$ptype = $this->getCoreParams('jspc_profiletype',0);
+        /* ptype 0 means rule is defined for all */
+        if(0 == $ptype)
+            return true;
+        //else check user profiletype
+        
+        $userPtype = XiPTLibraryProfiletypes::getUserData($userid,'PROFILETYPE');
+        if($userPtype == $ptype)
+            return true;
+           
+        return false;    
+		
 	}
 	
 	
@@ -273,6 +302,12 @@ abstract class jspcAddons
 		}
 		$text = sprintf(JText::_($text,false),$this->getRemainingCount($userid));
 		return $text;
+	}
+	
+	public function getCoreParams($what,$default=0)
+	{
+		$value = $this->coreparams->get($what,$default);
+		return $value;
 	}
 	
 	public function getMe()

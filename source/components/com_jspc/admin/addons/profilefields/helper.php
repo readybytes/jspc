@@ -8,29 +8,37 @@ class helper
 	//return all fields available in jomsocial
 	function getJomsocialProfileFields($filter = '',$join='AND')
 	{
-		$db			=& JFactory::getDBO();
+		$ptype=jspcAddons::getCoreParams('jspc_profiletype',0);
+		$allField=null;
 		
-		$filterSql = ''; 
-		if(!empty($filter)){
-			$filterSql = ' WHERE ';
-			$counter = 0;
-			foreach($filter as $name => $info) {
-				$filterSql .= $counter ? ' '.$join.' ' : '';
-				$filterSql .= $db->nameQuote($name).'='.$db->Quote($info);
-				$counter++;
+		if($allField == null){
+			$db	=& JFactory::getDBO();
+			
+			//setting up the search condition is there is any
+		$wheres = array();
+		if(! empty($filter)){
+			foreach($filter as $column => $value)
+			{
+				$wheres[] = "`$column` = " . $db->Quote($value); 	
 			}
 		}
-
-		$query	= 'SELECT * FROM ' . $db->nameQuote( '#__community_fields' )
-				.' '.$filterSql
-				.' ORDER BY ordering';
-				
-		$db->setQuery($query);
-		$result = $db->loadObjectList();
+			
+		$sql = "SELECT * FROM " . $db->nameQuote('#__community_fields');
+		if(! empty($wheres)){
+		   $sql .= " WHERE ".implode(' AND ', $wheres);
+		}
+		$sql .= " ORDER BY `ordering`";
+			
+		$db->setQuery($sql);
+		$fields = $db->loadObjectList();
+	    	
+	    $xipt_exists = JspcHelper::checkXiptExists();
+	    if($xipt_exists && $ptype != 0)
+	    	$result  = XiPTLibraryProfiletypes::_getFieldsForProfiletype($fields,$ptype,null);
+	    }
+		return $fields;
 		
-		return $result;
 	}
-	
 	
 	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
 	{

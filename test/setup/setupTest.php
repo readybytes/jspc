@@ -14,6 +14,12 @@ class SetupTest extends XiSelTestCase
   	$this->assertFalse($this->isTextPresent("Username and password do not match or you do not have an account yet"));
   	
   }
+  
+  function testSetupModuleAndPlugin()
+  {
+  	
+  }
+  
 } 
     
     
