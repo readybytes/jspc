@@ -18,7 +18,5 @@ class JspcFactory
 		}
 		
 		return $modelInstances[$name];
-	}
-	
+	}	
 }
-?>

@@ -24,3 +24,7 @@ define('PLG_JSPC_PKG',	JOOMLA_FTP_LOCATION.'/plg_jspc.zip');
 define('MOD_JSPC_PKG',	JOOMLA_FTP_LOCATION.'/mod_jspc.zip');
 define('COM_JSPC_PKG',		JOOMLA_FTP_LOCATION.'/com_jspc.zip');
 define('JOMSOCIAL_PKG',		JOOMLA_FTP_LOCATION.'/com_community.zip');
+
+define('PLG_XIPT_COM_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_community.zip');
+define('PLG_XIPT_SYS_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_system.zip');
+define('COM_XIPT_PKG',		JOOMLA_LOCATION.'/test/xipt/com_xipt.zip');

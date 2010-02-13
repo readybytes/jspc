@@ -138,8 +138,9 @@ class JspcViewAddons extends JView
 		{	
 			$total 				 = JspcHelper::getAllTotals(true);
 			$featureContribution = JspcHelper::getTotalContributionOfCriteria($data['id']);
-			
-			if($total != 0)
+			if($data['published'] == false)
+				$percentage=0;
+			else if($total != 0)
 				$percentage = ($featureContribution / $total ) * 100;
 			else
 				$percentage = 100;
