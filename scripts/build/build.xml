@@ -50,7 +50,7 @@
 		</phplint>
 
 		<!-- apply lint -->
-		<analyze analyzerPath="/usr/bin/zca" disable="var-ref-notmodified,if-if-else,expr-unused,include-var" >
+		<analyze analyzerPath="/usr/local/bin/joomlaxi/zca" disable="var-ref-notmodified,if-if-else,expr-unused,include-var" >
 			<fileset dir="${global.dir.tmp}">
 			    <include name="**/*.php"/>
 			</fileset>

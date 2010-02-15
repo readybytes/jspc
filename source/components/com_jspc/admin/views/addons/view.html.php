@@ -208,7 +208,14 @@ class JspcViewAddons extends JView
 		
 		
 		foreach($profileTypeArray as $ptypeId)
-			$percentage[$ptypeId] = ( $totals[$data['id']] / $total[$ptypeId] ) * 100 ;
+		{
+			if(key_exists($ptypeId,$total) ==false)
+				$percentage[$ptypeId] = 0;
+			else if($total[$ptypeId] != 0)
+				$percentage[$ptypeId] = ( $totals[$data['id']] / $total[$ptypeId] ) * 100 ;
+			else
+				$percentage[$ptypeId] = 0;
+		}
 											 	
 	}
 	

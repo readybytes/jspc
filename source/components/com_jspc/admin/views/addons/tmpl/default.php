@@ -62,6 +62,7 @@ function submitbutton( action )
 			}
 			else
 			{
+				if(isset($this->profileTypeArray))
 				foreach($this->profileTypeArray as $ptypeId)
 				{
 				?>
