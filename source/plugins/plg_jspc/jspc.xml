@@ -53,7 +53,7 @@
 		<param name="SPS_BGColor"  type="colorbox" default="FFFFFF"  label="Empty Bar Color" description=""/>
 		<param name="SPS_SLColor"  type="colorbox" default="000000"  label="Side Line Color" description=""/>
 		<param name="SPS_STRColor" type="colorbox" default="FFFFFF"  label="Text Color" description=""/>
-		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completness Image" description="" >
+		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completeness Image" description="" >
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>

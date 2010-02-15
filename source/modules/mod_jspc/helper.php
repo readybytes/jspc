@@ -28,6 +28,11 @@ class ProfileCompleteHelper
 		$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
 		JspcLibrary::roundOffPercentage($incomplete_feature, $profile_completion_percentage);
 		
+		//if profile is 100% complete then do not show module
+		$showProfile = $params->get('showProfile','1');
+		if($showProfile == 0 && $profile_completion_percentage == 100)
+			return;
+		
 		$imageGenerator = new JspcImageGenerator($params);
 		$filename		= $imageGenerator->createPercentageBarImageFile('mod_',$profile_completion_percentage);
 			

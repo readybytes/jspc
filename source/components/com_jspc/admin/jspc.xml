@@ -28,10 +28,7 @@
 		<languages folder="admin">
 			<language tag="en-GB">en-GB.com_jspc.ini</language>
 		</languages>
-		<menu link="option=com_jspc" img="components/com_jspc/assets/images/icon-jspc.png">Profile Status</menu>
-		<submenu>
-			<menu view="addons" img="components/com_jspc/assets/images/icon-jspc.png">Completness Criteria</menu>
-		</submenu>
+		<menu link="option=com_jspc" img="components/com_jspc/assets/images/icon-jspc.png">JSPC</menu>
 		<files folder="admin">
 			<filename>index.html</filename>
 			<filename>admin.jspc.php</filename>
