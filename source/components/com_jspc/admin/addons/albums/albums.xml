@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 <params>
-	<param name="album_total" type="text" default="" label="TOTAL ALBUM COUNT.LABEL" description="NO OF TOTAL ALBUMS REQUIRE TO COMPLETE FOR COMPLETING USER PROFILE.DESC" />
+	<param name="albums_total" type="text" default="" label="TOTAL ALBUM COUNT.LABEL" description="NO OF TOTAL ALBUMS REQUIRE TO COMPLETE FOR COMPLETING USER PROFILE.DESC" />
 </params>
 </config>

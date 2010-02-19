@@ -78,7 +78,7 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->click("//span[@id='featurename1']/a");
     $this->waitPageLoad();
    	$this->type("coreparamsjspc_core_total_contribution", "200");
-    $this->type("addonparamsalbum_total", "20");
+    $this->type("addonparamsalbums_total", "20");
     $this->click("//td[@id='toolbar-save']/a/span");
     $this->waitPageLoad();
   	$this->click("//td[@id='published1']/a");
@@ -135,7 +135,7 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("featurename", "Album");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "Add % Album");
-    $this->type("addonparamsalbum_total", "10");
+    $this->type("addonparamsalbums_total", "10");
     $this->click("//td[@id='toolbar-save']/a/span");
     $this->waitPageLoad();
      	
@@ -254,7 +254,7 @@ function addFeatureFour()
     $this->type("featurename", "Photos");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Photos");
-    $this->type("addonparamsphoto_total", "10");
+    $this->type("addonparamsphotos_total", "10");
     $this->click("//td[@id='toolbar-apply']/a/span");
     $this->waitPageLoad();
     $this->click("//td[@id='toolbar-cancel']/a/span");
@@ -273,7 +273,7 @@ function addFeatureFour()
     $this->type("featurename", "Videos");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Videos");
-    $this->type("addonparamsvideo_total", "10");
+    $this->type("addonparamsvideos_total", "10");
     $this->click("//td[@id='toolbar-apply']/a/span");
     $this->waitPageLoad();
     $this->click("//td[@id='toolbar-cancel']/a/span");

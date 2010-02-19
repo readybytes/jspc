@@ -55,14 +55,14 @@ INSERT INTO `#__users` (`id`, `name`, `username`, `email`, `password`, `usertype
 /* jspc_addons */
 TRUNCATE TABLE `#__jspc_addons`;
 INSERT INTO `#__jspc_addons` (`id`, `name`, `featurename`, `coreparams`, `addonparams`, `published`) VALUES
-(1, 'albums', 'Album1', 'jspc_core_total_contribution=100\njspc_core_display_text=Add %s Album\njspc_profiletype=1\n\n', 'album_total=8\n\n', 1),
+(1, 'albums', 'Album1', 'jspc_core_total_contribution=100\njspc_core_display_text=Add %s Album\njspc_profiletype=1\n\n', 'albums_total=8\n\n', 1),
 (2, 'groupowner', 'Group1', 'jspc_core_total_contribution=90\njspc_core_display_text=Create %s Group\njspc_profiletype=5\n\n', 'groupowner_total=8\n\n', 1),
-(3, 'photos', 'Photos', 'jspc_core_total_contribution=60\njspc_core_display_text=Upload %s Photos\njspc_profiletype=0\n\n', 'photo_total=9\n\n', 1),
+(3, 'photos', 'Photos', 'jspc_core_total_contribution=60\njspc_core_display_text=Upload %s Photos\njspc_profiletype=0\n\n', 'photos_total=9\n\n', 1),
 (4, 'avatar', 'Avtar', 'jspc_core_total_contribution=40\njspc_core_display_text=Upload Avtar\njspc_profiletype=0\n\n', '\n', 1),
 (5, 'groupmember', 'GroupMember', 'jspc_core_total_contribution=70\njspc_core_display_text=Join %s Group\njspc_profiletype=4\n\n', 'groupmember_total=9\n\n', 1),
-(6, 'videos', 'Videos', 'jspc_core_total_contribution=40\njspc_core_display_text=Add %s Videos\njspc_profiletype=0\n\n', 'video_total=6\n\n', 1),
+(6, 'videos', 'Videos', 'jspc_core_total_contribution=40\njspc_core_display_text=Add %s Videos\njspc_profiletype=0\n\n', 'videos_total=6\n\n', 1),
 (7, 'profilefields', 'Profile', 'jspc_core_total_contribution=80\njspc_core_display_text=Complete %s Profile Fields\njspc_profiletype=3\n\n', '18=0\n17=0\n2=8\n3=4\n4=4\n5=8\n7=8\n8=4\n9=8\n10=8\n11=4\n12=8\n13=4\n15=4\n16=8\n\n', 1),
-(8, 'albums', 'Album2', 'jspc_core_total_contribution=60\njspc_core_display_text=Add %s Album2\njspc_profiletype=0\n\n', 'album_total=6\n\n', 1),
+(8, 'albums', 'Album2', 'jspc_core_total_contribution=60\njspc_core_display_text=Add %s Album2\njspc_profiletype=0\n\n', 'albums_total=6\n\n', 1),
 (9, 'groupowner', 'Group2', 'jspc_core_total_contribution=90\njspc_core_display_text=Create %s Group2\njspc_profiletype=2\n\n', 'groupowner_total=4\n\n', 1);
 
 
