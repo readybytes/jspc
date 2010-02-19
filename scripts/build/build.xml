@@ -43,18 +43,93 @@
 			</fileset>
 		</copy>
 
-		<phplint haltonfailure="true">
-		  <fileset dir="${global.dir.tmp}">
-		    <include name="**/*.php"/>
-		  </fileset>
-		</phplint>
-
 		<!-- apply lint -->
 		<analyze analyzerPath="/usr/local/bin/joomlaxi/zca" disable="var-ref-notmodified,if-if-else,expr-unused,include-var" >
 			<fileset dir="${global.dir.tmp}">
 			    <include name="**/*.php"/>
 			</fileset>
 		</analyze>
+
+<phpcodesniffer
+			standard="PHPCS"  	showSniffs="false"  
+			file="${global.dir.tmp}" 	allowedFileExtensions="php,css,js" 
+			haltonwarning="false" 	haltonerror="false"
+			sniffs="
+ Squiz_Sniffs_Objects_DisallowObjectStringIndexSniff
+ Squiz_Sniffs_Objects_ObjectMemberCommaSniff
+ Squiz_Sniffs_Objects_ObjectInstantiationSniff
+ Squiz_Sniffs_Debug_JSLintSniff
+ Squiz_Sniffs_Debug_JavaScriptLintSniff
+ Squiz_Sniffs_Classes_SelfMemberReferenceSniff
+ Squiz_Sniffs_Classes_ValidClassNameSniff
+ Squiz_Sniffs_Classes_LowercaseClassKeywordsSniff
+ Squiz_Sniffs_Classes_DuplicatePropertySniff
+ Squiz_Sniffs_Classes_ClassFileNameSniff
+ Squiz_Sniffs_PHP_DisallowMultipleAssignmentsSniff
+ Squiz_Sniffs_PHP_InnerFunctionsSniff
+ Squiz_Sniffs_PHP_LowercasePHPFunctionsSniff
+ Squiz_Sniffs_PHP_ForbiddenFunctionsSniff
+ Squiz_Sniffs_PHP_EvalSniff
+ Squiz_Sniffs_PHP_GlobalKeywordSniff
+ Squiz_Sniffs_PHP_DisallowObEndFlushSniff
+ Squiz_Sniffs_PHP_DiscouragedFunctionsSniff
+ Squiz_Sniffs_PHP_DisallowComparisonAssignmentSniff
+ Squiz_Sniffs_PHP_DisallowSizeFunctionsInLoopsSniff
+ Squiz_Sniffs_Scope_MemberVarScopeSniff
+ Squiz_Sniffs_Scope_MethodScopeSniff
+ Squiz_Sniffs_Scope_StaticThisUsageSniff
+ Squiz_Sniffs_CSS_DuplicateClassDefinitionSniff
+ Squiz_Sniffs_CSS_DuplicateStyleDefinitionSniff
+ Squiz_Sniffs_CSS_ForbiddenStylesSniff
+ Squiz_Sniffs_CSS_LowercaseStyleDefinitionSniff
+ Squiz_Sniffs_CSS_EmptyClassDefinitionSniff
+ Squiz_Sniffs_CSS_ColourDefinitionSniff
+ Squiz_Sniffs_CSS_MissingColonSniff
+ Squiz_Sniffs_CSS_EmptyStyleDefinitionSniff
+ Squiz_Sniffs_CSS_DisallowMultipleStyleDefinitionsSniff
+ Squiz_Sniffs_CSS_OpacitySniff
+ Squiz_Sniffs_Files_FileExtensionSniff
+ Squiz_Sniffs_Files_LineLengthSniff
+ Squiz_Sniffs_Functions_FunctionDuplicateArgumentSniff
+ Squiz_Sniffs_Functions_GlobalFunctionSniff
+ Squiz_Sniffs_Metrics_CyclomaticComplexitySniff
+ Squiz_Sniffs_Metrics_NestingLevelSniff
+ Squiz_Sniffs_NamingConventions_ValidFunctionNameSniff
+ Squiz_Sniffs_NamingConventions_ValidVariableNameSniff
+ Squiz_Sniffs_NamingConventions_ConstantCaseSniff
+ Squiz_Sniffs_Operators_ComparisonOperatorUsageSniff
+ Squiz_Sniffs_Operators_ValidLogicalOperatorsSniff
+ Squiz_Sniffs_CodeAnalysis_EmptyStatementSniff
+ Squiz_Sniffs_Arrays_ArrayDeclarationSniff
+ Generic_Sniffs_CodeAnalysis_UnusedFunctionParameterSniff
+ Generic_Sniffs_NamingConventions_ConstructorNameSniff
+ Generic_Sniffs_NamingConventions_UpperCaseConstantNameSniff
+ Generic_Sniffs_Metrics_CyclomaticComplexitySniff
+ Generic_Sniffs_Metrics_NestingLevelSniff
+ Generic_Sniffs_PHP_DisallowShortOpenTagSniff
+ Generic_Sniffs_Strings_UnnecessaryStringConcatSniff
+					">
+			<formatter type="report" outfile="${global.dir.report}/zend.phpcs.txt"  usefile="true"/>
+		</phpcodesniffer>
+
+		<phpcpd haltonerror="false">
+		   <fileset dir="${global.dir.tmp}" id="filestocpd">
+		     <include name="**/*.php" />
+		   </fileset>
+		   <formatter type="pmd" outfile="${global.dir.report}/cpd-report.xml"/>
+		 </phpcpd>
+		
+		<exec command="phploc   ${global.dir.tmp} > ${global.dir.report}/loc.source.txt " escape="false" />
+		<exec command="phploc   --count-tests ${global.dir.root}/test > ${global.dir.report}/loc.test.txt " escape="false" />
+		<exec command="pdepend  --summary-xml=${global.dir.report}/pdepend.summary.xml 
+					--jdepend-chart=${global.dir.report}/pdepend1.svg  
+					--overview-pyramid=${global.dir.report}/pdepend2.svg  
+					${global.dir.root}/source" escape="false" 
+				/>
+
+		<exec command="find  ${global.dir.tmp} | xargs -l1 grep -Hni xitodo     > ${global.dir.report}/xitodo.txt " escape="false" />
+		<exec command="find  ${global.dir.tmp} | xargs -l1 grep -Hni JSITE_PATH > ${global.dir.report}/jsite-path.txt " escape="false" />
+		<exec command="find  ${global.dir.tmp} | xargs -l1 egrep -Hn '_REQUEST|_POST|_GET|_SESSION|_GLOBAL' > ${global.dir.report}/post-get-request.txt " escape="false" />
 
 	</target>
 
