@@ -68,7 +68,12 @@ class JspcViewAddons extends JView
 				}
 				
 				foreach($profileTypeArray as $ptypeId)
-					$publishPercentage[$addon->id][$ptypeId] = ( $totals[$addon->id] / $total[$ptypeId] ) * 100 ;								 	
+				{
+					 if($total[$ptypeId] != 0)
+						$publishPercentage[$addon->id][$ptypeId] = ( $totals[$addon->id] / $total[$ptypeId] ) * 100 ;	
+					else
+						$publishPercentage[$addon->id][$ptypeId] =0;
+				}
 			}
 			
 			$this->assign('profileTypeArray', $profileTypeArray);		
@@ -83,6 +88,7 @@ class JspcViewAddons extends JView
 		$this->assignRef( 'pagination'	, $pagination );
 		parent::display( $tpl );
     }
+
 	
 	function setToolBar()
 	{
