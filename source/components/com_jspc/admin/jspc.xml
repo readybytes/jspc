@@ -76,6 +76,10 @@
 			<filename>addons/profilefields/profilefields.php</filename>
 			<filename>addons/profilefields/helper.php</filename>
 			
+			<filename>addons/friends/index.html</filename>
+			<filename>addons/friends/friends.php</filename>
+			<filename>addons/friends/friends.xml</filename>
+			
 			<filename>views/index.html</filename>
 			
 			<filename>views/addons/index.html</filename>

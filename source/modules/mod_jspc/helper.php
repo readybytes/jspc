@@ -57,6 +57,7 @@ class ProfileCompleteHelper
 	function _getDisplay($data = array())
 	{
 		ob_start();	?>
+		<div id="application-group">
 		<?php 
 		// if avatar required
 		if ($data['params']->get('SPS_ShowAvatar',0))
@@ -64,8 +65,7 @@ class ProfileCompleteHelper
 			$avatarWidth=$data['params']->get('SPS_AvatarWidth', 100);
 			$avatarHeight=$data['params']->get('SPS_AvatarHeight', 100);
 			?>
-		<div id="application-group">
-		
+				
 		<!--  show-avatar#start --> 
 		<div class="jspc_avatar">
 			<img src="<?php echo $data['avatar']; ?>" 
