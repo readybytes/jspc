@@ -34,6 +34,10 @@
 			<option value="0">No</option>
 		</param>
 		<param name="@spacer" type="spacer" default="" label="Configure Avatar" description="" />		
+		<param name="SPS_ShowAvatar" type="list" default="1" label="Show Avatar" description="">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
 		<param name="SPS_AvatarWidth" type="text" default="75" label="Width of Avatar in Pixel" description=""/>
 		<param name="SPS_AvatarHeight" type="text" default="75" label="Height of Avatar in Pixel" description=""/>
 				

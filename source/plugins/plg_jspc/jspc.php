@@ -120,7 +120,10 @@ class plgCommunityJspc extends CApplications
 		ob_start();	
 		?>
 		<div id="application-group">
-		
+		<?php 
+		// if avatar required
+		if ($this->_params->get('SPS_ShowAvatar',1))
+		{?>
 		<!--  show-avatar#start --> 
 		<div class="jspc_avatar">
 			<img src="<?php echo $data['avatar']; ?>" 
@@ -130,7 +133,9 @@ class plgCommunityJspc extends CApplications
 						/>
 		</div>
 		<!--  show-avatar#done -->
-		
+		<?php
+		 }
+		?>
 		<!-- show-completion-bar -->		
 		<div class="jspc_column2" style="width:<?php echo $this->_params->get('SPS_Length','1') +20 ; ?>px;">
 			<div class="jspc_completion_bar">
