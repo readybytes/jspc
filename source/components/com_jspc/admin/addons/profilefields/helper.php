@@ -65,7 +65,7 @@ class helper
 				$html .= $f->name."</td>";
 				if($f->type != 'group') {
 					$html .= "<td class='paramlist_value'><input type='text' name='addonparams[".$f->id."]' id='addonparams[".$f->id."]' value='".$addonparams->get($f->id,0)."'/></td>";
-					$html .= "<td class='paramlist_value'>".$fieldsPercentage[$f->id]." % </td>";
+					$html .= "<td class='paramlist_value'>".$fieldsPercentage[$f->id]."</td>";
 					$html .= "<td class='paramlist_value'>".$fieldsPercentageInTotal[$f->id]." % </td>";
 				}
 				

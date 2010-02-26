@@ -18,6 +18,12 @@ class JspcHelper
 			&& !$info[0]->published)
 			return 0;
 		
+		/*$featureObject = addonFactory::getAddonObject($info[0]->name);
+		assert($featureObject);
+		
+		$featureObject->bind($info[0]);
+		$total = $featureObject->getFeatureContribution(0);*/
+		
 		$total = addonFactory::getValueFromParams('jspc_core_total_contribution',$info[0]->coreparams,0);
 		return $total;
 	}
@@ -39,6 +45,13 @@ class JspcHelper
 				
 			if($info->published == false)
 				continue;
+				
+			/*$featureObject = addonFactory::getAddonObject($info->name);
+			assert($featureObject);
+			
+			$featureObject->bind($info);
+			$contribution = $featureObject->getFeatureContribution(0);*/
+
 			$contribution = addonFactory::getValueFromParams('jspc_core_total_contribution',$info->coreparams,0);
 			
 			if($isXiptExist == false)
