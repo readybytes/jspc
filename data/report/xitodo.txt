@@ -1,12 +1,10 @@
+../../packages/tmp/modules/mod_jspc/style.css:71:/*XITODO : copy image and use it from our component*/
 ../../packages/tmp/components/com_jspc/site/libraries/jspc.php:108:		//XITODO : and also add error handling routines
-../../packages/tmp/components/com_jspc/admin/addons/photos/photos.php:16:		/*XITODO : check according to addon params
+../../packages/tmp/components/com_jspc/admin/addons/profilefields/profilefields.php:62:		/*XITODO : Calculate completness according to user profiletype */
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:42:		//XITODO : Remove assert from here and move it somewhere else
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:65:			//XITODO: err message
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:78:		//XITODO send debugmode
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:235:		/*XITODO : for profile fields we have to overite this fn
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:247:		/*XITODO : check according to addon params and core params
-../../packages/tmp/components/com_jspc/admin/addons/profilefields/profilefields.php:62:		/*XITODO : Calculate completness according to user profiletype */
-../../packages/tmp/components/com_jspc/admin/views/addons/view.html.php:38:				/*XITODO : pull all this code into function , defined already */					
-../../packages/tmp/components/com_jspc/admin/views/addons/tmpl/default.php:71:							//XITODO : Remove function call from template						
-../../packages/tmp/modules/mod_jspc/style.css:71:/*XITODO : copy image and use it from our component*/
+../../packages/tmp/components/com_jspc/admin/addons/photos/photos.php:16:		/*XITODO : check according to addon params
 ../../packages/tmp/plugins/plg_jspc/jspc.php:62:		//xitodo : display message to admin

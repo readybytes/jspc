@@ -84,6 +84,10 @@
 			<filename>addons/kunenaposts/kunenaposts.php</filename>
 			<filename>addons/kunenaposts/kunenaposts.xml</filename>
 			
+			<filename>addons/articles/index.html</filename>
+			<filename>addons/articles/articles.php</filename>
+			<filename>addons/articles/articles.xml</filename>
+			
 			<filename>views/index.html</filename>
 			
 			<filename>views/addons/index.html</filename>
