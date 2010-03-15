@@ -62,14 +62,15 @@ function submitbutton( action )
 			}
 			else
 			{
-				if(isset($this->profileTypeArray))
-				foreach($this->profileTypeArray as $ptypeId)
+				if(isset($this->profileTypeName))
+				foreach($this->profileTypeName as $ptype)
 				{
 				?>
 				<th>
 					<?php 
-							//XITODO : Remove function call from template						
-							echo XiPTHelperProfiletypes::getProfiletypeName($ptypeId); ?>
+							echo $ptype;
+					?>
+							
 				</th>
 				<?php 
 				}	

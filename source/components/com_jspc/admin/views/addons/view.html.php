@@ -15,72 +15,52 @@ class JspcViewAddons extends JView
 		$pagination = $aModel->getPagination();
 				
 		$addonsInfo = addonFactory::getAddonsInfo();
-		$totals = array();
 		$addonProfiletype = array();
 		$profileTypeArray = array();
 		$publishPercentage = array();
-
+		$totals[]=array();
+		
 		//include the library file of XIPT if exist then includes file 
 		$isXiptExist=JspcHelper::checkXiptExists();
 		
-		if($isXiptExist)
-			$profileTypeArray=XiPTHelperProfiletypes::getProfiletypeArray();
-			
-		$total = JspcHelper::getAllTotals(true,	$isXiptExist);
-			
-		//get total of each criteria
+		if($isXiptExist){
+			$profileTypeArray	 = XiPTHelperProfiletypes::getProfileTypeArray();
+			foreach($profileTypeArray as $ptypeId)
+				$profileTypeName[$ptypeId] = XiPTHelperProfiletypes::getProfileTypeName($ptypeId);
+		}
+								
 		if(!empty($addonsInfo))
 		{
 			foreach($addonsInfo as $addon) 
 			{
+				$data=(array)$addon;
+				$totals[$addon->id] = array();
 				$totals[$addon->id] = JspcHelper::getTotalContributionOfCriteria($addon->id);
+							
 				
-				/*XITODO : pull all this code into function , defined already */					
-				//if xipt do not exist
-				if(!$isXiptExist)
-				{
-					if($addon->published == false)
-						$publishPercentage[$addon->id] = 0 ;
-					else
-						$publishPercentage[$addon->id] = ( $totals[$addon->id] / $total ) * 100 ;
-					
-					continue;
-				}
-				
-				//if xipt exist
 				$publishPercentage[$addon->id] = array();			
 					
 				$addonObject = addonFactory::getAddonObject($addon->name);
 				$addonObject->bind($addon);
 				$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
-				$addonProfiletype[$addon->id] = XiPTHelperProfiletypes::getProfiletypeName($ptype);
-				
-				if($addon->published == false)
+				if($isXiptExist)
 				{
-						$publishPercentage[$addon->id][$ptype] = 0 ;
-						continue;
-				}	
-				
-				if($ptype !=0)
-				{
-					$publishPercentage[$addon->id][$ptype] = ( $totals[$addon->id] / $total[$ptype] ) * 100 ;
-					continue;							
-				}
-				
-				foreach($profileTypeArray as $ptypeId)
-				{
-					 if($total[$ptypeId] != 0)
-						$publishPercentage[$addon->id][$ptypeId] = ( $totals[$addon->id] / $total[$ptypeId] ) * 100 ;	
+					if($ptype==0)
+						$addonProfiletype[$addon->id]='all';
 					else
-						$publishPercentage[$addon->id][$ptypeId] =0;
+						$addonProfiletype[$addon->id] = $profileTypeName[$ptype];
 				}
-			}
-			
-			$this->assign('profileTypeArray', $profileTypeArray);		
-			$this->assign('addonProfiletype' , $addonProfiletype );
+				
+				$this->_calculateContributionOfPtype($data,$publishPercentage[$addon->id],$ptype);				
+			}			
 		}
 		
 		$this->setToolbar();
+		if($isXiptExist){
+			$this->assign('profileTypeArray',  $profileTypeArray);		
+			$this->assign('addonProfiletype' , $addonProfiletype );
+			$this->assignRef('profileTypeName',$profileTypeName);
+		}
 		$this->assign('isXiptExist', $isXiptExist);
 		$this->assign( 'addonsInfo' , $addonsInfo );
 		$this->assign( 'totals' , $totals );
@@ -134,27 +114,16 @@ class JspcViewAddons extends JView
 		$percentage=0;
 		//call htmlrender fn
 		$addonObject = addonFactory::getAddonObject($data['name']);
-		
 		$addonObject->bind($data);
 		$addonObject->getHtml($coreParamsHtml,$addonParamsHtml);
+		$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
 		$isXiptExist=JspcHelper::checkXiptExists();
 
 		// xipt does not exists
-		if(!$isXiptExist)
+		$percentage=array();
+		$this->_calculateContributionOfPtype($data,$percentage,$ptype);
+		if($isXiptExist)
 		{	
-			$total 				 = JspcHelper::getAllTotals(true);
-			$featureContribution = JspcHelper::getTotalContributionOfCriteria($data['id']);
-			if($data['published'] == false)
-				$percentage=0;
-			else if($total != 0)
-				$percentage = ($featureContribution / $total ) * 100;
-			else
-				$percentage = 100;
-		}
-		else
-		{
-			$percentage=array();
-			$this->_calculateContributionOfPtype($data,$percentage);	
 			$profileTypeArray	 = XiPTHelperProfiletypes::getProfileTypeArray();
 			foreach($profileTypeArray as $ptypeId)
 				$profileTypeName[$ptypeId] = XiPTHelperProfiletypes::getProfileTypeName($ptypeId);
@@ -179,7 +148,7 @@ class JspcViewAddons extends JView
 	
 	
 	
-	function _calculateContributionOfPtype($data,&$percentage)
+	function _calculateContributionOfPtype($data,&$percentage,$ptype)
 	{
 	
 		//$addonsInfo = addonFactory::getAddonsInfo();
@@ -187,8 +156,21 @@ class JspcViewAddons extends JView
 		$addonProfiletype = array();
 		
 		//include the library file of XIPT if exist then includes file 
-		$xipt_exist=JspcHelper::checkXiptExists();
+		$isXiptExist=JspcHelper::checkXiptExists();
 		$percentage = array();
+		$total = JspcHelper::getAllTotals(true,	$isXiptExist);
+		$totals[$data['id']] = JspcHelper::getTotalContributionOfCriteria($data['id']);
+		if(!$isXiptExist)
+		{	
+			if($data['published'] == false)
+				$percentage=0;
+			else if($total != 0)
+				$percentage = ($totals[$data['id']] / $total ) * 100;
+			else
+				$percentage = 100;
+			
+			return;
+		}
 		
 		$profileTypeArray=XiPTHelperProfiletypes::getProfiletypeArray();
 		if(!$data['published']) {
@@ -197,18 +179,15 @@ class JspcViewAddons extends JView
 											 	
 			return;
 		}	
-		
-		$total = JspcHelper::getAllTotals(true,	$xipt_exist);
-			
-		$totals[$data['id']] = JspcHelper::getTotalContributionOfCriteria($data['id']);
-		$addonObject = addonFactory::getAddonObject($data['name']);
-		$addonObject->bind($data);
-		$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
-		
-		
+				
 		if($ptype !=0)
 		{
-			$percentage[$ptype] = ( $totals[$data['id']] / $total[$ptype] ) * 100 ;
+			if(key_exists($ptype,$total) ==false)
+				$percentage[$ptype] = 0;
+			else if($total[$ptype] != 0)
+				$percentage[$ptype] = ( $totals[$data['id']] / $total[$ptype] ) * 100 ;
+			else 
+				$percentage[$ptype] = 0;
 			return;
 		}
 		

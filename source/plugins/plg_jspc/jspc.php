@@ -122,7 +122,7 @@ class plgCommunityJspc extends CApplications
 		<div id="application-group">
 		<?php 
 		// if avatar required
-		if ($this->_params->get('SPS_ShowAvatar',1))
+		if ($this->_params->get('SPS_ShowAvatar',0))
 		{?>
 		<!--  show-avatar#start --> 
 		<div class="jspc_avatar">

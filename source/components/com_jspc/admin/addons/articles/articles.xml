@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<params>
+	<param name="articles_total" type="text" default="" label="TOTAL ARTICLE COUNT.LABEL" description="NO OF TOTAL ARTICLEs REQUIRE TO COMPLETE FOR COMPLETING USER PROFILE.DESC" />
+</params>
+</config>
