@@ -182,4 +182,11 @@ class JspcLibrary
 		$featureObject->load($featureId);
 		return $featureObject; 
 	}
+	
+	
+	function getUrlpathFromFilePath($filepath)
+	{
+		$urlpath = preg_replace('#[/\\\\]+#', '/', $filepath);
+		return $urlpath;
+	}
 }

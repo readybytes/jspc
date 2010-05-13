@@ -35,10 +35,12 @@ class ProfileCompleteHelper
 		
 		$imageGenerator = new JspcImageGenerator($params);
 		$filename		= $imageGenerator->createPercentageBarImageFile('mod_',$profile_completion_percentage);
-			
+		
+		$urlpath = JspcLibrary::getUrlpathFromFilePath($filename);	
+		
 		$data = JspcLibrary::getDisplayInformationOfUser($userId,'avatar');
 		$data['userId']							= $userId;
-		$data['filename'] 						= $filename;
+		$data['filename'] 						= $urlpath;
 		$data['incomplete_feature']				= $incomplete_feature ;
 		$data['profile_completion_percentage']	= $profile_completion_percentage;
 		

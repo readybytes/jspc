@@ -94,9 +94,11 @@ class plgCommunityJspc extends CApplications
 		$imageGenerator = new JspcImageGenerator($this->_params);
 		$filename	= $imageGenerator->createPercentageBarImageFile('plg_',$profile_completion_percentage);
 
+		$urlpath = JspcLibrary::getUrlpathFromFilePath($filename);
+
 		$data = JspcLibrary::getDisplayInformationOfUser($userId,'avatar');
 		$data['userId']							= $userId;
-		$data['filename'] 						= $filename;
+		$data['filename'] 						= $urlpath;
 		$data['incomplete_feature']				= $incomplete_feature ;
 		$data['profile_completion_percentage']	= $profile_completion_percentage;
 		

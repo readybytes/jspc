@@ -111,4 +111,5 @@ class InstallTest extends XiSelTestCase
     $this->waitPageLoad();
     $this->assertTrue($this->isTextPresent("Install Module Success"));
   } 
-}
+} 
+

@@ -25,7 +25,7 @@ require_once (JPATH_ROOT. DS.'components'.DS.'com_community'.DS.'helpers'.DS.'ow
 $language = JFactory::getLanguage();
 $language->load('mod_jspc'); 
 
-$user					=& JFactory::getUser();
+$user	=& JFactory::getUser();
 
 require_once( dirname(__FILE__).DS.'helper.php' );
 $disp= ProfileCompleteHelper::getJspcHTML($user->id, $params );

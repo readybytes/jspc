@@ -30,19 +30,23 @@ class JspcImageGenerator
 	function createPercentageBarImageFile($imagePreText,$per)
 	{
 		jimport('joomla.filesystem.file');
+		jimport('joomla.filesystem.folder');
 		
 		// if file exist return the file name
-		$filename	= 'components/com_jspc/jspc/'.$imagePreText.$per. '.jpg';
+		$folderPath = 'media'.DS.'system'.DS.'images'.DS.'jspc';
+		
+		$filename	= $folderPath.DS.$imagePreText.$per. '.jpg';
 		
 		// For debug mode generate file everytime
-		if(JFile::exists($filename))
-		{
+		if(!JFolder::exists($folderPath))
+			JFolder::create($folderPath,0777);
+
+		if(JFile::exists(JPATH_ROOT.DS.$filename)) {
 			if($this->params->get('SPS_ImageDebugMode'))
 				JFile::delete($filename);
 			else
 				return $filename;
 		}
-		
 		$strPercent	= 	$per . "%";
 		$img 		= 	ImageCreateTrueColor($this->width, $this->height);
 		
@@ -70,7 +74,7 @@ class JspcImageGenerator
 		$position=$this->calculatePositionOfFillbarText($img,$strPercent,$per);
 		imagestring 		($img,	$this->fontsize, $position['x'], $position['y'], $strPercent, $this->strColor); 
 		
-		$result	=	 imagejpeg($img,$filename);
+		$result	=	 imagejpeg($img,JPATH_ROOT.DS.$filename);
 		imagedestroy($img);
 		// if file creation is successfull return filename , else false
 		return $result ? $filename :  false;

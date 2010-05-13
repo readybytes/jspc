@@ -19,9 +19,11 @@
 		<file>test/unit/front/featureTest.php</file>
 		<file>test/sel/admin/profileCompletenessTest.php</file>
 		<file>test/sel/front/completenessTest.php</file>
+		<file>test/unit/front/libraries/imagegenerator.php</file>
 	
 		<file>install/installXiptTest.php</file>
 		<file>test/unit/front/profileTypeTest.php</file>
+		<file>install/uninstallXiptTest.php</file>
 	</testsuite>
 	
 	<logging>
