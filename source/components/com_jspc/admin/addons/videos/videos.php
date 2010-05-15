@@ -16,7 +16,7 @@ class videos extends jspcAddons
 	{
 		$result = array();
 		$result['text']= $this->getDisplayText($userid); //JText::_("ADD VIDEOS");
-		$result['link']="index.php?option=com_community&view=videos&task=myvideos";
+		$result['link']=CRoute::_('index.php?option=com_community&view=videos&task=myvideos');
 		return $result;
 	}
 	

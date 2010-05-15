@@ -25,14 +25,17 @@ class CompletenessTest extends XiSelTestCase
   	$this->assertTrue($this->isTextPresent("Create 3 Group"));
   	$this->assertTrue($this->isTextPresent("Join 3 Group"));
   	
-  	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=photos&task=newalbum"]';
+  	$element = '//a[@id="jspc_incomplete_link_1"]';
   	$this->assertTrue($this->isElementPresent($element));
   	
-  	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=groups&task=create"]';
+  	$element = '//a[@id="jspc_incomplete_link_8"]';
   	$this->assertTrue($this->isElementPresent($element));
   	
-	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=groups"]';
+  	$element = '//a[@id="jspc_incomplete_link_2"]';
   	$this->assertTrue($this->isElementPresent($element));
+  	
+  	$element = '//a[@id="jspc_incomplete_link_5"]';
+	$this->assertTrue($this->isElementPresent($element));
 
   	
   	// Disable the jspc module
@@ -52,14 +55,18 @@ class CompletenessTest extends XiSelTestCase
   	$this->assertTrue($this->isTextPresent("Create 3 Group"));
   	$this->assertTrue($this->isTextPresent("Join 3 Group"));
   	
-  	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=photos&task=newalbum&Itemid=53"]';
+	$element = '//a[@id="jspc_incomplete_link_1"]';
   	$this->assertTrue($this->isElementPresent($element));
   	
-  	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=groups&task=create&Itemid=53"]';
+  	$element = '//a[@id="jspc_incomplete_link_8"]';
   	$this->assertTrue($this->isElementPresent($element));
   	
-	$element = '//a[@href="/'.JOOMLA_FOLDER.'/index.php?option=com_community&view=groups&Itemid=53"]';
-  	$this->assertTrue($this->isElementPresent($element));	
+  	$element = '//a[@id="jspc_incomplete_link_2"]';
+  	$this->assertTrue($this->isElementPresent($element));
+  	
+  	$element = '//a[@id="jspc_incomplete_link_5"]';
+	$this->assertTrue($this->isElementPresent($element));
+  	
   	
   	$this->changeModuleState("mod_jspc",1);
   	$this->verifyModuleState("mod_jspc",true); 

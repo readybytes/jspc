@@ -18,7 +18,7 @@ class groupmember extends jspcAddons
 	{
 		$result = array();
 		$result['text']= $this->getDisplayText($userid); // JText::_("JOIN GROUPS");
-		$result['link']="index.php?option=com_community&view=groups";
+		$result['link']=CRoute::_('index.php?option=com_community&view=groups');
 		return $result;
 	}
 	

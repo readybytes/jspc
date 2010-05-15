@@ -170,7 +170,7 @@ class plgCommunityJspc extends CApplications
 					<li> 
 						<span class="jspc_link_percent"> <?php echo $value; ?>% &nbsp; </span>
 						<span class="jspc_link_text"> 
-							 <a href="<?php echo JRoute::_($nextTask['link'],false); ?>"> 
+							 <a id="jspc_incomplete_link_<?php echo $key;?>" href="<?php echo $nextTask['link']; ?>"> 
 								<?php echo $nextTask['text'];?> 
 							</a>
 						</span>

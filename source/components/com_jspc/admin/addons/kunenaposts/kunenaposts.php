@@ -16,7 +16,7 @@ class kunenaposts extends jspcAddons
 	{
 		$result = array();
 		$result['text']= $this->getDisplayText($userid); //JText::_("ADD ALBUM");
-		$result['link']="index.php?option=com_kunena";
+		$result['link']=JRoute::_('index.php?option=com_kunena',false);
 		return $result;
 	}
 

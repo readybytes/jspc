@@ -20,10 +20,12 @@
 		<file>test/sel/admin/profileCompletenessTest.php</file>
 		<file>test/sel/front/completenessTest.php</file>
 		<file>test/unit/front/libraries/imagegenerator.php</file>
+		<file>test/unit/front/seoTest.php</file>
 	
 		<file>install/installXiptTest.php</file>
 		<file>test/unit/front/profileTypeTest.php</file>
 		<file>install/uninstallXiptTest.php</file>
+		<file>install/uninstallJspcTest.php</file>
 	</testsuite>
 	
 	<logging>

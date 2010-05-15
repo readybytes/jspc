@@ -14,7 +14,7 @@ class friends extends jspcAddons
 	{
 		$result = array();
 		$result['text']= $this->getDisplayText($userid);
-		$result['link']="index.php?option=com_community&view=search&task=browse";
+		$result['link']=CRoute::_('index.php?option=com_community&view=search&task=browse');
 		return $result;
 	}
 	

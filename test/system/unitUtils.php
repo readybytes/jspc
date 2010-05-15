@@ -93,4 +93,24 @@ class XiUnitTestCase extends PHPUnit_Framework_TestCase
 		$this->assertEquals(round($compare['incomplete'],1),round($incomplete_feature[$feature],1));
 		$this->assertEquals(round($compare['remain'],1),round($remainCount,1));
 	}
+	
+  function updateJoomlaConfig($filter)
+  {
+        $config =& JFactory::getConfig();                
+        foreach($filter as $key=>$value)
+        $config->setValue($key,$value);
+                 
+               jimport('joomla.filesystem.file');
+               $fname = JPATH_CONFIGURATION.DS.'configuration.php';
+               
+               system("sudo chmod 777 $fname");
+               
+                 if (!JFile::write($fname,
+                                 $config->toString('PHP', 'config', array('class' => 'JConfig')) )
+                     )
+               {
+                       echo JText::_('ERRORCONFIGFILE');
+               }
+                 
+ 	} 
 }

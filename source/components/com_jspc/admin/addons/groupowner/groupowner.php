@@ -32,7 +32,7 @@ class groupowner extends jspcAddons
 	{
 		$result = array();
 		$result['text']= $this->getDisplayText($userid); //JText::_("CREATE GROUP");
-		$result['link']="index.php?option=com_community&view=groups&task=create";
+		$result['link']=CRoute::_('index.php?option=com_community&view=groups&task=create');
 		return $result;
 	}
 	

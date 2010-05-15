@@ -27,7 +27,7 @@ class photos extends jspcAddons
 	{
 		$result = array();
 		$result['text']=$this->getDisplayText($userid); //JText::_("ADD PHOTOS");
-		$result['link']="index.php?option=com_community&view=photos&task=uploader";
+		$result['link']=CRoute::_('index.php?option=com_community&view=photos&task=uploader');
 		return $result;
 	}
 	

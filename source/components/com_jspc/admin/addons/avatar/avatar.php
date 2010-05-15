@@ -26,7 +26,7 @@ class avatar extends jspcAddons
 	{
 		$result = array();
 		$result['text']=$this->getDisplayText($userid); //JText::_("CHANGE AVATAR");
-		$result['link']="index.php?option=com_community&view=profile&task=uploadAvatar";
+		$result['link']=CRoute::_('index.php?option=com_community&view=profile&task=uploadAvatar');
 		return $result;
 	}
 	
