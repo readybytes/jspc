@@ -6,7 +6,7 @@
 	<authorEmail>shyam@joomlaxi.com</authorEmail>
 	<authorUrl>http://www.joomlaxi.com</authorUrl>
 	<copyright>All rights reserved</copyright>
-	<license>License Info</license>
+	<license>GNU GPL v2.0</license>
 	<version>@global.version@.@svn.lastrevision@</version>
 	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
 	<installfile>install.jspc.php</installfile>
