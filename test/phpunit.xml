@@ -21,11 +21,11 @@
 		<file>test/sel/front/completenessTest.php</file>
 		<file>test/unit/front/libraries/imagegenerator.php</file>
 		<file>test/unit/front/seoTest.php</file>
-	
+		<file>test/unit/front/sqlTest.php</file>
 		<file>install/installXiptTest.php</file>
 		<file>test/unit/front/profileTypeTest.php</file>
 		<file>install/uninstallXiptTest.php</file>
-		<file>install/uninstallJspcTest.php</file>
+	
 	</testsuite>
 	
 	<logging>

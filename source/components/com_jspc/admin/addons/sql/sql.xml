@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<params>
+		<param name="sql_total" type="text" default="" label="QUERY RESULT COUNT.LABEL" description="NO OF QUERY RESULT COUNT FOR COMPLETING USER PROFILE.DESC" />
+		<param name="sql_query" type="textarea" rows="10" cols="40" default="" label="SQL_FILE" description="file description.DESC" />
+		<param name="sql_url" type="text" size="48" default="index.php?option=com_community" label="URL TO REDIRECT" description="URL WHERE TO REDIRECT USER.DESC" />
+	</params>
+</config>

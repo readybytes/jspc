@@ -1,9 +1,10 @@
-<?php defined('_JEXEC') or die('Restricted access'); ?>
+<?php 
+defined('_JEXEC') or die('Restricted access'); 
 /**
 * @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 **/
-<?php JHTML::_('behavior.tooltip'); ?>
+ JHTML::_('behavior.tooltip'); ?>
 
 <?php 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');

@@ -17,7 +17,7 @@ class CompletenessTest extends XiSelTestCase
   	$this->frontLogin("gaurav","gaurav");
   	$this->open(JOOMLA_LOCATION."index.php");
   	$this->waitPageLoad();
-  	$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/mod_58.jpg"]'; 
+  	$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/mod_56.5.jpg"]'; 
   	$this->assertTrue($this->isElementPresent($element));
   	
   	$this->assertTrue($this->isTextPresent("Add 6 Album"));
@@ -37,17 +37,20 @@ class CompletenessTest extends XiSelTestCase
   	$element = '//a[@id="jspc_incomplete_link_5"]';
 	$this->assertTrue($this->isElementPresent($element));
 
-  	
+  	$element = '//a[@id="jspc_incomplete_link_10"]';
+  	$this->assertTrue($this->isElementPresent($element));
+
   	// Disable the jspc module
   	$this->changeModuleState("mod_jspc",0);
   	$this->verifyModuleState("mod_jspc",false);
   	
    	$this->changePluginState("jspc",1);
   	$this->verifyPluginState("jspc",true);
+  	
   	$this->open(JOOMLA_LOCATION."index.php?option=com_community&view=profile");
   	$this->waitPageLoad();
   	
-  	$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/plg_58.jpg"]'; 
+  	$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/plg_56.5.jpg"]'; 
   	$this->assertTrue($this->isElementPresent($element));
   	
   	$this->assertTrue($this->isTextPresent("Add 6 Album"));
@@ -66,7 +69,9 @@ class CompletenessTest extends XiSelTestCase
   	
   	$element = '//a[@id="jspc_incomplete_link_5"]';
 	$this->assertTrue($this->isElementPresent($element));
-  	
+	
+	$element = '//a[@id="jspc_incomplete_link_10"]';
+  	$this->assertTrue($this->isElementPresent($element));
   	
   	$this->changeModuleState("mod_jspc",1);
   	$this->verifyModuleState("mod_jspc",true); 

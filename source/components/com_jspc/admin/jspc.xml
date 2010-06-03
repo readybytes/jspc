@@ -87,6 +87,10 @@
 			<filename>addons/articles/index.html</filename>
 			<filename>addons/articles/articles.php</filename>
 			<filename>addons/articles/articles.xml</filename>
+
+			<filename>addons/sql/index.html</filename>
+			<filename>addons/sql/sql.php</filename>
+			<filename>addons/sql/sql.xml</filename>
 			
 			<filename>views/index.html</filename>
 			
