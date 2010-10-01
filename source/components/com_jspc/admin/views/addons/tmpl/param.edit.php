@@ -38,7 +38,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 	<table class="admintable">
 		<tr>
 			<td width="100" class="key">
-				<label for="name">
+				<label for="name" title=" <?php echo JText::_( 'JSPC NAME.DESC' ); ?> ">
 					<?php echo JText::_( 'NAME' ); ?>:
 				</label>
 			</td>
@@ -48,7 +48,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td width="100" class="key">
-				<label for="featurename">
+				<label for="featurename" title=" <?php echo JText::_( 'JSPC FEATURE NAME.DESC' ); ?> ">
 					<?php echo JText::_( 'FEATURE NAME' ); ?>:
 				</label>
 			</td>
@@ -58,7 +58,9 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td valign="top" class="key">
+			<label for="published" title=" <?php echo JText::_( 'JSPC PUBLISHED.DESC' ); ?> ">
 				<?php echo JText::_( 'PUBLISHED' ); ?>:
+			</label>
 			</td>
 			<td>
 				<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
@@ -66,7 +68,9 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td valign="top" class="key">
+			<label for="contribution" title=" <?php echo JText::_( 'TOTAL CONTRIBUTION IN PERCENTAGE' ); ?> ">
 				<?php echo JText::_('CONTRIBUTION IN PERCENTAGE'); ?>:
+			</label>
 			</td>
 			<td>
 				<?php 

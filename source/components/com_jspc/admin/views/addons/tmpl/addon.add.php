@@ -54,8 +54,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 			<td>:</td>
 			<td>
 				<select id="addon" name="addon" >
-				<option value="0">SELECT ADDON</option>
-				<?php
+				<option value="0"><?php echo JText::_('SELECT ADDON');?></option>
+				<?php 
 					if(!empty($this->addons)) 
 					foreach($this->addons as $addon) { ?>
 					    <option value="<?php echo $addon;?>" ><?php echo JText::_($addon);?></option>

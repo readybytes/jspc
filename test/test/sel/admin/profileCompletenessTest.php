@@ -229,7 +229,7 @@ function addFeatureFour()
   	$this->waitPageLoad();
     $this->click("//td[@id='toolbar-new']/a/span");
     $this->waitPageLoad();
-    $this->select("addon", "label=No of Group Created by User");
+    $this->select("addon", "label=No of Groups Created by User");
     $this->click("//input[@type='submit']");
     $this->waitPageLoad();
     $this->type("featurename", "Group Member");
