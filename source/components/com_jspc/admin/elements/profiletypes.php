@@ -53,16 +53,16 @@ class JElementProfiletypes extends JElement
 		$xiptPath = JPATH_ROOT.DS.'components'.DS.'com_xipt';
 		if(JFolder::exists($xiptPath))
 		{	
-			require_once JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'libraries'.DS.'profiletypes.php';
-			$options			= XiPTLibraryProfiletypes::getProfiletypeArray();
+			require_once JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'api.xipt.php';
+			$options			= XiptAPI::getProfiletypeInfo();
 					
-			for( $i = 0; $i < count( $options ); $i++ )
+			foreach($options as $option)
 			{
-			    $option		= $options[ $i ]->name;
-				$id			= $options[ $i ]->id;
+			    $optionName		= $option->name;
+				$id			= $option->id;
 			    
 			    $selected	= ( JString::trim($id) == $value ) ? ' selected="true"' : '';
-				$html	.= '<option value="' . $id . '"' . $selected . '>' . $option . '</option>';
+				$html	.= '<option value="' . $id . '"' . $selected . '>' . $optionName . '</option>';
 			}
 		}	
 		$html	.= '</select>';	

@@ -73,14 +73,15 @@ class JspcHelper
 				continue;
 			}	
 				
-			$profileTypeArray=XiPTHelperProfiletypes::getProfiletypeArray();
+			$profileTypeArray=XiptAPI::getProfiletypeInfo();
 				
 			foreach($profileTypeArray as $ptypeId)
 			{
-				if(array_key_exists($ptypeId, $total)==false)
-				$total[$ptypeId] = 0;
+				$id=$ptypeId->id;
+				if(array_key_exists($id, $total)==false)
+				$total[$id] = 0;
 				
-				$total[$ptypeId] = $total[$ptypeId] + $contribution;
+				$total[$id] = $total[$id] + $contribution;
 			}
 		}
 		return $total;
@@ -101,8 +102,8 @@ class JspcHelper
 		if(!JFolder::exists($xiptPath))
 			return false;
 
-		require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_xipt' . DS . 'helpers' . DS . 'profiletypes.php' );
-		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'libraries' . DS . 'profiletypes.php' );
+		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
+		//require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'libraries' . DS . 'profiletypes.php' );
 
 		return true;
 	}

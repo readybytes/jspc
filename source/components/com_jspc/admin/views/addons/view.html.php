@@ -27,9 +27,12 @@ class JspcViewAddons extends JView
 		$isXiptExist=JspcHelper::checkXiptExists();
 		
 		if($isXiptExist){
-			$profileTypeArray	 = XiPTHelperProfiletypes::getProfileTypeArray();
-			foreach($profileTypeArray as $ptypeId)
-				$profileTypeName[$ptypeId] = XiPTHelperProfiletypes::getProfileTypeName($ptypeId);
+		$profileTypeArrayObject	 = XiptAPI::getProfiletypeInfo();
+			foreach($profileTypeArrayObject as $ptypeId)
+			{
+				$profileTypeArray[$ptypeId->id]=$ptypeId->id;
+				$profileTypeName[$ptypeId->id] = $ptypeId->name;
+			}
 		}
 								
 		if(!empty($addonsInfo))
@@ -127,9 +130,12 @@ class JspcViewAddons extends JView
 		$this->_calculateContributionOfPtype($data,$percentage,$ptype);
 		if($isXiptExist)
 		{	
-			$profileTypeArray	 = XiPTHelperProfiletypes::getProfileTypeArray();
-			foreach($profileTypeArray as $ptypeId)
-				$profileTypeName[$ptypeId] = XiPTHelperProfiletypes::getProfileTypeName($ptypeId);
+			$profileTypeArrayObject	 = XiptAPI::getProfiletypeInfo();
+			foreach($profileTypeArrayObject as $ptypeId)
+			{
+				$profileTypeArray[$ptypeId->id]=$ptypeId->id;
+				$profileTypeName[$ptypeId->id] = $ptypeId->name;
+			}
 			
 			$this->assignRef('profileTypeArray',    $profileTypeArray);
 			$this->assignRef('profileTypeName',     $profileTypeName);			
@@ -175,10 +181,10 @@ class JspcViewAddons extends JView
 			return;
 		}
 		
-		$profileTypeArray=XiPTHelperProfiletypes::getProfiletypeArray();
+		$profileTypeArray=XiptAPI::getProfiletypeInfo();
 		if(!$data['published']) {
 			foreach($profileTypeArray as $ptypeId)
-				$percentage[$ptypeId] = 0 ;
+				$percentage[$ptypeId->id] = 0 ;
 											 	
 			return;
 		}	
@@ -197,12 +203,12 @@ class JspcViewAddons extends JView
 		
 		foreach($profileTypeArray as $ptypeId)
 		{
-			if(key_exists($ptypeId,$total) ==false)
-				$percentage[$ptypeId] = 0;
-			else if($total[$ptypeId] != 0)
-				$percentage[$ptypeId] = ( $totals[$data['id']] / $total[$ptypeId] ) * 100 ;
+			if(key_exists($ptypeId->id,$total) ==false)
+				$percentage[$ptypeId->id] = 0;
+			else if($total[$ptypeId->id] != 0)
+				$percentage[$ptypeId->id] = ( $totals[$data['id']] / $total[$ptypeId->id] ) * 100 ;
 			else
-				$percentage[$ptypeId] = 0;
+				$percentage[$ptypeId->id] = 0;
 		}
 											 	
 	}

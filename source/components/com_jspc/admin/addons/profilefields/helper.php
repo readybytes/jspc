@@ -37,8 +37,10 @@ class helper
 		$fields = $db->loadObjectList();
 	    	
 	    $xipt_exists = JspcHelper::checkXiptExists();
-	    if($xipt_exists && $ptype != 0)
-	    	$result  = XiPTLibraryProfiletypes::_getFieldsForProfiletype($fields,$ptype,null);
+	    if($xipt_exists && $ptype != 0){
+	    require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_jspc' . DS. 'helpers' .DS . 'xiptwrapper.php' );
+	    	$result  = XiptWrapper::filterProfileTypeFields($fields,$ptype,null);
+	    }
 	    }
 		return $fields;
 		

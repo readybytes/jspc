@@ -281,8 +281,8 @@ abstract class jspcAddons
         if(0 == $ptype)
             return true;
         //else check user profiletype
-        
-        $userPtype = XiPTLibraryProfiletypes::getUserData($userid,'PROFILETYPE');
+        require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
+        $userPtype = XiptAPI::getUserInfo($userid,'PROFILETYPE');
         if($userPtype == $ptype)
             return true;
            
