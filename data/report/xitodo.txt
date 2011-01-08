@@ -1,4 +1,5 @@
-../../packages/tmp/components/com_jspc/admin/addons/profilefields/profilefields.php:66:		/*XITODO : Calculate completness according to user profiletype */
+../../packages/tmp/modules/mod_jspc/style.css:71:/*XITODO : copy image and use it from our component*/
+../../packages/tmp/plugins/plg_jspc/jspc.php:62:		//xitodo : display message to admin
 ../../packages/tmp/components/com_jspc/admin/addons/photos/photos.php:20:		/*XITODO : check according to addon params
 ../../packages/tmp/components/com_jspc/admin/addons/profilefields/profilefields.php:66:		/*XITODO : Calculate completness according to user profiletype */
 ../../packages/tmp/components/com_jspc/admin/addons/addons.php:46:		//XITODO : Remove assert from here and move it somewhere else
