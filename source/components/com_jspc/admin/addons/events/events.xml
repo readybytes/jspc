@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<params>
+	<param name="events_total" type="text" default="" label="Total event count" description="NO OF TOTAL EVENTS REQUIRE TO COMPLETE FOR COMPLETING USER PROFILE" />
+</params>
+</config>

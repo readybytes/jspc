@@ -17,6 +17,9 @@
 		<file>test/unit/front/profileTest.php</file>
 		<file>test/unit/front/groupMemberTest.php</file>
 		<file>test/unit/front/featureTest.php</file>
+		<file>test/unit/front/eventTest.php</file>
+		<file>test/unit/front/applicationTest.php</file>
+		<file>test/unit/front/profilevideoTest.php</file>
 		<file>test/sel/admin/profileCompletenessTest.php</file>
 		<file>test/sel/front/completenessTest.php</file>
 		<file>test/unit/front/libraries/imagegenerator.php</file>

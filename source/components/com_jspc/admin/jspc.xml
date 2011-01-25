@@ -81,6 +81,18 @@
 			<filename>addons/friends/friends.php</filename>
 			<filename>addons/friends/friends.xml</filename>
 			
+			<filename>addons/events/index.html</filename>
+			<filename>addons/events/events.php</filename>
+			<filename>addons/events/events.xml</filename>
+
+			<filename>addons/application/index.html</filename>
+			<filename>addons/application/application.php</filename>
+			<filename>addons/application/application.xml</filename>
+
+			<filename>addons/profilevideo/index.html</filename>
+			<filename>addons/profilevideo/profilevideo.php</filename>
+			<filename>addons/profilevideo/profilevideo.xml</filename>
+			
 			<filename>addons/kunenaposts/index.html</filename>
 			<filename>addons/kunenaposts/kunenaposts.php</filename>
 			<filename>addons/kunenaposts/kunenaposts.xml</filename>
