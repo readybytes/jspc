@@ -21,7 +21,7 @@ class InstallTest extends XiSelTestCase
    * We will upgrade JomSocial from existing 1.5.248 + JSPT installation
    * @return unknown_type
    */
-  function testCommunityInstall()
+  function xtestCommunityInstall()
   {
     // setup default location 
     $this->adminLogin();
