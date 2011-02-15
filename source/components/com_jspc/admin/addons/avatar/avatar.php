@@ -52,11 +52,26 @@ class avatar extends jspcAddons
 	public function calculateCount($userid)
 	{
 		$my 	=& CFactory::getUser($userid);		
-		$pathofAvatar  =$my->getAvatar();
+		$pathofAvatar  =$my->_avatar;
 		$count = 0;
-		if(!empty($pathofAvatar) && !strpos($pathofAvatar,"default.jpg"))
-			$count = 1;
-			
+		if(JspcHelper::checkXiptExists()){
+	    	$ptypeavatar=$this->getPtypeAvatar($userid);	
+	    	if(!empty($pathofAvatar) 
+	    		&& !JString::stristr($pathofAvatar,$ptypeavatar))  
+	    		$count=1;
+	    }
+	    else{
+			if(!empty($pathofAvatar) && !strpos($pathofAvatar,"default.jpg") && !strpos($pathofAvatar,"user.png"))
+				$count = 1;
+	    }
 		return $count;
+	}
+	
+	public function getPtypeAvatar($userId)
+	{
+		require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_jspc' . DS. 'helpers' .DS . 'xiptwrapper.php' );
+	    $ptype  = XiptWrapper::getUserInfo($userId);	
+		$field = array_shift(XiptWrapper::getProfiletypeInfo($ptype));
+		return $field->avatar;
 	}
 }

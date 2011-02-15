@@ -74,4 +74,9 @@ class XiptWrapper
 
 		return XiPTLibraryProfiletypes::getUserData($userid,$what);	
 	}	
+	
+	function getProfiletypeInfo($id=0, $filter=array())
+	{
+		return XiptAPI::getProfiletypeInfo($id,$filter);
+	}
 }
