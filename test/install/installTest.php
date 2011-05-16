@@ -72,8 +72,6 @@ class InstallTest extends XiSelTestCase
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
     $this->waitPageLoad("30000");
     $this->installJspcComponent();
-    $this->installJspcPlugin();
-    $this->installJspcModule();
     $this->changePluginState('jspc',1);
     $this->verifyPluginState('jspc',true);
     $this->changeModuleState('mod_jspc',1);
@@ -84,33 +82,11 @@ class InstallTest extends XiSelTestCase
    */
   function installJspcComponent()
   {
-    $this->type("install_package", COM_JSPC_PKG);
-    $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
+    $this->type("install_url", COM_JSPC_PKG);
+    $this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
     $this->waitPageLoad();
     $this->assertTrue($this->isTextPresent("Install Component Success"));
   }
-  
-  
-  
-  /**
-   */
-  function installJspcPlugin()
-  {
-    $this->type("install_package", PLG_JSPC_PKG);
-    $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
-    $this->waitPageLoad();
-    $this->assertTrue($this->isTextPresent("Install Plugin Success"));
-  }
-  
-  /**
-   */
-  function installJspcModule()
-  {
-    $this->type("install_package", MOD_JSPC_PKG);
-    $this->click("//form[@name='adminForm']/table[1]/tbody/tr[2]/td[2]/input[2]");
-    $this->waitPageLoad();
-    $this->assertTrue($this->isTextPresent("Install Module Success"));
-  } 
   
 function testuninstallJspc()
   {
