@@ -1,5 +1,6 @@
 pkg.version=J1.5.18_JS1.8.8_AEC0.12.6
-pkg.location=${user.home}/Dropbox/DevShared/jspc
+pkg.location=${user.home}/Dropbox/TEAM/dev/jspc
+
 
 ## joomla installation configuration
 joomla.owner=jspc
@@ -7,11 +8,15 @@ joomla.version=latest
 joomla.rootpath=/var/www
 joomla.folder=${joomla.owner}${joomla.now}
 joomla.sitename=${joomla.folder}
-joomla.dbuser=jspc${joomla.now}
+joomla.dbuser=${joomla.owner}${joomla.now}
 joomla.dbpassword=password${joomla.now}
-joomla.dbname=jspc${joomla.now}
+joomla.dbname=${joomla.owner}${joomla.now}
 joomla.dbprefix=j${joomla.random3}_
+joomla.mysqlpath=mysql
 joomla.createUserQuery="CREATE USER '${joomla.dbuser}'@'localhost' IDENTIFIED BY '${joomla.dbpassword}';"
+joomla.createDBQuery="CREATE DATABASE ${joomla.dbname};"
+joomla.createAcessQuery="GRANT ALL PRIVILEGES ON ${joomla.dbname}.* TO ${joomla.dbuser};"
+joomla.importDBQuery="source ${joomla.dbdump}"
 joomla.bakpath=./${joomla.version}
 joomla.dbdump=${joomla.rootpath}/${joomla.folder}/database.sql
 
