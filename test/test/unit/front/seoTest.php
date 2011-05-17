@@ -25,7 +25,7 @@ function testPathOnSeoEnable()
 	$info[1]= JRoute::_('/usr/bin/index.php/jomsocial/photos/newalbum');
 	$info[3]= JRoute::_('/usr/bin/index.php/jomsocial/photos/uploader');
 	$info[4]= JRoute::_('/usr/bin/index.php/jomsocial/profile/uploadAvatar');
-	$info[6]= JRoute::_('/usr/bin/index.php/jomsocial/videos/myvideos');
+	$info[6]= JRoute::_('/usr/bin/index.php/jomsocial/0-a-guest/videos');
 	
 	foreach($allPublishFeature as $feature)
 		$this->assertEquals($completionLink[$feature->id]['link'], $info[$feature->id]);
