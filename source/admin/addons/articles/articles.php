@@ -26,7 +26,7 @@ class articles extends jspcAddons
 
 	public function calculateCount($userid)
 	{
-		$db		=& JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
 		. ' FROM ' . $db->nameQuote( '#__content' )
 		. ' WHERE created_by=' . $db->Quote( $userid );

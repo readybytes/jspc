@@ -108,7 +108,7 @@ class profilefields extends jspcAddons
 		$profile = $profileModel->getEditableProfile($userid);
 		$fields = new stdClass();
 		$fields = $profile['fields'];
-		$db		=& JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$totalcount = 0; 
 		$fillcount = 0; 
 		$empty = 0;

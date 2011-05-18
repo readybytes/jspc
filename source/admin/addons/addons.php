@@ -25,7 +25,7 @@ class addonFactory
 	
 	public function getAddonsInfo($filter='',$join='AND')
 	{
-		$db			=& JFactory::getDBO();
+		$db			= JFactory::getDBO();
 		
 		$filterSql = ''; 
 		if(!empty($filter)){
@@ -202,7 +202,7 @@ abstract class jspcAddons
 	function collectParamsFromPost($postdata)
 	{
 		assert($postdata['addonparams']);
-		$registry	=& JRegistry::getInstance( 'jspc' );
+		$registry	= JRegistry::getInstance( 'jspc' );
 		$registry->loadArray($postdata['addonparams'],'jspc_addonparams');
 		$addonparams =  $registry->toString('INI' , 'jspc_addonparams' );
 		return $addonparams;

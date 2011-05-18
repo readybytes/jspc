@@ -10,7 +10,7 @@ function com_uninstall()
 
 function drop_database()
 {
-	$db	=& JFactory::getDBO();
+	$db	= JFactory::getDBO();
 	$query ='DROP TABLE `#__jspc_addons`';
 	$db->setQuery( $query );
 	$db->query();

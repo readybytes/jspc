@@ -100,7 +100,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 	<legend><?php echo JText::_( 'Core Parameters' ); ?></legend>
 	<?php
 		jimport('joomla.html.pane');
-		$pane = &JPane::getInstance('sliders', array('allowAllClose' => true));
+		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));
 		echo $pane->startPane('core-pane');
 		//echo $pane->startPanel(JText :: _('Core Fields Parameters'), 'coreparam-page');
 		echo $this->coreParamsHtml;
@@ -115,7 +115,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 	<legend><?php echo JText::_( 'Addon Parameters' ); ?></legend>
 	<?php
 		jimport('joomla.html.pane');
-		$pane = &JPane::getInstance('sliders', array('allowAllClose' => true));
+		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));
 		echo $pane->startPane('addon-pane');
 		//echo $pane->startPanel(JText :: _('Addon Parameters'), 'addonparam-page');
 		echo $this->addonParamsHtml;

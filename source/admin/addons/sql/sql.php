@@ -21,7 +21,7 @@ function __construct($debugMode)
 	public function calculateCount($userid)
 	
 	{
-		$db		=& JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		
 		$query = $this->addonparams->get('sql_query','');
 		if($query == '')

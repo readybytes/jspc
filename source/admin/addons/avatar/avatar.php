@@ -51,7 +51,7 @@ class avatar extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$my 	=& CFactory::getUser($userid);		
+		$my 	= CFactory::getUser($userid);		
 		$pathofAvatar  =$my->_avatar;
 		$count = 0;
 		if(JspcHelper::checkXiptExists()){

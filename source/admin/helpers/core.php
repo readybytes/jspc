@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 class JspcFactory 
 {
 	
-	function &getModel( $name = '')
+	function getModel( $name = '')
 	{
 		static $modelInstances = null;
 		
@@ -18,7 +18,7 @@ class JspcFactory
 			include_once( JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jspc'
 							.DS.'models'.DS. JString::strtolower( $name ) .'.php');
 			$classname = 'JspcModel'.$name;
-			$modelInstances[$name] =& new $classname;
+			$modelInstances[$name] = new $classname;
 		}
 		
 		return $modelInstances[$name];

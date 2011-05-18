@@ -43,7 +43,7 @@ class photos extends jspcAddons
 	{
 		/*For photos we have to check user photo count
 		 * and compare with required photo count */
-		$pModel =& CFactory::getModel('photos');
+		$pModel = CFactory::getModel('photos');
 		$count = $pModel->getPhotosCount($userid);
 		return $count;
 	}

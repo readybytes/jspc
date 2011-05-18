@@ -32,7 +32,7 @@ class groupmember extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$gModel =& CFactory::getModel('groups');
+		$gModel = CFactory::getModel('groups');
 		$count = $gModel->getGroupsCount( $userid );
 		return $count;
 	}

@@ -37,6 +37,6 @@ require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'jspc.php' );
 
 /*Load Langauge file*/
-$lang =& JFactory::getLanguage();
+$lang = JFactory::getLanguage();
 if($lang)
 	$lang->load( 'com_jspc' );

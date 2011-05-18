@@ -25,7 +25,7 @@ class friends extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$db		=& JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
 		. ' FROM ' . $db->nameQuote( '#__community_connection' )
 		. ' WHERE `connect_from`=' . $db->Quote( $userid ) 

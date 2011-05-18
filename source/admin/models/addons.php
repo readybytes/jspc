@@ -40,7 +40,7 @@ class JspcModelAddons extends JModel
 	 *
 	 * @return object	JPagination object	 	 
 	 **/	 	
-	function &getPagination()
+	function getPagination()
 	{
 		if ($this->_pagination == null)
 		{
@@ -54,7 +54,7 @@ class JspcModelAddons extends JModel
 	 *
 	 * @return object	JParameter object
 	 **/
-	function &getAddonsInfo()
+	function getAddonsInfo()
 	{
 		global $mainframe;
 
@@ -66,7 +66,7 @@ class JspcModelAddons extends JModel
 		}
 
 		// Initialize variables
-		$db			=& JFactory::getDBO();
+		$db			= JFactory::getDBO();
 
 		// Get the limit / limitstart
 		$limit		= $mainframe->getUserStateFromRequest('global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int');
@@ -97,7 +97,7 @@ class JspcModelAddons extends JModel
 	
 	function updatePublish($id,$value)
 	{
-		$db 	=& JFactory::getDBO();
+		$db 	= JFactory::getDBO();
 		$query 	= 'UPDATE #__jspc_addons'
 				. ' SET `published` ='.$db->Quote($value).''
 				. ' WHERE `id`='. $db->Quote($id);

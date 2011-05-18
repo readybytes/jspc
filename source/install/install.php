@@ -44,7 +44,7 @@ function check_jomsocial_existance()
 
 function isTableExist($tableName)
 {
-	$mainframe	=& JFactory::getApplication();
+	$mainframe	= JFactory::getApplication();
 
 	$tables	= array();
 

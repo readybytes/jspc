@@ -18,7 +18,7 @@ class JspcTableAddons extends JTable
 	var $addonparams	= null;
 	var $published		= null;
 	
-	function __construct(&$db)
+	function __construct($db)
 	{
 		parent::__construct( '#__jspc_addons' , 'id' , $db );
 	}

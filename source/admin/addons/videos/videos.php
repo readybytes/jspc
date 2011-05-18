@@ -29,7 +29,7 @@ class videos extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$db		=& JFactory::getDBO();
+		$db		= JFactory::getDBO();
 		
 		$query  = "SELECT COUNT(*) FROM #__community_videos WHERE `creator`=".$userid." AND `published`='1' AND `status`='ready' ";
 		$db->setQuery( $query );

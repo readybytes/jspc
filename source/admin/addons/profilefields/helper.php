@@ -16,7 +16,7 @@ class helper
 		$allField=null;
 		
 		if($allField == null){
-			$db	=& JFactory::getDBO();
+			$db	= JFactory::getDBO();
 			
 			//setting up the search condition is there is any
 		$wheres = array();

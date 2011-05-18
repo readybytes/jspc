@@ -24,12 +24,12 @@ class JspcControllerAddons extends JController
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
 		
 		// Get the document object
-		$document	=& JFactory::getDocument();
+		$document	= JFactory::getDocument();
 
 		// Get the view type
 		$viewType	= $document->getType();
 		
-		$view		=& $this->getView( $viewName , $viewType );
+		$view		= $this->getView( $viewName , $viewType );
 		
 		$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
 			
@@ -47,12 +47,12 @@ class JspcControllerAddons extends JController
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
 		
 		// Get the document object
-		$document	=& JFactory::getDocument();
+		$document	= JFactory::getDocument();
 
 		// Get the view type
 		$viewType	= $document->getType();
 		
-		$view		=& $this->getView( $viewName , $viewType );
+		$view		= $this->getView( $viewName , $viewType );
 		
 		if(!$addon && !$id) {
 			$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
@@ -111,18 +111,18 @@ class JspcControllerAddons extends JController
 			return;
 		}
 		
-		$mainframe	=& JFactory::getApplication();
+		$mainframe	= JFactory::getApplication();
 
 		$post	= JRequest::get('post');
 		
 		jimport('joomla.filesystem.file');
 
-		$addons	=& JTable::getInstance( 'addons' , 'JspcTable' );
+		$addons	= JTable::getInstance( 'addons' , 'JspcTable' );
 		$addons->load($post['id']);
 				
 		$data = array();
 		
-		$registry	=& JRegistry::getInstance( 'jspc' );
+		$registry	= JRegistry::getInstance( 'jspc' );
 		$registry->loadArray($post['coreparams'],'jspc_coreparams');
 		// Get the complete INI string
 		$data['coreparams']	= $registry->toString('INI' , 'jspc_coreparams' );
@@ -157,7 +157,7 @@ class JspcControllerAddons extends JController
 	{
 		$this->processSave();
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
-		$mainframe	=& JFactory::getApplication();
+		$mainframe	= JFactory::getApplication();
 		$mainframe->redirect($link, $msg);		
 		
 	}
@@ -166,7 +166,7 @@ class JspcControllerAddons extends JController
 	{
 		$id = $this->processSave();
 		$link = JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$id, false);
-		$mainframe	=& JFactory::getApplication();
+		$mainframe	= JFactory::getApplication();
 		$mainframe->redirect($link, $msg);				
 	}
 	
@@ -181,7 +181,7 @@ class JspcControllerAddons extends JController
 		//$post['id'] = (int) $cid[0];
 		$count	= count($ids);
 		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
-		$row	=& JTable::getInstance( 'addons' , 'JspcTable' );
+		$row	= JTable::getInstance( 'addons' , 'JspcTable' );
 		$i = 1;
 		if(!empty($ids))
 		{
@@ -199,7 +199,7 @@ class JspcControllerAddons extends JController
 			}
 		}
 				
-		$cache = & JFactory::getCache('com_content');
+		$cache = JFactory::getCache('com_content');
 		$cache->clean();
 		$message	= $count.' '.JText::_('CRITERIA REMOVED');		
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
@@ -260,11 +260,11 @@ class JspcControllerAddons extends JController
 	{
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
 				// Get the document object
-		$document	=& JFactory::getDocument();
+		$document	= JFactory::getDocument();
 		// Get the view type
 		$viewType	= $document->getType();
 	
-		$view		=& $this->getView( $viewName , $viewType );
+		$view		= $this->getView( $viewName , $viewType );
 
 		$layout		= JRequest::getCmd( 'layout' , 'aboutus' );
 		$view->setLayout( $layout );

@@ -33,6 +33,6 @@ require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'jspc.p
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'imagegenerator.php');
 
 /*Langauge file will be independent now */
-$lang =& JFactory::getLanguage();
+$lang = JFactory::getLanguage();
 if($lang) 
 	$lang->load( 'com_jspc' );
