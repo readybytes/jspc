@@ -87,6 +87,10 @@ class XiUnitTestCase extends PHPUnit_Framework_TestCase
 		$incomplete_feature = JspcLibrary::getIncompleteFeatures($userId);
 		$remainCount = JspcLibrary::callAddonFunction($feature,"getRemainingCount",$userId);
 		
+		if(!isset($incomplete_feature[$feature])){
+			$incomplete_feature[$feature]  = 0;
+		}
+		
 		$this->assertEquals(round($compare['fillValue'],1),round($fillValue,1));
 		$this->assertEquals(round($compare['totalValue'],1),round($totalValue,1));
 		$this->assertEquals(round($compare['percentage'],1),round($percentage,1));

@@ -39,7 +39,7 @@ function testPathOnSeoEnable()
 function testPathOnSeoDisable()
 	{
 		
-		$url = dirname(_FILE__).'/sql/'.__CLASS_.'/testPathOnSeoEnable.start.sql';
+		$url = dirname(__FILE__).'/sql/'.__CLASS__.'/testPathOnSeoEnable.start.sql';
         $this->_DBO->loadSql($url);
 			
     $filter['sef']=0;

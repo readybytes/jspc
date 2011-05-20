@@ -147,6 +147,10 @@ class ProfileTypeTest extends XiUnitTestCase
 		{
 			if(!array_key_exists($featureId,$compare['incomplete']))
 				continue;
+				
+			if(!isset($incomplete_feature[$featureId])){
+				$incomplete_feature[$featureId]  = 0;
+			}
 			$this->assertEquals(round($compare['incomplete'][$featureId],1),round($incomplete_feature[$featureId],1));
 			$remainCount = JspcLibrary::callAddonFunction($featureId,"getRemainingCount",$userId);
 			$this->assertEquals(round($compare['remain'][$featureId],1),round($remainCount,1));	
