@@ -44,36 +44,64 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   function adminLogin()
   {
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_login");
-    $this->waitForPageToLoad("30000");
+    $this->waitForPageToLoad("60000");
 
-    $this->type("modlgn_username", JOOMLA_ADMIN_USERNAME);
-    $this->type("modlgn_passwd", JOOMLA_ADMIN_PASSWORD);
-    $this->click("//form[@id='form-login']/div[1]/div/div/a");
+  	if(TEST_JSPC_JOOMLA_16)
+    { 
+	    $this->type("mod-login-username", JOOMLA_ADMIN_USERNAME);
+	    $this->type("mod-login-password", JOOMLA_ADMIN_PASSWORD);
+	    $this->click("//input[@value='Log in']");
+    }
+    elseif(TEST_JSPC_JOOMLA_15)
+    {
+    	$this->type("modlgn_username", JOOMLA_ADMIN_USERNAME);
+    	$this->type("modlgn_passwd", JOOMLA_ADMIN_PASSWORD);
+    	$this->click("//form[@id='form-login']/div[1]/div/div/a");
+    }
 
     $this->waitForPageToLoad();
-    $this->assertTrue($this->isTextPresent("Logout"));
   }
   
   function frontLogin($username=JOOMLA_ADMIN_USERNAME, $password= JOOMLA_ADMIN_PASSWORD)
   {
     $this->open(JOOMLA_LOCATION."/index.php");
-    $this->waitForPageToLoad("30000");
+    $this->waitForPageToLoad("60000");
 
-    $this->type("modlgn_username", $username);
-    $this->type("modlgn_passwd", $password);
-    $this->click("//form[@id='form-login']/fieldset/input");
-    $this->waitForPageToLoad();
-    $this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
+    if (TEST_JSPC_JOOMLA_15){
+    	$this->type("modlgn_username", $username);
+    	$this->type("modlgn_passwd", $password);
+    	$this->click("//form[@id='form-login']/fieldset/input");
+    }
+    if (TEST_JSPC_JOOMLA_16){
+    	$this->type("modlgn-username", $username);
+    	$this->type("modlgn-passwd", $password);
+    	$this->click("Submit");
+    }
+  	$this->waitPageLoad();
+    if (TEST_JSPC_JOOMLA_15)
+    	$this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
+    if (TEST_JSPC_JOOMLA_16)
+    	$this->assertEquals("Log out", $this->getValue("//form[@id='login-form']/div[2]/input[1]"));
   }
   
   function frontLogout()
   {
   	$this->open(JOOMLA_LOCATION."/index.php");
     $this->waitForPageToLoad("30000");
-    $this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
-    $this->click("//form[@id='form-login']/div[2]/input");
-    $this->waitForPageToLoad("30000");
-    $this->assertTrue($this->isElementPresent("modlgn_username"));
+    
+    if (TEST_JSPC_JOOMLA_15){
+       	$this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
+       	$this->click("//form[@id='form-login']/div[2]/input");
+    }
+    if (TEST_JSPC_JOOMLA_16){
+    	$this->assertEquals("Log out", $this->getValue("//form[@id='login-form']/div[2]/input"));
+    	 $this->click("//form[@id='login-form']/div[2]/input");
+    }
+    $this->waitForPageToLoad("60000");
+    if (TEST_JSPC_JOOMLA_15)
+    	$this->assertTrue($this->isElementPresent("modlgn_username"));
+    if (TEST_JSPC_JOOMLA_16)
+    	$this->assertTrue($this->isElementPresent("modlgn-username"));
   }
   
   function waitPageLoad($time=TIMEOUT_SEC)
@@ -81,7 +109,7 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
       $this->waitForPageToLoad($time);
       // now we just want to verify that 
       // page does not have any type of error
-      // XIPT SYSTEM ERROR
+      // JSPC SYSTEM ERROR
       $this->assertFalse($this->isTextPresent("( ! ) Notice:"));
       // a call stack ping due to assert/notice etc.
   }
@@ -155,9 +183,17 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   {
   	
 		$db			=& JFactory::getDBO();
-		$query	= 'UPDATE ' . $db->nameQuote( '#__plugins' )
+		
+  		if(TEST_JSPC_JOOMLA_16){
+			$query	= 'UPDATE ' . $db->nameQuote( '#__extensions' )
+			. ' SET '.$db->nameQuote('enabled').'='.$db->Quote($action)
+	        .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+		}
+		else{
+				$query	= 'UPDATE ' . $db->nameQuote( '#__plugins' )
 				. ' SET '.$db->nameQuote('published').'='.$db->Quote($action)
-	          	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+	          	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);			
+		}
 
 		$db->setQuery($query);		
 		
@@ -176,11 +212,18 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
    */
   function verifyPluginState($pluginname, $enabled=true)
   {
-  	
+  		
 		$db			=& JFactory::getDBO();
-		$query	= 'SELECT '.$db->nameQuote('published')
-				.' FROM ' . $db->nameQuote( '#__plugins' )
-	          	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+  		if(TEST_JSPC_JOOMLA_16){
+		   $query	= 'SELECT '.$db->nameQuote('enabled')
+		   .' FROM ' . $db->nameQuote( '#__extensions' )
+	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+		}
+		if(TEST_JSPC_JOOMLA_15){
+		   $query	= 'SELECT '.$db->nameQuote('published')
+		   .' FROM ' . $db->nameQuote( '#__plugins' )
+	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+		}
 
 		$db->setQuery($query);		
 		$actualState= (boolean) $db->loadResult();
@@ -193,10 +236,18 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   {
   	
 		$db			=& JFactory::getDBO();
+		
+  		if(TEST_JSPC_JOOMLA_16){
+			$query	= 'UPDATE ' . $db->nameQuote( '#__extensions' )
+			. ' SET '.$db->nameQuote('enabled').'='.$db->Quote($action)
+	        .' WHERE '.$db->nameQuote('element').'='.$db->Quote($modulename);
+		}
+		else{
 		$query	= 'UPDATE ' . $db->nameQuote( '#__modules' )
 				. ' SET '.$db->nameQuote('published').'='.$db->Quote($action)
 	          	.' WHERE '.$db->nameQuote('module').'='.$db->Quote($modulename);
-
+		}
+	          	
 		$db->setQuery($query);		
 		
 		if(!$db->query())
@@ -209,10 +260,17 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   {
   	
 		$db			=& JFactory::getDBO();
+		
+		if(TEST_JSPC_JOOMLA_16){
+		   $query	= 'SELECT '.$db->nameQuote('enabled')
+		   .' FROM ' . $db->nameQuote( '#__extensions' )
+	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($modulename);
+		}
+		if(TEST_JSPC_JOOMLA_15){
 		$query	= 'SELECT '.$db->nameQuote('published')
 				.' FROM ' . $db->nameQuote( '#__modules' )
 	          	.' WHERE '.$db->nameQuote('module').'='.$db->Quote($modulename);
-
+		}
 		$db->setQuery($query);		
 		$actualState= (boolean) $db->loadResult();
 		$this->assertEquals($actualState, $enabled);

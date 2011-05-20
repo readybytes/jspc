@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="Copying working copy data to SVN" basedir="." default="copy_to_svn">
  
-        <property name="target" value=""@local.repository.location@"" override="true" />
+        <property name="target" value="@local.repository.location@" override="true" />
         <property name="source" value="${project.basedir}" override="true" />
         
         <!-- Copy Target -->
@@ -29,6 +29,26 @@
                         tofile="${target}/source/languages/admin/en-GB.com_jspc.ini" 
                          />
 
+		<!-- for J1.6.0 -->
+		<php function="file_exists" returnProperty="fileExist">
+                  <param value="${source}/plugins/community/jspc/jspc.php"/>
+                </php>
+
+                <if>
+                 	<equals arg1="${fileExist}" arg2="1" />		
+			<then>	
+				<copy todir="${target}/source/admin/install/extensions/plg_jspc">
+
+					<fileset dir="${source}/plugins/community/jspc/">
+					<include name="jspc.*"/>
+					<include name="jspc/**/*.*"/>
+					</fileset>
+				</copy>
+			</then>
+		</if>
+
+		
+		<!-- for J1.5 -->
 		<!--copy plugin files -->
 		<copy todir="${target}/source/admin/install/extensions/plg_jspc">
 

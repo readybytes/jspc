@@ -28,3 +28,8 @@ define('JOMSOCIAL_PKG',		JOOMLA_LOCATION.'/com_community.zip');
 define('PLG_XIPT_COM_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_community.zip');
 define('PLG_XIPT_SYS_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_system.zip');
 define('COM_XIPT_PKG',		JOOMLA_LOCATION.'/test/xipt/com_xipt.zip');
+
+$version = new JVersion();
+
+define('TEST_JSPC_JOOMLA_16',($version->RELEASE === '1.6'));
+define('TEST_JSPC_JOOMLA_15',($version->RELEASE === '1.5'));
