@@ -37,7 +37,7 @@ if(!empty( $controller )){
 	if(file_exists($path))
 		require_once( $path );
 	else
-		JError::raiseError( 500 , JText::_( 'Invalid Controller. File does not exists in this context.' ) );
+		JError::raiseError( 500 , JspcText::_( 'INVALID_CONTROLLER_FILE_DOES_NOT_EXISTS_IN_THIS_CONTEXT' ) );
 }
 
 $class	= 'JspcController' . JString::ucfirst( $controller );

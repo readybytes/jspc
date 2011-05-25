@@ -17,7 +17,7 @@ function submitbutton( action )
 	switch( action )
 	{
 		case 'remove':
-			if( !confirm( '<?php echo JText::_('ARE YOU SURE YOU WANT TO REMOVE THIS CRITERIA?'); ?>' ) )
+			if( !confirm( '<?php echo JspcText::_('ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THIS_CRITERIA?'); ?>' ) )
 			{
 				break;
 			}
@@ -30,7 +30,7 @@ function submitbutton( action )
 </script>
 
 <div style="background-color: #F9F9F9; border: 1px solid #D5D5D5; margin-bottom: 10px; padding: 5px;font-weight: bold;">
-	<?php echo JText::_('FOLLOWING PUBLISHED CRITERIA WILL BE APPLIED FOR PROFILE COMPLETENESS');?>
+	<?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?>
 </div>
 
 <form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm">
@@ -38,31 +38,31 @@ function submitbutton( action )
 	<thead>
 		<tr class="title">
 			<th width="1%">
-				<?php echo JText::_( 'NUM' ); ?>
+				<?php echo JspcText::_( 'NUM' ); ?>
 			</th>
 			<th width="1%">
 				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->addonsInfo ); ?>);" />
 			</th>
 			<th>
-				<?php echo JText::_( 'CRITERIA NAME' ); ?>
+				<?php echo JspcText::_( 'CRITERIA_NAME' ); ?>
 			</th>
 			<th>
-				<?php echo JText::_( 'ADDON NAME' ); ?>
+				<?php echo JspcText::_( 'ADDON_NAME' ); ?>
 			</th>
 			<?php if($this->isXiptExist){?>
 			<th>
-				<?php echo JText::_( 'PROFILE TYPE' ); ?>
+				<?php echo JspcText::_( 'PROFILE_TYPE' ); ?>
 			</th>
 			<?php }?>
 			<th>
-				<?php echo JText::_( 'TOTAL WEIGHTAGE' ); ?>
+				<?php echo JspcText::_( 'TOTAL_WEIGHTAGE' ); ?>
 			</th>
 			<th width="1px"></th>
 			<?php 
 			if($this->isXiptExist == false)
 			{?>
 				<th width="5%">
-				<?php echo JText::_( 'TOTAL CONTRIBUTION IN PERCENTAGE' ); ?>
+				<?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?>
 				</th><?php 
 			}
 			else
@@ -82,7 +82,7 @@ function submitbutton( action )
 			}?>
 			<th width="1%"></th>
 			<th width="5%">
-				<?php echo JText::_( 'PUBLISHED' ); ?>
+				<?php echo JspcText::_( 'PUBLISHED' ); ?>
 			</th>
 		</tr>		
 	</thead>

@@ -67,7 +67,7 @@ class addonFactory
 		if(!JFile::exists($path))
 		{
 			//XITODO: err message
-			JError::raiseError(400,JText::_("INVALID ADDON FILE"));
+			JError::raiseError(400,JspcText::_("INVALID_ADDON_FILE"));
 			return false;
 		}
 
@@ -179,7 +179,7 @@ abstract class jspcAddons
 		if($addonParamsHtml)
 			return $addonParamsHtml;
 		
-		$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+		$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
 		
 		return $addonParamsHtml;
 	}
@@ -193,7 +193,7 @@ abstract class jspcAddons
 		if($coreParamsHtml)
 			return $coreParamsHtml;
 		
-		$coreParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+		$coreParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
 		
 		return $coreParamsHtml;
 	}
@@ -301,10 +301,10 @@ abstract class jspcAddons
 		if(empty($text)) { 
 			//write some dummy text
 			$classname = $this->getMe();
-			$text = sprintf(JText::_('ADD %s',false),JText::_($classname));
+			$text = sprintf(JspcText::_('ADD %s',false),JspcText::_($classname));
 			return $text;
 		}
-		$text = sprintf(JText::_($text,false),$this->getRemainingCount($userid));
+		$text = sprintf(JspcText::_($text,false),$this->getRemainingCount($userid));
 		return $text;
 	}
 	

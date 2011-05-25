@@ -51,16 +51,16 @@ class helper
 		$fields = self::getJomsocialProfileFields();
 		$html = '';
 		if(empty($fields)) {
-			$html = "<div style=\"text-align: center; padding: 5px; \">".JText::_('There are no parameters for this item')."</div>";
+			$html = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
 			return $html;
 		}
 
 		$html .= "<table width='100%' class='paramlist admintable' cellspacing='1'>";
 		$html .= "<tr class='title'>";
-		$html .= "<th width='30%'>".JText::_( 'FIELD NAME' )."</th>";
-		$html .= "<th width='20%'>".JText::_( 'VALUE' )."</th>";
-		$html .= "<th width='20%'>".JText::_( 'FIELDS WEIGHTAGE' )."</th>";			
-		$html .= "<th width='25%'>".JText::_( 'CONTRIBUTION IN OVERALL COMPLETENESS' )."</th>";
+		$html .= "<th width='30%'>".JspcText::_( 'FIELD_NAME' )."</th>";
+		$html .= "<th width='20%'>".JspcText::_( 'VALUE' )."</th>";
+		$html .= "<th width='20%'>".JspcText::_( 'FIELDS_WEIGHTAGE' )."</th>";			
+		$html .= "<th width='25%'>".JspcText::_( 'CONTRIBUTION IN OVERALL COMPLETENESS' )."</th>";
 		
 		$i = 0;
 		foreach($fields as $f) {

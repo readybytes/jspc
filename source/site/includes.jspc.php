@@ -31,6 +31,7 @@ require_once (JPATH_ROOT.DS.'components'.DS.'com_community'.DS.'defines.communit
 require_once (JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php');
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'jspc.php');
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'imagegenerator.php');
+require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
 
 /*Langauge file will be independent now */
 $lang = JFactory::getLanguage();

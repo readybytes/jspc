@@ -6,7 +6,7 @@
 **/
 // Disallow direct access to this file
 defined('_JEXEC') or die('Restricted access');
-//echo $this->pane->startPanel( JText::_('JOOMLAXI UPDATES') , 'joomlaxi' );
+//echo $this->pane->startPanel( JText::_('JOOMLAXI_UPDATES') , 'joomlaxi' );
 
 ?>
 	<script src="http://widgets.twimg.com/j/2/widget.js"></script>

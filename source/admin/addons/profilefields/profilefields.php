@@ -26,7 +26,7 @@ class profilefields extends jspcAddons
 		$fields = helper::getJomsocialProfileFields($filter);
 		
 		if(empty($fields)) {
-			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JText::_('CLICK ON APPLY BUTTON TO SEE THE ADDONS PARAMETERS')."</div>";
+			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('CLICK_ON_APPLY_BUTTON_TO_SEE_THE_ADDONS_PARAMETERS')."</div>";
 			return $addonParamsHtml;
 		}
 		

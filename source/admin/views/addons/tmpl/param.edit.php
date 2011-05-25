@@ -9,9 +9,9 @@ defined('_JEXEC') or die('Restricted access');
 <?php 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
 JToolBarHelper::divider();
-JToolBarHelper::apply('apply', JText::_('APPLY'));
-JToolBarHelper::save('save',JText::_('SAVE'));
-JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
+JToolBarHelper::apply('apply', JspcText::_('APPLY'));
+JToolBarHelper::save('save',JspcText::_('SAVE'));
+JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 ?>
 
 <script language="javascript" type="text/javascript">
@@ -23,7 +23,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		// validation
 		var form = document.adminForm;
 		if (form.featurename.value == "") {
-			alert( "<?php echo JText::_( 'FEATURE MUST HAVE A NAME', true ); ?>" );
+			alert( "<?php echo JspcText::_( 'FEATURE_MUST_HAVE_A_NAME', true ); ?>" );
 		} else {
 			submitform(pressbutton);
 		}
@@ -34,12 +34,12 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 <div>
 <div class="col width-40" style="width:40%; float:left;">
 	<fieldset class="adminform">
-	<legend><?php echo JText::_( 'Details' ); ?></legend>
+	<legend><?php echo JspcText::_( 'Details' ); ?></legend>
 	<table class="admintable">
 		<tr>
 			<td width="100" class="key">
-				<label for="name" title=" <?php echo JText::_( 'JSPC NAME.DESC' ); ?> ">
-					<?php echo JText::_( 'NAME' ); ?>:
+				<label for="name" title=" <?php echo JspcText::_( 'NAME.DESC' ); ?> ">
+					<?php echo JspcText::_( 'NAME' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -48,8 +48,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td width="100" class="key">
-				<label for="featurename" title=" <?php echo JText::_( 'JSPC FEATURE NAME.DESC' ); ?> ">
-					<?php echo JText::_( 'FEATURE NAME' ); ?>:
+				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME.DESC' ); ?> ">
+					<?php echo JspcText::_( 'FEATURE_NAME' ); ?>:
 				</label>
 			</td>
 			<td>
@@ -58,8 +58,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td valign="top" class="key">
-			<label for="published" title=" <?php echo JText::_( 'JSPC PUBLISHED.DESC' ); ?> ">
-				<?php echo JText::_( 'PUBLISHED' ); ?>:
+			<label for="published" title=" <?php echo JspcText::_( 'PUBLISHED.DESC' ); ?> ">
+				<?php echo JspcText::_( 'PUBLISHED' ); ?>:
 			</label>
 			</td>
 			<td>
@@ -68,8 +68,8 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 		</tr>
 		<tr>
 			<td valign="top" class="key">
-			<label for="contribution" title=" <?php echo JText::_( 'TOTAL CONTRIBUTION IN PERCENTAGE' ); ?> ">
-				<?php echo JText::_('CONTRIBUTION IN PERCENTAGE'); ?>:
+			<label for="contribution" title=" <?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?> ">
+				<?php echo JspcText::_('CONTRIBUTION_IN_PERCENTAGE'); ?>:
 			</label>
 			</td>
 			<td>
@@ -97,7 +97,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 	<br />
 	
 	<fieldset class="adminform">
-	<legend><?php echo JText::_( 'Core Parameters' ); ?></legend>
+	<legend><?php echo JspcText::_( 'CORE_PARAMETERS' ); ?></legend>
 	<?php
 		jimport('joomla.html.pane');
 		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));
@@ -112,7 +112,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 <div>
 <div class="col width-60" style="width:60%; float:right;">
 	<fieldset class="adminform">
-	<legend><?php echo JText::_( 'Addon Parameters' ); ?></legend>
+	<legend><?php echo JspcText::_( 'ADDON_PARAMETERS' ); ?></legend>
 	<?php
 		jimport('joomla.html.pane');
 		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));

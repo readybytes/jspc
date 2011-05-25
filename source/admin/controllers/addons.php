@@ -107,7 +107,7 @@ class JspcControllerAddons extends JController
 		$id = JRequest::getVar('editId', 0 );
 		if( $method == 'GET' )
 		{
-			JError::raiseError( 500 , JText::_('CC ACCESS METHOD NOT ALLOWED') );
+			JError::raiseError( 500 , JspcText::_('CC_ACCESS_METHOD_NOT_ALLOWED') );
 			return;
 		}
 		
@@ -146,9 +146,9 @@ class JspcControllerAddons extends JController
 		$msg = '';
 		// Save it
 		if(! ($id = $addons->store()) )
-			$msg = JText::_('ERROR IN SAVING CRITERIA');
+			$msg = JspcText::_('ERROR_IN_SAVING_CRITERIA');
 		else
-			$msg = JText::_('CRITERIA SAVED');	
+			$msg = JspcText::_('CRITERIA_SAVED');	
 
 		return $id;
 	}
@@ -191,7 +191,7 @@ class JspcControllerAddons extends JController
 				if(!$row->delete( $id ))
 				{
 					// If there are any error when deleting, we just stop and redirect user with error.
-					$message	= JText::_('ERROR IN REMOVING CRITERIA');
+					$message	= JspcText::_('ERROR_IN_REMOVING_CRITERIA');
 					$mainframe->redirect( 'index.php?option=com_jspc&view=addons' , $message);
 					exit;
 				}
@@ -201,7 +201,7 @@ class JspcControllerAddons extends JController
 				
 		$cache = JFactory::getCache('com_content');
 		$cache->clean();
-		$message	= $count.' '.JText::_('CRITERIA REMOVED');		
+		$message	= $count.' '.JspcText::_('CRITERIA_REMOVED');		
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $message);
 	}
@@ -217,7 +217,7 @@ class JspcControllerAddons extends JController
 		$count			= count( $ids );
 
 		if (empty( $ids )) {
-			return JError::raiseWarning( 500, JText::_( 'No items selected' ) );
+			return JError::raiseWarning( 500, JspcText::_( 'NO_ITEMS_SELECTED' ) );
 		}
 		
 		$aModel	= JspcFactory::getModel( 'addons' );
@@ -225,7 +225,7 @@ class JspcControllerAddons extends JController
 		{
 			$aModel->updatePublish($id,1);
 		}
-		$msg = JText::sprintf( $count.' ITEMS PUBLISHED' );
+		$msg = JspcText::sprintf( $count.' ITEMS_PUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $msg);
 		return true;
@@ -241,7 +241,7 @@ class JspcControllerAddons extends JController
 		$count			= count( $ids );
 
 		if (empty( $ids )) {
-			return JError::raiseWarning( 500, JText::_( 'No items selected' ) );
+			return JError::raiseWarning( 500, JspcText::_( 'NO_ITEMS_SELECTED' ) );
 		}
 		
 		$aModel	= JspcFactory::getModel( 'addons' );
@@ -249,7 +249,7 @@ class JspcControllerAddons extends JController
 		{
 			$aModel->updatePublish($id,0);
 		}
-		$msg = JText::sprintf( $count.' ITEMS UNPUBLISHED' );
+		$msg = JspcText::sprintf( $count.' ITEMS_UNPUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $msg);
 		return true;

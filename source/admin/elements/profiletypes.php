@@ -42,12 +42,12 @@ class JElementProfiletypes extends JElement
 		
 		if($reqall) {
 			$selected	= ( JString::trim(0) == $value ) ? ' selected="true"' : '';
-			$html	.= '<option value="' . 0 . '"' . $selected . '>' . JText::_("ALL") . '</option>';
+			$html	.= '<option value="' . 0 . '"' . $selected . '>' . JspcText::_("ALL") . '</option>';
 		}
 		
 		if($reqnone) {
 			$selected	= ( JString::trim(-1) == $value ) ? ' selected="true"' : '';
-			$html	.= '<option value="' . -1 . '"' . $selected . '>' . JText::_("NONE") . '</option>';
+			$html	.= '<option value="' . -1 . '"' . $selected . '>' . JspcText::_("NONE") . '</option>';
 		}
 
 		$xiptPath = JPATH_ROOT.DS.'components'.DS.'com_xipt';

@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 
 <?php 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
-JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
+JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 ?>
 
 <script language="javascript" type="text/javascript">
@@ -31,7 +31,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 			case 'renderaddon' :
 				if( form.addon.value == 0 )
 				{
-					alert( "<?php echo JText::_( 'PLEASE SELECT A ADDON FROM LIST'); ?>" );
+					alert( "<?php echo JspcText::_( 'PLEASE_SELECT_A_ADDON_FROM_LIST'); ?>" );
 					break;
 				} 
 			case 'cancel':
@@ -42,7 +42,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 </script>
 	
 <div style="background-color: #F9F9F9; border: 1px solid #D5D5D5; margin-bottom: 10px; padding: 5px;font-weight: bold;">
-	<?php echo JText::_('SELECT CRITERIA TO USE');?>
+	<?php echo JspcText::_('SELECT_CRITERIA_TO_USE');?>
 </div>
 <div id="error-notice" style="color: red; font-weight:700;"></div>
 <div style="clear: both;"></div>
@@ -50,15 +50,15 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 <table cellspacing="0" class="admintable" border="0" width="100%">
 	<tbody>
 		<tr>
-			<td class="key"><?php echo JText::_('ADDON');?></td>
+			<td class="key"><?php echo JspcText::_('ADDON');?></td>
 			<td>:</td>
 			<td>
 				<select id="addon" name="addon" >
-				<option value="0"><?php echo JText::_('SELECT ADDON');?></option>
+				<option value="0"><?php echo JspcText::_('SELECT_ADDON');?></option>
 				<?php 
 					if(!empty($this->addons)) 
 					foreach($this->addons as $addon) { ?>
-					    <option value="<?php echo $addon;?>" ><?php echo JText::_($addon);?></option>
+					    <option value="<?php echo $addon;?>" ><?php echo JspcText::_($addon);?></option>
 					<?php 
 					}
 				?>
@@ -70,7 +70,7 @@ JToolBarHelper::cancel( 'cancel', JText::_('CLOSE' ));
 
 <div class="clr"></div>
 	<div id="next" style="width:28.5%; direction:rtl; margin-top:10px;">
-	<input type="submit" name="addonnext" value="<?php echo JText::_('NEXT');?>" onclick="submitbutton('renderaddon');"/>
+	<input type="submit" name="addonnext" value="<?php echo JspcText::_('NEXT');?>" onclick="submitbutton('renderaddon');"/>
 	</div>
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'addons' );?>" />

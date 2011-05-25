@@ -19,7 +19,7 @@ class JspcModelAddons extends JModel
 	 */
 	function __construct()
 	{
-		global $mainframe;
+		$mainframe = JFactory::getApplication();
 
 		// Call the parents constructor
 		parent::__construct();
@@ -56,7 +56,7 @@ class JspcModelAddons extends JModel
 	 **/
 	function getAddonsInfo()
 	{
-		global $mainframe;
+		$mainframe = JFactory::getApplication();
 
 		static $addonsInfo;
 		

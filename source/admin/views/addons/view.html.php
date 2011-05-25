@@ -90,17 +90,17 @@ class JspcViewAddons extends JView
 		<?php 
 		
 		// Set the titlebar text
-		JToolBarHelper::title( JText::_( 'PROFILE COMPLETENESS' ), 'addons' );
+		JToolBarHelper::title( JspcText::_( 'PROFILE_COMPLETENESS' ), 'addons' );
 
 		// Add the necessary buttons
 		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
-		JToolBarHelper::custom('aboutus','aboutus','',JText::_('ABOUT US'),0,0); 
+		JToolBarHelper::custom('aboutus','aboutus','',JspcText::_('ABOUT_US'),0,0); 
 		JToolBarHelper::divider();
-		JToolBarHelper::addNew('add', JText::_( 'ADD FEATURE' ));
-		JToolBarHelper::trash('remove', JText::_( 'DELETE' ));
+		JToolBarHelper::addNew('add', JspcText::_( 'ADD_FEATURE' ));
+		JToolBarHelper::trash('remove', JspcText::_( 'DELETE' ));
 		JToolBarHelper::divider();
-		JToolBarHelper::publishList('publish', JText::_( 'PUBLISHED' ));
-		JToolBarHelper::unpublishList('unpublish', JText::_( 'UNPUBLISHED' ));
+		JToolBarHelper::publishList('publish', JspcText::_( 'PUBLISHED' ));
+		JToolBarHelper::unpublishList('unpublish', JspcText::_( 'UNPUBLISHED' ));
 	}
 	
 	

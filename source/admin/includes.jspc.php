@@ -35,6 +35,7 @@ JTable::addIncludePath( JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_js
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'addons' . DS . 'addons.php' );
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'core.php' );
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'jspc.php' );
+require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
 
 /*Load Langauge file*/
 $lang = JFactory::getLanguage();

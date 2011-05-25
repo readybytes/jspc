@@ -121,7 +121,7 @@ class JspcLibrary
 		$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
 
 		if(!JFolder::exists($communityPath)) {
-			JError::raiseError(JText::_("UNABLE TO GET INFORMATION"));
+			JError::raiseError(JspcText::_('UNABLE_TO_GET_INFORMATION'));
 			return;
 		}
 		
