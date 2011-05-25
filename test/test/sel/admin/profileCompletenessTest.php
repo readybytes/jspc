@@ -127,16 +127,24 @@ class ProfileCompletenessTest extends XiSelTestCase
   function addFeatureOne()
   {
   	$this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_jspc&view=addons");
-    $this->click("//td[@id='toolbar-new']/a/span");
+  	
+  	if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    
     $this->waitPageLoad();
-    $this->select("addon", "label=Albums");
+    $this->select("addon", "label=Albums");	
     $this->click("//input[@type='submit']");
     $this->waitPageLoad();
     $this->type("featurename", "Album");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "Add % Album");
     $this->type("addonparamsalbums_total", "10");
-    $this->click("//td[@id='toolbar-save']/a/span");
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-save']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-save']/a/span");
     $this->waitPageLoad();
      	
   }
@@ -145,8 +153,13 @@ class ProfileCompletenessTest extends XiSelTestCase
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
   	$this->waitPageLoad();
-    $this->click("//td[@id='toolbar-new']/a/span");
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
+    
     $this->click("//input[@type='submit']");
     $this->assertTrue((bool)$this->getAlert());
     $this->select("addon", "label=Group Member");
@@ -156,18 +169,30 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Group Member");
     $this->type("addonparamsgroupmember_total", "10");
-    $this->click("//td[@id='toolbar-apply']/a/span");
-    $this->waitPageLoad();
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-apply']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-apply']/a/span");
+    	
     $this->waitPageLoad();
     
-     
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
+    	
+    $this->waitPageLoad(); 
   }
   
   function addFeatureThree()
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc&view=addons");
-    $this->click("//td[@id='toolbar-new']/a/span");
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
     $this->select("addon", "label=Profile Fields");
     $this->click("//input[@type='submit']");
@@ -175,9 +200,19 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("featurename", "Profile");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Profile");
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
+    	
     $this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
-    $this->click("//td[@id='toolbar-new']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
     $this->select("addon", "label=Profile Fields");
     $this->click("//input[@type='submit']");
@@ -200,7 +235,11 @@ class ProfileCompletenessTest extends XiSelTestCase
     $this->type("addonparams[10]", "10");
     $this->type("addonparams[11]", "10");
     $this->type("addonparams[12]", "10");
-    $this->click("//td[@id='toolbar-save']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-save']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-save']/a/span");
     $this->waitPageLoad();
      
   }
@@ -209,7 +248,12 @@ function addFeatureFour()
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
   	$this->waitPageLoad();
-    $this->click("//td[@id='toolbar-new']/a/span");
+  	
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
     $this->select("addon", "label=Community Avatar");
     $this->click("//input[@type='submit']");
@@ -217,9 +261,18 @@ function addFeatureFour()
     $this->type("featurename", "Avtar");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Avtar");
-    $this->click("//td[@id='toolbar-apply']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-apply']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-apply']/a/span");
+    	
     $this->waitPageLoad();
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
     $this->waitPageLoad();
   }
   
@@ -227,7 +280,12 @@ function addFeatureFour()
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
   	$this->waitPageLoad();
-    $this->click("//td[@id='toolbar-new']/a/span");
+  	
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
     $this->select("addon", "label=No of Groups Created by User");
     $this->click("//input[@type='submit']");
@@ -236,9 +294,18 @@ function addFeatureFour()
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Group Member");
     $this->type("addonparamsgroupowner_total", "10");
-    $this->click("//td[@id='toolbar-apply']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-apply']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-apply']/a/span");
+    
     $this->waitPageLoad();
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
     $this->waitPageLoad();
   }
   
@@ -246,18 +313,32 @@ function addFeatureFour()
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
   	$this->waitPageLoad();
-    $this->click("//td[@id='toolbar-new']/a/span");
+  	
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
-     $this->select("addon", "label=Community Photos");
+    $this->select("addon", "label=Community Photos");
     $this->click("//input[@type='submit']");
     $this->waitPageLoad();
     $this->type("featurename", "Photos");
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Photos");
     $this->type("addonparamsphotos_total", "10");
-    $this->click("//td[@id='toolbar-apply']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-apply']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-apply']/a/span");
+    
     $this->waitPageLoad();
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
     $this->waitPageLoad();
   }
   
@@ -265,7 +346,12 @@ function addFeatureFour()
   {
   	$this->open(JOOMLA_LOCATION."administrator/index.php?option=com_jspc");
   	$this->waitPageLoad();
-    $this->click("//td[@id='toolbar-new']/a/span");
+  	
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-new']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-new']/a/span");
+    	
     $this->waitPageLoad();
     $this->select("addon", "label=Community Videos");;
     $this->click("//input[@type='submit']");
@@ -274,9 +360,18 @@ function addFeatureFour()
     $this->type("coreparamsjspc_core_total_contribution", "100");
     $this->type("coreparamsjspc_core_display_text", "%s Videos");
     $this->type("addonparamsvideos_total", "10");
-    $this->click("//td[@id='toolbar-apply']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-apply']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-apply']/a/span");
+    
     $this->waitPageLoad();
-    $this->click("//td[@id='toolbar-cancel']/a/span");
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->click("//li[@id='toolbar-cancel']/a/span");
+    else
+    	$this->click("//td[@id='toolbar-cancel']/a/span");
     $this->waitPageLoad();
   }
   

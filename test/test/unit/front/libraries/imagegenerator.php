@@ -5,7 +5,8 @@ class imagegeneratorTest extends XiUnitTestCase
 	
 	function getSqlPath()
     {
-    	  require_once JPATH_ROOT . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'imagegenerator.php'; 
+    	  require_once JPATH_ROOT . DS . 'components' . DS . 'com_jspc' . DS . 'libraries' . DS . 'imagegenerator.php';
+    	  require_once JPATH_ROOT . DS . 'libraries' . DS . 'joomla' . DS . 'html' . DS . 'parameter.php'; 
 	      return dirname(__FILE__).'/sql/'.__CLASS__;
 	}
 
