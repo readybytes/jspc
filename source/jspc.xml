@@ -18,9 +18,7 @@
 		
 		<filename>jspc/index.html</filename>
 		
-		<filename>libraries/index.html</filename>
-		<filename>libraries/jspc.php</filename>
-		<filename>libraries/imagegenerator.php</filename>
+		<folder>libraries</folder>
 	</files>
 
 	<languages>
