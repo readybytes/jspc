@@ -5,14 +5,14 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.filesystem.folder' );
 		
-$jspcPath = JPATH_ROOT.DS.DS.'components'.DS.'com_jspc';
+$jspcPath = JPATH_ROOT.DS.'components'.DS.'com_jspc';
 
 if(!JFolder::exists($jspcPath))
 	return false;
 
 require_once( JPATH_ROOT . DS . 'components' . DS . 'com_jspc'  . DS . 'includes.jspc.php');
 
-$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+$communityPath = JPATH_ROOT.DS.'components'.DS.'com_community';
 
 if(!JFolder::exists($communityPath))
 	return false;
