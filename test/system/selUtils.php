@@ -236,17 +236,9 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   {
   	
 		$db			=& JFactory::getDBO();
-		
-  		if(TEST_JSPC_JOOMLA_16){
-			$query	= 'UPDATE ' . $db->nameQuote( '#__extensions' )
-			. ' SET '.$db->nameQuote('enabled').'='.$db->Quote($action)
-	        .' WHERE '.$db->nameQuote('element').'='.$db->Quote($modulename);
-		}
-		else{
 		$query	= 'UPDATE ' . $db->nameQuote( '#__modules' )
 				. ' SET '.$db->nameQuote('published').'='.$db->Quote($action)
 	          	.' WHERE '.$db->nameQuote('module').'='.$db->Quote($modulename);
-		}
 	          	
 		$db->setQuery($query);		
 		
@@ -261,16 +253,10 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   	
 		$db			=& JFactory::getDBO();
 		
-		if(TEST_JSPC_JOOMLA_16){
-		   $query	= 'SELECT '.$db->nameQuote('enabled')
-		   .' FROM ' . $db->nameQuote( '#__extensions' )
-	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($modulename);
-		}
-		if(TEST_JSPC_JOOMLA_15){
 		$query	= 'SELECT '.$db->nameQuote('published')
 				.' FROM ' . $db->nameQuote( '#__modules' )
 	          	.' WHERE '.$db->nameQuote('module').'='.$db->Quote($modulename);
-		}
+
 		$db->setQuery($query);		
 		$actualState= (boolean) $db->loadResult();
 		$this->assertEquals($actualState, $enabled);

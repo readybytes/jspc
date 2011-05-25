@@ -16,21 +16,40 @@ class UninstallXiptTest extends XiSelTestCase
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
     $this->waitPageLoad();
 
-     $this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
+    if(TEST_JSPC_JOOMLA_16)
+     	$this->click("link=Manage");
+    if(TEST_JSPC_JOOMLA_15)
+     	$this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
+     
      $this->waitPageLoad();
      
      //now find the component order in uninstall list
+     if(TEST_JSPC_JOOMLA_16){
+      	$this->type("filters_search", "xipt");
+    	$this->click("//button[@type='submit']");
+    	$this->waitPageLoad();
+    	$this->click("cb0");
+    	$this->click("//li[@id='toolbar-delete']/a/span");	
+     }
+     if(TEST_JSPC_JOOMLA_15){
      $order = $this->getUninstallOrder('com_xipt');
      $this->click("cb$order");
      $this->click("link=Uninstall");
+     }
+     
      $this->waitPageLoad();
-     $this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+     
+     if(TEST_JSPC_JOOMLA_16)
+     	$this->assertTrue($this->isTextPresent("Uninstalling component was successful."));
+     if(TEST_JSPC_JOOMLA_15)
+     	$this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+     	
      $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
      $this->verifyUninstall();
      
      $this->changePluginState("xipt_system",0);
   	 $this->verifyPluginState("xipt_system",false);
-  	   $this->changePluginState("xipt_community",0);
+  	 $this->changePluginState("xipt_community",0);
   	 $this->verifyPluginState("xipt_community",false);
   }
   function verifyUninstall()
@@ -56,7 +75,7 @@ class UninstallXiptTest extends XiSelTestCase
   			$this->assertFalse(JFile::exists($file.".jxibak"));
   		
   		//3.
-  		$db			=& JFactory::getDBO();		
+  		$db		= JFactory::getDBO();		
   		$query	= " SELECT *  FROM `#__community_fields` " 
 	          	. " WHERE `published` = '1' "
 	          	. " AND (`type` = 'profiletypes' OR `type` = 'templates') ";

@@ -222,6 +222,19 @@ class XiTestListener implements PHPUnit_Framework_TestListener
     $dbDump        =  $sqlPath.'/'.$testName.'.start.sql';
     if(file_exists($dbDump))
     	$test->_DBO->loadSql($dbDump);
+
+  	if (TEST_JSPC_JOOMLA_15){
+    	$dbDump15      =  $sqlPath.'/15/'.$testName.'.start.sql';
+    	if(file_exists($dbDump15)){
+    		$test->_DBO->loadSql($dbDump15);
+    	}
+    }
+    if (TEST_JSPC_JOOMLA_16){
+    	$dbDump16      =  $sqlPath.'/16/'.$testName.'.start.sql';
+    	if(file_exists($dbDump16)){
+    		$test->_DBO->loadSql($dbDump16);
+		}
+    }
     //else
     //	echo "\n File does not exist for ". $dbDump . "\n";
 

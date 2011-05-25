@@ -84,15 +84,13 @@ class InstallTest extends XiSelTestCase
   {
     $this->type("install_url", COM_JSPC_PKG);
     
-    if(TEST_JSPC_JOOMLA_16){ 
+    if(TEST_JSPC_JOOMLA_16)
    		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
-   	}
-   	if(TEST_JSPC_JOOMLA_15){
+   	if(TEST_JSPC_JOOMLA_15)
    	  	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
-   	}
-   	
 	    
     $this->waitPageLoad();
+    
     if(TEST_JSPC_JOOMLA_16)
     	$this->assertTrue($this->isTextPresent("Installing component was successful."));
     if(TEST_JSPC_JOOMLA_15)

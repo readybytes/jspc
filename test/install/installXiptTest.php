@@ -29,28 +29,56 @@ class InstallXiptTest extends XiSelTestCase
       
 	// add profiletype-one
     $this->type("install_url", COM_XIPT_PKG);
-    $this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
-   
+    
+    if(TEST_JSPC_JOOMLA_16)
+   		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
+   	else
+    	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+   	
     $this->waitPageLoad();
-    $this->assertTrue($this->isTextPresent("Install Component Success"));
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->assertTrue($this->isTextPresent("Installing component was successful."));
+    else
+    	$this->assertTrue($this->isTextPresent("Install Component Success"));
+    	
     $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
       
     $this->type("install_url", PLG_XIPT_SYS_PKG);
-    $this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    
+    if(TEST_JSPC_JOOMLA_16)
+   		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
+   	else
+    	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    	
     $this->waitPageLoad();
-    $this->assertTrue($this->isTextPresent("Install Plugin Success"));
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->assertTrue($this->isTextPresent("Installing plugin was successful."));
+    else
+    	$this->assertTrue($this->isTextPresent("Install Plugin Success"));
+    	
     $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
     
     	// add profiletype-one
     $this->type("install_url", PLG_XIPT_COM_PKG);
-    $this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    
+    if(TEST_JSPC_JOOMLA_16)
+   		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
+   	else
+    	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    	
     $this->waitPageLoad();
-    $this->assertTrue($this->isTextPresent("Install Plugin Success"));
+    
+    if(TEST_JSPC_JOOMLA_16)
+    	$this->assertTrue($this->isTextPresent("Installing plugin was successful."));
+    else
+    	$this->assertTrue($this->isTextPresent("Install Plugin Success"));
+    	
     $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
     
     //enable xipt plugins also, uninstallation will again disable them
-    $sql = "UPDATE `#__plugins` SET `published` = '1' WHERE `folder` ='community';";
-    $this->_DBO->execSql($sql);
+    $this->changePluginState('xipt_community',1);
   }
 }
 
