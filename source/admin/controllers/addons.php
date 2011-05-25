@@ -172,7 +172,7 @@ class JspcControllerAddons extends JController
 	
 	function remove()
 	{
-		global $mainframe;
+		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
 		
@@ -209,7 +209,7 @@ class JspcControllerAddons extends JController
 	
 	function publish()
 	{
-		global $mainframe;
+		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables
@@ -225,7 +225,7 @@ class JspcControllerAddons extends JController
 		{
 			$aModel->updatePublish($id,1);
 		}
-		$msg = JspcText::sprintf( $count.' ITEMS_PUBLISHED' );
+		$msg = JspcText::sprintf( $count.'ITEMS_PUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $msg);
 		return true;
@@ -233,7 +233,7 @@ class JspcControllerAddons extends JController
 	
 	function unpublish()
 	{
-		global $mainframe;
+		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables

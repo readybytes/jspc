@@ -25,9 +25,7 @@ define('JOOMLA_ADMIN_PASSWORD',	'ssv445');
 define('COM_JSPC_PKG',		JOOMLA_LOCATION.'/jspc.zip');
 define('JOMSOCIAL_PKG',		JOOMLA_LOCATION.'/com_community.zip');
 
-define('PLG_XIPT_COM_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_community.zip');
-define('PLG_XIPT_SYS_PKG',	JOOMLA_LOCATION.'/test/xipt/plg_xipt_system.zip');
-define('COM_XIPT_PKG',		JOOMLA_LOCATION.'/test/xipt/com_xipt.zip');
+define('COM_XIPT_PKG',		JOOMLA_LOCATION.'/test/xipt/xipt.zip');
 
 $version = new JVersion();
 

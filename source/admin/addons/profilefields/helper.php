@@ -60,7 +60,7 @@ class helper
 		$html .= "<th width='30%'>".JspcText::_( 'FIELD_NAME' )."</th>";
 		$html .= "<th width='20%'>".JspcText::_( 'VALUE' )."</th>";
 		$html .= "<th width='20%'>".JspcText::_( 'FIELDS_WEIGHTAGE' )."</th>";			
-		$html .= "<th width='25%'>".JspcText::_( 'CONTRIBUTION IN OVERALL COMPLETENESS' )."</th>";
+		$html .= "<th width='25%'>".JspcText::_( 'CONTRIBUTION_IN_OVERALL_COMPLETENESS' )."</th>";
 		
 		$i = 0;
 		foreach($fields as $f) {
