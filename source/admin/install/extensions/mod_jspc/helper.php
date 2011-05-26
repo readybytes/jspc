@@ -46,9 +46,9 @@ class ProfileCompleteHelper
 		
 		$percentStyling = '<span class="jspc_percentage" style="color:#'. $params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
 		if($profile_completion_percentage == 100)
-			$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION 100'),$percentStyling);
+			$displayText    = sprintf(JText::_('MOD_JSPC_PROFILE_STATUS_COMPLETION_100'),$percentStyling);
 		else
-			$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION'),$percentStyling);
+			$displayText    = sprintf(JText::_('MOD_JSPC_PROFILE_STATUS_COMPLETION'),$percentStyling);
 		
 		$data['displayText']					= $displayText;
 		$data['params']							= $params;

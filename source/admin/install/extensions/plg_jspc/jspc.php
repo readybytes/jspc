@@ -104,9 +104,9 @@ class plgCommunityJspc extends CApplications
 		
 		$percentStyling = '<span class="jspc_percentage" style="color:#'. $this->_params->get('SPS_FGColor','9CD052').'">'.$profile_completion_percentage.'% </span>';
 		if($profile_completion_percentage == 100)
-			$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION 100'),$percentStyling);
+			$displayText    = sprintf(JText::_('PLG_JSPC_PROFILE_STATUS_COMPLETION_100'),$percentStyling);
 		else
-			$displayText    = sprintf(JText::_('PROFILE STATUS COMPLETION'),$percentStyling);
+			$displayText    = sprintf(JText::_('PLG_JSPC_PROFILE_STATUS_COMPLETION'),$percentStyling);
 		
 		$data['displayText']					= $displayText;
 		return $this->_getDisplay($data);
