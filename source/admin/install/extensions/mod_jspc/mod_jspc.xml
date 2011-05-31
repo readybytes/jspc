@@ -63,7 +63,7 @@
 	</params>
 	<!-- for J1.6 -->
 	<config>
-	<fields name="params">
+	<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
 			<fieldset name="basic">
 				<field
 					name="SPS_Layout" type="list" default="horizontal" label="Layout" description="">

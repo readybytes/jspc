@@ -14,10 +14,16 @@ class ProfileCompleteHelper
 		$params =& $mod_params;
 		//include proper style sheet
 		$document	= JFactory::getDocument();
+		
+		$hcss = JURI::root() .'modules/mod_jspc/style.css';
+		$vcss = JURI::root() .'modules/mod_jspc/style.vert.css';
+		
+		//include proper style sheet
+		$document	= JFactory::getDocument();
 		if ($params->get('SPS_Layout','horizontal')=='vertical')
-			$document->addStyleSheet('modules/mod_jspc/style.vert.css');
+			$document->addStyleSheet($vcss);
 		else
-			$document->addStyleSheet('modules/mod_jspc/style.css');
+			$document->addStyleSheet($hcss);
 
 		
 		$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
@@ -119,7 +125,8 @@ class ProfileCompleteHelper
 					if(!$visibleFeatureCount)
 						break;
 					
-					$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+					$nextTask	      = JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+					$nextTask['text'] = preg_replace("/COM_JSPC_/", "", $nextTask['text']);
 					?>
 					<li> 
 						<span class="jspc_link_percent"> <?php echo $value; ?>% &nbsp; </span>
