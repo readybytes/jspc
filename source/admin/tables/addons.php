@@ -51,6 +51,7 @@ class JspcTableAddons extends JTable
 	
 	function bind($data)
 	{
+		$this->id				= $data['id'];
 		$this->name				= $data['name'];
 		$this->featurename		= $data['featurename'];
 		$this->coreparams		= $data['coreparams'];

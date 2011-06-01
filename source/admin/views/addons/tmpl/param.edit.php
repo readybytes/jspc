@@ -127,6 +127,7 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 <div class="clr"></div>
 
 	<input type="hidden" name="option" value="com_jspc" />
+	<input type="hidden" name="editId" value="<?php echo $this->addonInfo['id'];?>" />
 	<input type="hidden" name="id" value="<?php echo $this->addonInfo['id'];?>" />
 	<input type="hidden" name="name" value="<?php echo $this->addonInfo['name'];?>" />
 	<input type="hidden" name="cid[]" value="" />

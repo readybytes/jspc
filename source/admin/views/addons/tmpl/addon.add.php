@@ -74,7 +74,6 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 	</div>
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'addons' );?>" />
-	<input type="hidden" name="id" value="" />
 	<input type="hidden" name="task" value="renderaddon" />
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
