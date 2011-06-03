@@ -20,7 +20,7 @@
 		<if>
 		 <isset property="${pkg.version}"/>
 		  <then>
-		 	<echo msg="pkg.version already set to {pkg.version}" />
+		 	<echo msg="pkg.version already set to ${pkg.version}" />
 		 </then>
 		</if>
 
