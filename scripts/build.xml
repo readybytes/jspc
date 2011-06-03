@@ -32,12 +32,6 @@
 	<target name="export_from_wc" description="Export files from a local working copy" depends="config">
 		<exec command="svn export ${dir.src} ${dir.tmp}" />
 
-		<copy todir="${dir.tmp}">
-			<fileset dir="${dir.src}">
-				<include name="**" />
-			</fileset>
-		</copy>
-
 		<!-- Apply the version change to all files. -->
 		<reflexive>
 			<fileset dir="${dir.tmp}">
