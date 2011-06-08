@@ -17,7 +17,7 @@
 		<delete dir="${dir.tmp}" includeemptydirs="true" />
 
 		<mkdir dir="${dir.packages}" />
-		<mkdir dir="${dir.tmp}" />
+		<!--<mkdir dir="${dir.tmp}" />-->
 
 		<phingcall target="export_from_wc" />		
 		<phing phingfile="${project.shortform.small}.xml" inheritAll="true" target="build" />
