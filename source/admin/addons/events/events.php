@@ -1,6 +1,6 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
-class events extends jspcAddons
+class JspcEvents extends jspcAddons
 {
 	function __construct($debugMode)
 	{

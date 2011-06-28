@@ -1,6 +1,6 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
-class profilevideo extends jspcAddons
+class JspcProfilevideo extends jspcAddons
 {
 		function __construct($debugMode)
 		{

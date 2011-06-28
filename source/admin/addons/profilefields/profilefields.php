@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class profilefields extends jspcAddons
+class JspcProfilefields extends jspcAddons
 {
 
 	function __construct($debugMode)

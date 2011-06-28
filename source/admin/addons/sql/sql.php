@@ -1,7 +1,7 @@
 <?php
 defined('_JEXEC') or die('Restricted access');
 
-class sql extends jspcAddons
+class JspcSql extends jspcAddons
 {
 function __construct($debugMode)
 	{

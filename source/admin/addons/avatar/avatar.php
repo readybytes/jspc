@@ -7,7 +7,7 @@
 **/
 defined('_JEXEC') or die('Restricted access');
 
-class avatar extends jspcAddons
+class JspcAvatar extends jspcAddons
 {
 	function __construct($debugMode)
 	{

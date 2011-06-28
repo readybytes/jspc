@@ -75,6 +75,7 @@ class addonFactory
 			
 		//$instance will comtain all addon object according to rule
 		//Every rule will have different object
+		$addonName = 'Jspc'.ucfirst($addonName);
 		static $instance = array();
 		if(isset($instance[$addonName]))
 			return $instance[$addonName];
@@ -119,6 +120,7 @@ abstract class jspcAddons
 		//load addon xml if we need to do it
 		// this->addonparams can be set by child constructor, 
 		// then we do not need to create addon params
+		$className = substr($className, 4);
 		$addonXmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
 		if(empty($this->addonparams) && JFile::exists($addonXmlpath))
 			$this->addonparams = new JParameter('',$addonXmlpath);

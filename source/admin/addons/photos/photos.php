@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class photos extends jspcAddons
+class JspcPhotos extends jspcAddons
 {
 
 	function __construct($debugMode)

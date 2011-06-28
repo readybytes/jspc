@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class groupmember extends jspcAddons
+class JspcGroupmember extends jspcAddons
 {
 
 	function __construct($debugMode)

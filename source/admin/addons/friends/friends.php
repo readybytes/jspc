@@ -7,7 +7,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class friends extends jspcAddons
+class JspcFriends extends jspcAddons
 {
 
 	function __construct($debugMode)

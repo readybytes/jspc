@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class articles extends jspcAddons
+class JspcArticles extends jspcAddons
 {
 
 	function __construct($debugMode)

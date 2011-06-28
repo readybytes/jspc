@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class kunenaposts extends jspcAddons
+class JspcKunenaposts extends jspcAddons
 {
 
 	function __construct($debugMode)

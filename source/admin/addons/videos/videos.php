@@ -6,7 +6,7 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class videos extends jspcAddons
+class JspcVideos extends jspcAddons
 {
 
 	function __construct($debugMode)
