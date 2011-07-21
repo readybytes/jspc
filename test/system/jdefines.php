@@ -29,5 +29,6 @@ define('COM_XIPT_PKG',		JOOMLA_LOCATION.'/test/xipt/xipt.zip');
 
 $version = new JVersion();
 
+define('TEST_JSPC_JOOMLA_17',($version->RELEASE === '1.7'));
 define('TEST_JSPC_JOOMLA_16',($version->RELEASE === '1.6'));
 define('TEST_JSPC_JOOMLA_15',($version->RELEASE === '1.5'));

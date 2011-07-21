@@ -11,7 +11,7 @@ class JspcProfilefields extends jspcAddons
 
 	function __construct($debugMode)
 	{
-		$this->addonparams = new JParameter('','');
+		$this->addonparams = new XipcParameter('','');
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	

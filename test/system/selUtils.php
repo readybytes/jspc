@@ -46,17 +46,17 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_login");
     $this->waitForPageToLoad("60000");
 
-  	if(TEST_JSPC_JOOMLA_16)
+  	if(TEST_JSPC_JOOMLA_15)
     { 
-	    $this->type("mod-login-username", JOOMLA_ADMIN_USERNAME);
-	    $this->type("mod-login-password", JOOMLA_ADMIN_PASSWORD);
-	    $this->click("//input[@value='Log in']");
-    }
-    elseif(TEST_JSPC_JOOMLA_15)
-    {
-    	$this->type("modlgn_username", JOOMLA_ADMIN_USERNAME);
+		$this->type("modlgn_username", JOOMLA_ADMIN_USERNAME);
     	$this->type("modlgn_passwd", JOOMLA_ADMIN_PASSWORD);
     	$this->click("//form[@id='form-login']/div[1]/div/div/a");
+    }
+    else
+    {
+    	$this->type("mod-login-username", JOOMLA_ADMIN_USERNAME);
+	    $this->type("mod-login-password", JOOMLA_ADMIN_PASSWORD);
+	    $this->click("//input[@value='Log in']");
     }
 
     $this->waitForPageToLoad();
@@ -72,7 +72,7 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
     	$this->type("modlgn_passwd", $password);
     	$this->click("//form[@id='form-login']/fieldset/input");
     }
-    if (TEST_JSPC_JOOMLA_16){
+    else{
     	$this->type("modlgn-username", $username);
     	$this->type("modlgn-passwd", $password);
     	$this->click("Submit");
@@ -80,7 +80,7 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   	$this->waitPageLoad();
     if (TEST_JSPC_JOOMLA_15)
     	$this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
-    if (TEST_JSPC_JOOMLA_16)
+    else
     	$this->assertEquals("Log out", $this->getValue("//form[@id='login-form']/div[2]/input[1]"));
   }
   
@@ -93,14 +93,14 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
        	$this->assertEquals("Log out", $this->getValue("//form[@id='form-login']/div[2]/input"));
        	$this->click("//form[@id='form-login']/div[2]/input");
     }
-    if (TEST_JSPC_JOOMLA_16){
+    else{
     	$this->assertEquals("Log out", $this->getValue("//form[@id='login-form']/div[2]/input"));
     	 $this->click("//form[@id='login-form']/div[2]/input");
     }
     $this->waitForPageToLoad("60000");
     if (TEST_JSPC_JOOMLA_15)
     	$this->assertTrue($this->isElementPresent("modlgn_username"));
-    if (TEST_JSPC_JOOMLA_16)
+    else
     	$this->assertTrue($this->isElementPresent("modlgn-username"));
   }
   
@@ -184,15 +184,15 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   	
 		$db			=& JFactory::getDBO();
 		
-  		if(TEST_JSPC_JOOMLA_16){
-			$query	= 'UPDATE ' . $db->nameQuote( '#__extensions' )
-			. ' SET '.$db->nameQuote('enabled').'='.$db->Quote($action)
-	        .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+  		if(TEST_JSPC_JOOMLA_15){
+			$query	= 'UPDATE ' . $db->nameQuote( '#__plugins' )
+				. ' SET '.$db->nameQuote('published').'='.$db->Quote($action)
+	          	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
 		}
 		else{
-				$query	= 'UPDATE ' . $db->nameQuote( '#__plugins' )
-				. ' SET '.$db->nameQuote('published').'='.$db->Quote($action)
-	          	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);			
+				$query	= 'UPDATE ' . $db->nameQuote( '#__extensions' )
+				. ' SET '.$db->nameQuote('enabled').'='.$db->Quote($action)
+	        	.' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);			
 		}
 
 		$db->setQuery($query);		
@@ -214,14 +214,14 @@ class XiSelTestCase extends PHPUnit_Extensions_SeleniumTestCase
   {
   		
 		$db			=& JFactory::getDBO();
-  		if(TEST_JSPC_JOOMLA_16){
-		   $query	= 'SELECT '.$db->nameQuote('enabled')
-		   .' FROM ' . $db->nameQuote( '#__extensions' )
-	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
-		}
-		if(TEST_JSPC_JOOMLA_15){
+  		if(TEST_JSPC_JOOMLA_15){
 		   $query	= 'SELECT '.$db->nameQuote('published')
 		   .' FROM ' . $db->nameQuote( '#__plugins' )
+	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
+		}
+		else{
+		    $query	= 'SELECT '.$db->nameQuote('enabled')
+		   .' FROM ' . $db->nameQuote( '#__extensions' )
 	       .' WHERE '.$db->nameQuote('element').'='.$db->Quote($pluginname);
 		}
 

@@ -15,9 +15,17 @@ if (!defined('JPATH_BASE'))
 
 // Include relative constants, JLoader and the jimport and jexit functions.
 require_once JPATH_BASE.DS.'includes'.DS.'defines.php';
-require_once JPATH_LIBRARIES.DS.'joomla'.DS.'import.php';
+
+if(TEST_JSPC_JOOMLA_17){
+	require_once JPATH_LIBRARIES.DS.'import.php';
+	require_once JPATH_LIBRARIES.DS.'joomla'.DS.'environment'.DS.'request.php';
+}
+	
+else
+	require_once JPATH_LIBRARIES.DS.'joomla'.DS.'import.php';	
+
 require_once JPATH_BASE .DS.'includes'.DS.'framework.php';
 require_once JPATH_BASE .DS.'libraries'.DS.'joomla'.DS.'factory.php';
 // Initalize frontend framework
-$mainframe =& JFactory::getApplication('site');
+$mainframe = JFactory::getApplication('site');
 $mainframe->initialise();

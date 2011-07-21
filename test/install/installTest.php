@@ -84,17 +84,17 @@ class InstallTest extends XiSelTestCase
   {
     $this->type("install_url", COM_JSPC_PKG);
     
-    if(TEST_JSPC_JOOMLA_16)
-   		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
-   	if(TEST_JSPC_JOOMLA_15)
-   	  	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    if(TEST_JSPC_JOOMLA_15)
+		$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+   	else
+   	  	$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
 	    
     $this->waitPageLoad();
     
-    if(TEST_JSPC_JOOMLA_16)
-    	$this->assertTrue($this->isTextPresent("Installing component was successful."));
     if(TEST_JSPC_JOOMLA_15)
-    	$this->assertTrue($this->isTextPresent("Install Component Success"));
+		$this->assertTrue($this->isTextPresent("Install Component Success"));
+    else
+    	$this->assertTrue($this->isTextPresent("Installing component was successful."));
     
     $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
   }
@@ -108,31 +108,31 @@ function testuninstallJspc()
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
     $this->waitPageLoad();
 
-    if(TEST_JSPC_JOOMLA_16)
+    if(TEST_JSPC_JOOMLA_15)
+		$this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
+     else
      	$this->click("link=Manage");
-     if(TEST_JSPC_JOOMLA_15)
-     	$this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
      $this->waitPageLoad();
      
      //now find the component order in uninstall list
-     if(TEST_JSPC_JOOMLA_16){
-      	$this->type("filters_search", "jspc");
+     if(TEST_JSPC_JOOMLA_15){
+		$order = $this->getUninstallOrder('com_jspc');
+     	$this->click("cb$order");
+     	$this->click("link=Uninstall");	
+     }
+     else{
+     	$this->type("filters_search", "jspc");
     	$this->click("//button[@type='submit']");
     	$this->waitPageLoad();
     	$this->click("cb0");
-    	$this->click("//li[@id='toolbar-delete']/a/span");	
-     }
-     if(TEST_JSPC_JOOMLA_15){
-     	$order = $this->getUninstallOrder('com_jspc');
-     	$this->click("cb$order");
-     	$this->click("link=Uninstall");
+    	$this->click("//li[@id='toolbar-delete']/a/span");
      }
      $this->waitPageLoad();
      
-     if(TEST_JSPC_JOOMLA_16)
-     	$this->assertTrue($this->isTextPresent("Uninstalling component was successful."));
      if(TEST_JSPC_JOOMLA_15)
-     	$this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+		$this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+     else
+     	$this->assertTrue($this->isTextPresent("Uninstalling component was successful."));
      
      $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
        
@@ -147,15 +147,15 @@ function testuninstallJspc()
   function getUninstallOrder($component, $what = "COMPONENT")
   {
   	$db = JFactory::getDBO();
-  	if(TEST_JSPC_JOOMLA_16){
+  	if(TEST_JSPC_JOOMLA_15){
+		$sql = "SELECT * FROM `#__components`
+  		WHERE `parent` = '0'
+  		ORDER BY `iscore`, `name`";
+  	}
+  	else{
   		$sql = "SELECT * FROM `#__extensions`
   		WHERE `client_id` = '0'
   		ORDER BY `name`";
-  	}
-  	elseif(TEST_JSPC_JOOMLA_15){
-  		$sql = "SELECT * FROM `#__components`
-  		WHERE `parent` = '0'
-  		ORDER BY `iscore`, `name`";
   	}
   	
   	$db->setQuery($sql);

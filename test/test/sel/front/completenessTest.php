@@ -18,10 +18,10 @@ class CompletenessTest extends XiSelTestCase
   	$this->open(JOOMLA_LOCATION."index.php");
   	$this->waitPageLoad();
   		
-  	if(TEST_JSPC_JOOMLA_16)
-  		$element = '//img[@src="media/system/images/jspc/mod_56.5.jpg"]';
+  	if(TEST_JSPC_JOOMLA_15)
+		$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/mod_56.5.jpg"]';
   	else
-  		$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/mod_56.5.jpg"]';
+  		$element = '//img[@src="media/system/images/jspc/mod_56.5.jpg"]';
   		 
   	$this->assertTrue($this->isElementPresent($element));
   	
@@ -55,10 +55,10 @@ class CompletenessTest extends XiSelTestCase
   	$this->open(JOOMLA_LOCATION."index.php?option=com_community&view=profile");
   	$this->waitPageLoad();
   	
-  	if(TEST_JSPC_JOOMLA_16)
-  		$element = '//img[@src="media/system/images/jspc/plg_56.5.jpg"]';
+  	if(TEST_JSPC_JOOMLA_15)
+  		$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/plg_56.5.jpg"]';
   	else
-  		$element = '//img[@src="/'.JOOMLA_FOLDER.'/media/system/images/jspc/plg_56.5.jpg"]'; 
+  		$element = '//img[@src="media/system/images/jspc/plg_56.5.jpg"]';
   	$this->assertTrue($this->isElementPresent($element));
   	
   	$this->assertTrue($this->isTextPresent("Add 6 Album"));

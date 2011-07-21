@@ -55,13 +55,6 @@ function testPathOnSeoDisable()
 			$completionLink[$feature->id]=$featureObject->getCompletionLink(63);
 	}
 	
-	if(TEST_JSPC_JOOMLA_16){
-		$info[1]= JRoute::_('index.php?option=com_community&view=photos&task=newalbum&Itemid=133');
-		$info[3]= JRoute::_('index.php?option=com_community&view=photos&task=uploader&Itemid=133');
-		$info[4]= JRoute::_('index.php?option=com_community&view=profile&task=uploadAvatar&Itemid=133');
-		$info[6]= JRoute::_('index.php?option=com_community&view=videos&task=myvideos&Itemid=133');
-	}
-	
 	if(TEST_JSPC_JOOMLA_15){
 		$info[1]= JRoute::_('index.php?option=com_community&view=photos&task=newalbum&Itemid=53');
 		$info[3]= JRoute::_('index.php?option=com_community&view=photos&task=uploader&Itemid=53');
@@ -69,6 +62,12 @@ function testPathOnSeoDisable()
 		$info[6]= JRoute::_('index.php?option=com_community&view=videos&task=myvideos&Itemid=53');
 	}
 	
+	else{
+		$info[1]= JRoute::_('index.php?option=com_community&view=photos&task=newalbum&Itemid=133');
+		$info[3]= JRoute::_('index.php?option=com_community&view=photos&task=uploader&Itemid=133');
+		$info[4]= JRoute::_('index.php?option=com_community&view=profile&task=uploadAvatar&Itemid=133');
+		$info[6]= JRoute::_('index.php?option=com_community&view=videos&task=myvideos&Itemid=133');
+	}
 	foreach($allPublishFeature as $feature)
 		$this->assertEquals($completionLink[$feature->id]['link'], $info[$feature->id]);
 	

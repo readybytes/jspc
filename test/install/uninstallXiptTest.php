@@ -16,33 +16,33 @@ class UninstallXiptTest extends XiSelTestCase
     $this->open(JOOMLA_LOCATION."/administrator/index.php?option=com_installer");
     $this->waitPageLoad();
 
-    if(TEST_JSPC_JOOMLA_16)
-     	$this->click("link=Manage");
     if(TEST_JSPC_JOOMLA_15)
-     	$this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
+		$this->click("//a[@onclick=\"javascript:document.adminForm.type.value='components';submitbutton('manage');\"]");
+    else
+     	$this->click("link=Manage");
      
      $this->waitPageLoad();
      
      //now find the component order in uninstall list
-     if(TEST_JSPC_JOOMLA_16){
-      	$this->type("filters_search", "xipt");
+     if(TEST_JSPC_JOOMLA_15){
+		$order = $this->getUninstallOrder('com_xipt');
+	 	$this->click("cb$order");
+	 	$this->click("link=Uninstall");	
+     }
+     else{
+     	$this->type("filters_search", "xipt");
     	$this->click("//button[@type='submit']");
     	$this->waitPageLoad();
     	$this->click("cb0");
-    	$this->click("//li[@id='toolbar-delete']/a/span");	
-     }
-     if(TEST_JSPC_JOOMLA_15){
-     $order = $this->getUninstallOrder('com_xipt');
-     $this->click("cb$order");
-     $this->click("link=Uninstall");
+    	$this->click("//li[@id='toolbar-delete']/a/span");
      }
      
      $this->waitPageLoad();
      
-     if(TEST_JSPC_JOOMLA_16)
-     	$this->assertTrue($this->isTextPresent("Uninstalling component was successful."));
      if(TEST_JSPC_JOOMLA_15)
-     	$this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+		$this->assertTrue($this->isTextPresent("Uninstall Component Success"));
+     else
+     	$this->assertTrue($this->isTextPresent("Uninstalling component was successful."));
      	
      $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
      $this->verifyUninstall();

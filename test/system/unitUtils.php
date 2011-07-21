@@ -110,7 +110,7 @@ class XiUnitTestCase extends PHPUnit_Framework_TestCase
         system("sudo chmod 777 $fname");
 
   		$configString = '';
-		if(TEST_JSPC_JOOMLA_16){
+		if(TEST_JSPC_JOOMLA_16 || TEST_JSPC_JOOMLA_17){
 			$configString = $config->toString('PHP', array('class' => 'JConfig', 'closingtag' => false));
 		}elseif(TEST_JSPC_JOOMLA_15){
 			$configString  = $config->toString('PHP', 'config', array('class' => 'JConfig'));

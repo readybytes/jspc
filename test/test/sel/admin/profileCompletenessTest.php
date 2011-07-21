@@ -315,10 +315,10 @@ function addFeatureFour()
   
   function toolbar($what)
   {
-  	if(TEST_JSPC_JOOMLA_16)
-    	$this->click("//li[@id='toolbar-$what']/a/span");
+  	if(TEST_JSPC_JOOMLA_15)
+		$this->click("//td[@id='toolbar-$what']/a/span");
     else
-    	$this->click("//td[@id='toolbar-$what']/a/span");
+    	$this->click("//li[@id='toolbar-$what']/a/span");
   }
 }
 

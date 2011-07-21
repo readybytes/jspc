@@ -88,7 +88,7 @@ class addonFactory
 	
 	public function getValueFromParams($what,$from,$default=0)
 	{
-		$params = new JParameter( $from );
+		$params = new XipcParameter( $from );
 		$value = $params->get($what,$default);
 		return $value;
 	}
@@ -123,11 +123,11 @@ abstract class jspcAddons
 		$className = substr($className, 4);
 		$addonXmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
 		if(empty($this->addonparams) && JFile::exists($addonXmlpath))
-			$this->addonparams = new JParameter('',$addonXmlpath);
+			$this->addonparams = new XipcParameter('',$addonXmlpath);
 		
 		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';		
 		if(JFile::exists($corexmlpath))
-			$this->coreparams = new JParameter('',$corexmlpath);
+			$this->coreparams = new XipcParameter('',$corexmlpath);
 	}
 	
 	
@@ -162,7 +162,7 @@ abstract class jspcAddons
 			return;
 			
 		$xmlpath = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . 'coreparams.xml';
-		$this->coreparams = new JParameter('',$xmlpath);
+		$this->coreparams = new XipcParameter('',$xmlpath);
 	}
 	
 	

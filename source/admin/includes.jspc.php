@@ -36,6 +36,7 @@ require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'core.php' );
 require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'jspc.php' );
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
+require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'parameter.php');
 
 /*Load Langauge file*/
 $lang = JFactory::getLanguage();

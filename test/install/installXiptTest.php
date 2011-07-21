@@ -30,17 +30,17 @@ class InstallXiptTest extends XiSelTestCase
 	// add profiletype-one
     $this->type("install_url", COM_XIPT_PKG);
     
-    if(TEST_JSPC_JOOMLA_16)
-   		$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
+    if(TEST_JSPC_JOOMLA_15)
+		$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
    	else
-    	$this->click("//form[@name='adminForm']/table[3]/tbody/tr[2]/td[2]/input[2]");
+    	$this->click("//input[@value='Install' and @type='button' and @onclick='Joomla.submitbutton4()']");
    	
     $this->waitPageLoad();
     
-    if(TEST_JSPC_JOOMLA_16)
-    	$this->assertTrue($this->isTextPresent("Installing component was successful."));
+    if(TEST_JSPC_JOOMLA_15)
+		$this->assertTrue($this->isTextPresent("Install Component Success"));
     else
-    	$this->assertTrue($this->isTextPresent("Install Component Success"));
+    	$this->assertTrue($this->isTextPresent("Installing component was successful."));
     	
     $this->assertFalse($this->isElementPresent("//dl[@id='system-error']/dd/ul/li"));
     
