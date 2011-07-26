@@ -1,0 +1,89 @@
+/*style sheets */
+
+div.jspc_column1
+{
+	float:left
+}
+
+div.jspc_column2
+{
+	float:left;
+	margin-left:10px;	
+}
+
+div.jspc_column3
+{
+	float:left;
+}
+
+div.jspc_avatar
+{
+	float:left;
+}
+
+div.jspc_avatar img
+{
+	padding: 2px; 
+	border: solid 1px #ccc;
+}
+
+div.jspc_completion_bar
+{
+	margin-bottom:10px;
+}
+
+div.jspc_completion_text
+{
+	margin-top:25px;
+}
+
+.jspc_link_percent
+{
+	position:absolute;
+	float:left;
+	width:50px;
+}
+
+.jspc_link_text
+{
+	position:absolute;
+	float:left;
+	margin-left:50px;
+}
+
+.jspc_link_text a
+{
+
+}
+
+.jspc_column3 ul#jspc_completion_links 
+{
+	list-style:none;
+	margin: 0pt;
+	padding: 0pt;
+}
+
+.jspc_column3 ul#jspc_completion_links li
+{
+	font-size: 14px;
+	color: #999999;
+	background-color: transparent;
+	background-image: url(../../../components/com_community/templates/default/images/add-button.gif);
+	background-repeat: no-repeat;
+	background-attachment: scroll;
+	background-position: 0pt 0pt;
+	line-height: 16px;
+	height: 16px;
+	font-weight: bold;
+	margin: 0pt;
+	margin-bottom: 5px;
+	padding: 0pt;
+	padding-left: 20px;
+	margin-right:20px;
+}
+
+.jspc_percentage
+{
+	font-size: 16px;
+	font-weight: 700px;
+}
