@@ -167,6 +167,7 @@ class plgCommunityJspc extends CApplications
 						break;
 					
 					$nextTask	= JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+					$nextTask['text'] = preg_replace("/COM_JSPC_/", "", $nextTask['text']);
 					?>
 					<li> 
 						<span class="jspc_link_percent"> <?php echo $value; ?>% &nbsp; </span>
