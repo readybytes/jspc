@@ -13,7 +13,11 @@ JToolBarHelper::apply('apply', JspcText::_('APPLY'));
 JToolBarHelper::save('save',JspcText::_('SAVE'));
 JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 ?>
-
+<?php 
+$doc =& JFactory::getDocument();
+$style = '#publish-values label{min-width:0px;clear:none;}'; 
+$doc->addStyleDeclaration( $style );
+?>
 <script language="javascript" type="text/javascript">
 	function submitbutton(pressbutton) {
 		if (pressbutton == "cancel") {
@@ -63,7 +67,9 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 			</label>
 			</td>
 			<td>
-				<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
+				<div id="publish-values">
+					<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
+				</div>
 			</td>
 		</tr>
 		<tr>
