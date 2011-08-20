@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 <params>
-	<param name="application_total" type="text" default="" label="COM_JSPC_TOTAL_APPLICATION_COUNT.LABEL" description="COM_JSPC_NO_OF_TOTAL_APPLICATION_REQUIRE_TO_COMPLETE_FOR_COMPLETING_USER_PROFILE.DESC" />
+	<param name="application_total" type="text" default="" label="COM_JSPC_TOTAL_APPLICATION_COUNT_LABEL" description="COM_JSPC_NO_OF_TOTAL_APPLICATION_REQUIRE_TO_COMPLETE_FOR_COMPLETING_USER_PROFILE_DESC" />
 </params>
 </config>

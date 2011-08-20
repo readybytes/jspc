@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <config>
 <params>
-	<param name="albums_total" type="text" default="" label="COM_JSPC_TOTAL_ALBUM_COUNT.LABEL" description="COM_JSPC_NO_OF_TOTAL_ALBUMS_REQUIRE_TO_COMPLETE_FOR_COMPLETING_USER_PROFILE.DESC" />
+	<param name="albums_total" type="text" default="" label="COM_JSPC_TOTAL_ALBUM_COUNT_LABEL" description="COM_JSPC_NO_OF_TOTAL_ALBUMS_REQUIRE_TO_COMPLETE_FOR_COMPLETING_USER_PROFILE_DESC" />
 </params>
 </config>

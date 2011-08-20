@@ -9,7 +9,7 @@
 		<tr>
 			<td>
 				<div style="font-weight:700;">
-					<?php echo JspcText::_('ANOTHER_GREAT_COMPONENT_BROUGHT_TO_YOU_BY_JOOMLAXI.COM');?>
+					<?php echo JspcText::_('ANOTHER_GREAT_COMPONENT_BROUGHT_TO_YOU_BY_JOOMLAXI_COM');?>
 				</div>
 				<p>
 					Support : <a href="http://www.joomlaxi.com/support/forum.html" target="_blank">

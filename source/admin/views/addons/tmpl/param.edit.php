@@ -42,7 +42,7 @@ $doc->addStyleDeclaration( $style );
 	<table class="admintable">
 		<tr>
 			<td width="100" class="key">
-				<label for="name" title=" <?php echo JspcText::_( 'NAME.DESC' ); ?> ">
+				<label for="name" title=" <?php echo JspcText::_( 'NAME_DESC' ); ?> ">
 					<?php echo JspcText::_( 'NAME' ); ?>:
 				</label>
 			</td>
@@ -52,7 +52,7 @@ $doc->addStyleDeclaration( $style );
 		</tr>
 		<tr>
 			<td width="100" class="key">
-				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME.DESC' ); ?> ">
+				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME_DESC' ); ?> ">
 					<?php echo JspcText::_( 'FEATURE_NAME' ); ?>:
 				</label>
 			</td>
@@ -62,7 +62,7 @@ $doc->addStyleDeclaration( $style );
 		</tr>
 		<tr>
 			<td valign="top" class="key">
-			<label for="published" title=" <?php echo JspcText::_( 'PUBLISHED.DESC' ); ?> ">
+			<label for="published" title=" <?php echo JspcText::_( 'PUBLISHED_DESC' ); ?> ">
 				<?php echo JspcText::_( 'PUBLISHED' ); ?>:
 			</label>
 			</td>

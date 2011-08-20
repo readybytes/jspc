@@ -3,8 +3,8 @@
 	
 	<params addpath="/administrator/components/com_jspc/elements">
 		<param name="jspc_core_total_contribution" type="text" default="" label="COM_JSPC_TOTAL_ADDON_CONTRIBUTION" description="COM_JSPC_TOTAL_CONTRIBUTION_OF_FOLLOWING_RULE" />
-		<param name="jspc_core_display_text" type="text" default="" label="COM_JSPC_DISPLAY_TEXT" description="COM_JSPC_WRITE_HERE_TEXT_TO_DISPLAY_WHEN_FEATURE_IS_INCOMPLETE.DESC" />
-		<param name="jspc_profiletype" type="profiletypes" default="" label="COM_JSPC_PROFILE_TYPE" description="COM_JSPC_SELECT_THE_PROFILE_TYPE_FOR_WHICH_THE_RULE_IS_CREATED.DESC" />
+		<param name="jspc_core_display_text" type="text" default="" label="COM_JSPC_DISPLAY_TEXT" description="COM_JSPC_WRITE_HERE_TEXT_TO_DISPLAY_WHEN_FEATURE_IS_INCOMPLETE_DESC" />
+		<param name="jspc_profiletype" type="profiletypes" default="" label="COM_JSPC_PROFILE_TYPE" description="COM_JSPC_SELECT_THE_PROFILE_TYPE_FOR_WHICH_THE_RULE_IS_CREATED_DESC" />
 		
 	</params>
 	

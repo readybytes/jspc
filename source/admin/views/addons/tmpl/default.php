@@ -17,7 +17,7 @@ function submitbutton( action )
 	switch( action )
 	{
 		case 'remove':
-			if( !confirm( '<?php echo JspcText::_('ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THIS_CRITERIA?'); ?>' ) )
+			if( !confirm( '<?php echo JspcText::_('ARE_YOU_SURE_YOU_WANT_TO_REMOVE_THIS_CRITERIA'); ?>' ) )
 			{
 				break;
 			}

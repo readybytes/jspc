@@ -98,7 +98,7 @@ class ProfileCompleteHelper
 			<div class="jspc_completion_bar">
 				<img src="<?php echo $data['filename'];?>">
 			</div> 
-			<div style="jspc_completion_text"><?php
+			<div class="jspc_completion_text"><?php
 						echo $data['displayText']; ?>
 			</div>
 		</div>

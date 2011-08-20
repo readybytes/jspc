@@ -26,7 +26,7 @@
 	</languages>
 	
 	<administration>
-		<menu link="option=com_jspc" img="../components/com_jspc/assets/images/icon-jspc.png">JSPC</menu>
+		<menu link="option=com_jspc" img="../administrator/components/com_jspc/assets/images/icon-jspc.png">JSPC</menu>
 		<languages>
 			<language tag="en-GB">languages/admin/en-GB.com_jspc.ini</language>
 		</languages>
