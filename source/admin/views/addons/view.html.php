@@ -61,7 +61,7 @@ class JspcViewAddons extends JView
 			}			
 		}
 		
-		$this->setToolbar();
+		$this->setToolbar('display');
 		if($isXiptExist){
 			$this->assign('profileTypeArray',  $profileTypeArray);		
 			$this->assign('addonProfiletype' , $addonProfiletype );
@@ -76,8 +76,8 @@ class JspcViewAddons extends JView
     }
 
 	
-	function setToolBar()
-	{
+	function setToolBar($task='display')
+	{      $task = JRequest::getVar('task',$task);
 		?>
 		<style type="text/css">
 		#toolbar-aboutus
@@ -86,21 +86,29 @@ class JspcViewAddons extends JView
 	 		background-repeat:no-repeat;
 	 		background-position: top center;
 	 	}
+	 	.icon-48-addons{
+			background-image:  url(../administrator/components/com_jspc/assets/images/jspc.png);
+			background-repeat:no-repeat;
+		}
 		</style>
 		<?php 
 		
 		// Set the titlebar text
+		
 		JToolBarHelper::title( JspcText::_( 'PROFILE_COMPLETENESS' ), 'addons' );
-
-		// Add the necessary buttons
-		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
-		JToolBarHelper::custom('aboutus','aboutus','',JspcText::_('ABOUT_US'),0,0); 
-		JToolBarHelper::divider();
-		JToolBarHelper::addNew('add', JspcText::_( 'ADD_FEATURE' ));
-		JToolBarHelper::trash('remove', JspcText::_( 'DELETE' ));
-		JToolBarHelper::divider();
-		JToolBarHelper::publishList('publish', JspcText::_( 'PUBLISHED' ));
-		JToolBarHelper::unpublishList('unpublish', JspcText::_( 'UNPUBLISHED' ));
+		if($task === 'add' || $task === 'renderaddon'){
+			return true;
+		}
+			// Add the necessary buttons
+			JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
+			JToolBarHelper::custom('aboutus','aboutus','',JspcText::_('ABOUT_US'),0,0); 
+			JToolBarHelper::divider();
+			JToolBarHelper::addNew('add', JspcText::_( 'ADD_FEATURE' ));
+			JToolBarHelper::trash('remove', JspcText::_( 'DELETE' ));
+			JToolBarHelper::divider();
+			JToolBarHelper::publishList('publish', JspcText::_( 'PUBLISHED' ));
+			JToolBarHelper::unpublishList('unpublish', JspcText::_( 'UNPUBLISHED' ));
+			return true;
 	}
 	
 	
@@ -109,7 +117,8 @@ class JspcViewAddons extends JView
 	{
 		$addons = addonFactory::getAddons();
 		$this->assign( 'addons' , $addons );
-		parent::display($tpl);
+		$this->setToolbar('add');
+		return parent::display($tpl);
 	}
 	
 	
@@ -145,6 +154,7 @@ class JspcViewAddons extends JView
 		$this->assignRef('addonParamsHtml',		$addonParamsHtml);
 		$this->assign('addonInfo',$data);
 		$this->assign('percentage',$percentage);
+		$this->setToolBar();
 		parent::display($tpl);
 	}
 	
