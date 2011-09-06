@@ -16,7 +16,7 @@ if(!JFolder::exists($jspcPath))
 $Protocol = "http://";
 $tp =	$Protocol.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '', $file);*/
 ?>
-<script type="text/javascript" src="<?php echo JURI::root();?>administrator/components/com_jspc/elements/colorbox/jscolor.js"></script>
+<script type="text/javascript" src="<?php echo JURI::root();?>administrator/components/com_jspc/fields/colorbox/jscolor.js"></script>
 
 <?php 
 class JFormFieldColorbox extends JFormField
