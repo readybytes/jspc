@@ -13,18 +13,7 @@ class JspcPhotos extends jspcAddons
 	{
 		parent::__construct(__CLASS__, $debugMode);
 	}
-	
-	
-	public function checkAddonAccesibility($userid)
-	{
-		/*XITODO : check according to addon params
-		 * user accesibility option
-		 * for ex :- if photo is not available to user according to profiletype rule
-		 * then this fn should return false*/
-		return true;
-	} 
-	
-	
+		
 
 	
 	function getCompletionLink($userid)
