@@ -51,11 +51,19 @@ class JspcAvatar extends jspcAddons
 	
 	public function calculateCount($userid)
 	{
-		$my 	= CFactory::getUser($userid);		
-		$pathofAvatar  =$my->_avatar;
+		$my 		   = CFactory::getUser($userid);		
+		$pathofAvatar  = $my->_avatar;
 		$count = 0;
-		if(JspcHelper::checkXiptExists()){
+		$integrate_with = $addonObject->getCoreParams('integrate_with', 'jspt');
+		
+		if(JspcHelper::checkXiptExists() && $integrate_with == 'jspt'){
 	    	$ptypeavatar=$this->getPtypeAvatar($userid);	
+	    	if(!empty($pathofAvatar) 
+	    		&& !JString::stristr($pathofAvatar,$ptypeavatar))  
+	    		$count=1;
+	    }
+	    elseif(JspcHelper::checkMultiProfileExists() && $integrate_with == 'multiprofile'){
+	    	$ptypeavatar = $this->getmultiProfileAvatar($userid);	
 	    	if(!empty($pathofAvatar) 
 	    		&& !JString::stristr($pathofAvatar,$ptypeavatar))  
 	    		$count=1;
@@ -69,9 +77,15 @@ class JspcAvatar extends jspcAddons
 	
 	public function getPtypeAvatar($userId)
 	{
-		require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_jspc' . DS. 'helpers' .DS . 'xiptwrapper.php' );
 	    $ptype  = XiptWrapper::getUserInfo($userId);	
 		$field = array_shift(XiptWrapper::getProfiletypeInfo($ptype));
+		return $field->avatar;
+	}
+	
+	public function getmultiProfileAvatar($userId)
+	{
+	    $ptype  = MultiProfile::getUserInfo($userId);	
+		$field = array_shift(MultiProfile::getProfiletypeInfo($ptype));
 		return $field->avatar;
 	}
 }

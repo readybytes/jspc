@@ -49,7 +49,7 @@ function submitbutton( action )
 			<th>
 				<?php echo JspcText::_( 'ADDON_NAME' ); ?>
 			</th>
-			<?php if($this->isXiptExist){?>
+			<?php if($this->profilesExist){?>
 			<th>
 				<?php echo JspcText::_( 'PROFILE_TYPE' ); ?>
 			</th>
@@ -57,9 +57,9 @@ function submitbutton( action )
 			<th>
 				<?php echo JspcText::_( 'TOTAL_WEIGHTAGE' ); ?>
 			</th>
-			<th width="1px"></th>
+			
 			<?php 
-			if($this->isXiptExist == false)
+			if($this->profilesExist == false)
 			{?>
 				<th width="5%">
 				<?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?>
@@ -80,7 +80,7 @@ function submitbutton( action )
 				<?php 
 				}	
 			}?>
-			<th width="1%"></th>
+			
 			<th width="5%">
 				<?php echo JspcText::_( 'PUBLISHED' ); ?>
 			</th>
@@ -112,7 +112,7 @@ function submitbutton( action )
 			<td>
 				<?php echo $addon->name; ?>
 			</td>
-			<?php if($this->isXiptExist){?>
+			<?php if($this->profilesExist){?>
 			<td>
 				<?php echo $this->addonProfiletype[$addon->id]; ?>
 			</td>
@@ -120,9 +120,9 @@ function submitbutton( action )
 			<td>
 				<?php echo $this->totals[$addon->id]; ?>
 			</td>
-			<td></td>
+			
 			<?php 
-			if($this->isXiptExist)
+			if($this->profilesExist)
 			{		
 				foreach($this->profileTypeArray as $ptypeId)
 				{
@@ -143,7 +143,7 @@ function submitbutton( action )
 			<?php echo round($this->publishPercentage[$addon->id],2)." %"; ?>
 			</td>
 			<?php } ?>
-			<td></td>
+			
 			<td align="center" id="published<?php echo $addon->id;?>">
 				<a href="javascript:void(0);" onclick="return listItemTask('cb<?php echo $i-1;?>','<?php echo $addon->published ? 'unpublish' : 'publish' ?>')">
 							<?php if($addon->published)

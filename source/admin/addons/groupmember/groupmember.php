@@ -14,10 +14,6 @@ class JspcGroupmember extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-	
-	
-	
-	
 	function getCompletionLink($userid)
 	{
 		$result = array();
@@ -25,11 +21,7 @@ class JspcGroupmember extends jspcAddons
 		$result['link']=CRoute::_('index.php?option=com_community&view=groups');
 		return $result;
 	}
-	
-	
-	
-	
-	
+		
 	public function calculateCount($userid)
 	{
 		$gModel = CFactory::getModel('groups');

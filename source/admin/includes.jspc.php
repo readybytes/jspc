@@ -38,6 +38,12 @@ require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
 require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'parameter.php');
 
+$isXiptExist = JspcHelper::checkXiptExists();
+if($isXiptExist)
+	require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'xiptwrapper.php' );
+	
+require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'multiprofile.php' );
+
 /*Load Langauge file*/
 $lang = JFactory::getLanguage();
 if($lang)

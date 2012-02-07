@@ -274,22 +274,38 @@ abstract class jspcAddons
 	
 	public function checkAddonAccesibility($userid)
 	{
-		$xipt_exist=JspcHelper::checkXiptExists();
-		if(!$xipt_exist)
-			return true;
+		$integrate_with = $this->getCoreParams('integrate_with','jspt');
 		
-		$ptype = $this->getCoreParams('jspc_profiletype',0);
-        /* ptype 0 means rule is defined for all */
-        if(0 == $ptype)
-            return true;
-        //else check user profiletype
-        require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
-        $userPtype = XiptAPI::getUserInfo($userid,'PROFILETYPE');
-        if($userPtype == $ptype)
-            return true;
-           
-        return false;    
-		
+		if($integrate_with == 'jspt'){
+			$xipt_exist=JspcHelper::checkXiptExists();
+			if(!$xipt_exist)
+				return true;
+			
+			$ptype = $this->getCoreParams('jspc_profiletype',0);
+	        /* ptype 0 means rule is defined for all */
+	        if(0 == $ptype)
+	            return true;
+	        //else check user profiletype
+	        require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
+	        $userPtype = XiptAPI::getUserInfo($userid,'PROFILETYPE');
+	        if($userPtype == $ptype)
+	            return true;    
+		}
+		else{
+			$multiprofile_exist=JspcHelper::checkMultiProfileExists();
+			if(!$multiprofile_exist)
+				return true;
+			
+			$ptype = $this->getCoreParams('jspc_multiprofile',0);
+	        /* ptype 0 means rule is defined for all */
+	        if(0 == $ptype)
+	            return true;
+	            
+	        $userPtype = MultiProfile::getUserInfo($userid);
+	        if($userPtype == $ptype)
+	            return true;
+		}
+		return false;
 	}
 	
 	

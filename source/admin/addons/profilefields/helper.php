@@ -12,35 +12,45 @@ class helper
 	//return all fields available in jomsocial
 	function getJomsocialProfileFields($filter = '',$join='AND')
 	{
-		$ptype=jspcAddons::getCoreParams('jspc_profiletype',0);
+		$integrate_with = jspcAddons::getCoreParams('integrate_with', 'jspt');
+		
+		if($integrate_with == 'jspt')
+			$ptype=jspcAddons::getCoreParams('jspc_profiletype',0);
+		else
+			$ptype=jspcAddons::getCoreParams('jspc_multiprofile',0);
+			
 		$allField=null;
 		
 		if($allField == null){
 			$db	= JFactory::getDBO();
 			
 			//setting up the search condition is there is any
-		$wheres = array();
-		if(! empty($filter)){
-			foreach($filter as $column => $value)
-			{
-				$wheres[] = "`$column` = " . $db->Quote($value); 	
+			$wheres = array();
+			if(! empty($filter)){
+				foreach($filter as $column => $value)
+				{
+					$wheres[] = "`$column` = " . $db->Quote($value); 	
+				}
 			}
-		}
-			
-		$sql = "SELECT * FROM " . $db->nameQuote('#__community_fields');
-		if(! empty($wheres)){
-		   $sql .= " WHERE ".implode(' AND ', $wheres);
-		}
-		$sql .= " ORDER BY `ordering`";
-			
-		$db->setQuery($sql);
-		$fields = $db->loadObjectList();
-	    	
-	    $xipt_exists = JspcHelper::checkXiptExists();
-	    if($xipt_exists && $ptype != 0){
-	    require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_jspc' . DS. 'helpers' .DS . 'xiptwrapper.php' );
-	    	$result  = XiptWrapper::filterProfileTypeFields($fields,$ptype,null);
-	    }
+				
+			$sql = "SELECT * FROM " . $db->nameQuote('#__community_fields');
+			if(! empty($wheres)){
+			   $sql .= " WHERE ".implode(' AND ', $wheres);
+			}
+			$sql .= " ORDER BY `ordering`";
+				
+			$db->setQuery($sql);
+			$fields = $db->loadObjectList();
+		    	
+		    $xipt_exists = JspcHelper::checkXiptExists();
+		    $multiprofile_exists = JspcHelper::checkMultiProfileExists();
+		    
+		    if($xipt_exists && $ptype != 0 && $integrate_with == 'jspt'){
+		    	$result  = XiptWrapper::filterProfileTypeFields($fields,$ptype,null);
+		    }
+		    elseif($multiprofile_exists && $ptype != 0 && $integrate_with == 'multiprofile'){
+		    	$result  = MultiProfile::filterProfileTypeFields($fields,$ptype);
+		    }
 	    }
 		return $fields;
 		

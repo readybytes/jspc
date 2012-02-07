@@ -33,9 +33,9 @@ class JspcHelper
 	
 	
 	
-	function getAllTotals($isCheckPublished=true, $isXiptExist=false)
+	function getAllTotals($isCheckPublished=true, $profilesExist=false)
 	{
-		$total = $isXiptExist ? array() : 0 ;
+		$total = $profilesExist ? array() : 0 ;
 		
 		$addonsinfo = addonFactory::getAddonsInfo();		
 		if(empty($addonsinfo))
@@ -57,13 +57,23 @@ class JspcHelper
 
 			$contribution = addonFactory::getValueFromParams('jspc_core_total_contribution',$info->coreparams,0);
 			
-			if($isXiptExist == false)
+			if($profilesExist == false)
 			{
 				$total = $total + $contribution;	
 				continue;
 			}
 			
-			$ptype = addonFactory::getValueFromParams('jspc_profiletype',$info->coreparams,0);
+			$integrate_with = addonFactory::getValueFromParams('integrate_with',$info->coreparams,"jspt");
+			
+			if($integrate_with == "jspt"){
+				$ptype 			  = addonFactory::getValueFromParams('jspc_profiletype',$info->coreparams,0);
+				$profileTypeArray = XiptAPI::getProfiletypeInfo();
+			}
+			else{
+				$ptype 			  = addonFactory::getValueFromParams('jspc_multiprofile',$info->coreparams,0);
+				$profileTypeArray = MultiProfile::getProfiletypeInfo();
+			}
+			
 			if($ptype)
 			{
 				if(array_key_exists($ptype, $total)==false)
@@ -71,9 +81,7 @@ class JspcHelper
 				
 				$total[$ptype] = $total[$ptype] + $contribution;
 				continue;
-			}	
-				
-			$profileTypeArray=XiptAPI::getProfiletypeInfo();
+			}			
 				
 			foreach($profileTypeArray as $ptypeId)
 			{
@@ -87,6 +95,7 @@ class JspcHelper
 		return $total;
 }
 
+//XITODO : Move to helper file
 	function checkXiptExists()
 	{
 		jimport( 'joomla.filesystem.file' );
@@ -105,6 +114,17 @@ class JspcHelper
 		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
 		//require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'libraries' . DS . 'profiletypes.php' );
 
+		return true;
+	}
+	
+//XITODO : Move to helper file
+	function checkMultiProfileExists()
+	{
+		$result  = MultiProfile::getProfileTypeIds();
+		
+		if(empty($result))
+			return false;
+			
 		return true;
 	}
 	

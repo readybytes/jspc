@@ -34,6 +34,25 @@ $doc->addStyleDeclaration( $style );
 	}
 </script>
 
+<script type="text/javascript">
+
+		jQuery(document).ready(function($) {
+						
+			$("select#coreparamsintegrate_with").change(function() {
+				$("#coreparams\\[jspc\\_multiprofile\\]").attr("disabled", "disabled");
+				if(this.value === 'multiprofile') {
+					$("#coreparams\\[jspc_multiprofile\\]").removeAttr('disabled');
+					$("#coreparams\\[jspc_profiletype\\]").attr("disabled", "disabled");
+				}
+				if(this.value === 'jspt') {
+					$("#coreparams\\[jspc_profiletype\\]").removeAttr('disabled');
+				}
+			});
+
+			$('#coreparamsintegrate_with').change();
+		});
+</script>
+
 <form action="index.php" method="post" name="adminForm">
 <div>
 <div class="col width-40" style="width:40%; float:left;">
@@ -80,7 +99,7 @@ $doc->addStyleDeclaration( $style );
 			</td>
 			<td>
 				<?php 
-				if(!$this->isXiptExist)
+				if(!$this->profilesExist)
 					echo  round($this->percentage,2)." %";
 				else
 				{

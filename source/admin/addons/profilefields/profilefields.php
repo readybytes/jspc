@@ -36,7 +36,6 @@ class JspcProfilefields extends jspcAddons
 		$fieldstotal = helper::calculateTotal($this->addonparams,$fields,0);
 		$coretotal = $this->coreparams->get('jspc_core_total_contribution',0);
 		
-		$isXiptExist=JspcHelper::checkXiptExists();
 		//calculate percentage
 		$total 				 = JspcHelper::getAllTotals(true);
 		$featureContribution = 0;
