@@ -1,5 +1,11 @@
 <?php
+/**
+* @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+**/
+// no direct access
 defined('_JEXEC') or die('Restricted access');
+
 class JspcApplication extends jspcAddons
 {
 	function __construct($debugMode)
@@ -9,9 +15,9 @@ class JspcApplication extends jspcAddons
 	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid);
-		$result['link']=CRoute::_('index.php?option=com_community&view=apps');
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid);
+		$result['link'] = CRoute::_('index.php?option=com_community&view=apps');
 		return $result;
 	}
 	
@@ -19,11 +25,12 @@ class JspcApplication extends jspcAddons
 	{
 		$db		= JFactory::getDBO();	
 
-	    $query='SELECT COUNT(*) '
-		. ' FROM ' . $db->nameQuote( '#__community_apps' )
-		. ' WHERE '. $db->nameQuote('userid').'=' . $db->Quote( $userid );	
+	    $query	= 'SELECT COUNT(*) '
+				. ' FROM ' . $db->nameQuote( '#__community_apps' )
+				. ' WHERE '. $db->nameQuote('userid').'=' . $db->Quote( $userid );	
+				
 		$db->setQuery($query);
-		$count=$db->loadResult();
+		$count	= $db->loadResult();
 
 		return $count;
 	}

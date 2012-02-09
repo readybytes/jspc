@@ -16,8 +16,8 @@ class JspcGroupowner extends jspcAddons
 	
 	public function calculateCompletness($userid)
 	{
-		$count = $this->calculateCount($userid);			
-		$total = $this->addonparams->get('groupowner_total',0);
+		$count 		  = $this->calculateCount($userid);			
+		$total 		  = $this->addonparams->get('groupowner_total',0);
 		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
 		
 		if(0 == $total)
@@ -34,12 +34,11 @@ class JspcGroupowner extends jspcAddons
 	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid); //JText::_("CREATE GROUP");
-		$result['link']=CRoute::_('index.php?option=com_community&view=groups&task=create');
+		$result 		= array();
+		$result['text']	= $this->getDisplayText($userid);
+		$result['link']	= CRoute::_('index.php?option=com_community&view=groups&task=create');
 		return $result;
 	}
-	
 	
 	public function getRemainingCount($userid)
 	{
@@ -60,12 +59,12 @@ class JspcGroupowner extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		
-		$query	= 'SELECT COUNT(*) FROM ' 
-		. $db->nameQuote( '#__community_groups' ) . ' '
-		. 'WHERE ' . $db->nameQuote( 'ownerid' ) . '=' . $db->Quote( $userid );
+		$query	= 'SELECT COUNT(*) ' 
+				. 'FROM ' . $db->nameQuote( '#__community_groups' ) . ' '
+				. 'WHERE ' . $db->nameQuote( 'ownerid' ) . '=' . $db->Quote( $userid );
 		
 		$db->setQuery( $query );
-		$count	= $db->loadResult();
+		$count = $db->loadResult();
 		return $count;
 	}
 }

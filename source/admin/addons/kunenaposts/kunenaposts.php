@@ -14,13 +14,11 @@ class JspcKunenaposts extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-
-	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid); //JText::_("ADD ALBUM");
-		$result['link']=JRoute::_('index.php?option=com_kunena',false);
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid);
+		$result['link'] = JRoute::_('index.php?option=com_kunena',false);
 		return $result;
 	}
 
@@ -36,7 +34,6 @@ class JspcKunenaposts extends jspcAddons
 		return $kUser->posts;
 	}
 	
-	
 	function getFeatureContribution($userid)
 	{
 		if(false == $this->isKunenaExist())
@@ -46,16 +43,13 @@ class JspcKunenaposts extends jspcAddons
 		return $total;
 	}
 	
-	
 	public function checkAddonAccesibility($userid)
 	{
-
 		if(false == $this->isKunenaExist())
 			return false;
 			
 		return true;
 	}
-	
 	
 	private function isKunenaExist()
 	{

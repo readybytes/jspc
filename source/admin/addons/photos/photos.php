@@ -14,27 +14,20 @@ class JspcPhotos extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 		
-
-	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']=$this->getDisplayText($userid); //JText::_("ADD PHOTOS");
-		$result['link']=CRoute::_('index.php?option=com_community&view=photos&task=uploader');
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid);
+		$result['link'] = CRoute::_('index.php?option=com_community&view=photos&task=uploader');
 		return $result;
 	}
-	
-	
-	
-	
 	
 	public function calculateCount($userid)
 	{
 		/*For photos we have to check user photo count
 		 * and compare with required photo count */
 		$pModel = CFactory::getModel('photos');
-		$count = $pModel->getPhotosCount($userid);
+		$count  = $pModel->getPhotosCount($userid);
 		return $count;
 	}
-	
 }

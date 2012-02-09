@@ -39,7 +39,10 @@ $doc->addStyleDeclaration( $style );
 		jQuery(document).ready(function($) {
 						
 			$("select#coreparamsintegrate_with").change(function() {
+				
 				$("#coreparams\\[jspc\\_multiprofile\\]").attr("disabled", "disabled");
+				$("#coreparams\\[jspc\\_profiletype\\]").attr("disabled", "disabled");
+				
 				if(this.value === 'multiprofile') {
 					$("#coreparams\\[jspc_multiprofile\\]").removeAttr('disabled');
 					$("#coreparams\\[jspc_profiletype\\]").attr("disabled", "disabled");

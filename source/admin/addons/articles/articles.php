@@ -14,13 +14,11 @@ class JspcArticles extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-
-	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid); 
-		$result['link']=JRoute::_('index.php?option=com_content&view=article&layout=form',false);
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid); 
+		$result['link']	= JRoute::_('index.php?option=com_content&view=article&layout=form',false);
 		return $result;
 	}
 
@@ -28,8 +26,8 @@ class JspcArticles extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-		. ' FROM ' . $db->nameQuote( '#__content' )
-		. ' WHERE created_by=' . $db->Quote( $userid );
+				. ' FROM ' . $db->nameQuote( '#__content' )
+				. ' WHERE created_by=' . $db->Quote( $userid );
 
 		$db->setQuery( $query );
 		$count = $db->loadResult();

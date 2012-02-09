@@ -8,18 +8,17 @@ defined('_JEXEC') or die('Restricted access');
 
 class helper
 {
-
 	//return all fields available in jomsocial
 	function getJomsocialProfileFields($filter = '',$join='AND')
 	{
 		$integrate_with = jspcAddons::getCoreParams('integrate_with', 'jspt');
 		
 		if($integrate_with == 'jspt')
-			$ptype=jspcAddons::getCoreParams('jspc_profiletype',0);
-		else
-			$ptype=jspcAddons::getCoreParams('jspc_multiprofile',0);
+			$ptype = jspcAddons::getCoreParams('jspc_profiletype',0);
+		elseif($integrate_with == 'multiprofile')
+			$ptype = jspcAddons::getCoreParams('jspc_multiprofile',0);
 			
-		$allField=null;
+		$allField = null;
 		
 		if($allField == null){
 			$db	= JFactory::getDBO();
@@ -42,7 +41,7 @@ class helper
 			$db->setQuery($sql);
 			$fields = $db->loadObjectList();
 		    	
-		    $xipt_exists = JspcHelper::checkXiptExists();
+		    $xipt_exists         = JspcHelper::checkXiptExists();
 		    $multiprofile_exists = JspcHelper::checkMultiProfileExists();
 		    
 		    if($xipt_exists && $ptype != 0 && $integrate_with == 'jspt'){
@@ -59,7 +58,7 @@ class helper
 	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
 	{
 		$fields = self::getJomsocialProfileFields();
-		$html = '';
+		$html   = '';
 		if(empty($fields)) {
 			$html = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
 			return $html;
@@ -85,7 +84,6 @@ class helper
 					$html .= "<td class='paramlist_value'>".$fieldsPercentageInTotal[$f->id]." % </td>";
 				}
 				
-				//$html .= "<input type='text' id='params[".$f->id."]' name='params[".$f->id."]' value='' />";
 				$html .= "</tr>";
 			}
 		}
@@ -104,7 +102,6 @@ class helper
 		$percentage = round($percentage,$offset);
 		return $percentage;
 	}
-	
 	
 	function calculateTotal($addonparams,$fields,$userid)
 	{

@@ -1,5 +1,11 @@
 <?php
+/**
+* @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
+* @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
+**/
+// no direct access
 defined('_JEXEC') or die('Restricted access');
+
 class JspcProfilevideo extends jspcAddons
 {
 		function __construct($debugMode)
@@ -9,9 +15,9 @@ class JspcProfilevideo extends jspcAddons
 		
 		function getCompletionLink($userid)
 		{
-			$result = array();
-			$result['text']= $this->getDisplayText($userid); //JText::_("ADD ALBUM");
-			$result['link']=CRoute::_('index.php?option=com_community&view=profile&task=linkVideo');
+			$result 		= array();
+			$result['text'] = $this->getDisplayText($userid);
+			$result['link'] = CRoute::_('index.php?option=com_community&view=profile&task=linkVideo');
 			return $result;
 		}
 		

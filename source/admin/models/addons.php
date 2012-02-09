@@ -93,8 +93,6 @@ class JspcModelAddons extends JModel
 		return $addonsInfo;
 	}
 	
-	
-	
 	function updatePublish($id,$value)
 	{
 		$db 	= JFactory::getDBO();

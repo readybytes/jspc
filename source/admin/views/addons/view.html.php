@@ -14,34 +14,35 @@ class JspcViewAddons extends JView
 	function display($tpl = null)
 	{
 
-		$aModel = JspcFactory::getModel('addons');
+		$aModel 	= JspcFactory::getModel('addons');
 		$pagination = $aModel->getPagination();
 				
-		$addonsInfo = addonFactory::getAddonsInfo();
-		$addonProfiletype = array();
-		$profileTypeArray = array();
-		$publishPercentage = array();
-		$totals[]=array();
+		$addonsInfo 	  		= addonFactory::getAddonsInfo();
+		$addonProfiletype 		= array();
+		$profileTypeArray 		= array();
+		$publishPercentage 		= array();
+		$totals[]				= array();
 		$profileTypeArrayObject = array();
-		$profilesExist = false;
+		$profilesExist 			= false;
+		$ptype					= 0;
 		
-		//include the library file of XIPT if exist then includes file 
-		$isXiptExist = JspcHelper::checkXiptExists();
+		//check JSPT or JS Multi profiles exist or not
+		$isXiptExist	   = JspcHelper::checkXiptExists();
 		$multiprofileExist = JspcHelper::checkMultiProfileExists();
 		
 		if($isXiptExist){
-			$profilesExist = true;
-			$profileTypeArrayObject	 = XiptAPI::getProfiletypeInfo();
+			$profilesExist 			= true;
+			$profileTypeArrayObject	= XiptAPI::getProfiletypeInfo();
 		}
 		
 		if($multiprofileExist){
-			$profilesExist    = true;
-			$profileTypeArrayObject	 = MultiProfile::getProfiletypeInfo();
+			$profilesExist   		= true;
+			$profileTypeArrayObject	= MultiProfile::getProfiletypeInfo();
 		}
 			
 		foreach($profileTypeArrayObject as $ptypeId)
 		{
-			$profileTypeArray[$ptypeId->id]=$ptypeId->id;
+			$profileTypeArray[$ptypeId->id]= $ptypeId->id;
 			$profileTypeName[$ptypeId->id] = $ptypeId->name;
 		}
 					
@@ -49,7 +50,7 @@ class JspcViewAddons extends JView
 		{
 			foreach($addonsInfo as $addon) 
 			{
-				$data=(array)$addon;
+				$data				= (array)$addon;
 				$totals[$addon->id] = array();
 				$totals[$addon->id] = JspcHelper::getTotalContributionOfCriteria($addon->id);
 							
@@ -64,8 +65,8 @@ class JspcViewAddons extends JView
 				{
 					$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
 					
-					if($ptype==0)
-						$addonProfiletype[$addon->id]='all';
+					if($ptype == 0)
+						$addonProfiletype[$addon->id] = 'all';
 					else
 						$addonProfiletype[$addon->id] = $profileTypeName[$ptype];
 				}
@@ -74,8 +75,8 @@ class JspcViewAddons extends JView
 				{
 					$ptype = $addonObject->getCoreParams('jspc_multiprofile',0);
 					
-					if($ptype==0)
-						$addonProfiletype[$addon->id]='all';
+					if($ptype == 0)
+						$addonProfiletype[$addon->id] = 'all';
 					else
 						$addonProfiletype[$addon->id] = $profileTypeName[$ptype];
 				}
@@ -85,7 +86,7 @@ class JspcViewAddons extends JView
 		}
 		
 		$this->setToolbar('display');
-		if($isXiptExist){
+		if($profilesExist){
 			$this->assign('profileTypeArray',  $profileTypeArray);		
 			$this->assign('addonProfiletype' , $addonProfiletype );
 			$this->assignRef('profileTypeName',$profileTypeName);
@@ -100,7 +101,8 @@ class JspcViewAddons extends JView
 
 	
 	function setToolBar($task='display')
-	{      $task = JRequest::getVar('task',$task);
+	{      
+		$task = JRequest::getVar('task',$task);
 		?>
 		<style type="text/css">
 		#toolbar-aboutus
@@ -133,8 +135,6 @@ class JspcViewAddons extends JView
 			JToolBarHelper::unpublishList('unpublish', JspcText::_( 'UNPUBLISHED' ));
 			return true;
 	}
-	
-	
 
 	function add($tpl = null)
 	{
@@ -143,7 +143,6 @@ class JspcViewAddons extends JView
 		$this->setToolbar('add');
 		return parent::display($tpl);
 	}
-	
 	
 	function renderaddon($data,$tpl = null)
 	{
@@ -161,14 +160,14 @@ class JspcViewAddons extends JView
 		
 		if($integrate_with == "jspt")
 			$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
-		else
+		elseif($integrate_with == "multiprofile")
 			$ptype = $addonObject->getCoreParams('jspc_multiprofile',0);
 			
 		$isXiptExist	   = JspcHelper::checkXiptExists();
 		$multiprofileExist = JspcHelper::checkMultiProfileExists();
 
 		// xipt does not exists
-		$percentage=array();
+		$percentage = array();
 		$this->_calculateContributionOfPtype($data,$percentage,$ptype);
 		
 		if($isXiptExist && $integrate_with == "jspt")
@@ -201,14 +200,11 @@ class JspcViewAddons extends JView
 		parent::display($tpl);
 	}
 	
-	
 	function aboutus($tpl = null)
 	{
 		$this->setToolbar();
 		parent::display( $tpl);
 	}
-	
-	
 	
 	function _calculateContributionOfPtype($data,&$percentage,$ptype)
 	{
@@ -218,7 +214,7 @@ class JspcViewAddons extends JView
 		$addonProfiletype = array();
 		
 		//include the library file of XIPT if exist then includes file 
-		$isXiptExist = JspcHelper::checkXiptExists();
+		$isXiptExist 	   = JspcHelper::checkXiptExists();
 		$multiprofileExist = JspcHelper::checkMultiProfileExists();
 		
 		if($isXiptExist){
@@ -232,8 +228,8 @@ class JspcViewAddons extends JView
 		}
 		
 		
-		$percentage = array();
-		$total = JspcHelper::getAllTotals(true,	$profilesExist);
+		$percentage 		 = array();
+		$total 				 = JspcHelper::getAllTotals(true,	$profilesExist);
 		$totals[$data['id']] = JspcHelper::getTotalContributionOfCriteria($data['id']);
 		
 		if(!$profilesExist)

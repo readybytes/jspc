@@ -17,9 +17,9 @@ class JspcFriends extends jspcAddons
 	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid);
-		$result['link']=CRoute::_('index.php?option=com_community&view=search&task=browse');
+		$result 		= array();
+		$result['text']	= $this->getDisplayText($userid);
+		$result['link']	= CRoute::_('index.php?option=com_community&view=search&task=browse');
 		return $result;
 	}
 	
@@ -27,9 +27,9 @@ class JspcFriends extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-		. ' FROM ' . $db->nameQuote( '#__community_connection' )
-		. ' WHERE `connect_from`=' . $db->Quote( $userid ) 
-		. ' AND `status`=1';
+				. ' FROM ' . $db->nameQuote( '#__community_connection' )
+				. ' WHERE `connect_from`=' . $db->Quote( $userid ) 
+				. ' AND `status`=1';
 
 		$db->setQuery( $query );
 		$count = $db->loadResult();

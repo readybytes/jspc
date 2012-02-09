@@ -16,16 +16,16 @@ class JspcGroupmember extends jspcAddons
 	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid); // JText::_("JOIN GROUPS");
-		$result['link']=CRoute::_('index.php?option=com_community&view=groups');
+		$result 		= array();
+		$result['text']	= $this->getDisplayText($userid);
+		$result['link']	= CRoute::_('index.php?option=com_community&view=groups');
 		return $result;
 	}
 		
 	public function calculateCount($userid)
 	{
 		$gModel = CFactory::getModel('groups');
-		$count = $gModel->getGroupsCount( $userid );
+		$count  = $gModel->getGroupsCount( $userid );
 		return $count;
 	}
 }

@@ -18,7 +18,6 @@ class JspcControllerAddons extends JController
 		parent::display();
     }
     
-
     function add()
 	{
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
@@ -28,9 +27,7 @@ class JspcControllerAddons extends JController
 
 		// Get the view type
 		$viewType	= $document->getType();
-		
 		$view		= $this->getView( $viewName , $viewType );
-		
 		$layout		= JRequest::getCmd( 'layout' , 'addon.add' );
 			
 		$view->setLayout( $layout );
@@ -38,10 +35,9 @@ class JspcControllerAddons extends JController
 		echo $view->add();
 	}
 	
-	
 	function renderaddon()
 	{
-		$id = JRequest::getVar('editId', 0 );
+		$id    = JRequest::getVar('editId', 0 );
 		$addon = JRequest::getVar('addon', 0 ) ;
 		
 		$viewName	= JRequest::getCmd( 'view' , 'addons' );
@@ -51,7 +47,6 @@ class JspcControllerAddons extends JController
 
 		// Get the view type
 		$viewType	= $document->getType();
-		
 		$view		= $this->getView( $viewName , $viewType );
 		
 		if(!$addon && !$id) {
@@ -71,7 +66,6 @@ class JspcControllerAddons extends JController
 			$data['coreparams'] = '';
 			$data['addonparams'] = '';
 		}
-		
 		
 		if($id){
 			
@@ -98,13 +92,12 @@ class JspcControllerAddons extends JController
 		echo $view->renderaddon($data);
 	}
 	
-	
 	function processSave()
 	{
 		//save addonparam and core param in individual columns
 		// Test if this is really a post request
 		$method	= JRequest::getMethod();
-		$id = JRequest::getVar('editId', 0 );
+		$id 	= JRequest::getVar('editId', 0 );
 		if( $method == 'GET' )
 		{
 			JError::raiseError( 500 , JspcText::_('CC_ACCESS_METHOD_NOT_ALLOWED') );
@@ -112,8 +105,7 @@ class JspcControllerAddons extends JController
 		}
 		
 		$mainframe	= JFactory::getApplication();
-
-		$post	= JRequest::get('post');
+		$post		= JRequest::get('post');
 		
 		jimport('joomla.filesystem.file');
 
@@ -156,7 +148,7 @@ class JspcControllerAddons extends JController
 	function save()
 	{
 		$this->processSave();
-		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
+		$link 		= JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe	= JFactory::getApplication();
 		$mainframe->redirect($link, $msg);		
 		
@@ -164,8 +156,8 @@ class JspcControllerAddons extends JController
 	
 	function apply()
 	{
-		$id = $this->processSave();
-		$link = JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$id, false);
+		$id 		= $this->processSave();
+		$link 		= JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$id, false);
 		$mainframe	= JFactory::getApplication();
 		$mainframe->redirect($link, $msg);				
 	}
@@ -201,11 +193,11 @@ class JspcControllerAddons extends JController
 				
 		$cache = JFactory::getCache('com_content');
 		$cache->clean();
+		
 		$message	= $count.' '.JspcText::_('CRITERIA_REMOVED');		
-		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
+		$link 		= JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $message);
 	}
-	
 	
 	function publish()
 	{
@@ -213,8 +205,8 @@ class JspcControllerAddons extends JController
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables
-		$ids		= JRequest::getVar( 'cid', array(0), 'post', 'array' );
-		$count			= count( $ids );
+		$ids	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
+		$count	= count( $ids );
 
 		if (empty( $ids )) {
 			return JError::raiseWarning( 500, JspcText::_( 'NO_ITEMS_SELECTED' ) );
@@ -225,7 +217,7 @@ class JspcControllerAddons extends JController
 		{
 			$aModel->updatePublish($id,1);
 		}
-		$msg = JspcText::sprintf( $count.'ITEMS_PUBLISHED' );
+		$msg  = JspcText::sprintf( $count.'ITEMS_PUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $msg);
 		return true;
@@ -237,8 +229,8 @@ class JspcControllerAddons extends JController
 		// Check for request forgeries
 		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables
-		$ids		= JRequest::getVar( 'cid', array(0), 'post', 'array' );
-		$count			= count( $ids );
+		$ids	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
+		$count	= count( $ids );
 
 		if (empty( $ids )) {
 			return JError::raiseWarning( 500, JspcText::_( 'NO_ITEMS_SELECTED' ) );
@@ -249,12 +241,11 @@ class JspcControllerAddons extends JController
 		{
 			$aModel->updatePublish($id,0);
 		}
-		$msg = JspcText::sprintf( $count.' ITEMS_UNPUBLISHED' );
+		$msg  = JspcText::sprintf( $count.' ITEMS_UNPUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe->redirect($link, $msg);
 		return true;
 	}
-	
 	
 	function aboutus()
 	{
@@ -263,14 +254,10 @@ class JspcControllerAddons extends JController
 		$document	= JFactory::getDocument();
 		// Get the view type
 		$viewType	= $document->getType();
-	
 		$view		= $this->getView( $viewName , $viewType );
-
 		$layout		= JRequest::getCmd( 'layout' , 'aboutus' );
 		$view->setLayout( $layout );
 		//echo parent::display();
 		echo $view->aboutus();
 	}
-
-	
 }

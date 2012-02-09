@@ -14,13 +14,11 @@ class JspcAlbums extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-
-	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']= $this->getDisplayText($userid); //JText::_("ADD ALBUM");
-		$result['link']=CRoute::_('index.php?option=com_community&view=photos&task=newalbum');
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid);
+		$result['link'] = CRoute::_('index.php?option=com_community&view=photos&task=newalbum');
 		return $result;
 	}
 
@@ -28,8 +26,8 @@ class JspcAlbums extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-		. ' FROM ' . $db->nameQuote( '#__community_photos_albums' )
-		. ' WHERE creator=' . $db->Quote( $userid );
+				. ' FROM ' . $db->nameQuote( '#__community_photos_albums' )
+				. ' WHERE creator =' . $db->Quote( $userid );
 
 		$db->setQuery( $query );
 		$count = $db->loadResult();

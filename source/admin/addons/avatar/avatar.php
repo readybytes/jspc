@@ -1,10 +1,9 @@
 <?php
-// no direct access
-
 /**
 * @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 **/
+// no direct access
 defined('_JEXEC') or die('Restricted access');
 
 class JspcAvatar extends jspcAddons
@@ -14,10 +13,9 @@ class JspcAvatar extends jspcAddons
 		parent::__construct(__CLASS__, $debugMode);
 	}
 	
-	
 	public function calculateCompletness($userid)
 	{	
-		$count = $this->calculateCount($userid);		
+		$count 		  = $this->calculateCount($userid);		
 		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
 		
 		if($count >= 1)
@@ -26,15 +24,13 @@ class JspcAvatar extends jspcAddons
 			return 0;		
 	}
 	
-	
 	function getCompletionLink($userid)
 	{
-		$result = array();
-		$result['text']=$this->getDisplayText($userid); //JText::_("CHANGE AVATAR");
-		$result['link']=CRoute::_('index.php?option=com_community&view=profile&task=uploadAvatar');
+		$result 		= array();
+		$result['text'] = $this->getDisplayText($userid);
+		$result['link'] = CRoute::_('index.php?option=com_community&view=profile&task=uploadAvatar');
 		return $result;
 	}
-	
 	
 	public function getRemainingCount($userid)
 	{
@@ -48,28 +44,29 @@ class JspcAvatar extends jspcAddons
 		return 1;
 	}
 	
-	
 	public function calculateCount($userid)
 	{
-		$my 		   = CFactory::getUser($userid);		
-		$pathofAvatar  = $my->_avatar;
-		$count = 0;
-		$integrate_with = $addonObject->getCoreParams('integrate_with', 'jspt');
+		$user		 	= CFactory::getUser($userid);		
+		$userAvatar  	= $user->_avatar;
+		$count 		 	= 0;
+		$integrate_with = $this->coreparams->get('integrate_with', 'jspt');
 		
-		if(JspcHelper::checkXiptExists() && $integrate_with == 'jspt'){
-	    	$ptypeavatar=$this->getPtypeAvatar($userid);	
-	    	if(!empty($pathofAvatar) 
-	    		&& !JString::stristr($pathofAvatar,$ptypeavatar))  
-	    		$count=1;
+		if(JspcHelper::checkXiptExists() && $integrate_with == 'jspt')
+		{
+	    	$ptypeavatar = $this->getPtypeAvatar($userid);
+	    		
+	    	if(!empty($userAvatar) && !JString::stristr($userAvatar,$ptypeavatar))  
+	    		$count = 1;
 	    }
-	    elseif(JspcHelper::checkMultiProfileExists() && $integrate_with == 'multiprofile'){
-	    	$ptypeavatar = $this->getmultiProfileAvatar($userid);	
-	    	if(!empty($pathofAvatar) 
-	    		&& !JString::stristr($pathofAvatar,$ptypeavatar))  
-	    		$count=1;
+	    elseif(JspcHelper::checkMultiProfileExists() && $integrate_with == 'multiprofile')
+	    {
+	    	$ptypeavatar = $this->getmultiProfileAvatar($userid);
+	    	
+	    	if(!empty($userAvatar) && !JString::stristr($userAvatar,$ptypeavatar))  
+	    		$count = 1;
 	    }
 	    else{
-			if(!empty($pathofAvatar) && !strpos($pathofAvatar,"default.jpg") && !strpos($pathofAvatar,"user.png"))
+			if(!empty($userAvatar) && !strpos($userAvatar,"default.jpg") && !strpos($userAvatar,"user.png"))
 				$count = 1;
 	    }
 		return $count;
@@ -77,14 +74,14 @@ class JspcAvatar extends jspcAddons
 	
 	public function getPtypeAvatar($userId)
 	{
-	    $ptype  = XiptWrapper::getUserInfo($userId);	
+	    $ptype = XiptWrapper::getUserInfo($userId);	
 		$field = array_shift(XiptWrapper::getProfiletypeInfo($ptype));
 		return $field->avatar;
 	}
 	
 	public function getmultiProfileAvatar($userId)
 	{
-	    $ptype  = MultiProfile::getUserInfo($userId);	
+	    $ptype = MultiProfile::getUserInfo($userId);	
 		$field = array_shift(MultiProfile::getProfiletypeInfo($ptype));
 		return $field->avatar;
 	}

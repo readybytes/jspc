@@ -43,12 +43,10 @@ class addonFactory
 				
 		$db->setQuery($query);
 		$addonsinfo = $db->loadObjectList();
-		//XITODO : Remove assert from here and move it somewhere else
-		//assert($addonsinfo);
+		
 		return $addonsinfo;
 	}
 
-	
 	public function getAddons()
 	{
 		$path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons';
@@ -59,14 +57,13 @@ class addonFactory
 		return $addons;
 	}
 	
-	
 	public function getAddonObject($addonName)
 	{
 		$path	= dirname(__FILE__). DS . $addonName . DS . $addonName.'.php';
+		
 		jimport( 'joomla.filesystem.file' );
 		if(!JFile::exists($path))
 		{
-			//XITODO: err message
 			JError::raiseError(400,JspcText::_("INVALID_ADDON_FILE"));
 			return false;
 		}
@@ -85,18 +82,13 @@ class addonFactory
 		return $instance[$addonName];
 	}
 	
-	
 	public function getValueFromParams($what,$from,$default=0)
 	{
 		$params = new XipcParameter( $from );
-		$value = $params->get($what,$default);
+		$value  = $params->get($what,$default);
 		return $value;
 	}
-	
-	
-	
 }
-
 
 
 
@@ -115,12 +107,12 @@ abstract class jspcAddons
 	{
 		jimport( 'joomla.filesystem.files' );
 		$this->debugMode = $debugMode;
-		$this->name = $className;
+		$this->name      = $className;
 
 		//load addon xml if we need to do it
 		// this->addonparams can be set by child constructor, 
 		// then we do not need to create addon params
-		$className = substr($className, 4);
+		$className    = substr($className, 4);
 		$addonXmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
 		if(empty($this->addonparams) && JFile::exists($addonXmlpath))
 			$this->addonparams = new XipcParameter('',$addonXmlpath);
@@ -130,19 +122,18 @@ abstract class jspcAddons
 			$this->coreparams = new XipcParameter('',$corexmlpath);
 	}
 	
-	
 	function load($id)
 	{
 		$info = array();
 		if(0 == $id) {
-			$this->id = 0;
+			$this->id          = 0;
 			$this->featurename = '';
-			$this->published = 1;
+			$this->published   = 1;
 		}
 		else {
-			$filter = array();
+			$filter       = array();
 			$filter['id'] = $id;
-			$info = addonFactory::getAddonsInfo($filter);
+			$info         = addonFactory::getAddonsInfo($filter);
 			
 			if($info) {
 				$this->id 			= $info[0]->id;
@@ -165,14 +156,12 @@ abstract class jspcAddons
 		$this->coreparams = new XipcParameter('',$xmlpath);
 	}
 	
-	
 	public function getHtml(&$coreParamsHtml,&$addonParamsHtml)
 	{
 		//Imp : Function will always call core field html
 		$coreParamsHtml = $this->getCoreParamsHtml();
 		$addonParamsHtml = $this->getAddonParamsHtml();
 	}
-	
 	
 	public function getAddonParamsHtml()
 	{
@@ -185,7 +174,6 @@ abstract class jspcAddons
 		
 		return $addonParamsHtml;
 	}
-	
 	
 	final public function getCoreParamsHtml()
 	{
@@ -200,17 +188,15 @@ abstract class jspcAddons
 		return $coreParamsHtml;
 	}
 	
-	
 	function collectParamsFromPost($postdata)
 	{
 		assert($postdata['addonparams']);
 		$registry	= JRegistry::getInstance( 'jspc' );
 		$registry->loadArray($postdata['addonparams'],'jspc_addonparams');
+		
 		$addonparams =  $registry->toString('INI' , 'jspc_addonparams' );
 		return $addonparams;
 	}
-	
-	
 	
 	function bind($data)
 	{
@@ -246,8 +232,6 @@ abstract class jspcAddons
 		return $total;
 	}
 	
-	
-	
 	function isApplicable($userid)
 	{
 		/*XITODO : check according to addon params and core params
@@ -266,7 +250,6 @@ abstract class jspcAddons
 		return false;
 	}
 	
-	
 	public function checkCoreAccesibility($userid)
 	{
 		return true;
@@ -277,7 +260,7 @@ abstract class jspcAddons
 		$integrate_with = $this->getCoreParams('integrate_with','jspt');
 		
 		if($integrate_with == 'jspt'){
-			$xipt_exist=JspcHelper::checkXiptExists();
+			$xipt_exist = JspcHelper::checkXiptExists();
 			if(!$xipt_exist)
 				return true;
 			
@@ -286,13 +269,12 @@ abstract class jspcAddons
 	        if(0 == $ptype)
 	            return true;
 	        //else check user profiletype
-	        require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
-	        $userPtype = XiptAPI::getUserInfo($userid,'PROFILETYPE');
+	        $userPtype = XiptWrapper::getUserInfo($userid,'PROFILETYPE');
 	        if($userPtype == $ptype)
 	            return true;    
 		}
-		else{
-			$multiprofile_exist=JspcHelper::checkMultiProfileExists();
+		elseif($integrate_with == 'multiprofile'){
+			$multiprofile_exist = JspcHelper::checkMultiProfileExists();
 			if(!$multiprofile_exist)
 				return true;
 			
@@ -308,7 +290,6 @@ abstract class jspcAddons
 		return false;
 	}
 	
-	
 	public function getDisplayText($userid)
 	{
 		$text = $this->coreparams->get('jspc_core_display_text','');
@@ -319,7 +300,7 @@ abstract class jspcAddons
 		if(empty($text)) { 
 			//write some dummy text
 			$classname = $this->getMe();
-			$text = sprintf(JspcText::_('ADD %s',false),JspcText::_($classname));
+			$text 	   = sprintf(JspcText::_('ADD %s',false),JspcText::_($classname));
 			return $text;
 		}
 		$text = sprintf(JspcText::_($text,false),$this->getRemainingCount($userid));
@@ -334,7 +315,7 @@ abstract class jspcAddons
 	
 	public function getMe()
 	{
-		$name =  get_class($this);
+		$name = get_class($this);
 		return $name;
 	}
 	
@@ -357,8 +338,6 @@ abstract class jspcAddons
 		$count = $this->calculateCount($userid);
 		$total = $this->addonparams->get($this->name.'_total',0);
 		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
-		
-		
 
 		if(0 == $total)
 			return $contribution;

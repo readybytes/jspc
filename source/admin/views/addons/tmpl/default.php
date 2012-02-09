@@ -33,7 +33,7 @@ function submitbutton( action )
 	<?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?>
 </div>
 
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm">
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm">
 <table class="adminlist" cellspacing="1">
 	<thead>
 		<tr class="title">

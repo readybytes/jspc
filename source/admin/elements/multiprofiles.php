@@ -27,7 +27,6 @@ class JElementMultiProfiles extends JElement
 			$reqall = true;
 			
 		$ptypeHtml = $this->getProfiletypeFieldHTML($name,$value,$control_name,$reqnone,$reqall);
-
 		return $ptypeHtml;
 	}
 	
@@ -50,10 +49,8 @@ class JElementMultiProfiles extends JElement
 			$html	.= '<option value="' . -1 . '"' . $selected . '>' . JspcText::_("NONE") . '</option>';
 		}
 
-		$xiptPath = JPATH_ROOT.DS.'components'.DS.'com_xipt';
-		if(JFolder::exists($xiptPath))
+		if(JspcHelper::checkMultiProfileExists())
 		{	
-			require_once(JPATH_ROOT.DS. 'administrator' .DS. 'components' .DS. 'com_jspc' . DS. 'helpers' .DS . 'multiprofile.php' );
 			$options = MultiProfile::getProfiletypeInfo();
 					
 			foreach($options as $option)
