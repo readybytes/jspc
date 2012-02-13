@@ -12,6 +12,7 @@ class helper
 	function getJomsocialProfileFields($filter = '',$join='AND')
 	{
 		$integrate_with = jspcAddons::getCoreParams('integrate_with', 'jspt');
+		$ptype			= 0;
 		
 		if($integrate_with == 'jspt')
 			$ptype = jspcAddons::getCoreParams('jspc_profiletype',0);

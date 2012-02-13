@@ -49,7 +49,7 @@ function submitbutton( action )
 			<th>
 				<?php echo JspcText::_( 'ADDON_NAME' ); ?>
 			</th>
-			<?php if($this->profilesExist){?>
+			<?php if($this->profilesExist && $this->integrate_with != 'none'){?>
 			<th>
 				<?php echo JspcText::_( 'PROFILE_TYPE' ); ?>
 			</th>
@@ -59,7 +59,7 @@ function submitbutton( action )
 			</th>
 			
 			<?php 
-			if($this->profilesExist == false)
+			if($this->profilesExist == false || $this->integrate_with == 'none')
 			{?>
 				<th width="5%">
 				<?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?>
@@ -112,7 +112,7 @@ function submitbutton( action )
 			<td>
 				<?php echo $addon->name; ?>
 			</td>
-			<?php if($this->profilesExist){?>
+			<?php if($this->profilesExist && $this->integrate_with != 'none'){?>
 			<td>
 				<?php echo $this->addonProfiletype[$addon->id]; ?>
 			</td>
@@ -122,7 +122,7 @@ function submitbutton( action )
 			</td>
 			
 			<?php 
-			if($this->profilesExist)
+			if($this->profilesExist && $this->integrate_with != 'none')
 			{		
 				foreach($this->profileTypeArray as $ptypeId)
 				{

@@ -287,6 +287,9 @@ abstract class jspcAddons
 	        if($userPtype == $ptype)
 	            return true;
 		}
+		else{
+			return true;
+		}
 		return false;
 	}
 	

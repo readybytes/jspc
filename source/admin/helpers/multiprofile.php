@@ -105,9 +105,17 @@ class MultiProfile
 	{
 		$profileTypeInfo		= self::getProfileTypeIds();
 		
-		if($id)
-	    	$profileTypeInfo	= $profileTypes[$id];
-	    	
-		return $profileTypeInfo;
+		if(!$id || $id < 0)
+			return $profileTypeInfo;
+		
+		//return specfic array
+	    if(isset($profileTypeInfo[$id])){
+	        //return always an array
+	        $retVal[] = $profileTypeInfo[$id];
+	           return $retVal;
+	     }
+
+	    // invalid id 
+	    return null;
 	}
 }

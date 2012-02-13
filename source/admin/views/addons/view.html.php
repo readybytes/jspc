@@ -25,6 +25,7 @@ class JspcViewAddons extends JView
 		$profileTypeArrayObject = array();
 		$profilesExist 			= false;
 		$ptype					= 0;
+		$integrate_with 		= 'none';
 		
 		//check JSPT or JS Multi profiles exist or not
 		$isXiptExist	   = JspcHelper::checkXiptExists();
@@ -90,6 +91,7 @@ class JspcViewAddons extends JView
 			$this->assign('profileTypeArray',  $profileTypeArray);		
 			$this->assign('addonProfiletype' , $addonProfiletype );
 			$this->assignRef('profileTypeName',$profileTypeName);
+			$this->assignRef('integrate_with',$integrate_with);
 		}
 		$this->assign('profilesExist', $profilesExist);
 		$this->assign( 'addonsInfo' , $addonsInfo );
@@ -151,6 +153,8 @@ class JspcViewAddons extends JView
 		$percentage 	 = 0;
 		$profilesExist 	 = false;
 		$profileTypeArrayObject = array();
+		$ptype			 = 0;
+		
 		//call htmlrender fn
 		$addonObject = addonFactory::getAddonObject($data['name']);
 		$addonObject->bind($data);
@@ -212,7 +216,7 @@ class JspcViewAddons extends JView
 		//$addonsInfo = addonFactory::getAddonsInfo();
 		$totals = array();
 		$addonProfiletype = array();
-		
+		$profilesExist 	 = false;
 		//include the library file of XIPT if exist then includes file 
 		$isXiptExist 	   = JspcHelper::checkXiptExists();
 		$multiprofileExist = JspcHelper::checkMultiProfileExists();

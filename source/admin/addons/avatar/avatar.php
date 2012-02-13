@@ -62,8 +62,14 @@ class JspcAvatar extends jspcAddons
 	    {
 	    	$ptypeavatar = $this->getmultiProfileAvatar($userid);
 	    	
-	    	if(!empty($userAvatar) && !JString::stristr($userAvatar,$ptypeavatar))  
-	    		$count = 1;
+	    	if(!empty($ptypeavatar)){
+	    		if(!empty($userAvatar) && !JString::stristr($userAvatar,$ptypeavatar))  
+	    			$count = 1;
+	    	}
+	    	else{
+	    		if(!empty($userAvatar))  
+	    			$count = 1;
+	    	}
 	    }
 	    else{
 			if(!empty($userAvatar) && !strpos($userAvatar,"default.jpg") && !strpos($userAvatar,"user.png"))
