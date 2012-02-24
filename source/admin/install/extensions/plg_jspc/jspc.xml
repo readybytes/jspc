@@ -33,6 +33,11 @@
 			<option value="1">Use Global</option>
 			<option value="0">No</option>
 		</param>
+		<param name="position" type="list" default="content" label="Position" description="Default position if you select this as core apps">
+                       <option value="content">Main content</option>
+                       <option value="sidebar-top">Sidebar top</option>
+                       <option value="sidebar-bottom">Sidebar bottom</option>
+        </param>
 		<param name="@spacer" type="spacer" default="" label="Configure Avatar" description="" />		
 		<param name="SPS_ShowAvatar" type="list" default="1" label="Show Avatar" description="">
 			<option value="0">No</option>
@@ -80,6 +85,11 @@
 					<option value="1">Use Global</option>
 					<option value="0">No</option>
 				</field>
+				<field name="position" type="list" default="content" label="Position" description="Default position if you select this as core apps">
+                     <option value="content">Main content</option>
+                     <option value="sidebar-top">Sidebar top</option>
+                     <option value="sidebar-bottom">Sidebar bottom</option>
+                </field>
 				<field name="@spacer" type="spacer" default="" label="Configure Avatar" description="" />		
 				<field name="SPS_ShowAvatar" type="list" default="1" label="Show Avatar" description="">
 					<option value="0">No</option>
