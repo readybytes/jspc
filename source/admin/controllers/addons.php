@@ -142,24 +142,25 @@ class JspcControllerAddons extends JController
 		else
 			$msg = JspcText::_('CRITERIA_SAVED');	
 
-		return $id;
+		$result = array($msg, $id);
+		return $result;
 	}
 	
 	function save()
 	{
-		$this->processSave();
+		$result		= $this->processSave();
 		$link 		= JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe	= JFactory::getApplication();
-		$mainframe->redirect($link, $msg);		
+		$mainframe->redirect($link, $result[0]);		
 		
 	}
 	
 	function apply()
 	{
-		$id 		= $this->processSave();
-		$link 		= JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$id, false);
+		$result 	= $this->processSave();
+		$link 		= JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$result[1], false);
 		$mainframe	= JFactory::getApplication();
-		$mainframe->redirect($link, $msg);				
+		$mainframe->redirect($link, $result[0]);				
 	}
 	
 	function remove()
