@@ -33,8 +33,8 @@ function setup_database()
 
 function check_jomsocial_existance()
 {
-	$jomsocial_admin = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_community';
-	$jomsocial_front = JPATH_ROOT . DS . 'components' . DS . 'com_community';
+	$jomsocial_admin = JPATH_ROOT .'/administrator/components/com_community';
+	$jomsocial_front = JPATH_ROOT .'/components/com_community';
 	
 	if(!is_dir($jomsocial_admin))
 		return false;
@@ -61,7 +61,7 @@ function installExtensions($extPath=null)
 {
 	//if no path defined, use default path
 	if($extPath==null)
-		$extPath = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' .DS. 'install' .DS.'extensions';
+		$extPath = JPATH_ROOT.'/administrator/components/com_jspc/install/extensions';
 
 	if(!JFolder::exists($extPath))
 		return false;
@@ -82,7 +82,7 @@ function installExtensions($extPath=null)
 		$msg = "Supportive Plugin/Module $ext Installed Successfully";
 
 		// Install the packages
-		if($installer->install($extPath.DS.$ext)==false)
+		if($installer->install($extPath.'/'.$ext)==false)
 			$msg = "Supportive Plugin/Module $ext Installation Failed";
 
 		//enque the message

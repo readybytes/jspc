@@ -8,7 +8,7 @@ defined('_JEXEC') or die('Restricted access');
 
 jimport( 'joomla.application.component.model' );
 
-class JspcModelAddons extends JModel
+class JspcModelAddons extends JModelLegacy
 {
 	
 	 /* @var object	JPagination object
@@ -76,7 +76,7 @@ class JspcModelAddons extends JModel
 		$limitstart	= ($limit != 0) ? ($limitstart / $limit ) * $limit : 0;
 
 		// Get the total number of records for pagination
-		$query	= 'SELECT COUNT(*) FROM ' . $db->nameQuote( '#__jspc_addons' );
+		$query	= 'SELECT COUNT(*) FROM ' . $db->quoteName( '#__jspc_addons' );
 		$db->setQuery( $query );
 		$total	= $db->loadResult();
 
@@ -86,7 +86,7 @@ class JspcModelAddons extends JModel
 		$this->_pagination	= new JPagination( $total , $limitstart , $limit );
 
 		$query	= 'SELECT * FROM ' 
-				. $db->nameQuote( '#__jspc_addons' );
+				. $db->quoteName( '#__jspc_addons' );
 		$db->setQuery( $query , $this->_pagination->limitstart , $this->_pagination->limit );		
 		$addonsInfo	= $db->loadObjectList();
 		
@@ -104,5 +104,49 @@ class JspcModelAddons extends JModel
 			return JError::raiseWarning( 500, $db->getError() );
 			
 		return true;
+	}
+	
+	function getParamHtml($params, $set = null)
+	{
+		if(!isset($params)){
+			return false;
+		}
+		
+		$fields = $params->getFieldset($set);
+		ob_start();?>
+		<?php JHTML::_('behavior.tooltip'); ?>
+		<div class="xipcParameter">
+		
+		<?php foreach ($fields as $field) : ?>
+			<div class="xipcParameter xiRow" >
+				<?php if ($field->fieldname && $field->fieldname != '&nbsp;'): ?>
+					<div class="xipcParameter xiCol xiColKey">
+						<?php echo $field->label; ?>
+					</div>
+					<div class="xipcParameter xiCol xiColValue">
+						<?php echo $field->input; ?>
+					</div>
+				<?php else: ?>
+					<div class="xipcParameter xiCol xiColDescription">
+						<?php echo $field->description; ?>
+					</div>
+				<?php endif; ?>
+			</div>
+		<?php endforeach; ?>
+
+		<?php if(count($fields) < 1) : ?>
+			<div class="xipcParameter xiRow">
+				<div class="xipcParameter xiCol"><i>
+				<?php JText::_('There Are No Parameter For This plugin'); ?>
+				</i></div>
+			</div>
+		<?php endif; ?>
+
+		</div>
+
+		<?php
+		$html = ob_get_contents();
+		ob_end_clean();
+		return $html;
 	}
 }

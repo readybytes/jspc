@@ -26,8 +26,8 @@ class JspcApplication extends jspcAddons
 		$db		= JFactory::getDBO();	
 
 	    $query	= 'SELECT COUNT(*) '
-				. ' FROM ' . $db->nameQuote( '#__community_apps' )
-				. ' WHERE '. $db->nameQuote('userid').'=' . $db->Quote( $userid );	
+				. ' FROM ' . $db->quoteName( '#__community_apps' )
+				. ' WHERE '. $db->quoteName('userid').'=' . $db->Quote( $userid );	
 				
 		$db->setQuery($query);
 		$count	= $db->loadResult();

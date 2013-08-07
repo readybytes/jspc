@@ -28,8 +28,8 @@ class MultiProfile
 	{
 		$db 		= JFactory::getDBO();
 		$query		= ' SELECT *'
-					 .' FROM '.$db->nameQuote('#__community_profiles')
-					 .' WHERE '.$db->nameQuote('published').' = '.$db->Quote(1);
+					 .' FROM '.$db->quoteName('#__community_profiles')
+					 .' WHERE '.$db->quoteName('published').' = '.$db->Quote(1);
 					 
 		$db->setQuery( $query );
 		$profileTypes	= $db->loadObjectList('id');
@@ -43,8 +43,8 @@ class MultiProfile
 	{
 		$db 		= JFactory::getDBO();
 		$query		= ' SELECT *'
-					 .' FROM '.$db->nameQuote('#__community_fields')
-					 .' ORDER BY '.$db->nameQuote('ordering');
+					 .' FROM '.$db->quoteName('#__community_fields')
+					 .' ORDER BY '.$db->quoteName('ordering');
 					 
 		$db->setQuery( $query );
 		$profileFields	= $db->loadObjectList('id');
@@ -58,12 +58,12 @@ class MultiProfile
 	function filterProfileTypeFields(&$fields, $selectedProfiletypeID)
 	{
 		$db 		= JFactory::getDBO();
-		$query		= ' SELECT '.$db->nameQuote('field_id')
-					 .' FROM '.$db->nameQuote('#__community_profiles_fields')
-					 .' WHERE '.$db->nameQuote('parent').' = '.$db->Quote($selectedProfiletypeID);
+		$query		= ' SELECT '.$db->quoteName('field_id')
+					 .' FROM '.$db->quoteName('#__community_profiles_fields')
+					 .' WHERE '.$db->quoteName('parent').' = '.$db->Quote($selectedProfiletypeID);
 					 
 		$db->setQuery( $query );
-		$profileFields	= $db->loadResultArray();
+		$profileFields	= $db->loadColumn();
 		
 		$count = count($fields);
 		
@@ -92,9 +92,9 @@ class MultiProfile
 	function getUserInfo($userid)
 	{
 		$db 		= JFactory::getDBO();
-		$query		= ' SELECT '.$db->nameQuote('profile_id')
-					 .' FROM '.$db->nameQuote('#__community_users')
-					 .' WHERE '.$db->nameQuote('userid').' = '.$db->Quote($userid);
+		$query		= ' SELECT '.$db->quoteName('profile_id')
+					 .' FROM '.$db->quoteName('#__community_users')
+					 .' WHERE '.$db->quoteName('userid').' = '.$db->Quote($userid);
 					 
 		$db->setQuery( $query );
 		$profileType	= $db->loadResult();

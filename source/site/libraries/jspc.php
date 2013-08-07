@@ -118,7 +118,7 @@ class JspcLibrary
 	{
 		
 		jimport( 'joomla.filesystem.folder' );
-		$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+		$communityPath = JPATH_ROOT.'/components/com_community';
 
 		if(!JFolder::exists($communityPath)) {
 			JError::raiseError(JspcText::_('UNABLE_TO_GET_INFORMATION'));
@@ -126,7 +126,7 @@ class JspcLibrary
 		}
 		
 		//community files
-		require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+		require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 	
 		$user =& CFactory::getUser($userid);		
 

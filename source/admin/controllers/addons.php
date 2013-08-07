@@ -5,7 +5,9 @@
 **/
 defined('_JEXEC') or die('Restricted access');
 
-class JspcControllerAddons extends JController 
+jimport( 'joomla.application.component.controller' );
+
+class JspcControllerAddons extends JControllerLegacy 
 {
    
 	function __construct($config = array())
@@ -60,11 +62,11 @@ class JspcControllerAddons extends JController
 		$data['id'] = $id;
 		
 		if($addon) {
-			$data['name'] = $addon;
-			$data['featurename'] = '';
-			$data['published'] = 1;
-			$data['coreparams'] = '';
-			$data['addonparams'] = '';
+			$data['name'] 			= $addon;
+			$data['featurename'] 	= '';
+			$data['published'] 		= 1;
+			$data['coreparams'] 	= '';
+			$data['addonparams'] 	= '';
 		}
 		
 		if($id){
@@ -87,7 +89,7 @@ class JspcControllerAddons extends JController
 			$data['addonparams'] 	= $info[0]->addonparams;
 		}
 		
-		$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
+		$layout		= JFactory::getApplication()->input->get( 'layout' , 'param.edit' );
 		$view->setLayout( $layout );
 		echo $view->renderaddon($data);
 	}
@@ -114,11 +116,14 @@ class JspcControllerAddons extends JController
 				
 		$data = array();
 		
-		$registry	= JRegistry::getInstance( 'jspc' );
-		$registry->loadArray($post['coreparams'],'jspc_coreparams');
-		// Get the complete INI string
-		$data['coreparams']	= $registry->toString('INI' , 'jspc_coreparams' );
+//		$registry	= JRegistry::getInstance( 'jspc' );
+//		$registry->loadArray($post['coreparams'],'jspc_coreparams');
+//		// Get the complete INI string
+//		//$data['coreparams']	= $registry->toString('INI' , 'jspc_coreparams' );
+//		$data['coreparams']		= $registry->toString('' , 'jspc_coreparams' );
 		
+		
+		$data['coreparams']		= json_encode($post['coreparams']); 
 		$data['id'] 			= $post['id'];
 		$data['name'] 			= $post['name'];
 		$data['featurename'] 	= $post['featurename'];
@@ -130,8 +135,8 @@ class JspcControllerAddons extends JController
 		unset($post['published']);
 		unset($post['coreparams']);
 		
-		$addonObject = addonFactory::getAddonObject($data['name']);
-		$data['addonparams'] = $addonObject->collectParamsFromPost($post);
+		$addonObject 			= addonFactory::getAddonObject($data['name']);
+		$data['addonparams'] 	= $addonObject->collectParamsFromPost($post);
 		
 		
 		$addons->bind($data);
@@ -173,7 +178,7 @@ class JspcControllerAddons extends JController
 	
 		//$post['id'] = (int) $cid[0];
 		$count	= count($ids);
-		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
+		JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.'/tables');
 		$row	= JTable::getInstance( 'addons' , 'JspcTable' );
 		$i = 1;
 		if(!empty($ids))

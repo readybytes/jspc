@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 // Import Joomla! libraries
 jimport( 'joomla.application.component.view');
 
-class JspcViewAddons extends JView 
+class JspcViewAddons extends JViewLegacy 
 {
 	function display($tpl = null)
 	{

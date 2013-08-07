@@ -17,32 +17,31 @@ jimport( 'joomla.filesystem.file' );
 jimport( 'joomla.filesystem.folder' );
 
 
-$communityPath = JPATH_ROOT.DS.'components'.DS.'com_community';
+$communityPath = JPATH_ROOT.'/components/com_community';
 
 if(!JFolder::exists($communityPath))
 	return;
 
 
 //community files
-require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 
 	
 //// define our include paths to joomla
 jimport( 'joomla.application.component.model' );
-JModel::addIncludePath(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'models');
-JTable::addIncludePath( JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'tables' );
+JModelLegacy::addIncludePath(JPATH_ROOT.'/administrator/components/com_jspc/models');
+JTable::addIncludePath( JPATH_ROOT.'/administrator/components/com_jspc/tables' );
 
-require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'addons' . DS . 'addons.php' );
-require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'core.php' );
-require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'jspc.php' );
-require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
-require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'parameter.php');
+require_once(JPATH_ROOT.'/administrator/components/com_jspc/addons/addons.php' );
+require_once(JPATH_ROOT.'/administrator/components/com_jspc/helpers/core.php' );
+require_once(JPATH_ROOT.'/administrator/components/com_jspc/helpers/jspc.php' );
+require_once(JPATH_ROOT.'/components/com_jspc/libraries/base/text.php');
+require_once(JPATH_ROOT.'/components/com_jspc/libraries/base/parameter.php');
 
 $isXiptExist = JspcHelper::checkXiptExists();
 if($isXiptExist)
-	require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'xiptwrapper.php' );
-	
-require_once(JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc' . DS . 'helpers' . DS . 'multiprofile.php' );
+	require_once(JPATH_ROOT.'/administrator/components/com_jspc/helpers/xiptwrapper.php' );
+	require_once(JPATH_ROOT.'/administrator/components/com_jspc/helpers/multiprofile.php' );
 
 /*Load Langauge file*/
 $lang = JFactory::getLanguage();

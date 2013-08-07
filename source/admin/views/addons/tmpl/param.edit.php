@@ -4,16 +4,15 @@ defined('_JEXEC') or die('Restricted access');
 * @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 **/
- JHTML::_('behavior.tooltip'); ?>
+ JHTML::_('behavior.tooltip'); 
+ JHtml::_('behavior.formvalidation');
 
-<?php 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
 JToolBarHelper::divider();
 JToolBarHelper::apply('apply', JspcText::_('APPLY'));
 JToolBarHelper::save('save',JspcText::_('SAVE'));
 JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
-?>
-<?php 
+
 $doc =& JFactory::getDocument();
 $style = '#publish-values label{min-width:0px;clear:none;}'; 
 $doc->addStyleDeclaration( $style );
@@ -56,7 +55,7 @@ $doc->addStyleDeclaration( $style );
 		});
 </script>
 
-<form action="index.php" method="post" name="adminForm">
+<form action="index.php" method="post" name="adminForm" id="adminForm">
 <div>
 <div class="col width-40" style="width:40%; float:left;">
 	<fieldset class="adminform">
@@ -124,30 +123,22 @@ $doc->addStyleDeclaration( $style );
 	<br />
 	<br />
 	
-	<fieldset class="adminform">
-	<legend><?php echo JspcText::_( 'CORE_PARAMETERS' ); ?></legend>
-	<?php
-		jimport('joomla.html.pane');
-		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));
-		echo $pane->startPane('core-pane');
-		//echo $pane->startPanel(JText :: _('Core Fields Parameters'), 'coreparam-page');
-		echo $this->coreParamsHtml;
-		//echo $pane->endPanel();
-		?>
-	</fieldset>
 </div>
 </div>
 <div>
 <div class="col width-60" style="width:60%; float:right;">
 	<fieldset class="adminform">
-	<legend><?php echo JspcText::_( 'ADDON_PARAMETERS' ); ?></legend>
+	<legend><?php echo JspcText::_('Parameters'); ?></legend>
 	<?php
-		jimport('joomla.html.pane');
-		$pane = JPane::getInstance('sliders', array('allowAllClose' => true));
-		echo $pane->startPane('addon-pane');
-		//echo $pane->startPanel(JText :: _('Addon Parameters'), 'addonparam-page');
+		echo JHtmlSliders::start('start');
+		
+		echo JHtmlSliders::panel('Core Parameter', 'coreparams-page');
+		echo $this->coreParamsHtml;
+		
+		echo JHtmlSliders::panel('Addon Parameters', 'addonparams-page');
 		echo $this->addonParamsHtml;
-		//echo $pane->endPanel();
+		
+		echo JHtmlSliders::end();
 	?>
 	</fieldset>
 </div>

@@ -14,24 +14,25 @@ defined('_JEXEC') or die('Restricted access');
 //Import Joomla Dependency
 jimport( 'joomla.application.component.controller' );
 jimport('joomla.application.component.model');
+jimport('joomla.filesystem.folder');
 
-$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+$communityPath = JPATH_ROOT.'/components/com_community';
 
 if(!JFolder::exists($communityPath))
 	return;
 
 // add include files
-require_once JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php';
+require_once JPATH_ROOT.'/administrator/components/com_jspc/includes.jspc.php';
 
-if(JRequest::getCmd('view') == '') {
+if(JFactory::getApplication()->input->get('view') == '') {
             JRequest::setVar('view', 'addons');
 }
 
-$controller	= JRequest::getCmd( 'view');
+$controller	= JFactory::getApplication()->input->get('view');
 
 if(!empty( $controller )){
 	$controller	= JString::strtolower( $controller );
-	$path		= JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jspc'.DS.'controllers'.DS.$controller.'.php';
+	$path		= JPATH_ADMINISTRATOR.'/components/com_jspc/controllers/'.$controller.'.php';
 
 	// Test if the controller really exists
 	if(file_exists($path))

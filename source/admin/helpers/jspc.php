@@ -89,17 +89,17 @@ class JspcHelper
 		jimport( 'joomla.filesystem.file' );
 		jimport( 'joomla.filesystem.folder' );
 
-		$xiptPath = JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_xipt';
+		$xiptPath = JPATH_ROOT.'/administrator/components/com_xipt';
 		
 		if(!JFolder::exists($xiptPath))
 			return false;
 
-		$xiptPath = JPATH_ROOT.DS.'components'.DS.'com_xipt';
+		$xiptPath = JPATH_ROOT.'/components/com_xipt';
 
 		if(!JFolder::exists($xiptPath))
 			return false;
 
-		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_xipt' . DS . 'api.xipt.php' );
+		require_once(JPATH_ROOT.'/components/com_xipt/api.xipt.php' );
 
 		return true;
 	}

@@ -18,7 +18,7 @@ class JspcProfilefields extends jspcAddons
 	public function getAddonParamsHtml()
 	{
 		$addonParamsHtml = '';
-		require_once dirname(__FILE__).DS.'helper.php';
+		require_once dirname(__FILE__).'/helper.php';
 		
 		$filter 			 = array();
 		$filter['published'] = 1;

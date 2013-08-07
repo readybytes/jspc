@@ -17,21 +17,21 @@ jimport( 'joomla.filesystem.file' );
 jimport( 'joomla.filesystem.folder' );
 
 
-$communityPath = JPATH_ROOT.DS.DS.'components'.DS.'com_community';
+$communityPath = JPATH_ROOT.'/components/com_community';
 
 if(!JFolder::exists($communityPath))
 	return;
 
 
 //community files
-require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
+require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 	
 //// define our include paths to joomla
-require_once (JPATH_ROOT.DS.'components'.DS.'com_community'.DS.'defines.community.php');
-require_once (JPATH_ROOT.DS.'administrator'.DS.'components'.DS.'com_jspc'.DS.'includes.jspc.php');
-require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'jspc.php');
-require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'imagegenerator.php');
-require_once (JPATH_ROOT.DS.'components'.DS.'com_jspc'.DS.'libraries'.DS.'base'.DS.'text.php');
+require_once (JPATH_ROOT.'/components/com_community/defines.community.php');
+require_once (JPATH_ROOT.'/administrator/components/com_jspc/includes.jspc.php');
+require_once (JPATH_ROOT.'/components/com_jspc/libraries/jspc.php');
+require_once (JPATH_ROOT.'/components/com_jspc/libraries/imagegenerator.php');
+require_once (JPATH_ROOT.'/components/com_jspc/libraries/base/text.php');
 
 /*Langauge file will be independent now */
 $lang = JFactory::getLanguage();

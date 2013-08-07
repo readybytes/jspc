@@ -57,14 +57,17 @@
 		</copy>
 		<delete dir="${joomla.rootpath}/${joomla.folder}/Joomla/" includeemptydirs="true" verbose="true" failonerror="true" />
 
+
+		<echo msg="Joomla files copied .." />
 		
-		<!--  change owner of files to www-data -->
-		<exec command="sudo chown -R www-data ./*" dir="${joomla.rootpath}/${joomla.folder}" />
+		<!--  for linux only change owner of files to www-data -->
+		<exec command="sudo chown -R www-data ." dir="${joomla.rootpath}/${joomla.folder}" />
 
 	</target>
 
 
 	<target name="create_database" depends="jconfig">
+		<!-- fill data base -->
 		<echo msg="Creating database and dumping sql into it." />
 		<exec command="${joomla.mysqlpath} -uroot -ppassword --execute=${joomla.createDBQuery}" passthru="true" />
 		<exec command="${joomla.mysqlpath} -uroot -ppassword --execute=${joomla.createUserQuery}" passthru="true" />

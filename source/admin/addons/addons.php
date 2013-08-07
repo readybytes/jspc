@@ -33,12 +33,12 @@ class addonFactory
 			$counter = 0;
 			foreach($filter as $name => $info) {
 				$filterSql .= $counter ? ' '.$join.' ' : '';
-				$filterSql .= $db->nameQuote($name).'='.$db->Quote($info);
+				$filterSql .= $db->quoteName($name).'='.$db->Quote($info);
 				$counter++;
 			}
 		}
 
-		$query = 'SELECT * FROM '.$db->nameQuote('#__jspc_addons')
+		$query = 'SELECT * FROM '.$db->quoteName('#__jspc_addons')
 				.$filterSql;
 				
 		$db->setQuery($query);
@@ -49,7 +49,7 @@ class addonFactory
 
 	public function getAddons()
 	{
-		$path	= JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons';
+		$path	= JPATH_ROOT.'/administrator/components/com_jspc/addons';
 	
 		jimport( 'joomla.filesystem.folder' );
 		$addons = array();
@@ -59,7 +59,7 @@ class addonFactory
 	
 	public function getAddonObject($addonName)
 	{
-		$path	= dirname(__FILE__). DS . $addonName . DS . $addonName.'.php';
+		$path	= dirname(__FILE__).'/'.$addonName.'/'.$addonName.'.php';
 		
 		jimport( 'joomla.filesystem.file' );
 		if(!JFile::exists($path))
@@ -113,13 +113,15 @@ abstract class jspcAddons
 		// this->addonparams can be set by child constructor, 
 		// then we do not need to create addon params
 		$className    = substr($className, 4);
-		$addonXmlpath =  dirname(__FILE__) . DS . strtolower($className) . DS . strtolower($className).'.xml';
-		if(empty($this->addonparams) && JFile::exists($addonXmlpath))
-			$this->addonparams = new XipcParameter('',$addonXmlpath);
+		$addonXmlpath =  dirname(__FILE__).'/'.strtolower($className) .'/'.strtolower($className).'.xml';
+		if(empty($this->addonparams) && JFile::exists($addonXmlpath)){
+			$this->addonparams =  XipcParameter::getInstance('addonparams',$addonXmlpath, array('control' => 'addonparams'));
+		}
 		
-		$corexmlpath = dirname(__FILE__) . DS . 'coreparams.xml';		
-		if(JFile::exists($corexmlpath))
-			$this->coreparams = new XipcParameter('',$corexmlpath);
+		$corexmlpath = dirname(__FILE__) .'/coreparams.xml';		
+		if(JFile::exists($corexmlpath)){
+			$this->coreparams = XipcParameter::getInstance('coreparams',$corexmlpath, array('control' => 'coreparams'));
+		}
 	}
 	
 	function load($id)
@@ -152,8 +154,8 @@ abstract class jspcAddons
 		if($this->coreparams)
 			return;
 			
-		$xmlpath = JPATH_ROOT . DS . 'administrator' . DS . 'components' . DS . 'com_jspc' . DS . 'addons' . DS . 'coreparams.xml';
-		$this->coreparams = new XipcParameter('',$xmlpath);
+		$xmlpath = JPATH_ROOT.'/administrator/components/com_jspc/addons/coreparams.xml';
+		$this->coreparams = XipcParameter::getInstance('coreparams',$xmlpath);
 	}
 	
 	public function getHtml(&$coreParamsHtml,&$addonParamsHtml)
@@ -165,33 +167,22 @@ abstract class jspcAddons
 	
 	public function getAddonParamsHtml()
 	{
-		$addonParamsHtml = $this->addonparams->render('addonparams');
-		
-		if($addonParamsHtml)
-			return $addonParamsHtml;
-		
-		$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
-		
-		return $addonParamsHtml;
+		$addon_model = JspcFactory::getModel('addons');
+		return $addon_model->getParamHtml($this->addonparams);
 	}
 	
 	final public function getCoreParamsHtml()
 	{
 		$this->setCoreParams();
-		$coreParamsHtml = $this->coreparams->render('coreparams');
 		
-		if($coreParamsHtml)
-			return $coreParamsHtml;
-		
-		$coreParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
-		
-		return $coreParamsHtml;
+		$addon_model = JspcFactory::getModel('addons');
+		return $addon_model->getParamHtml($this->coreparams);
 	}
 	
 	function collectParamsFromPost($postdata)
 	{
 		assert($postdata['addonparams']);
-		$registry	= JRegistry::getInstance( 'jspc' );
+		$registry	= JRegistry::getInstance('jspc' );
 		$registry->loadArray($postdata['addonparams'],'jspc_addonparams');
 		
 		$addonparams =  $registry->toString('INI' , 'jspc_addonparams' );
@@ -212,7 +203,9 @@ abstract class jspcAddons
 		}
 		if(is_array($data)){
 			
-			$this->addonparams->bind($data['addonparams']);
+			if(!empty($data['addonparams'])){
+				$this->addonparams->bind($data['addonparams']);
+			}
 		
 			if(!$this->coreparams) 	$this->setCoreParams();
 			$this->coreparams->bind($data['coreparams']);
@@ -312,7 +305,7 @@ abstract class jspcAddons
 	
 	public function getCoreParams($what,$default=0)
 	{
-		$value = $this->coreparams->get($what,$default);
+		$value = $this->coreparams->getValue($what,$default);
 		return $value;
 	}
 	

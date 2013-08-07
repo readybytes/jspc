@@ -7,7 +7,7 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 
-$jspcPath = JPATH_ADMINISTRATOR.DS.'components'.DS.'com_jspc';
+$jspcPath = JPATH_ADMINISTRATOR.'/components/com_jspc';
 
 if(!JFolder::exists($jspcPath))
 	return false;

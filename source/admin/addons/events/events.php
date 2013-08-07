@@ -25,8 +25,8 @@ class JspcEvents extends jspcAddons
 	{
 	   $db	  	= JFactory::getDBO();
 	   $query	= 'SELECT COUNT(*) '
-				. ' FROM ' . $db->nameQuote( '#__community_events' )
-				. ' WHERE '. $db->nameQuote('creator').'=' . $db->Quote( $userid );
+				. ' FROM ' . $db->quoteName( '#__community_events' )
+				. ' WHERE '. $db->quoteName('creator').'=' . $db->Quote( $userid );
 				
 		$db->setQuery($query);
 		$count = $db->loadResult();

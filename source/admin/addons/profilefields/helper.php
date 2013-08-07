@@ -33,7 +33,7 @@ class helper
 				}
 			}
 				
-			$sql = "SELECT * FROM " . $db->nameQuote('#__community_fields');
+			$sql = "SELECT * FROM " . $db->quoteName('#__community_fields');
 			if(! empty($wheres)){
 			   $sql .= " WHERE ".implode(' AND ', $wheres);
 			}

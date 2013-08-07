@@ -12,24 +12,54 @@ if(defined('_JEXEC')===false) die();
  * We have extended JDocument class so that we can control what to do
  * on particular times
  */
-jimport('joomla.html.parameter');
 
-class XipcParameter extends JParameter
+class XipcParameter extends JRegistry
 {
-	public function __construct($data = '', $path = '')
+	public static function getInstance($name, $data = null, $options = array(), $replace = true, $xpath = false)
 	{
-		parent::__construct($data, $path);
+		$data = trim($data);
+
+		if (empty($data))
+		{
+			throw new InvalidArgumentException(sprintf('JForm::getInstance(name, *%s*)', gettype($data)));
+		}
+
+		// Instantiate the form.
+		$forms[$name] = JForm::getInstance($name,$data);
+
+
+		// Load the data.
+		if (substr(trim($data), 0, 1) == '<')
+		{
+			if ($forms[$name]->load($data, $replace, $xpath) == false)
+			{
+				throw new RuntimeException('JForm::getInstance could not load form');
+			}
+		}
+		else
+		{
+			if ($forms[$name]->loadFile($data, $replace, $xpath) == false)
+			{
+				throw new RuntimeException('JForm::getInstance could not load file');			}
+		}
+
+		return $forms[$name];
 	}
 	
-	//need to use it as binding forwards to loadJSON, rathern then INI
-	function bind($data, $group = '_default')
+	public function bind($data, $group = '_default')
 	{
-		if ( is_array($data) ) {
+		if (is_array($data))
+		{
 			return $this->loadArray($data, $group);
-		} elseif ( is_object($data) ) {
+
+		} elseif (is_object($data))
+		{
 			return $this->loadObject($data, $group);
-		} else {
-			return $this->loadINI($data, $group);
+
+		} else
+		{
+			// Return JSON
+			return $this->loadString($data);
 		}
 	}
 }

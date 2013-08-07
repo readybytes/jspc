@@ -7,10 +7,10 @@
 // no direct access
 if(!defined('_JEXEC')) die('Restricted access');
 
-if(!JFolder::exists(JPATH_ROOT.DS.'components'.DS.'com_xipt'))
+if(!JFolder::exists(JPATH_ROOT.'/components/com_xipt'))
   return;
 
-require_once JPATH_ROOT.DS.'components'.DS.'com_xipt'.DS.'api.xipt.php';
+require_once JPATH_ROOT.'/components/com_xipt/api.xipt.php';
 
 class XiptWrapper
 {

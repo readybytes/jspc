@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install version="1.5" type="module" group="community" client="site">
+<extension version="3.0" type="module" group="community" client="site" method="upgrade">
 	<name>JoomlaXi Profile Completion Status</name>
 	<author>Team Joomlaxi</author>
 	<creationDate>4th Aug 2009</creationDate>
@@ -21,46 +21,6 @@
 		<file >helper.php</file>
 	</files>
 	
-	<!-- for J1.5 -->
-	<params addpath="/administrator/components/com_jspc/elements" >
-		<param name="SPS_Layout" type="list" default="horizontal" label="Layout" description="">
-			<option value="horizontal">Horizontal</option>
-			<option value="vertical">Vertical</option>
-		</param>
-		<param name="SPS_ShowAvatar" type="list" default="1" label="Show Avatar" description="">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		<param name="SPS_AvatarWidth" type="text" default="100" label="Width of Avatar in Pixel" description=""/>
-		<param name="SPS_AvatarHeight" type="text" default="100" label="Height of Avatar in Pixel" description=""/>
-		
-		<param name="SPS_Length" type="text" default="200" label="Length of Completion bar in pixels" description=""/>
-		<param name="SPS_Height" type="text" default="25"  label="Height of Completion bar in pixels" description=""/>
-		<param name="SPS_FontSize" type="list" default="3" label="Font Size of text" description="">
-			<option value="1">Tiny</option>
-			<option value="2">Small</option>
-			<option value="3">Normal</option>
-			<option value="4">Big</option>
-			<option value="5">Very Big</option>
-			<option value="6">Huge</option>
-			<option value="7">Very Huge</option>
-		</param>
-		<param name="SPS_FGColor"  type="colorbox" default="9CD052"  label="Fill Bar Color" description=""/>
-		<param name="SPS_BGColor"  type="colorbox" default="FFFFFF"  label="Empty Bar Color" description=""/>
-		<param name="SPS_SLColor"  type="colorbox" default="000000"  label="Side Line Color" description=""/>
-		<param name="SPS_STRColor" type="colorbox" default="FFFFFF"  label="Text Color" description=""/>
-		<param name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completeness Image" description="">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		<param name="showProfile" type="list" default="1" label="Show Module when 100% Status" description="Do you want to show Plugin when user's Profile is 100% complete?">
-			<option value="0">No</option>
-			<option value="1">Yes</option>
-		</param>
-		<param name="SPS_VisibleFeatureNumber" type="text" default="All" label="Number of Visible Feature to complete Profile" description="Write all to display all feature else write count" />
-		
-		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" /> 
-	</params>
 	<!-- for J1.6 -->
 	<config>
 	<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
@@ -108,4 +68,4 @@
 		</fields>
 	</config>
 
-</install>
+</extension>

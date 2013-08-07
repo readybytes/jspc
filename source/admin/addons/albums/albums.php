@@ -26,7 +26,7 @@ class JspcAlbums extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-				. ' FROM ' . $db->nameQuote( '#__community_photos_albums' )
+				. ' FROM ' . $db->quoteName( '#__community_photos_albums' )
 				. ' WHERE creator =' . $db->Quote( $userid );
 
 		$db->setQuery( $query );

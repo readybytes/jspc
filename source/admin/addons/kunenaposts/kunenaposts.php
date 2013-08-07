@@ -27,7 +27,7 @@ class JspcKunenaposts extends jspcAddons
 		if(false == $this->isKunenaExist())
 			return 0;
 			
-		require_once(JPATH_ROOT.DS. 'components' .DS. 'com_kunena' . DS . 'lib' . DS . 'kunena.user.class.php' );
+		require_once(JPATH_ROOT.'/components/com_kunena/lib/kunena.user.class.php' );
 		
 		$kUser = new CKunenaUserprofile($userid);
 		
@@ -56,7 +56,7 @@ class JspcKunenaposts extends jspcAddons
 		jimport( 'joomla.filesystem.file' );
 		jimport( 'joomla.filesystem.folder' );
 		
-		$kunenapath = JPATH_ROOT.DS.'components'.DS.'com_kunena';
+		$kunenapath = JPATH_ROOT.'/components/com_kunena';
 		
 		if(!JFolder::exists($kunenapath))
 			return false;

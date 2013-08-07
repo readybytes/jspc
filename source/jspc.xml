@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<install type="component" version="1.5.0" method="upgrade">
-	<name>JSPC</name>
+<extension type="component" version="3.0" method="upgrade">
+	<name>com_jspc</name>
 	<creationDate>2009-08-01</creationDate>
 	<author>Team Joomlaxi</author>
 	<authorEmail>shyam@joomlaxi.com</authorEmail>
@@ -33,7 +33,7 @@
 		
 		<files folder="admin">
 			<filename>index.html</filename>
-			<filename>admin.jspc.php</filename>
+			<filename>jspc.php</filename>
 			<filename>includes.jspc.php</filename>
 			<folder>addons</folder>
 			<folder>assets</folder>
@@ -71,4 +71,4 @@
 	<modules>
 		<module module="mod_jspc" publish="true" group="community" />
 	</modules>
-</install>
+</extension>

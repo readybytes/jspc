@@ -36,15 +36,15 @@ class JspcImageGenerator
 		jimport('joomla.filesystem.folder');
 		
 		// if file exist return the file name
-		$folderPath = 'media'.DS.'system'.DS.'images'.DS.'jspc';
+		$folderPath = 'media/system/images/jspc';
 		
-		$filename	= $folderPath.DS.$imagePreText.$per. '.jpg';
+		$filename	= $folderPath.'/'.$imagePreText.$per. '.jpg';
 		
 		// For debug mode generate file everytime
 		if(!JFolder::exists($folderPath))
 			JFolder::create($folderPath,0777);
 
-		if(JFile::exists(JPATH_ROOT.DS.$filename)) {
+		if(JFile::exists(JPATH_ROOT.'/'.$filename)) {
 			if($this->params->get('SPS_ImageDebugMode'))
 				JFile::delete($filename);
 			else
@@ -77,7 +77,7 @@ class JspcImageGenerator
 		$position=$this->calculatePositionOfFillbarText($img,$strPercent,$per);
 		imagestring 		($img,	$this->fontsize, $position['x'], $position['y'], $strPercent, $this->strColor); 
 		
-		$result	=	 imagejpeg($img,JPATH_ROOT.DS.$filename);
+		$result	=	 imagejpeg($img,JPATH_ROOT.'/'.$filename);
 		imagedestroy($img);
 		// if file creation is successfull return filename , else false
 		return $result ? $filename :  false;

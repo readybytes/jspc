@@ -19,7 +19,7 @@ class plgCommunityJspc extends CApplications
 	function plgCommunityJspc(& $subject, $config)
     {
 		parent::__construct($subject, $config);
-		$this->_path	= dirname( dirname( JPATH_ROOT ) ) . DS . 'administrator' . DS . 'components' . DS . 'com_community'; 
+		$this->_path	= dirname( dirname( JPATH_ROOT ) ).'/administrator/components/com_community'; 
 		$this->plugin =& JPluginHelper::getPlugin('community', $this->_name); 		
 		$this->_params 	= new JParameter($this->plugin->params);		
     }
@@ -33,21 +33,21 @@ class plgCommunityJspc extends CApplications
 		$this->isIncludes = true;	
     	jimport( 'joomla.filesystem.folder' );
 		
-		$jspcPath = JPATH_ROOT.DS.'components'.DS.'com_jspc';
+		$jspcPath = JPATH_ROOT.'/components/com_jspc';
 		
 		if(!JFolder::exists($jspcPath))
 			return false;
 		
-		require_once( JPATH_ROOT . DS . 'components' . DS . 'com_jspc'  . DS . 'includes.jspc.php');
+		require_once( JPATH_ROOT.'/components/com_jspc/includes.jspc.php');
 
-		$communityPath = JPATH_ROOT.DS.'components'.DS.'com_community';
+		$communityPath = JPATH_ROOT.'/components/com_community';
 
 		if(!JFolder::exists($communityPath))
 			return false;
 		
 		//community files
-		require_once(JPATH_ROOT.DS.'components'.DS.'com_community' . DS . 'libraries' . DS . 'core.php' );
-		require_once (JPATH_ROOT. DS.'components'.DS.'com_community'.DS.'helpers'.DS.'owner.php');
+		require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
+		require_once (JPATH_ROOT.'/components/com_community/helpers/owner.php');
 			
 		JPlugin::loadLanguage( 'plg_jspc', JPATH_ADMINISTRATOR );
 		

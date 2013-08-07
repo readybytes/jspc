@@ -27,7 +27,7 @@ class JspcFriends extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-				. ' FROM ' . $db->nameQuote( '#__community_connection' )
+				. ' FROM ' . $db->quoteName( '#__community_connection' )
 				. ' WHERE `connect_from`=' . $db->Quote( $userid ) 
 				. ' AND `status`=1';
 

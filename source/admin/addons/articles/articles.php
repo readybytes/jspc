@@ -26,7 +26,7 @@ class JspcArticles extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		$query	= 'SELECT COUNT(*) '
-				. ' FROM ' . $db->nameQuote( '#__content' )
+				. ' FROM ' . $db->quoteName( '#__content' )
 				. ' WHERE created_by=' . $db->Quote( $userid );
 
 		$db->setQuery( $query );
