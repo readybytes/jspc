@@ -33,72 +33,52 @@ function submitbutton( action )
 	<?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?>
 </div>
 
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm">
-<table class="adminlist" cellspacing="1">
-	<thead>
-		<tr class="title">
-			<th width="1%">
-				<?php echo JspcText::_( 'NUM' ); ?>
-			</th>
-			<th width="1%">
-				<input type="checkbox" name="toggle" value="" onclick="checkAll(<?php echo count( $this->addonsInfo ); ?>);" />
-			</th>
-			<th>
-				<?php echo JspcText::_( 'CRITERIA_NAME' ); ?>
-			</th>
-			<th>
-				<?php echo JspcText::_( 'ADDON_NAME' ); ?>
-			</th>
-			<?php if($this->profilesExist && $this->integrate_with != 'none'){?>
-			<th>
-				<?php echo JspcText::_( 'PROFILE_TYPE' ); ?>
-			</th>
-			<?php }?>
-			<th>
-				<?php echo JspcText::_( 'TOTAL_WEIGHTAGE' ); ?>
-			</th>
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc>" method="post" name="adminForm" id="adminForm">
+  <table class="table table-hover">
+    <thead>
+		<!-- TABLE HEADER START -->
+			<tr>
+				<th class="default-grid-sno"><?php echo JspcText::_('NUM'); ?></th> 
+        		
+				<th  width="1%">
+					<input type="checkbox" name="toggle" value="" onclick="Joomla.checkAll(this);" />
+				</th>		
+				
+				<th><?php echo JspcText::_('CRITERIA_NAME'); ?></th>
+				<th><?php echo JspcText::_('ADDON_NAME'); ?></th>
+				<?php if($this->profilesExist && $this->integrate_with != 'none'){?>
+					<th><?php echo JspcText::_( 'PROFILE_TYPE' ); ?></th>
+				<?php }?>
+				<th><?php echo JspcText::_( 'TOTAL_WEIGHTAGE' ); ?></th>
+				<?php if($this->profilesExist == false || $this->integrate_with == 'none') {?>
+					<th><?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?></th>
+				<?php }
+					else
+					{
+						if(isset($this->profileTypeName))
+							foreach($this->profileTypeName as $ptype){?>
+								<th><?php echo $ptype;?></th>
+						<?php }	
+						}?>
 			
-			<?php 
-			if($this->profilesExist == false || $this->integrate_with == 'none')
-			{?>
-				<th width="5%">
-				<?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?>
-				</th><?php 
-			}
-			else
-			{
-				if(isset($this->profileTypeName))
-				foreach($this->profileTypeName as $ptype)
+			<th><?php echo JspcText::_( 'PUBLISHED' ); ?></th>
+				
+		</tr>
+		<!-- TABLE HEADER END -->
+		</thead>
+		<?php $count	= 0;
+			  $i		= 0;
+	
+			if(!empty($this->addonsInfo))
+				foreach($this->addonsInfo as $addon)
 				{
-				?>
-				<th>
-					<?php 
-							echo $ptype;
-					?>
-							
-				</th>
-				<?php 
-				}	
-			}?>
+					$input	= JHTML::_('grid.id', $count, $addon->id);
 			
-			<th width="5%">
-				<?php echo JspcText::_( 'PUBLISHED' ); ?>
-			</th>
-		</tr>		
-	</thead>
-<?php
-	$count	= 0;
-	$i		= 0;
-
-	if(!empty($this->addonsInfo))
-	foreach($this->addonsInfo as $addon)
-	{
-		$input	= JHTML::_('grid.id', $count, $addon->id);
+					// Process publish / unpublish images
+					++$i; ?>
 		
-		// Process publish / unpublish images
-		++$i;
-?>
-		<tr class="row<?php echo $i%2;?>" id="rowid<?php echo $addon->id;?>">
+		<tbody>
+				<tr class="row<?php echo $i%2;?>" id="rowid<?php echo $addon->id;?>">
 			<td><?php echo $i;?></td>
 			<td>
 				<?php echo $input; ?>
@@ -160,25 +140,19 @@ function submitbutton( action )
 				</a>
 			</td>
 		</tr>
-<?php
-		
+	<?php
 		$count++;
-	}
-?>
-	<tfoot>
-	<tr>
-		<td colspan="15">
-			<?php echo $this->pagination->getListFooter(); ?>
-		</td>
-	</tr>
-	</tfoot>
-</table>
-
-
-
-<input type="hidden" name="view" value="addons" />
+	} ?>
+	</tbody>
+    
+  </table>
+  
+  		<div class="row">
+     		<div class="offset5 span7"><?php echo $this->pagination->getListFooter(); ?></div>
+   		</div> 
+  
+	<input type="hidden" name="view" value="addons" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="option" value="com_jspc" />
 <input type="hidden" name="boxchecked" value="0" />
-<?php echo JHTML::_( 'form.token' ); ?>
-</form>	
+</form>

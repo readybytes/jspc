@@ -85,11 +85,11 @@ class JspcControllerAddons extends JControllerLegacy
 			$data['name'] 			= $info[0]->name;
 			$data['featurename'] 	= $info[0]->featurename;
 			$data['published'] 		= $info[0]->published;
-			$data['coreparams'] 	= $info[0]->coreparams;
-			$data['addonparams'] 	= $info[0]->addonparams;
+			$data['coreparams'] 	= (array)json_decode($info[0]->coreparams);
+			$data['addonparams'] 	= (array)json_decode($info[0]->addonparams);
 		}
 		
-		$layout		= JFactory::getApplication()->input->get( 'layout' , 'param.edit' );
+		$layout		= JRequest::getCmd( 'layout' , 'param.edit' );
 		$view->setLayout( $layout );
 		echo $view->renderaddon($data);
 	}
@@ -116,14 +116,8 @@ class JspcControllerAddons extends JControllerLegacy
 				
 		$data = array();
 		
-//		$registry	= JRegistry::getInstance( 'jspc' );
-//		$registry->loadArray($post['coreparams'],'jspc_coreparams');
-//		// Get the complete INI string
-//		//$data['coreparams']	= $registry->toString('INI' , 'jspc_coreparams' );
-//		$data['coreparams']		= $registry->toString('' , 'jspc_coreparams' );
-		
-		
-		$data['coreparams']		= json_encode($post['coreparams']); 
+		$data['coreparams']		= json_encode($post['coreparams']);
+		$data['addonparams']	= json_encode($post['addonparams']);
 		$data['id'] 			= $post['id'];
 		$data['name'] 			= $post['name'];
 		$data['featurename'] 	= $post['featurename'];
@@ -134,10 +128,11 @@ class JspcControllerAddons extends JControllerLegacy
 		unset($post['featurename']);
 		unset($post['published']);
 		unset($post['coreparams']);
-		
-		$addonObject 			= addonFactory::getAddonObject($data['name']);
-		$data['addonparams'] 	= $addonObject->collectParamsFromPost($post);
-		
+		unset($post['addonparams']);
+//		
+//		$addonObject 			= addonFactory::getAddonObject($data['name']);
+//		$data['addonparams'] 	= $addonObject->collectParamsFromPost($post);
+//		
 		
 		$addons->bind($data);
 		$msg = '';
@@ -172,7 +167,6 @@ class JspcControllerAddons extends JControllerLegacy
 	{
 		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
-		JRequest::checkToken() or jexit( 'Invalid Token' );
 		
 		$ids	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
 	
@@ -209,7 +203,6 @@ class JspcControllerAddons extends JControllerLegacy
 	{
 		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
-		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables
 		$ids	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
 		$count	= count( $ids );
@@ -233,7 +226,6 @@ class JspcControllerAddons extends JControllerLegacy
 	{
 		$mainframe = JFactory::getApplication();
 		// Check for request forgeries
-		JRequest::checkToken() or jexit( 'Invalid Token' );
 		// Initialize variables
 		$ids	= JRequest::getVar( 'cid', array(0), 'post', 'array' );
 		$count	= count( $ids );

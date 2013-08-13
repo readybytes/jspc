@@ -115,12 +115,12 @@ abstract class jspcAddons
 		$className    = substr($className, 4);
 		$addonXmlpath =  dirname(__FILE__).'/'.strtolower($className) .'/'.strtolower($className).'.xml';
 		if(empty($this->addonparams) && JFile::exists($addonXmlpath)){
-			$this->addonparams =  XipcParameter::getInstance('addonparams',$addonXmlpath, array('control' => 'addonparams'));
+			$this->addonparams =  XipcParameter::getInstance('addonparams',$addonXmlpath);
 		}
 		
 		$corexmlpath = dirname(__FILE__) .'/coreparams.xml';		
 		if(JFile::exists($corexmlpath)){
-			$this->coreparams = XipcParameter::getInstance('coreparams',$corexmlpath, array('control' => 'coreparams'));
+			$this->coreparams = XipcParameter::getInstance('coreparams',$corexmlpath);
 		}
 	}
 	
@@ -149,45 +149,7 @@ abstract class jspcAddons
 		}
 	}
 	
-	final public function setCoreParams()
-	{
-		if($this->coreparams)
-			return;
-			
-		$xmlpath = JPATH_ROOT.'/administrator/components/com_jspc/addons/coreparams.xml';
-		$this->coreparams = XipcParameter::getInstance('coreparams',$xmlpath);
-	}
 	
-	public function getHtml(&$coreParamsHtml,&$addonParamsHtml)
-	{
-		//Imp : Function will always call core field html
-		$coreParamsHtml = $this->getCoreParamsHtml();
-		$addonParamsHtml = $this->getAddonParamsHtml();
-	}
-	
-	public function getAddonParamsHtml()
-	{
-		$addon_model = JspcFactory::getModel('addons');
-		return $addon_model->getParamHtml($this->addonparams);
-	}
-	
-	final public function getCoreParamsHtml()
-	{
-		$this->setCoreParams();
-		
-		$addon_model = JspcFactory::getModel('addons');
-		return $addon_model->getParamHtml($this->coreparams);
-	}
-	
-	function collectParamsFromPost($postdata)
-	{
-		assert($postdata['addonparams']);
-		$registry	= JRegistry::getInstance('jspc' );
-		$registry->loadArray($postdata['addonparams'],'jspc_addonparams');
-		
-		$addonparams =  $registry->toString('INI' , 'jspc_addonparams' );
-		return $addonparams;
-	}
 	
 	function bind($data)
 	{
@@ -208,7 +170,9 @@ abstract class jspcAddons
 			}
 		
 			if(!$this->coreparams) 	$this->setCoreParams();
-			$this->coreparams->bind($data['coreparams']);
+			
+			$coreparams	= $data['coreparams'];
+			$this->coreparams->bind($coreparams);
 			
 			$this->featurename 	= $data['featurename'];
 			$this->published 	= $data['published'];
@@ -221,7 +185,7 @@ abstract class jspcAddons
 		 * b'coz some fields may be not aplicable to user according to profiletype
 		 * and in that case total may change so let to handle this fields class
 		 */ 
-		$total = $this->coreparams->get('jspc_core_total_contribution',0);
+		$total = $this->coreparams->getValue('jspc_core_total_contribution',0);
 		return $total;
 	}
 	
@@ -288,7 +252,7 @@ abstract class jspcAddons
 	
 	public function getDisplayText($userid)
 	{
-		$text = $this->coreparams->get('jspc_core_display_text','');
+		$text = $this->coreparams->getValue('jspc_core_display_text','');
 		/*here i will return remaining no's , so if user want to show msg like
 		 * 3 photo need to be added to complete profile
 		 * that he can
@@ -318,7 +282,7 @@ abstract class jspcAddons
 	public function getRemainingCount($userid)
 	{
 		$count = $this->calculateCount($userid);
-		$total = $this->addonparams->get($this->name.'_total',0);
+		$total = $this->addonparams->getValue($this->name.'_total',0);
 		
 		if(0 == $total)
 			return 0;
@@ -332,8 +296,8 @@ abstract class jspcAddons
 	public function calculateCompletness($userid)
 	{
 		$count = $this->calculateCount($userid);
-		$total = $this->addonparams->get($this->name.'_total',0);
-		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
+		$total = $this->addonparams->getValue($this->name.'_total',0);
+		$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
 
 		if(0 == $total)
 			return $contribution;

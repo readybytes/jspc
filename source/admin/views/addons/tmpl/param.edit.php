@@ -4,8 +4,9 @@ defined('_JEXEC') or die('Restricted access');
 * @Copyright Ready Bytes Software Labs Pvt. Ltd. (C) 2010- author-Team Joomlaxi
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 **/
- JHTML::_('behavior.tooltip'); 
- JHtml::_('behavior.formvalidation');
+JHtml::_('behavior.tooltip');
+JHtml::_('behavior.keepalive');
+JHtml::_('behavior.formvalidation');
 
 JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
 JToolBarHelper::divider();
@@ -18,6 +19,9 @@ $style = '#publish-values label{min-width:0px;clear:none;}';
 $doc->addStyleDeclaration( $style );
 ?>
 <script language="javascript" type="text/javascript">
+Joomla.submitbutton = function(action){
+	submitbutton( action );
+}
 	function submitbutton(pressbutton) {
 		if (pressbutton == "cancel") {
 			submitform(pressbutton);
@@ -56,95 +60,78 @@ $doc->addStyleDeclaration( $style );
 </script>
 
 <form action="index.php" method="post" name="adminForm" id="adminForm">
-<div>
-<div class="col width-40" style="width:40%; float:left;">
-	<fieldset class="adminform">
-	<legend><?php echo JspcText::_( 'Details' ); ?></legend>
-	<table class="admintable">
-		<tr>
-			<td width="100" class="key">
-				<label for="name" title=" <?php echo JspcText::_( 'NAME_DESC' ); ?> ">
-					<?php echo JspcText::_( 'NAME' ); ?>:
-				</label>
-			</td>
-			<td>
-				<?php echo $this->addonInfo['name']; ?>
-			</td>
-		</tr>
-		<tr>
-			<td width="100" class="key">
-				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME_DESC' ); ?> ">
-					<?php echo JspcText::_( 'FEATURE_NAME' ); ?>:
-				</label>
-			</td>
-			<td>
-				<input class="text_area" type="text" name="featurename" id="featurename" size="35" value="<?php echo $this->addonInfo['featurename']; ?>" />
-			</td>
-		</tr>
-		<tr>
-			<td valign="top" class="key">
-			<label for="published" title=" <?php echo JspcText::_( 'PUBLISHED_DESC' ); ?> ">
-				<?php echo JspcText::_( 'PUBLISHED' ); ?>:
-			</label>
-			</td>
-			<td>
-				<div id="publish-values">
-					<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
-				</div>
-			</td>
-		</tr>
-		<tr>
-			<td valign="top" class="key">
-			<label for="contribution" title=" <?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?> ">
-				<?php echo JspcText::_('CONTRIBUTION_IN_PERCENTAGE'); ?>:
-			</label>
-			</td>
-			<td>
+<div class="row-fluid">
+	<div class="span6">		
+		<fieldset class="form-horizontal">
+			<legend> <?php echo JspcText::_('Details' ); ?> </legend>
+		
+			
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('name'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('name'); ?></div>				
+			</div>
+			
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('featurename'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('featurename'); ?></div>				
+			</div>
+			
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('published'); ?></div>
+				<div class="controls"><?php echo $this->form->getInput('published'); ?></div>				
+			</div>
+			
+			<div class="control-group">
+				<div class="control-label"><?php echo $this->form->getLabel('percentage'); ?></div>
+				<div class="controls">
 				<?php 
-				if(!$this->profilesExist)
-					echo  round($this->percentage,2)." %";
-				else
-				{
-					foreach($this->profileTypeArray as $ptypeId)
-					{						
-						echo $this->profileTypeName[$ptypeId];
-						if(array_key_exists($ptypeId, $this->percentage))
-					 		echo " : " . round($this->percentage[$ptypeId],2)." %";
-					 	else
-				 		    echo " : -"; 
-				 	 	?><br/><?php    
+					if(!$this->profilesExist){
+						echo  round($this->percentage,2)." %";
 					}
-				}	
-				?>
-			</td>
-		</tr>
-		</table>
-	</fieldset>
-	<br />
-	<br />
+					else
+					{
+						foreach($this->profileTypeArray as $ptypeId)
+						{						
+							echo $this->profileTypeName[$ptypeId];
+							if(array_key_exists($ptypeId, $this->percentage)){
+						 		echo " : " . round($this->percentage[$ptypeId],2)." %";
+							}
+						 	else {
+					 		    echo " : -"; 
+						 	}
+					 	 	?><br/><?php    
+						}
+					}	?>
+				</div>				
+			</div>
+	</fieldset>	
 	
-</div>
-</div>
-<div>
-<div class="col width-60" style="width:60%; float:right;">
-	<fieldset class="adminform">
-	<legend><?php echo JspcText::_('Parameters'); ?></legend>
-	<?php
-		echo JHtmlSliders::start('start');
-		
-		echo JHtmlSliders::panel('Core Parameter', 'coreparams-page');
-		echo $this->coreParamsHtml;
-		
-		echo JHtmlSliders::panel('Addon Parameters', 'addonparams-page');
-		echo $this->addonParamsHtml;
-		
-		echo JHtmlSliders::end();
-	?>
-	</fieldset>
-</div>
-</div>
-<div class="clr"></div>
-
+	<fieldset class="form-horizontal">
+				<legend> <?php echo JspcText::_('CORE_PARAMETERS' ); ?> </legend>
+				<?php foreach ($this->form->getFieldset('coreparams') as $field):?>
+					<?php $class = $field->group.$field->fieldname; ?>
+					<div class="control-group <?php echo $class;?>">
+						<div class="control-label"><?php echo $field->label; ?> </div>
+						<div class="controls"><?php echo $field->input; ?></div>								
+					</div>
+				<?php endforeach;?>
+		</fieldset>
+	
+	</div>
+	
+	<div class="span6">
+		<fieldset class="form-horizontal">
+				<legend> <?php echo JspcText::_('ADDON_PARAMETERS' ); ?> </legend>
+				<?php foreach ($this->form->getFieldset('addonparams') as $field):?>
+					<?php $class = $field->group.$field->fieldname; ?>
+					<div class="control-group <?php echo $class;?>">
+						<div class="control-label"><?php echo $field->label; ?> </div>
+						<div class="controls"><?php echo $field->input; ?></div>								
+					</div>
+				<?php endforeach;?>
+		</fieldset>
+	</div>
+</div>		
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="editId" value="<?php echo $this->addonInfo['id'];?>" />
 	<input type="hidden" name="id" value="<?php echo $this->addonInfo['id'];?>" />
@@ -152,5 +139,5 @@ $doc->addStyleDeclaration( $style );
 	<input type="hidden" name="cid[]" value="" />
 	<input type="hidden" name="view" value="addons" />
 	<input type="hidden" name="task" value="" />
-	<?php echo JHTML::_( 'form.token' ); ?>
+	
 </form>

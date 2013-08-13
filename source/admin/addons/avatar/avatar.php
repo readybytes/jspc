@@ -16,7 +16,7 @@ class JspcAvatar extends jspcAddons
 	public function calculateCompletness($userid)
 	{	
 		$count 		  = $this->calculateCount($userid);		
-		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
+		$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
 		
 		if($count >= 1)
 			return $contribution;
@@ -49,7 +49,7 @@ class JspcAvatar extends jspcAddons
 		$user		 	= CFactory::getUser($userid);		
 		$userAvatar  	= $user->_avatar;
 		$count 		 	= 0;
-		$integrate_with = $this->coreparams->get('integrate_with', 'jspt');
+		$integrate_with = $this->coreparams->getValue('integrate_with', 'jspt');
 		
 		if(JspcHelper::checkXiptExists() && $integrate_with == 'jspt')
 		{

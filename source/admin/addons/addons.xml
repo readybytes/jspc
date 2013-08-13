@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <form>
+	
+	<fieldset name="details">
+		<field 	name="name" 
+				type="text"
+				label="Name" 
+				description="NAME_DESC"
+				readonly="true" />
+		        
+        <field 	name="featurename" 
+				type="text"
+				label="Feature Name" 
+				description="FEATURE_NAME_DESC" />
+		        		        
+        <field 	name="published" 
+				type="radio"
+				default="1"
+				class="btn-group"
+				label="Published" 
+				description="PUBLISHED_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+		</field>
+		        
+        <field 	name="percentage" 
+				type="text"
+				label="Contribution in Percentage" 
+				description="TOTALCONTRIBUTION_IN_PERCENTAGE"
+				default=""
+				readonly="true" />
+
+	</fieldset>
+	
 	<fields name="coreparams">
-		<fieldset name="coreparams" addpath="/administrator/components/com_jspc/elements">
+		<fieldset name="coreparams" addfieldpath="/administrator/components/com_jspc/fields">
 			<field 	name="jspc_core_total_contribution" 
 					type="text" 
 					default="" 
@@ -16,9 +48,9 @@
 			
 			<field 	name="integrate_with" 
 					type="list" 
-					default="none" 
 					label="COM_JSPC_INTEGRATE_WITH" 
-					description="COM_JSPC_INTEGRATE_WITH_DESC">
+					description="COM_JSPC_INTEGRATE_WITH_DESC"
+					default="none">
 					<option value="none">COM_JSPC_NONE</option>
 					<option value="jspt">COM_JSPC_JSPT</option>
 					<option value="multiprofile">COM_JSPC_JS_MULTIPROFILE</option>

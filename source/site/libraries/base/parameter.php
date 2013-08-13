@@ -25,7 +25,9 @@ class XipcParameter extends JRegistry
 		}
 
 		// Instantiate the form.
-		$forms[$name] = JForm::getInstance($name,$data);
+		JForm::addFieldPath(JPATH_ADMINISTRATOR.'/components/com_jspc/fields');
+		
+		$forms[$name] = JForm::getInstance($name,$data,array(),false,'//config');
 
 
 		// Load the data.

@@ -17,8 +17,8 @@ class JspcGroupowner extends jspcAddons
 	public function calculateCompletness($userid)
 	{
 		$count 		  = $this->calculateCount($userid);			
-		$total 		  = $this->addonparams->get('groupowner_total',0);
-		$contribution = $this->coreparams->get('jspc_core_total_contribution',0);
+		$total 		  = $this->addonparams->getValue('groupowner_total',0);
+		$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
 		
 		if(0 == $total)
 			return $contribution;
@@ -43,7 +43,7 @@ class JspcGroupowner extends jspcAddons
 	public function getRemainingCount($userid)
 	{
 		$count = $this->calculateCount($userid);
-		$total = $this->addonparams->get('groupowner_total',0);
+		$total = $this->addonparams->getValue('groupowner_total',0);
 		
 		if(0 == $total)
 			return 0;

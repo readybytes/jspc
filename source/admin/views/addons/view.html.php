@@ -43,8 +43,8 @@ class JspcViewAddons extends JViewLegacy
 			
 		foreach($profileTypeArrayObject as $ptypeId)
 		{
-			$profileTypeArray[$ptypeId->id]= $ptypeId->id;
-			$profileTypeName[$ptypeId->id] = $ptypeId->name;
+			$profileTypeArray[$ptypeId->id]	= $ptypeId->id;
+			$profileTypeName[$ptypeId->id] 	= $ptypeId->name;
 		}
 					
 		if(!empty($addonsInfo))
@@ -52,6 +52,8 @@ class JspcViewAddons extends JViewLegacy
 			foreach($addonsInfo as $addon) 
 			{
 				$data				= (array)$addon;
+				$coreparams			= (array)json_decode($data['coreparams']);
+				$addonparams		= (array)json_decode($data['addonparams']);
 				$totals[$addon->id] = array();
 				$totals[$addon->id] = JspcHelper::getTotalContributionOfCriteria($addon->id);
 							
@@ -60,11 +62,11 @@ class JspcViewAddons extends JViewLegacy
 					
 				$addonObject = addonFactory::getAddonObject($addon->name);
 				$addonObject->bind($addon);
-				$integrate_with = $addonObject->getCoreParams('integrate_with',"jspt");
-				
+
+				$integrate_with = $coreparams['integrate_with'];			
 				if($isXiptExist && $integrate_with == "jspt")
 				{
-					$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
+					$ptype	= $coreparams['jspc_profiletype'];
 					
 					if($ptype == 0)
 						$addonProfiletype[$addon->id] = 'all';
@@ -74,7 +76,7 @@ class JspcViewAddons extends JViewLegacy
 				
 				if($multiprofileExist && $integrate_with == "multiprofile")
 				{
-					$ptype = $addonObject->getCoreParams('jspc_multiprofile',0);
+					$ptype	= $coreparams['jspc_multiprofile'];
 					
 					if($ptype == 0)
 						$addonProfiletype[$addon->id] = 'all';
@@ -153,19 +155,20 @@ class JspcViewAddons extends JViewLegacy
 		$percentage 	 = 0;
 		$profilesExist 	 = false;
 		$profileTypeArrayObject = array();
-		$ptype			 = 0;
+		$ptype			 = 0;	
 		
-		//call htmlrender fn
-		$addonObject = addonFactory::getAddonObject($data['name']);
-		$addonObject->bind($data);
-		$addonObject->getHtml($coreParamsHtml,$addonParamsHtml);
 		
-		$integrate_with = $addonObject->getCoreParams('integrate_with', 'jspt');
+		$integrate_with = "";
+		if(!empty($data['coreparams'])){
+			$integrate_with	= $data['coreparams']['integrate_with'];
+		}
 		
-		if($integrate_with == "jspt")
-			$ptype = $addonObject->getCoreParams('jspc_profiletype',0);
-		elseif($integrate_with == "multiprofile")
-			$ptype = $addonObject->getCoreParams('jspc_multiprofile',0);
+		if($integrate_with == "jspt"){
+			$ptype	= $data['coreparams']['jspc_profiletype'];
+		}
+		elseif($integrate_with == "multiprofile"){
+			$ptype	= $data['coreparams']['jspc_multiprofile'];
+		}
 			
 		$isXiptExist	   = JspcHelper::checkXiptExists();
 		$multiprofileExist = JspcHelper::checkMultiProfileExists();
@@ -192,6 +195,15 @@ class JspcViewAddons extends JViewLegacy
 			$profileTypeName[$ptypeId->id] = $ptypeId->name;
 		}
 		
+		
+		$coreXmlpath = dirname(dirname(dirname(__FILE__))) .'/addons/addons.xml';		
+		$form		 = XipcParameter::getInstance('form',$coreXmlpath);
+	
+		$addonXmlpath =  dirname(dirname(dirname(__FILE__))).'/addons/'.strtolower($data['name']) .'/'.strtolower($data['name']).'.xml';
+		$form->loadFile($addonXmlpath, false, '//config');
+  		$form->bind((array)$data);
+		
+	    $this->assign('form', $form);
 		$this->assignRef('profileTypeArray',    $profileTypeArray);
 		$this->assignRef('profileTypeName',     $profileTypeName);
 
@@ -207,19 +219,19 @@ class JspcViewAddons extends JViewLegacy
 	function aboutus($tpl = null)
 	{
 		$this->setToolbar();
-		parent::display( $tpl);
+		parent::display($tpl);
 	}
 	
 	function _calculateContributionOfPtype($data,&$percentage,$ptype)
 	{
 	
 		//$addonsInfo = addonFactory::getAddonsInfo();
-		$totals = array();
-		$addonProfiletype = array();
-		$profilesExist 	 = false;
+		$totals 			= array();
+		$addonProfiletype 	= array();
+		$profilesExist 	 	= false;
 		//include the library file of XIPT if exist then includes file 
-		$isXiptExist 	   = JspcHelper::checkXiptExists();
-		$multiprofileExist = JspcHelper::checkMultiProfileExists();
+		$isXiptExist 	   	= JspcHelper::checkXiptExists();
+		$multiprofileExist 	= JspcHelper::checkMultiProfileExists();
 		
 		if($isXiptExist){
 			$profilesExist 		= true;
