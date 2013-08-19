@@ -59,14 +59,15 @@ class helper
 	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
 	{
 		$fields = self::getJomsocialProfileFields();
+		
 		$html   = '';
 		if(empty($fields)) {
 			$html = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('THERE_ARE_NO_PARAMETERS_FOR_THIS_ITEM')."</div>";
 			return $html;
 		}
 
-		$html .= "<table width='100%' class='paramlist admintable' cellspacing='1'>";
-		$html .= "<tr class='title'>";
+		$html .= "<table width='100%' class='table table-bordered' cellspacing='1'>";
+		$html .= "<tr class='title' style=' background-color: #F4F4F4;'>";
 		$html .= "<th width='30%'>".JspcText::_( 'FIELD_NAME' )."</th>";
 		$html .= "<th width='20%'>".JspcText::_( 'VALUE' )."</th>";
 		$html .= "<th width='20%'>".JspcText::_( 'FIELDS_WEIGHTAGE' )."</th>";			
@@ -77,12 +78,21 @@ class helper
 			if($f->published) {
 				++$i;
 				$html .= "<tr class='row". $i%2 ."'>";
-				$html .= "<td width='40%' class='paramlist_key'><span class='editlinktip'>";
-				$html .= $f->name."</td>";
+				
+				if($f->type == 'group'){
+					$html .= "<td width='40%' style=' background-color: #F4F4F4;' class='paramlist_key'><span class='editlinktip'>";
+					$html .= "<b>".$f->name."</b></td>";
+					$html .= "<td colspan='3' style=' background-color: #F4F4F4;'></td>";
+				}else {
+					$html .= "<td width='40%' class='paramlist_key'><span class='editlinktip'>";
+					$html .= $f->name."</td>";
+				}
+				
 				if($f->type != 'group') {
-					$html .= "<td class='paramlist_value'><input type='text' name='addonparams[".$f->id."]' id='addonparams[".$f->id."]' value='".$addonparams->get($f->id,0)."'/></td>";
-					$html .= "<td class='paramlist_value'>".$fieldsPercentage[$f->id]."</td>";
-					$html .= "<td class='paramlist_value'>".$fieldsPercentageInTotal[$f->id]." % </td>";
+					$value = addonFactory::getValueFromParams($f->id, $addonparams, 0);
+					$html .= "<td class='paramlist_value center'><input type='text' name='addonparams[".$f->id."]' id='addonparams[".$f->id."]' value='".$value."' /></td>";
+					$html .= "<td class='paramlist_value center'>".$fieldsPercentage[$f->id]."</td>";
+					$html .= "<td class='paramlist_value center'>".$fieldsPercentageInTotal[$f->id]." % </td>";
 				}
 				
 				$html .= "</tr>";
@@ -115,7 +125,7 @@ class helper
 			
 		foreach($fields as $f) {
 			if($f->type != 'group' && $f->published == 1) {
-				$value = $addonparams->get($f->id,0);
+				$value = addonFactory::getValueFromParams($f->id, $addonparams, 0);
 				$total = $total + $value;
 			}
 		}

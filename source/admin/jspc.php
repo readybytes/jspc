@@ -24,11 +24,11 @@ if(!JFolder::exists($communityPath))
 // add include files
 require_once JPATH_ROOT.'/administrator/components/com_jspc/includes.jspc.php';
 
-if(JFactory::getApplication()->input->get('view') == '') {
+if(JRequest::getCmd('view') == '') {
             JRequest::setVar('view', 'addons');
 }
 
-$controller	= JFactory::getApplication()->input->get('view');
+$controller	= $controller  = JRequest::getCmd( 'view');
 
 if(!empty( $controller )){
 	$controller	= JString::strtolower( $controller );

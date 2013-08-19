@@ -24,7 +24,7 @@ class JspcProfilevideo extends jspcAddons
 		function calculateCompletness($userid)
 		{
 			$count = $this->calculateCount($userid);		
-			$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
+			$contribution = $this->getCoreParams('jspc_core_total_contribution',0);
 			
 			if($count >= 1)
 				return $contribution;

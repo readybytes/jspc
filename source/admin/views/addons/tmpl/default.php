@@ -29,8 +29,8 @@ function submitbutton( action )
 }
 </script>
 
-<div style="background-color: #F9F9F9; border: 1px solid #D5D5D5; margin-bottom: 10px; padding: 5px;font-weight: bold;">
-	<?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?>
+<div class="alert alert-info">
+	<strong><?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?></strong>
 </div>
 
 <form action="<?php echo JURI::base();?>index.php?option=com_jspc>" method="post" name="adminForm" id="adminForm">

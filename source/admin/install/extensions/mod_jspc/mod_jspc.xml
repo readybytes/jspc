@@ -21,49 +21,59 @@
 		<file >helper.php</file>
 	</files>
 	
-	<!-- for J1.6 -->
 	<config>
 	<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
 			<fieldset name="basic">
-				<field
-					name="SPS_Layout" type="list" default="horizontal" label="Layout" description="">
-					<option value="horizontal">Horizontal</option>
-					<option value="vertical">Vertical</option>
+				<field	name="SPS_Layout" 
+						type="list" 
+						default="horizontal" 
+						label="Layout" 
+						description="">
+						<option value="horizontal">Horizontal</option>
+						<option value="vertical">Vertical</option>
 				</field>
-				<field name="SPS_ShowAvatar" type="list" default="1" label="Show Avatar" description="">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</field>
-				<field name="SPS_AvatarWidth" type="text" default="100" label="Width of Avatar in Pixel" description=""/>
-				<field name="SPS_AvatarHeight" type="text" default="100" label="Height of Avatar in Pixel" description=""/>
 				
-				<field name="SPS_Length" type="text" default="200" label="Length of Completion bar in pixels" description=""/>
-				<field name="SPS_Height" type="text" default="25"  label="Height of Completion bar in pixels" description=""/>
-				<field name="SPS_FontSize" type="list" default="3" label="Font Size of text" description="">
-					<option value="1">Tiny</option>
-					<option value="2">Small</option>
-					<option value="3">Normal</option>
-					<option value="4">Big</option>
-					<option value="5">Very Big</option>
-					<option value="6">Huge</option>
-					<option value="7">Very Huge</option>
+				<field 	name="SPS_ShowAvatar" 
+						type="list" 
+						default="1" 
+						label="Show Avatar" 
+						description="">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
 				</field>
-				<field name="SPS_FGColor"  type="colorbox" default="9CD052"  label="Fill Bar Color" description=""/>
-				<field name="SPS_BGColor"  type="colorbox" default="FFFFFF"  label="Empty Bar Color" description=""/>
-				<field name="SPS_SLColor"  type="colorbox" default="000000"  label="Side Line Color" description=""/>
-				<field name="SPS_STRColor" type="colorbox" default="FFFFFF"  label="Text Color" description=""/>
-				<field name="SPS_ImageDebugMode" type="list" default="0" label="Always Regenerate Completeness Image" description="">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</field>
-				<field name="showProfile" type="list" default="1" label="Show Module when 100% Status" description="Do you want to show Plugin when user's Profile is 100% complete?">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
-				</field>
-				<field name="SPS_VisibleFeatureNumber" type="text" default="All" label="Number of Visible Feature to complete Profile" description="Write all to display all feature else write count" />
 				
-				<field name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" /> 
+				<field 	name="SPS_AvatarWidth" 
+						type="text" 
+						default="100" 
+						label="Width of Avatar in Pixel" 
+						description=""/>
 				
+				<field 	name="SPS_AvatarHeight" 
+						type="text" 
+						default="100" 
+						label="Height of Avatar in Pixel" 
+						description=""/>
+				
+				<field 	name="showProfile" 
+						type="list" 
+						default="1" 
+						label="Show Module when 100% Status" 
+						description="Do you want to show Plugin when user's Profile is 100% complete?">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+				</field>
+				
+				<field 	name="SPS_VisibleFeatureNumber" 
+						type="text" 
+						default="All" 
+						label="Number of Visible Feature to complete Profile" 
+						description="Write all to display all feature else write count" />
+				
+				<field 	name="moduleclass_sfx" 
+						type="text" 
+						default="" 
+						label="Module Class Suffix" 
+						description="PARAMMODULECLASSSUFFIX" /> 
 			</fieldset>
 		</fields>
 	</config>

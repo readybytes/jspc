@@ -108,20 +108,7 @@ abstract class jspcAddons
 		jimport( 'joomla.filesystem.files' );
 		$this->debugMode = $debugMode;
 		$this->name      = $className;
-
-		//load addon xml if we need to do it
-		// this->addonparams can be set by child constructor, 
-		// then we do not need to create addon params
-		$className    = substr($className, 4);
-		$addonXmlpath =  dirname(__FILE__).'/'.strtolower($className) .'/'.strtolower($className).'.xml';
-		if(empty($this->addonparams) && JFile::exists($addonXmlpath)){
-			$this->addonparams =  XipcParameter::getInstance('addonparams',$addonXmlpath);
-		}
 		
-		$corexmlpath = dirname(__FILE__) .'/coreparams.xml';		
-		if(JFile::exists($corexmlpath)){
-			$this->coreparams = XipcParameter::getInstance('coreparams',$corexmlpath);
-		}
 	}
 	
 	function load($id)
@@ -143,22 +130,21 @@ abstract class jspcAddons
 				$this->published 	= $info[0]->published;
 				$this->featurename 	= $info[0]->featurename;
 				
-				$this->coreparams->bind($info[0]->coreparams);
-				$this->addonparams->bind($info[0]->addonparams);
+				$this->coreparams	= (array)json_decode($info[0]->coreparams);
+				$this->addonparams	= (array)json_decode($info[0]->addonparams);
 			}
 		}
 	}
 	
 	
-	
+	//XITODO: Remove it if not usable
 	function bind($data)
 	{
 		if(is_object($data)){
 			
-			$this->addonparams->bind($data->addonparams);
-		
-			if(!$this->coreparams) 	$this->setCoreParams();
-			$this->coreparams->bind($data->coreparams);
+			$this->addonparams	= $data->addonparams;
+			
+			$this->coreparams	= $data->coreparams;
 			
 			$this->featurename 	= $data->featurename;
 			$this->published 	= $data->published;
@@ -166,13 +152,10 @@ abstract class jspcAddons
 		if(is_array($data)){
 			
 			if(!empty($data['addonparams'])){
-				$this->addonparams->bind($data['addonparams']);
+				$this->addonparams	= $data['addonparams'];
 			}
-		
-			if(!$this->coreparams) 	$this->setCoreParams();
 			
-			$coreparams	= $data['coreparams'];
-			$this->coreparams->bind($coreparams);
+			$this->coreparams	= $data['coreparams'];
 			
 			$this->featurename 	= $data['featurename'];
 			$this->published 	= $data['published'];
@@ -185,7 +168,7 @@ abstract class jspcAddons
 		 * b'coz some fields may be not aplicable to user according to profiletype
 		 * and in that case total may change so let to handle this fields class
 		 */ 
-		$total = $this->coreparams->getValue('jspc_core_total_contribution',0);
+		$total = $this->getCoreParams('jspc_core_total_contribution',0);
 		return $total;
 	}
 	
@@ -252,7 +235,7 @@ abstract class jspcAddons
 	
 	public function getDisplayText($userid)
 	{
-		$text = $this->coreparams->getValue('jspc_core_display_text','');
+		$text = $this->getCoreParams('jspc_core_display_text','');
 		/*here i will return remaining no's , so if user want to show msg like
 		 * 3 photo need to be added to complete profile
 		 * that he can
@@ -269,9 +252,16 @@ abstract class jspcAddons
 	
 	public function getCoreParams($what,$default=0)
 	{
-		$value = $this->coreparams->getValue($what,$default);
+		$value = isset($this->coreparams[$what]) ? $this->coreparams[$what] : $default;
 		return $value;
 	}
+	
+	public function getAddonParams($what,$default=0)
+	{
+		$value = isset($this->addonparams[$what]) ? $this->addonparams[$what] : $default;
+		return $value;
+	}
+	
 	
 	public function getMe()
 	{
@@ -282,7 +272,7 @@ abstract class jspcAddons
 	public function getRemainingCount($userid)
 	{
 		$count = $this->calculateCount($userid);
-		$total = $this->addonparams->getValue($this->name.'_total',0);
+		$total = $this->getAddonParams($this->name.'_total',0);
 		
 		if(0 == $total)
 			return 0;
@@ -296,8 +286,8 @@ abstract class jspcAddons
 	public function calculateCompletness($userid)
 	{
 		$count = $this->calculateCount($userid);
-		$total = $this->addonparams->getValue($this->name.'_total',0);
-		$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
+		$total = $this->getAddonParams($this->name.'_total',0);
+		$contribution = $this->getCoreParams('jspc_core_total_contribution',0);
 
 		if(0 == $total)
 			return $contribution;

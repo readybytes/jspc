@@ -19,7 +19,7 @@ $tp =	$Protocol.$_SERVER['HTTP_HOST'].str_replace($_SERVER['DOCUMENT_ROOT'], '',
 <script type="text/javascript" src="<?php echo JURI::root();?>administrator/components/com_jspc/fields/colorbox/jscolor.js"></script>
 
 <?php 
-class JSPCFormFieldColorbox extends JFormFieldColor
+class JFormFieldColorbox extends JFormField
 {
 	/**
 	 * Element name
@@ -31,8 +31,9 @@ class JSPCFormFieldColorbox extends JFormFieldColor
 
 	protected function getInput()
 	{
-		$this->input = $this->value;
-		return parent::getInput();
+		$html = '<input class="color" type="text" id="'.$this->id.'" name="'.$this->name.'" value="'.$this->value.'" />';
+
+		return $html;
 	}
 	
 }

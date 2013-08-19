@@ -30,7 +30,6 @@ require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 require_once (JPATH_ROOT.'/components/com_community/defines.community.php');
 require_once (JPATH_ROOT.'/administrator/components/com_jspc/includes.jspc.php');
 require_once (JPATH_ROOT.'/components/com_jspc/libraries/jspc.php');
-require_once (JPATH_ROOT.'/components/com_jspc/libraries/imagegenerator.php');
 require_once (JPATH_ROOT.'/components/com_jspc/libraries/base/text.php');
 
 /*Langauge file will be independent now */

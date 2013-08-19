@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fields name="addonparams" addfieldpath="/administrator/components/com_jspc/addons/profilefields">
+		<fieldset name="addonparams">
+			<field 	name="profilefields" 
+					type="profilefield" 
+					default="" 
+					label="COM_JSPC_TOTAL_PROFILEFIELDS_LABEL" 
+					description="COM_JSPC_TOTAL_PROFILEFIELDS_DESC" />
+		</fieldset>
+	</fields>
+</config>

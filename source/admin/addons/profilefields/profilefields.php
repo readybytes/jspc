@@ -11,51 +11,7 @@ class JspcProfilefields extends jspcAddons
 
 	function __construct($debugMode)
 	{
-		$this->addonparams = new XipcParameter('','');
 		parent::__construct(__CLASS__, $debugMode);
-	}
-	
-	public function getAddonParamsHtml()
-	{
-		$addonParamsHtml = '';
-		require_once dirname(__FILE__).'/helper.php';
-		
-		$filter 			 = array();
-		$filter['published'] = 1;
-		$fields 			 = helper::getJomsocialProfileFields($filter);
-		
-		if(empty($fields)) {
-			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('CLICK_ON_APPLY_BUTTON_TO_SEE_THE_ADDONS_PARAMETERS')."</div>";
-			return $addonParamsHtml;
-		}
-		
-		$fieldsPercentage        = array();
-		$fieldsPercentageInTotal = array();
-			
-		$fieldstotal = helper::calculateTotal($this->addonparams,$fields,0);
-		$coretotal   = $this->coreparams->getValue('jspc_core_total_contribution',0);
-		
-		//calculate percentage
-		$total 				 = JspcHelper::getAllTotals(true);
-		$featureContribution = 0;
-		if($total != 0)
-			$featureContribution = ($coretotal / $total ) * 100;
-		else
-			$featureContribution = 100;
-			
-		foreach($fields as $field) {
-			if($field->type != 'group') {
-				$fieldValue = $this->addonparams->getValue($field->id,0);
-				
-				$fieldsPercentage[$field->id]        = helper::calculatePercentage($coretotal,$fieldstotal,$fieldValue);
-				
-				$fieldsPercentageInTotal[$field->id] = helper::calculatePercentage($featureContribution,$fieldstotal,$fieldValue); 
-			}
-		}
-		
-		$addonParamsHtml = helper::getFieldsHtml($this->addonparams,$fieldsPercentage,$fieldsPercentageInTotal);
-		
-		return $addonParamsHtml;
 	}
 	
 	public function calculateCompletness($userid)
@@ -64,7 +20,7 @@ class JspcProfilefields extends jspcAddons
 		
 		$count = $this->get_count_of_profile_fields($userid,'fill');				
 		$total = $this->get_count_of_profile_fields($userid,'total');
-		$contribution = $this->coreparams->getValue('jspc_core_total_contribution',0);
+		$contribution = $this->getCoreParams('jspc_core_total_contribution',0);
 		
 		if(0 == $total)
 			return $contribution;
@@ -113,7 +69,7 @@ class JspcProfilefields extends jspcAddons
 			{
 				foreach($fieldGroup as $field)
 				{
-					$value 		=  $this->addonparams->getValue($field['id'],0);
+					$value 		= addonFactory::getValueFromParams($field['id'], $this->addonparams, 0); 
 					$totalcount = $totalcount + $value;
 					
 					if($profileModel->_fieldValueExists($field['fieldcode'],$userid))

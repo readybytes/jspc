@@ -19,7 +19,7 @@ class JspcSql extends jspcAddons
 		$result['text'] = $this->getDisplayText($userid);
 		
 		//enter the link
-		$link 			= $this->addonparams->getValue('sql_url','');
+		$link 			= $this->getAddonParams('sql_url','');
 		$result['link'] = JRoute::_($link);
 		return $result;
 	}
@@ -28,7 +28,7 @@ class JspcSql extends jspcAddons
 	{
 		$db		= JFactory::getDBO();
 		
-		$query  = $this->addonparams->getValue('sql_query','');
+		$query  = $this->getAddonParams('sql_query','');
 		if($query == '')
 			return false;
 			

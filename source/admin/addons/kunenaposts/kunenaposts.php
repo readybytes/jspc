@@ -39,7 +39,7 @@ class JspcKunenaposts extends jspcAddons
 		if(false == $this->isKunenaExist())
 			return 0;
 				
-		$total = $this->coreparams->getValue('jspc_core_total_contribution',0);
+		$total = $this->getCoreParams('jspc_core_total_contribution',0);
 		return $total;
 	}
 	
