@@ -96,7 +96,7 @@ class plgCommunityJspc extends CApplications
 		$data['incomplete_feature']				= $incomplete_feature ;
 		$data['profile_completion_percentage']	= $profile_completion_percentage;
 		
-		$percentStyling = '<span class="strong label label-success">'.$profile_completion_percentage.'% </span>';
+		$percentStyling = '<span class="strong label" style="background-color:#'.$this->_params->get('SPS_FGColor',0).'">'.$profile_completion_percentage.'% </span>';
 		if($profile_completion_percentage == 100)
 			$displayText    = sprintf(JText::_('PLG_JSPC_PROFILE_STATUS_COMPLETION_100'),$percentStyling);
 		else
@@ -144,7 +144,7 @@ function _getDisplay($data = array())
 				<!-- show-completion-bar -->		
 				<div class="jspc_column2">
 					<div class="progress progress-striped">
-						<div class="bar bar-success" style="width:<?php echo $data['profile_completion_percentage'] ?>%;"></div></div> 
+						<div class="bar " style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div></div> 
 					<div class="jspc_completion_text">
 						<p><?php echo $data['displayText']; ?></p>
 					</div>

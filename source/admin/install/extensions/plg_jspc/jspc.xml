@@ -85,6 +85,12 @@
 						<option value="1">Yes</option>
 				</field>
 				
+				<field 	name="SPS_FGColor"  
+						type="colorbox" 
+						default="62C462"  
+						label="Fill Bar Color" 
+						description="" />
+				
 				<field 	name="SPS_VisibleFeatureNumber" 
 						type="text" 
 						default="All" 
