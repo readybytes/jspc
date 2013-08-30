@@ -21,7 +21,7 @@ class plgCommunityJspc extends CApplications
 		parent::__construct($subject, $config);
 		$this->_path	= dirname( dirname( JPATH_ROOT ) ).'/administrator/components/com_community'; 
 		$this->plugin =& JPluginHelper::getPlugin('community', $this->_name); 		
-		$this->_params 	= new JParameter($this->plugin->params);		
+		$this->_params 	= new JRegistry($this->plugin->params);		
     }
     
     
