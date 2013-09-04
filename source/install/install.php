@@ -4,14 +4,22 @@
 * @license GNU/GPL http://www.gnu.org/copyleft/gpl.html
 **/
 defined('_JEXEC') or die('Restricted access');
+define('JSPC_VERSION','@global.version@.@svn.lastrevision@');
 function com_install()
 {
 	if(check_jomsocial_existance() == false)
 		return false;
 		
 	if(setup_database() == false)
-		JError::raiseError('INSTERR', "Not able to setup JSPC database correctly");
+		JError::raiseError('INSTERR', "Not able to setup JSPC database correctly");	
 	
+	//check if migration is required
+	if(!isTableExist('jspc_config') && isTableExist('jspc_addons'))
+	{
+		doMigration();
+		jspcConfig();
+	}
+
 	if(installExtensions() == false){
 		JError::raiseError('INSTERR', "NOT ABLE TO INSTALL EXTENSIONS");
 		return false;
@@ -24,7 +32,6 @@ function setup_database()
 {		
 	if(isTableExist('jspc_addons'))
 	{
-		insertSampleData();
 		return true;
 	}
 
@@ -117,4 +124,67 @@ function insertSampleData()
         
         return;
 
+}
+
+function doMigration()
+{
+	migrateJspcParam();
+	return true;
+}
+
+function migrateJspcParam()
+{
+	$db		= JFactory::getDBO();
+	$sql    = " SELECT * FROM `#__jspc_addons` ";
+	$db->setQuery($sql);
+	
+	$addonsinfo = $db->loadObjectList('id');
+	
+	foreach ($addonsinfo as $addon)
+	{
+		$coreParams 	= convertToJSON($addon->coreparams, 'coreparams');
+		$addonParams 	= convertToJSON($addon->addonparams, 'addonparams');
+			
+		$update_query = " UPDATE `#__jspc_addons` "
+						. " SET " .$db->quoteName('coreparams').' = '.$db->quote($coreParams) .' , '
+						. $db->quoteName('addonparams').' = '.$db->quote($addonParams)
+						. " WHERE " .$db->quoteName('id').' = '.$db->quote($addon->id);
+					
+		$db->setQuery($update_query)->query();
+	}
+				    
+}
+
+//convert all INI field values into JSON
+function convertToJSON($data = '', $what = '')
+{
+	if($data == ''){
+		return '';
+	}
+	
+	$registry = JRegistry::getInstance($what);
+	$registry->loadString($data, 'INI');
+	$params   = $registry->toArray();
+	
+	return json_encode($params);
+}
+
+// create Jspc config table for managing previous version
+function jspcConfig()
+{
+	$sql 	= 'CREATE TABLE IF NOT EXISTS `#__jspc_config` (
+						  `name`    	   VARCHAR(255) NOT NULL ,
+  						  `params`         TEXT NOT NULL
+						)';
+	
+	$db = JFactory::getDBO();
+	$db->setQuery( $sql );
+	
+	if($db->query())
+	{	
+		$sqlquery = "INSERT INTO `#__jspc_config`(`name`,`params`)
+		              	            VALUES ('version','".JSPC_VERSION."')";
+		$db->setQuery($sqlquery);
+		$db->query();
+	}
 }
