@@ -218,7 +218,7 @@ class JspcViewAddons extends JViewLegacy
 	
 	function aboutus($tpl = null)
 	{
-		$this->setToolbar();
+		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
 		parent::display($tpl);
 	}
 	

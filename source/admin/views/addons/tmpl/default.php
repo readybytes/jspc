@@ -32,8 +32,9 @@ function submitbutton( action )
 <div class="alert alert-info">
 	<strong><?php echo JspcText::_('FOLLOWING_PUBLISHED_CRITERIA_WILL_BE_APPLIED_FOR_PROFILE_COMPLETENESS');?></strong>
 </div>
+<div>&nbsp;</div>
 
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc>" method="post" name="adminForm" id="adminForm">
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm" class="jspc">
   <table class="table table-hover">
     <thead>
 		<!-- TABLE HEADER START -->
@@ -128,12 +129,12 @@ function submitbutton( action )
 				<a href="javascript:void(0);" onclick="return listItemTask('cb<?php echo $i-1;?>','<?php echo $addon->published ? 'unpublish' : 'publish' ?>')">
 							<?php if($addon->published)
 							{ ?>
-								<img src="images/tick.png" width="16" height="16" border="0" alt="Published" />
+								<img src="components/com_jspc/assets/images/tick.png" width="16" height="16" border="0" alt="Published" />
 							<?php 
 							}
 							else 
 							{ ?>
-								<img src="images/publish_x.png" width="16" height="16" border="0" alt="Unpublished" />
+								<img src="components/com_jspc/assets/images/publish_x.png" width="16" height="16" border="0" alt="Unpublished" />
 						<?php 
 							} //echo $published;
 						?>
@@ -151,7 +152,7 @@ function submitbutton( action )
      		<div class="offset5 span7"><?php echo $this->pagination->getListFooter(); ?></div>
    		</div> 
   
-	<input type="hidden" name="view" value="addons" />
+<input type="hidden" name="view" value="addons" />
 <input type="hidden" name="task" value="" />
 <input type="hidden" name="option" value="com_jspc" />
 <input type="hidden" name="boxchecked" value="0" />

@@ -26,6 +26,21 @@ if(!JFolder::exists($communityPath))
 //community files
 require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 
+$version = new JVersion();
+if($version->RELEASE === '2.5')
+{
+	$document		= JFactory::getDocument();
+	
+	$css	= JURI::base().'components/com_jspc/assets/css/admin.j25.css';
+	$document->addStyleSheet($css);
+
+	$bootstarpCss	= JURI::base().'components/com_community/installer/css/bootstrap.min.css';
+	$document->addStyleSheet($bootstarpCss);
+		
+	$bootstarpResCss	= JURI::base().'components/com_community/installer/css/bootstrap-responsive.min.css';
+	$document->addStyleSheet($bootstarpResCss);
+}
+
 	
 //// define our include paths to joomla
 jimport( 'joomla.application.component.model' );

@@ -39,7 +39,9 @@ Joomla.submitbutton = function(action){
 
 <script type="text/javascript">
 
-		jQuery(document).ready(function($) {
+(function($){
+
+	$(document).ready(function(){
 						
 			$("select#coreparamsintegrate_with").change(function() {
 				
@@ -57,81 +59,105 @@ Joomla.submitbutton = function(action){
 
 			$('#coreparamsintegrate_with').change();
 		});
+})(joms.jQuery);
 </script>
 
-<form action="index.php" method="post" name="adminForm" id="adminForm">
-<div class="row-fluid">
-	<div class="span6">		
-		<fieldset class="form-horizontal">
-			<legend> <?php echo JspcText::_('Details' ); ?> </legend>
-		
-			
-			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('name'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('name'); ?></div>				
-			</div>
-			
-			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('featurename'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('featurename'); ?></div>				
-			</div>
-			
-			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('published'); ?></div>
-				<div class="controls"><?php echo $this->form->getInput('published'); ?></div>				
-			</div>
-			
-			<div class="control-group">
-				<div class="control-label"><?php echo $this->form->getLabel('percentage'); ?></div>
-				<div class="controls">
+<form action="index.php" method="post" name="adminForm" id="adminform">
+<div>
+<div class="col width-40" style="width:40%; float:left;">
+	<fieldset class="adminform">
+	<h3><?php echo JspcText::_( 'Details' ); ?></h3><hr>
+	<table class="admintable">
+		<tr>
+			<td width="100" class="key">
+				<label for="name" title=" <?php echo JspcText::_( 'NAME_DESC' ); ?> ">
+					<?php echo JspcText::_( 'NAME' ); ?>:
+				</label>
+			</td>
+			<td>
+				<?php echo $this->addonInfo['name']; ?>
+			</td>
+		</tr>
+		<tr>
+			<td width="100" class="key">
+				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME_DESC' ); ?> ">
+					<?php echo JspcText::_( 'FEATURE_NAME' ); ?>:
+				</label>
+			</td>
+			<td>
+				<input class="text_area" type="text" name="featurename" id="featurename" size="35" value="<?php echo $this->addonInfo['featurename']; ?>" />
+			</td>
+		</tr>
+		<tr>
+			<td class="key">
+			<label for="published" title=" <?php echo JspcText::_( 'PUBLISHED_DESC' ); ?> ">
+				<?php echo JspcText::_( 'PUBLISHED' ); ?>:
+			</label>
+			</td>
+			<td>
+				<div id="publish-values">
+					<?php echo JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $this->addonInfo['published'] ); ?>
+				</div>
+			</td>
+		</tr>
+		<tr>
+			<td valign="top" class="key">
+			<label for="contribution" title=" <?php echo JspcText::_( 'TOTAL_CONTRIBUTION_IN_PERCENTAGE' ); ?> ">
+				<?php echo JspcText::_('CONTRIBUTION_IN_PERCENTAGE'); ?>:
+			</label>
+			</td>
+			<td>
 				<?php 
-					if(!$this->profilesExist){
-						echo  round($this->percentage,2)." %";
+				if(!$this->profilesExist)
+					echo  round($this->percentage,2)." %";
+				else
+				{
+					foreach($this->profileTypeArray as $ptypeId)
+					{						
+						echo $this->profileTypeName[$ptypeId];
+						if(array_key_exists($ptypeId, $this->percentage))
+					 		echo " : " . round($this->percentage[$ptypeId],2)." %";
+					 	else
+				 		    echo " : -"; 
+				 	 	?><br/><?php    
 					}
-					else
-					{
-						foreach($this->profileTypeArray as $ptypeId)
-						{						
-							echo $this->profileTypeName[$ptypeId];
-							if(array_key_exists($ptypeId, $this->percentage)){
-						 		echo " : " . round($this->percentage[$ptypeId],2)." %";
-							}
-						 	else {
-					 		    echo " : -"; 
-						 	}
-					 	 	?><br/><?php    
-						}
-					}	?>
-				</div>				
-			</div>
-	</fieldset>	
+				}	
+				?>
+			</td>
+		</tr>
+		</table>
+	</fieldset>
+	<br />
+	<br />
 	
-	<fieldset class="form-horizontal">
-				<legend> <?php echo JspcText::_('CORE_PARAMETERS' ); ?> </legend>
-				<?php foreach ($this->form->getFieldset('coreparams') as $field):?>
+	<fieldset class="adminform">
+	<h3><?php echo JspcText::_( 'CORE_PARAMETERS' ); ?></h3><hr>
+	<?php foreach ($this->form->getFieldset('coreparams') as $field):?>
 					<?php $class = $field->group.$field->fieldname; ?>
-					<div class="control-group <?php echo $class;?>">
-						<div class="control-label"><?php echo $field->label; ?> </div>
-						<div class="controls"><?php echo $field->input; ?></div>								
-					</div>
+						<td width="100" class="key <?php echo $class;?>">
+							<label for="coreparameters"><?php echo $field->label; ?> </label>
+							<td><?php echo $field->input; ?></td>								
+						</td>
 				<?php endforeach;?>
-		</fieldset>
-	
-	</div>
-	
-	<div class="span6">
-		<fieldset class="form-horizontal">
-				<legend> <?php echo JspcText::_('ADDON_PARAMETERS' ); ?> </legend>
+	</fieldset>
+</div>
+</div>
+<div>
+<div class="col width-60" style="width:60%; float:right;">
+	<fieldset class="adminform">
+	<h3><?php echo JspcText::_( 'ADDON_PARAMETERS' ); ?></h3><hr>
 				<?php foreach ($this->form->getFieldset('addonparams') as $field):?>
 					<?php $class = $field->group.$field->fieldname; ?>
-					<div class="control-group <?php echo $class;?>">
-						<div class="control-label"><?php echo $field->label; ?> </div>
-						<div class="controls"><?php echo $field->input; ?></div>								
-					</div>
+						<td width="100" class="key <?php echo $class;?>">
+							<label><?php echo $field->label; ?> </label>
+							<td><?php echo $field->input; ?></td>								
+						</td>
 				<?php endforeach;?>
-		</fieldset>
-	</div>
-</div>		
+	</fieldset>
+</div>
+</div>
+<div class="clr"></div>
+
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="editId" value="<?php echo $this->addonInfo['id'];?>" />
 	<input type="hidden" name="id" value="<?php echo $this->addonInfo['id'];?>" />
@@ -139,5 +165,5 @@ Joomla.submitbutton = function(action){
 	<input type="hidden" name="cid[]" value="" />
 	<input type="hidden" name="view" value="addons" />
 	<input type="hidden" name="task" value="" />
-	
+	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
