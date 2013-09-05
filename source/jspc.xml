@@ -9,8 +9,7 @@
 	<license>GNU GPL v2.0</license>
 	<version>@global.version@.@svn.lastrevision@</version>
 	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
-	<installfile>install/install.php</installfile>
-	<uninstallfile>install/uninstall.php</uninstallfile>
+	<scriptfile>install/install.php</scriptfile>
 
 	<files folder="site">
 		<filename>index.html</filename>

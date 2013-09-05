@@ -11,6 +11,8 @@ if(defined('DEFINE_JSPC_ADMIN_INCLUDES'))
 
 define('DEFINE_JSPC_ADMIN_INCLUDES','DEFINE_JSPC_ADMIN_INCLUDES');
 
+define('JSPC_VERSION','@global.version@');
+
 //	This is file for BACKEND only, should be included in starting file only.
 
 jimport( 'joomla.filesystem.file' );
