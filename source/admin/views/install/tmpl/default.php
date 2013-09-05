@@ -15,14 +15,14 @@ JHtml::_('behavior.framework');
   
   <div class="row-fluid">
     <div class="alert alert-success center">
-      <h2><em><?php echo Rb_Text::_('COM_JSPC_INSTALLATION_SUCCESS_MSG');?></em></h2>
-      <h3><?php echo Rb_Text::_('COM_JSPC_INSTALLATION_SUCCESS_MSG_CONTENT');?></h3>
+      <h2><em><?php echo JspcText::_('INSTALLATION_SUCCESS_MSG');?></em></h2>
+      <h3><?php echo JspcText::_('INSTALLATION_SUCCESS_MSG_CONTENT');?></h3>
     </div>
   </div>
     
   <div class="row-fluid">
     <button type="submit" class="btn btn-success btn-large pull-right" onclick="window.location.href='<?php echo JUri::base().'index.php?option=com_jspc&view=install&task=complete';?>';">
-      <i class="icon-hand-right"></i>&nbsp;<?php echo Rb_Text::_('COM_JSPC_FINISH_INSTALLATION_BUTTON');?>
+      <i class="icon-hand-right"></i>&nbsp;<?php echo JspcText::_('FINISH_INSTALLATION_BUTTON');?>
     </button>
      </div>  
   
