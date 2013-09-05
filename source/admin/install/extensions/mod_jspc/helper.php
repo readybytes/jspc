@@ -135,7 +135,7 @@ class ProfileCompleteHelper
 							?>
 							<li> 
 								 <a id="jspc_incomplete_link_<?php echo $key;?>" href="<?php echo $nextTask['link'];?>">
-								 	<i class="icon-plus icon-white"></i>
+								 	<i class="icon-plus"></i>
 									<?php echo $value."% &nbsp".$nextTask['text'];?> 				
 								 </a>
 			
