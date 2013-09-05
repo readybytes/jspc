@@ -202,11 +202,8 @@ class Com_jspcInstallerScript
 			return '';
 		}
 		
-		$registry = JRegistry::getInstance($what);
-		$registry->loadString($data, 'INI');
-		$params   = $registry->toArray();
-		
-		return json_encode($params);
+		$registry =new JRegistry(addslashes($data));
+		return json_encode($registry->toObject());
 	}
 	
 	// create Jspc config table for managing previous version
