@@ -15,7 +15,8 @@
 	</description>
 	
 	<languages>
-	    <language tag="en-GB">en-GB.plg_jspc.ini</language>
+	    	<language tag="en-GB">en-GB.plg_jspc.ini</language>
+	    	<language tag="en-GB">en-GB.plg_community_jspc.sys.ini</language>
 	</languages>
 	
 	<files>
@@ -30,8 +31,8 @@
 				<field 	name="coreapp" 
 						type="list" 
 						default="1" 
-						label="Core Application" 
-						description="Causes this application to not appear in the users applications list but it will allow this application to appear in the user profile automatically if selected.">
+						label="COM_JSPC_PARAM_CORE_APP_LABEL" 
+						description="COM_JSPC_PARAM_CORE_APP_DESC">
 						<option value="0">No</option>
 						<option value="1">Yes</option>
 				</field>
@@ -39,27 +40,27 @@
 				<field 	name="cache" 
 						type="list" 
 						default="1" 
-						label="Caching" 
-						description="Select whether to cache the content of this plugin">
-						<option value="1">Use Global</option>
-						<option value="0">No</option>
+						label="COM_JSPC_PARAM_CACHE_LABEL" 
+						description="COM_JSPC_PARAM_CACHE_DESC">
+						<option value="1">COM_JSPC_PARAM_CACHE_GLOBAL</option>
+						<option value="0">JNO</option>
 				</field>
 				
 				<field 	name="position" 
 						type="list" 
 						default="content" 
-						label="Position" 
-						description="Default position if you select this as core apps">
-	                     <option value="content">Main content</option>
-	                     <option value="sidebar-top">Sidebar top</option>
-	                     <option value="sidebar-bottom">Sidebar bottom</option>
+						label="COM_JSPC_PARAM_POSITION_LABEL" 
+						description="COM_JSPC_PARAM_POSITION_DESC Default">
+	                     <option value="content">COM_JSPC_PARAM_POSITION_CONTENT</option>
+	                     <option value="sidebar-top">COM_JSPC_PARAM_POSITION_SIDEBAR_TOP</option>
+	                     <option value="sidebar-bottom">COM_JSPC_PARAM_POSITION_SIDEBAR_BOTTOM</option>
                 </field>
                 
 				<field 	name="SPS_ShowAvatar" 
 						type="list" 
 						default="1" 
-						label="Show Avatar" 
-						description="">
+						label="COM_JSPC_PARAM_SHOW_AVTAR_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_AVTAR_DESC">
 						<option value="0">No</option>
 						<option value="1">Yes</option>
 				</field>
@@ -67,20 +68,20 @@
 				<field 	name="SPS_AvatarWidth" 
 						type="text" 
 						default="75" 
-						label="Width of Avatar in Pixel" 
-						description=""/>
+						label="COM_JSPC_PARAM_AVTAR_WIDTH_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_WIDTH_DESC "/>
 				
 				<field  name="SPS_AvatarHeight" 
 						type="text" 
 						default="75" 
-						label="Height of Avatar in Pixel" 
-						description=""/>
+						label="COM_JSPC_PARAM_AVTAR_HEIGHT_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_HEIGHT_DESC "/>
 						
 				<field 	name="showProfile" 
 						type="list" 
 						default="1" 
-						label="Show Plugin when 100% Status" 
-						description="Do you want to show Plugin when user's Profile is 100% complete?">
+						label="COM_JSPC_PARAM_SHOW_PROFILE_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_PROFILE_DESC">
 						<option value="0">No</option>
 						<option value="1">Yes</option>
 				</field>
@@ -88,14 +89,14 @@
 				<field 	name="SPS_FGColor"  
 						type="colorbox" 
 						default="62C462"  
-						label="Fill Bar Color" 
-						description="" />
+						label="COM_JSPC_PARAM_FILL_BAR_COLOR_LABEL" 
+						description="COM_JSPC_PARAM_FILL_BAR_COLOR_DESC" />
 				
 				<field 	name="SPS_VisibleFeatureNumber" 
 						type="text" 
 						default="All" 
-						label="Number of Visible Feature to complete Profile" 
-						description="Write All to display all feature else write count" />
+						label="COM_JSPC_PARAM_VISIBLE_FEATURE_LABEL" 
+						description="COM_JSPC_PARAM_VISIBLE_FEATURE_DESC" />
 			</fieldset>
 		</fields>
 	</config>

@@ -26,6 +26,10 @@
 	
 	<administration>
 		<menu link="option=com_jspc" img="../administrator/components/com_jspc/assets/images/icon-jspc.png">JSPC</menu>
+			<submenu>
+				<menu view="cpanel" 	img="../components/com_xipt/assets/images/icon-cpanel.png">Home</menu>
+				<menu view="addons" 	img="../components/com_xipt/assets/images/icon-jspc.png">Feautre</menu>
+			</submenu>
 		<languages>
 			<language tag="en-GB">languages/admin/en-GB.com_jspc.ini</language>
 		</languages>

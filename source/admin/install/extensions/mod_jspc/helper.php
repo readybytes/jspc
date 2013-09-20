@@ -26,14 +26,18 @@ class ProfileCompleteHelper
 		else
 			$document->addStyleSheet($hcss);
 
+		// In joomla 2.5 Load bootstrap if not loaded
 		$version = new JVersion();
 		if($version->RELEASE === '2.5')
 		{
-			$bootstarpCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap.min.css';
-			$document->addStyleSheet($bootstarpCss);
+			if($params->get('Bootstrap_CSS',1))
+			{
+				$bootstarpCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap.min.css';
+				$document->addStyleSheet($bootstarpCss);
 		
-			$bootstarpResCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap-responsive.min.css';
-			$document->addStyleSheet($bootstarpResCss);
+				$bootstarpResCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap-responsive.min.css';
+				$document->addStyleSheet($bootstarpResCss);
+			}	
 		}
 
 		

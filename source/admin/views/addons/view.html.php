@@ -129,7 +129,7 @@ class JspcViewAddons extends JViewLegacy
 			return true;
 		}
 			// Add the necessary buttons
-			JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
+			JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=cpanel');
 			JToolBarHelper::custom('aboutus','aboutus','',JspcText::_('ABOUT_US'),0,0); 
 			JToolBarHelper::divider();
 			JToolBarHelper::addNew('add', JspcText::_( 'ADD_FEATURE' ));
@@ -218,7 +218,7 @@ class JspcViewAddons extends JViewLegacy
 	
 	function aboutus($tpl = null)
 	{
-		JToolBarHelper::back('Home' , 'index.php?option=com_jspc');
+		JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=cpanel');
 		parent::display($tpl);
 	}
 	

@@ -24,62 +24,72 @@
 	<config>
 	<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
 			<fieldset name="basic">
+
+				<field 	name="Bootstrap_CSS"
+						type="radio"
+						default="1"
+						label="COM_JSPC_PARAM_BOOTSTRAP_CSS_LABEL"
+						description="COM_JSPC_PARAM_BOOTSTRAP_CSS_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+				</field>
+
 				<field	name="SPS_Layout" 
 						type="list" 
 						default="horizontal" 
-						label="Layout" 
-						description="">
-						<option value="horizontal">Horizontal</option>
-						<option value="vertical">Vertical</option>
+						label="COM_JSPC_PARAM_LAYOUT_LABEL" 
+						description="COM_JSPC_PARAM_LAYOUT_DESC">
+						<option value="horizontal">COM_JSPC_PARAM_LAYOUT_HORIZONTAL</option>
+						<option value="vertical">COM_JSPC_PARAM_LAYOUT_VERTICAL</option>
 				</field>
 				
 				<field 	name="SPS_ShowAvatar" 
 						type="list" 
 						default="1" 
-						label="Show Avatar" 
-						description="">
-						<option value="0">No</option>
-						<option value="1">Yes</option>
+						label="COM_JSPC_PARAM_SHOW_AVTAR_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_AVTAR_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
 				</field>
 				
 				<field 	name="SPS_AvatarWidth" 
 						type="text" 
 						default="100" 
-						label="Width of Avatar in Pixel" 
-						description=""/>
+						label="COM_JSPC_PARAM_AVTAR_WIDTH_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_WIDTH_DESC"/>
 				
 				<field 	name="SPS_AvatarHeight" 
 						type="text" 
 						default="100" 
-						label="Height of Avatar in Pixel" 
-						description=""/>
+						label="COM_JSPC_PARAM_AVTAR_HEIGHT_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_HEIGHT_DESC"/>
 				
 				<field 	name="showProfile" 
 						type="list" 
 						default="1" 
-						label="Show Module when 100% Status" 
-						description="Do you want to show Plugin when user's Profile is 100% complete?">
-						<option value="0">No</option>
-						<option value="1">Yes</option>
+						label="COM_JSPC_PARAM_SHOW_PROFILE_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_PROFILE_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
 				</field>
 				
 				<field 	name="SPS_FGColor"  
 						type="colorbox" 
 						default="62C462"  
-						label="Fill Bar Color" 
-						description="" />
+						label="COM_JSPC_PARAM_FILL_BAR_COLOR_LABEL" 
+						description="COM_JSPC_PARAM_FILL_BAR_COLOR_DESC" />
 				
 				<field 	name="SPS_VisibleFeatureNumber" 
 						type="text" 
 						default="All" 
-						label="Number of Visible Feature to complete Profile" 
-						description="Write all to display all feature else write count" />
+						label="COM_JSPC_PARAM_VISIBLE_FEATURE_LABEL" 
+						description="COM_JSPC_PARAM_VISIBLE_FEATURE_DESC" />
 				
 				<field 	name="moduleclass_sfx" 
 						type="text" 
 						default="" 
-						label="Module Class Suffix" 
-						description="PARAMMODULECLASSSUFFIX" /> 
+						label="COM_JSPC_PARAM_MODULE_SUFFIX_LABEL" 
+						description="COM_JSPC_PARAM_MODULE_SUFFIX_DESC" /> 
 			</fieldset>
 		</fields>
 	</config>

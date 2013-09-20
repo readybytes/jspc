@@ -8,7 +8,7 @@ JHtml::_('behavior.tooltip');
 JHtml::_('behavior.keepalive');
 JHtml::_('behavior.formvalidation');
 
-JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=addons');
+JToolBarHelper::back('Home' , 'index.php?option=com_jspc&view=cpanel');
 JToolBarHelper::divider();
 JToolBarHelper::apply('apply', JspcText::_('APPLY'));
 JToolBarHelper::save('save',JspcText::_('SAVE'));
@@ -64,12 +64,12 @@ Joomla.submitbutton = function(action){
 
 <form action="index.php" method="post" name="adminForm" id="adminform">
 <div>
-<div class="col width-40" style="width:40%; float:left;">
+<div class="col span6" style="float:left;">
 	<fieldset class="adminform">
 	<h3><?php echo JspcText::_( 'Details' ); ?></h3><hr>
 	<table class="admintable">
 		<tr>
-			<td width="100" class="key">
+			<td width="150" class="key">
 				<label for="name" title=" <?php echo JspcText::_( 'NAME_DESC' ); ?> ">
 					<?php echo JspcText::_( 'NAME' ); ?>:
 				</label>
@@ -79,7 +79,7 @@ Joomla.submitbutton = function(action){
 			</td>
 		</tr>
 		<tr>
-			<td width="100" class="key">
+			<td width="150" class="key">
 				<label for="featurename" title=" <?php echo JspcText::_( 'FEATURE_NAME_DESC' ); ?> ">
 					<?php echo JspcText::_( 'FEATURE_NAME' ); ?>:
 				</label>
@@ -132,27 +132,40 @@ Joomla.submitbutton = function(action){
 	
 	<fieldset class="adminform">
 	<h3><?php echo JspcText::_( 'CORE_PARAMETERS' ); ?></h3><hr>
-	<?php foreach ($this->form->getFieldset('coreparams') as $field):?>
-					<?php $class = $field->group.$field->fieldname; ?>
-						<td width="100" class="key <?php echo $class;?>">
-							<label for="coreparameters"><?php echo $field->label; ?> </label>
-							<td><?php echo $field->input; ?></td>								
-						</td>
+	<table class="admintable">
+			<?php foreach ($this->form->getFieldset('coreparams') as $field):?>
+			<?php $class = $field->group.$field->fieldname; ?>
+			<tr>
+				<td valign="top"  width="150" class="key <?php echo $class;?>">
+					<label for="coreparameters"><?php echo $field->label; ?> </label>
+				</td>
+			
+				<td><?php echo $field->input; ?>
+				<?php if($field->fieldname === 'integrate_with'){ ?>
+					<p class="muted"><i><b><?php echo JspcText::_('INTEGRATE_WITH_HELP_MESSAGE');?></b></i></p>
+				<?php }?>	
+				</td>	
+			</tr>					
 				<?php endforeach;?>
+		</table>
 	</fieldset>
 </div>
 </div>
 <div>
-<div class="col width-60" style="width:60%; float:right;">
+<div class="col span6" style="float:left;">
 	<fieldset class="adminform">
 	<h3><?php echo JspcText::_( 'ADDON_PARAMETERS' ); ?></h3><hr>
-				<?php foreach ($this->form->getFieldset('addonparams') as $field):?>
-					<?php $class = $field->group.$field->fieldname; ?>
-						<td width="100" class="key <?php echo $class;?>">
-							<label><?php echo $field->label; ?> </label>
-							<td><?php echo $field->input; ?></td>								
-						</td>
-				<?php endforeach;?>
+	<table class="admintable">
+		<?php foreach ($this->form->getFieldset('addonparams') as $field):?>
+			<?php $class = $field->group.$field->fieldname; ?>
+			<tr>
+				<td valign="top" width="150" class="key <?php echo $class;?>">
+					<label><?php echo $field->label; ?> </label>
+				</td>
+				<td><?php echo $field->input; ?></td>	
+			</tr>							
+		<?php endforeach;?>
+	</table>
 	</fieldset>
 </div>
 </div>

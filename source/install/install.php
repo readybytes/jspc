@@ -228,18 +228,19 @@ class Com_jspcInstallerScript
 	
 	function postflight($type, $parent)
 	{
-		return $this->_addScript();
-	}
-
-	function _addScript()
-	{
+		ob_start(); ?>
 		
-		?>
-			<script type="text/javascript">
+		<script type="text/javascript">
 				window.onload = function(){	
-				  setTimeout("location.href = 'index.php?option=com_jspc&view=install';", 100);
+				  setTimeout("location.href = 'index.php?option=com_jspc';", 5000);
 				}
-			</script>
+		</script>
+
 		<?php
-	}	
+      	$version = new JVersion();
+      	$suffix = 'jom=J'.$version->RELEASE.'&utm_campaign=broadcast&jspc=JSPC'.JSPC_VERSION.'&dom='.JURI::getInstance()->toString(array('scheme', 'host', 'port'));?>
+      	<iframe  scrolling="no" frameborder="0" width="503px" src="http://pub.joomlaxi.com/broadcast/jspc/installation.html?<?php echo $suffix?>"></iframe>
+		
+		<?php 
+	}
 }

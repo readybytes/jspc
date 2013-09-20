@@ -25,7 +25,7 @@ if(!JFolder::exists($communityPath))
 require_once JPATH_ROOT.'/administrator/components/com_jspc/includes.jspc.php';
 
 if(JRequest::getCmd('view') == '') {
-            JRequest::setVar('view', 'addons');
+            JRequest::setVar('view', 'cpanel');
 }
 
 $controller	= $controller  = JRequest::getCmd( 'view');

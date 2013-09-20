@@ -12,8 +12,8 @@
 		</div>
 		<div>&nbsp;</div>
 		<div class="center">
-			<a href="http://www.joomlaxi.com/support/forum.html" target="_blank" class="btn disabled"><i class="icon-question-sign "></i>&nbsp;<?php echo JspcText::_('Support');?></a>
-			<a href="http://www.joomlaxi.com/jomsocial-profiles-completeness.html" target="_blank" class="btn disabled"><i class="icon-book"></i>&nbsp;<?php echo JspcText::_('Documentation');?></a>
+			<a href="http://www.joomlaxi.com/support/forum.html" target="_blank" class="btn disabled"><i class="icon-question-sign "></i>&nbsp;<?php echo JspcText::_('SUPPORT');?></a>
+			<a href="http://www.joomlaxi.com/jomsocial-profiles-completeness.html" target="_blank" class="btn disabled"><i class="icon-book"></i>&nbsp;<?php echo JspcText::_('DOCUMENTATION');?></a>
 		</div>
 		
 	</div> 

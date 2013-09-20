@@ -28,11 +28,10 @@ if(!JFolder::exists($communityPath))
 //community files
 require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 
-$version = new JVersion();
+$version 	= new JVersion();
+$document	= JFactory::getDocument();
 if($version->RELEASE === '2.5')
-{
-	$document		= JFactory::getDocument();
-	
+{	
 	$css	= JURI::base().'components/com_jspc/assets/css/admin.j25.css';
 	$document->addStyleSheet($css);
 
@@ -41,6 +40,8 @@ if($version->RELEASE === '2.5')
 		
 	$bootstarpResCss	= JURI::base().'components/com_community/installer/css/bootstrap-responsive.min.css';
 	$document->addStyleSheet($bootstarpResCss);
+}else{
+	$document->addStyleSheet(JUri::base().'components/com_jspc/assets/css/admin.css');
 }
 
 	
