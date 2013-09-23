@@ -202,7 +202,7 @@ class Com_jspcInstallerScript
 			return '';
 		}
 		
-		$registry =new JRegistry(addslashes($data));
+		$registry =new JRegistry($data);
 		return json_encode($registry->toObject());
 	}
 	
