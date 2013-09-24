@@ -55,15 +55,6 @@ class plgCommunityJspc extends CApplications
 		$css		= JURI::base() .'plugins/community/jspc/style.css';
 		$document->addStyleSheet($css);
 
-		$version = new JVersion();
-		if($version->RELEASE === '2.5')
-		{
-			$bootstarpCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap.min.css';
-			$document->addStyleSheet($bootstarpCss);
-		
-			$bootstarpResCss	= JURI::base().'administrator/components/com_community/installer/css/bootstrap-responsive.min.css';
-			$document->addStyleSheet($bootstarpResCss);
-		}
 		return true;
     }
 
