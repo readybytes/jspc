@@ -1,0 +1,31 @@
+/**
+* @copyright	Copyright (C) 2009 - 2013 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @license		GNU/GPL, see LICENSE.php
+* @package		JSPC
+* @subpackage	Backend
+* @contact 		team@readybytes.in
+*/
+
+#cpanel div.icon a {
+    float: left;
+    height: 100px;
+    text-align: center;
+    vertical-align: middle;
+    padding-top: 10px;
+    width: 150px;
+}
+
+#cpanel span {
+	display: block;
+}
+
+.jspcAdminCPanel{
+	height:90px; 
+	width:150px; 
+	margin:15px; 
+	border:1px solid #ccc; 
+	border-radius:5px; 
+	padding-top:10px;
+	background-color:#F2F2F2;
+	text-align:center;
+}

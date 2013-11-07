@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="module" group="community" client="site" method="upgrade">
+	<name>JoomlaXi Profile Completion Status</name>
+	<author>Team Joomlaxi</author>
+	<creationDate>4th Aug 2009</creationDate>
+	<copyright>Copyright (C) 2008. All rights reserved.</copyright>
+	<license>http://www.joomlaxi.com</license>
+	<authorEmail>shyam@joomlaxi.com</authorEmail>
+	<authorUrl>www.joomlaxi.com</authorUrl>
+	<version>@global.version@.@svn.lastrevision@</version>
+	<description>MOD_JSPC_XML_DESCRIPTION</description>
+	
+	<languages>
+	    <language tag="en-GB">en-GB.mod_jspc.ini</language>
+	</languages>
+	<help key="JHELP_EXTENSIONS_MODULE_MANAGER_JSPC" />
+	<files>
+		<file module="mod_jspc">mod_jspc.php</file>
+		<file >style.css</file>
+		<file >style.vert.css</file>
+		<file >helper.php</file>
+	</files>
+	
+	<config>
+	<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
+			<fieldset name="basic">
+
+				<field 	name="Bootstrap_CSS"
+						type="radio"
+						default="1"
+						label="COM_JSPC_PARAM_BOOTSTRAP_CSS_LABEL"
+						description="COM_JSPC_PARAM_BOOTSTRAP_CSS_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+				</field>
+
+				<field	name="SPS_Layout" 
+						type="list" 
+						default="horizontal" 
+						label="COM_JSPC_PARAM_LAYOUT_LABEL" 
+						description="COM_JSPC_PARAM_LAYOUT_DESC">
+						<option value="horizontal">COM_JSPC_PARAM_LAYOUT_HORIZONTAL</option>
+						<option value="vertical">COM_JSPC_PARAM_LAYOUT_VERTICAL</option>
+				</field>
+				
+				<field 	name="SPS_ShowAvatar" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_SHOW_AVTAR_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_AVTAR_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+				</field>
+				
+				<field 	name="SPS_AvatarWidth" 
+						type="text" 
+						default="100" 
+						label="COM_JSPC_PARAM_AVTAR_WIDTH_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_WIDTH_DESC"/>
+				
+				<field 	name="SPS_AvatarHeight" 
+						type="text" 
+						default="100" 
+						label="COM_JSPC_PARAM_AVTAR_HEIGHT_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_HEIGHT_DESC"/>
+				
+				<field 	name="showProfile" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_SHOW_PROFILE_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_PROFILE_DESC">
+						<option value="0">JNO</option>
+						<option value="1">JYES</option>
+				</field>
+				
+				<field 	name="SPS_FGColor"  
+						type="colorbox" 
+						default="62C462"  
+						label="COM_JSPC_PARAM_FILL_BAR_COLOR_LABEL" 
+						description="COM_JSPC_PARAM_FILL_BAR_COLOR_DESC" />
+				
+				<field 	name="SPS_VisibleFeatureNumber" 
+						type="text" 
+						default="All" 
+						label="COM_JSPC_PARAM_VISIBLE_FEATURE_LABEL" 
+						description="COM_JSPC_PARAM_VISIBLE_FEATURE_DESC" />
+				
+				<field 	name="moduleclass_sfx" 
+						type="text" 
+						default="" 
+						label="COM_JSPC_PARAM_MODULE_SUFFIX_LABEL" 
+						description="COM_JSPC_PARAM_MODULE_SUFFIX_DESC" /> 
+			</fieldset>
+		</fields>
+	</config>
+
+</extension>

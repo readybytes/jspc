@@ -1,0 +1,44 @@
+/**
+* @copyright	Copyright (C) 2009 - 2013 Ready Bytes Software Labs Pvt. Ltd. All rights reserved.
+* @license		GNU/GPL, see LICENSE.php
+* @package		JSPC
+* @subpackage	Backend
+* @contact 		team@readybytes.in
+*/
+
+/* Compatiblity with J2.5, radio buttons are not looking proper */
+.jspc fieldset.btn-group label.btn {
+	clear : none;
+}
+
+.jspc fieldset {
+    border: 0 none;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+    background-position: 0px 0px !important;
+    display: inline-block;
+    height: none !important;
+    line-height: 14px;
+    margin-top: 1px;
+    vertical-align: text-top;
+    width: auto !important;
+}
+
+div.pagetitle {
+    background-repeat: no-repeat;
+    height: 45px;
+    margin-left: 10px;
+    padding-left: 60px;
+}
+
+#toolbar-aboutus .toolbar [class^="icon-32-aboutus"], [class*=" icon-32-aboutus"] {
+    background-image: none !important;
+}
+
+.jspcAdminCPanel{
+	height:90px; 
+	width:150px; 
+	margin:10px; 
+}
+

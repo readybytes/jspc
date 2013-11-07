@@ -1,0 +1,63 @@
+/*style sheets */
+
+div.jspc_column1
+{
+	float:left
+}
+
+div.jspc_column2
+{
+	float:left;
+	margin-left:10px;	
+}
+
+div.jspc_column3
+{
+	float:left;
+}
+
+div.jspc_avatar
+{
+	float:left;
+}
+
+div.jspc_avatar img
+{
+	padding: 2px; 
+	border: solid 1px #ccc;
+}
+
+div.jspc_completion_bar
+{
+	margin-bottom:10px;
+}
+
+div.jspc_completion_text
+{
+	margin-top:25px;
+}
+
+.jspc_column3 ul#jspc_completion_links 
+{
+	list-style:none;
+	margin: 0pt;
+	padding: 0pt;
+}
+
+.jspc_column3 ul#jspc_completion_links li
+{
+	font-size: 14px;
+	color: #999999;
+	background-color: transparent;
+	margin: 0pt;
+	margin-bottom: 5px;
+	padding: 0pt;
+	padding-left: 20px;
+	margin-right:15px;
+}
+
+.jspc_percentage
+{
+	font-size: 16px;
+	font-weight: 700px;
+}

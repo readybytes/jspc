@@ -1,0 +1,818 @@
+
+FILE: /vobs/jspc/joomlaxi_jspc/trunk/packages/tmp/modules/mod_jspc/helper.php
+--------------------------------------------------------------------------------
+FOUND 31 ERROR(S) AND 0 WARNING(S) AFFECTING 22 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+   8 | ERROR | No scope modifier specified for function "getJspcHTML"
+   8 | ERROR | Variable "mod_params" is not in valid camel caps format
+  11 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  11 | ERROR | Operator == prohibited; use === instead
+  11 | ERROR | Operator == prohibited; use === instead
+  14 | ERROR | Variable "mod_params" is not in valid camel caps format
+  17 | ERROR | Operator == prohibited; use === instead
+  25 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  28 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+  29 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+  29 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  33 | ERROR | Operator == prohibited; use === instead
+  33 | ERROR | Operator == prohibited; use === instead
+  33 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  37 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  42 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+  43 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  45 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  46 | ERROR | Operator == prohibited; use === instead
+  46 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  57 | ERROR | No scope modifier specified for function "_getDisplay"
+  62 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  82 | ERROR | Operator == prohibited; use === instead
+ 100 | ERROR | Operator == prohibited; use === instead
+ 107 | ERROR | Operator != prohibited; use !== instead
+ 112 | ERROR | Operator ! prohibited; use === FALSE instead
+ 112 | ERROR | Operator != prohibited; use !== instead
+ 112 | ERROR | Assignments must be the first block of code on a line
+ 115 | ERROR | Operator ! prohibited; use === FALSE instead
+ 129 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...obs/jspc/joomlaxi_jspc/trunk/packages/tmp/modules/mod_jspc/mod_jspc.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+  4 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 10 | ERROR | Operator ! prohibited; use === FALSE instead
+ 17 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...s/jspc/joomlaxi_jspc/trunk/packages/tmp/modules/mod_jspc/style.vert.css
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+ 29 | ERROR | CSS colours must be defined in uppercase; expected #CCC but found
+    |       | #ccc
+ 57 | ERROR | Class definition is empty
+ 72 | ERROR | CSS colours must use shorthand if available; expected #999 but
+    |       | found #999999
+--------------------------------------------------------------------------------
+
+
+FILE: /vobs/jspc/joomlaxi_jspc/trunk/packages/tmp/modules/mod_jspc/style.css
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+ 27 | ERROR | CSS colours must be defined in uppercase; expected #CCC but found
+    |       | #ccc
+ 55 | ERROR | Class definition is empty
+ 69 | ERROR | CSS colours must use shorthand if available; expected #999 but
+    |       | found #999999
+--------------------------------------------------------------------------------
+
+
+FILE: ...axi_jspc/trunk/packages/tmp/components/com_jspc/site/libraries/jspc.php
+--------------------------------------------------------------------------------
+FOUND 28 ERROR(S) AND 0 WARNING(S) AFFECTING 27 LINE(S)
+--------------------------------------------------------------------------------
+   6 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  11 | ERROR | No scope modifier specified for function
+     |       | "calulateFillCountOfUser"
+  21 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  25 | ERROR | Must use "self::" for local static member reference
+  26 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  36 | ERROR | No scope modifier specified for function "calulateTotalCount"
+  46 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  50 | ERROR | Must use "self::" for local static member reference
+  51 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  60 | ERROR | No scope modifier specified for function
+     |       | "calculateFeatureContributionInPercentage"
+  71 | ERROR | No scope modifier specified for function "getIncompleteFeatures"
+  78 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  87 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  91 | ERROR | Operator != prohibited; use !== instead
+ 103 | ERROR | No scope modifier specified for function "callAddonFunction"
+ 113 | ERROR | No scope modifier specified for function
+     |       | "getDisplayInformationOfUser"
+ 119 | ERROR | Operator ! prohibited; use === FALSE instead
+ 139 | ERROR | No scope modifier specified for function "calulatePCPercentage"
+ 141 | ERROR | Must use "self::" for local static member reference
+ 142 | ERROR | Must use "self::" for local static member reference
+ 144 | ERROR | Operator == prohibited; use === instead
+ 145 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 147 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 149 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 149 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 150 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 153 | ERROR | No scope modifier specified for function "roundOffPercentage"
+ 168 | ERROR | No scope modifier specified for function
+     |       | "getFeatureIDAddonObject"
+--------------------------------------------------------------------------------
+
+
+FILE: ...runk/packages/tmp/components/com_jspc/site/libraries/imagegenerator.php
+--------------------------------------------------------------------------------
+FOUND 31 ERROR(S) AND 0 WARNING(S) AFFECTING 29 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+   7 | ERROR | Private member variable "params" must contain a leading
+     |       | underscore
+   8 | ERROR | Private member variable "height" must contain a leading
+     |       | underscore
+   9 | ERROR | Private member variable "width" must contain a leading
+     |       | underscore
+  10 | ERROR | Private member variable "fontsize" must contain a leading
+     |       | underscore
+  11 | ERROR | Private member variable "bgColor" must contain a leading
+     |       | underscore
+  12 | ERROR | Private member variable "fgColor" must contain a leading
+     |       | underscore
+  13 | ERROR | Private member variable "slColor" must contain a leading
+     |       | underscore
+  14 | ERROR | Private member variable "strColor" must contain a leading
+     |       | underscore
+  16 | ERROR | No scope modifier specified for function "__construct"
+  30 | ERROR | No scope modifier specified for function
+     |       | "createPercentageBarImageFile"
+  38 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  40 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  47 | ERROR | Calls to inbuilt PHP functions must be lowercase; expected
+     |       | "imagecreatetruecolor" but found "ImageCreateTrueColor"
+  76 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  80 | ERROR | No scope modifier specified for function "html2rgb"
+  82 | ERROR | Operator == prohibited; use === instead
+  85 | ERROR | Operator == prohibited; use === instead
+  86 | ERROR | The first value in a multi-value array must be on a new line
+  87 | ERROR | Array value not aligned correctly; expected 30 spaces but found
+     |       | 35
+  88 | ERROR | Closing parenthesis of array declaration must be on a new line
+  88 | ERROR | Comma required after last value in array declaration
+  96 | ERROR | Array with multiple values cannot be declared on a single line
+ 100 | ERROR | No scope modifier specified for function
+     |       | "calculatePositionOfFillbarText"
+ 102 | ERROR | Variable "per_width" is not in valid camel caps format
+ 103 | ERROR | Variable "per_width" is not in valid camel caps format
+ 110 | ERROR | Variable "per_width" is not in valid camel caps format
+ 116 | ERROR | Method name "JspcImageGenerator::color_inverse" is not in camel
+     |       | caps format
+ 116 | ERROR | No scope modifier specified for function "color_inverse"
+ 120 | ERROR | Operator != prohibited; use !== instead
+ 124 | ERROR | The value of a comparison must not be assigned to a variable
+--------------------------------------------------------------------------------
+
+
+FILE: ...laxi_jspc/trunk/packages/tmp/components/com_jspc/site/includes.jspc.php
+--------------------------------------------------------------------------------
+FOUND 4 ERROR(S) AND 0 WARNING(S) AFFECTING 4 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  5 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 18 | ERROR | Operator ! prohibited; use === FALSE instead
+ 33 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...axi_jspc/trunk/packages/tmp/components/com_jspc/admin/tables/addons.php
+--------------------------------------------------------------------------------
+FOUND 16 ERROR(S) AND 0 WARNING(S) AFFECTING 10 LINE(S)
+--------------------------------------------------------------------------------
+  4 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 11 | ERROR | Scope modifier not specified for member variable "$id"
+ 11 | ERROR | Assignments must be the first block of code on a line
+ 12 | ERROR | Scope modifier not specified for member variable "$name"
+ 12 | ERROR | Assignments must be the first block of code on a line
+ 13 | ERROR | Scope modifier not specified for member variable "$featurename"
+ 13 | ERROR | Assignments must be the first block of code on a line
+ 14 | ERROR | Scope modifier not specified for member variable "$coreparams"
+ 14 | ERROR | Assignments must be the first block of code on a line
+ 15 | ERROR | Scope modifier not specified for member variable "$addonparams"
+ 15 | ERROR | Assignments must be the first block of code on a line
+ 16 | ERROR | Scope modifier not specified for member variable "$published"
+ 16 | ERROR | Assignments must be the first block of code on a line
+ 18 | ERROR | No scope modifier specified for function "__construct"
+ 42 | ERROR | No scope modifier specified for function "store"
+ 49 | ERROR | No scope modifier specified for function "bind"
+--------------------------------------------------------------------------------
+
+
+FILE: ...unk/packages/tmp/components/com_jspc/admin/elements/colorbox/jscolor.js
+--------------------------------------------------------------------------------
+FOUND 5 ERROR(S) AND 0 WARNING(S) AFFECTING 5 LINE(S)
+--------------------------------------------------------------------------------
+  50 | ERROR | The use of object.length inside a loop condition is not allowed.
+     |       | Assign the return value of object.length to a variable and use
+     |       | the variable in the loop condition instead.
+  55 | ERROR | The use of object.length inside a loop condition is not allowed.
+     |       | Assign the return value of object.length to a variable and use
+     |       | the variable in the loop condition instead.
+  72 | ERROR | The use of object.length inside a loop condition is not allowed.
+     |       | Assign the return value of object.length to a variable and use
+     |       | the variable in the loop condition instead.
+ 688 | ERROR | The use of object.length inside a loop condition is not allowed.
+     |       | Assign the return value of object.length to a variable and use
+     |       | the variable in the loop condition instead.
+ 708 | ERROR | The use of object.length inside a loop condition is not allowed.
+     |       | Assign the return value of object.length to a variable and use
+     |       | the variable in the loop condition instead.
+--------------------------------------------------------------------------------
+
+
+FILE: .../trunk/packages/tmp/components/com_jspc/admin/elements/profiletypes.php
+--------------------------------------------------------------------------------
+FOUND 29 ERROR(S) AND 0 WARNING(S) AFFECTING 16 LINE(S)
+--------------------------------------------------------------------------------
+  4 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 14 | ERROR | Scope modifier not specified for member variable "$_name"
+ 14 | ERROR | Public member variable "_name" must not contain a leading
+    |       | underscore
+ 14 | ERROR | Assignments must be the first block of code on a line
+ 16 | ERROR | No scope modifier specified for function "fetchElement"
+ 16 | ERROR | Variable "control_name" is not in valid camel caps format
+ 20 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 23 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 26 | ERROR | Variable "control_name" is not in valid camel caps format
+ 32 | ERROR | No scope modifier specified for function
+    |       | "getProfiletypeFieldHTML"
+ 32 | ERROR | Variable "control_name" is not in valid camel caps format
+ 36 | ERROR | The value of a comparison must not be assigned to a variable
+ 36 | ERROR | Operator == prohibited; use === instead
+ 38 | ERROR | Variable "control_name" is not in valid camel caps format
+ 38 | ERROR | Variable "control_name" is not in valid camel caps format
+ 38 | ERROR | String concat is not required here; use a single string instead
+ 38 | ERROR | String concat is not required here; use a single string instead
+ 38 | ERROR | String concat is not required here; use a single string instead
+ 38 | ERROR | String concat is not required here; use a single string instead
+ 40 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 41 | ERROR | The value of a comparison must not be assigned to a variable
+ 41 | ERROR | Operator == prohibited; use === instead
+ 45 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 46 | ERROR | The value of a comparison must not be assigned to a variable
+ 46 | ERROR | Operator == prohibited; use === instead
+ 51 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 56 | ERROR | The use of count() inside a loop condition is not allowed. Assign
+    |       | the return value of count() to a variable and use the variable in
+    |       | the loop condition instead.
+ 61 | ERROR | The value of a comparison must not be assigned to a variable
+ 61 | ERROR | Operator == prohibited; use === instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...jspc/trunk/packages/tmp/components/com_jspc/admin/elements/colorbox.php
+--------------------------------------------------------------------------------
+FOUND 7 ERROR(S) AND 2 WARNING(S) AFFECTING 4 LINE(S)
+--------------------------------------------------------------------------------
+  4 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 26 | ERROR   | Scope modifier not specified for member variable "$_name"
+ 26 | ERROR   | Public member variable "_name" must not contain a leading
+    |         | underscore
+ 26 | ERROR   | Assignments must be the first block of code on a line
+ 28 | WARNING | The method parameter $node is never used
+ 28 | WARNING | The method parameter $control_name is never used
+ 28 | ERROR   | No scope modifier specified for function "fetchElement"
+ 28 | ERROR   | Variable "control_name" is not in valid camel caps format
+--------------------------------------------------------------------------------
+
+
+FILE: ...laxi_jspc/trunk/packages/tmp/components/com_jspc/admin/install.jspc.php
+--------------------------------------------------------------------------------
+FOUND 23 ERROR(S) AND 5 WARNING(S) AFFECTING 21 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+  3 | WARNING | Consider putting global function "com_install" in a static
+    |         | class
+  3 | ERROR   | Function name "com_install" is not in camel caps format
+  5 | ERROR   | Operator == prohibited; use === instead
+  8 | ERROR   | Operator == prohibited; use === instead
+ 14 | WARNING | Consider putting global function "setup_database" in a static
+    |         | class
+ 14 | ERROR   | Function name "setup_database" is not in camel caps format
+ 16 | ERROR   | Operator == prohibited; use === instead
+ 26 | WARNING | Consider putting global function "create_tables" in a static
+    |         | class
+ 26 | ERROR   | Function name "create_tables" is not in camel caps format
+ 51 | WARNING | Consider putting global function "check_jomsocial_existance" in
+    |         | a static class
+ 51 | ERROR   | Function name "check_jomsocial_existance" is not in camel caps
+    |         | format
+ 53 | ERROR   | Variable "jomsocial_admin" is not in valid camel caps format
+ 54 | ERROR   | Variable "jomsocial_front" is not in valid camel caps format
+ 56 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 56 | ERROR   | Variable "jomsocial_admin" is not in valid camel caps format
+ 59 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 59 | ERROR   | Variable "jomsocial_front" is not in valid camel caps format
+ 65 | WARNING | Consider putting global function "insert_sample_rule" in a
+    |         | static class
+ 65 | ERROR   | Function name "insert_sample_rule" is not in camel caps format
+ 74 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 78 | ERROR   | String concat is not required here; use a single string instead
+ 79 | ERROR   | String concat is not required here; use a single string instead
+ 80 | ERROR   | String concat is not required here; use a single string instead
+ 81 | ERROR   | String concat is not required here; use a single string instead
+ 82 | ERROR   | String concat is not required here; use a single string instead
+ 83 | ERROR   | String concat is not required here; use a single string instead
+ 84 | ERROR   | String concat is not required here; use a single string instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...axi_jspc/trunk/packages/tmp/components/com_jspc/admin/includes.jspc.php
+--------------------------------------------------------------------------------
+FOUND 4 ERROR(S) AND 0 WARNING(S) AFFECTING 4 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  5 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 18 | ERROR | Operator ! prohibited; use === FALSE instead
+ 37 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...trunk/packages/tmp/components/com_jspc/admin/views/addons/view.html.php
+--------------------------------------------------------------------------------
+FOUND 22 ERROR(S) AND 0 WARNING(S) AFFECTING 22 LINE(S)
+--------------------------------------------------------------------------------
+   4 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  11 | ERROR | No scope modifier specified for function "display"
+  26 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  32 | ERROR | Operator ! prohibited; use === FALSE instead
+  40 | ERROR | Operator ! prohibited; use === FALSE instead
+  42 | ERROR | Operator == prohibited; use === instead
+  58 | ERROR | Operator == prohibited; use === instead
+  64 | ERROR | Operator != prohibited; use !== instead
+  87 | ERROR | No scope modifier specified for function "setToolBar"
+ 116 | ERROR | No scope modifier specified for function "add"
+ 124 | ERROR | No scope modifier specified for function "renderaddon"
+ 137 | ERROR | Operator ! prohibited; use === FALSE instead
+ 141 | ERROR | Operator == prohibited; use === instead
+ 143 | ERROR | Operator != prohibited; use !== instead
+ 168 | ERROR | No scope modifier specified for function "aboutus"
+ 176 | ERROR | No scope modifier specified for function
+     |       | "_calculateContributionOfPtype"
+ 184 | ERROR | Variable "xipt_exist" is not in valid camel caps format
+ 188 | ERROR | Operator ! prohibited; use === FALSE instead
+ 195 | ERROR | Variable "xipt_exist" is not in valid camel caps format
+ 203 | ERROR | Operator != prohibited; use !== instead
+ 212 | ERROR | Operator == prohibited; use === instead
+ 214 | ERROR | Operator != prohibited; use !== instead
+--------------------------------------------------------------------------------
+
+
+FILE: .../packages/tmp/components/com_jspc/admin/views/addons/tmpl/addon.add.php
+--------------------------------------------------------------------------------
+FOUND 2 ERROR(S) AND 0 WARNING(S) AFFECTING 2 LINE(S)
+--------------------------------------------------------------------------------
+  2 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 54 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...packages/tmp/components/com_jspc/admin/views/addons/tmpl/param.edit.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+  1 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 69 | ERROR | Operator ! prohibited; use === FALSE instead
+ 76 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...nk/packages/tmp/components/com_jspc/admin/views/addons/tmpl/aboutus.php
+--------------------------------------------------------------------------------
+FOUND 1 ERROR(S) AND 0 WARNING(S) AFFECTING 1 LINE(S)
+--------------------------------------------------------------------------------
+ 3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...trunk/packages/tmp/components/com_jspc/admin/views/addons/tmpl/news.php
+--------------------------------------------------------------------------------
+FOUND 1 ERROR(S) AND 0 WARNING(S) AFFECTING 1 LINE(S)
+--------------------------------------------------------------------------------
+ 3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...nk/packages/tmp/components/com_jspc/admin/views/addons/tmpl/default.php
+--------------------------------------------------------------------------------
+FOUND 11 ERROR(S) AND 0 WARNING(S) AFFECTING 11 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  47 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  57 | ERROR | Operator == prohibited; use === instead
+  65 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  87 | ERROR | Operator ! prohibited; use === FALSE instead
+ 102 | ERROR | Assignments must be the first block of code on a line
+ 109 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 119 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 126 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 142 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 143 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...nk/packages/tmp/components/com_jspc/admin/views/addons/tmpl/updates.php
+--------------------------------------------------------------------------------
+FOUND 1 ERROR(S) AND 0 WARNING(S) AFFECTING 1 LINE(S)
+--------------------------------------------------------------------------------
+ 3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...spc/trunk/packages/tmp/components/com_jspc/admin/controllers/addons.php
+--------------------------------------------------------------------------------
+FOUND 30 ERROR(S) AND 0 WARNING(S) AFFECTING 28 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+   8 | ERROR | No scope modifier specified for function "__construct"
+  13 | ERROR | No scope modifier specified for function "display"
+  19 | ERROR | No scope modifier specified for function "add"
+  39 | ERROR | No scope modifier specified for function "renderaddon"
+  54 | ERROR | Operator ! prohibited; use === FALSE instead
+  54 | ERROR | Operator ! prohibited; use === FALSE instead
+  64 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  73 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  79 | ERROR | Operator ! prohibited; use === FALSE instead
+  99 | ERROR | No scope modifier specified for function "processSave"
+ 105 | ERROR | Operator == prohibited; use === instead
+ 145 | ERROR | Operator ! prohibited; use === FALSE instead
+ 145 | ERROR | Assignments must be the first block of code on a line
+ 153 | ERROR | No scope modifier specified for function "save"
+ 162 | ERROR | No scope modifier specified for function "apply"
+ 170 | ERROR | No scope modifier specified for function "remove"
+ 172 | ERROR | Use of the "global" keyword is forbidden; use
+     |       | "$GLOBALS['mainframe']" instead
+ 174 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 183 | ERROR | Operator ! prohibited; use === FALSE instead
+ 188 | ERROR | Operator ! prohibited; use === FALSE instead
+ 207 | ERROR | No scope modifier specified for function "publish"
+ 209 | ERROR | Use of the "global" keyword is forbidden; use
+     |       | "$GLOBALS['mainframe']" instead
+ 211 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 216 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 231 | ERROR | No scope modifier specified for function "unpublish"
+ 233 | ERROR | Use of the "global" keyword is forbidden; use
+     |       | "$GLOBALS['mainframe']" instead
+ 235 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 240 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 256 | ERROR | No scope modifier specified for function "aboutus"
+--------------------------------------------------------------------------------
+
+
+FILE: ...xi_jspc/trunk/packages/tmp/components/com_jspc/admin/uninstall.jspc.php
+--------------------------------------------------------------------------------
+FOUND 2 ERROR(S) AND 2 WARNING(S) AFFECTING 2 LINE(S)
+--------------------------------------------------------------------------------
+ 2 | WARNING | Consider putting global function "com_uninstall" in a static
+   |         | class
+ 2 | ERROR   | Function name "com_uninstall" is not in camel caps format
+ 7 | WARNING | Consider putting global function "drop_database" in a static
+   |         | class
+ 7 | ERROR   | Function name "drop_database" is not in camel caps format
+--------------------------------------------------------------------------------
+
+
+FILE: .../packages/tmp/components/com_jspc/admin/addons/profilefields/helper.php
+--------------------------------------------------------------------------------
+FOUND 19 ERROR(S) AND 2 WARNING(S) AFFECTING 16 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+   9 | WARNING | The method parameter $join is never used
+   9 | ERROR   | No scope modifier specified for function
+     |         | "getJomsocialProfileFields"
+  14 | ERROR   | Operator == prohibited; use === instead
+  19 | ERROR   | Operator ! prohibited; use === FALSE instead
+  27 | ERROR   | Operator ! prohibited; use === FALSE instead
+  35 | ERROR   | Variable "xipt_exists" is not in valid camel caps format
+  36 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+  36 | ERROR   | Operator != prohibited; use !== instead
+  36 | ERROR   | Variable "xipt_exists" is not in valid camel caps format
+  43 | ERROR   | No scope modifier specified for function "getFieldsHtml"
+  47 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+  61 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+  66 | ERROR   | Operator != prohibited; use !== instead
+  82 | ERROR   | No scope modifier specified for function "calculatePercentage"
+  84 | ERROR   | Operator == prohibited; use === instead
+  93 | WARNING | The method parameter $userid is never used
+  93 | ERROR   | No scope modifier specified for function "calculateTotal"
+  99 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 103 | ERROR   | Operator != prohibited; use !== instead
+ 103 | ERROR   | Operator == prohibited; use === instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...es/tmp/components/com_jspc/admin/addons/profilefields/profilefields.php
+--------------------------------------------------------------------------------
+FOUND 18 ERROR(S) AND 2 WARNING(S) AFFECTING 17 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+   8 | ERROR   | No scope modifier specified for function "__construct"
+  24 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+  39 | ERROR   | Operator != prohibited; use !== instead
+  44 | ERROR   | Operator != prohibited; use !== instead
+  68 | ERROR   | Operator == prohibited; use === instead
+  81 | ERROR   | No scope modifier specified for function "getCompletionLink"
+ 101 | WARNING | Function's cyclomatic complexity (12) exceeds 10; consider
+     |         | refactoring the function
+ 101 | WARNING | Function's cyclomatic complexity (12) exceeds 10; consider
+     |         | refactoring the function
+ 101 | ERROR   | Method name "profilefields::get_count_of_profile_fields" is
+     |         | not in camel caps format
+ 101 | ERROR   | No scope modifier specified for function
+     |         | "get_count_of_profile_fields"
+ 111 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 120 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 122 | ERROR   | String concat is not required here; use a single string
+     |         | instead
+ 123 | ERROR   | String concat is not required here; use a single string
+     |         | instead
+ 124 | ERROR   | String concat is not required here; use a single string
+     |         | instead
+ 127 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 133 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 135 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 138 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...c/trunk/packages/tmp/components/com_jspc/admin/addons/avatar/avatar.php
+--------------------------------------------------------------------------------
+FOUND 6 ERROR(S) AND 0 WARNING(S) AFFECTING 5 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  7 | ERROR | No scope modifier specified for function "__construct"
+ 25 | ERROR | No scope modifier specified for function "getCompletionLink"
+ 40 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 52 | ERROR | Operator ! prohibited; use === FALSE instead
+ 52 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...c/trunk/packages/tmp/components/com_jspc/admin/addons/photos/photos.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 1 WARNING(S) AFFECTING 4 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR   | No scope modifier specified for function "__construct"
+ 14 | WARNING | The method parameter $userid is never used
+ 26 | ERROR   | No scope modifier specified for function "getCompletionLink"
+--------------------------------------------------------------------------------
+
+
+FILE: ...axi_jspc/trunk/packages/tmp/components/com_jspc/admin/addons/addons.php
+--------------------------------------------------------------------------------
+FOUND 33 ERROR(S) AND 2 WARNING(S) AFFECTING 31 LINE(S)
+--------------------------------------------------------------------------------
+  17 | ERROR   | Logical operator "or" is prohibited; use "||" instead
+  27 | ERROR   | Operator ! prohibited; use === FALSE instead
+  31 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+  63 | ERROR   | Operator ! prohibited; use === FALSE instead
+  75 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 109 | ERROR   | No scope modifier specified for function "__construct"
+ 119 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 119 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 123 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 128 | ERROR   | No scope modifier specified for function "load"
+ 131 | ERROR   | Operator == prohibited; use === instead
+ 141 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 155 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 175 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 189 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 198 | ERROR   | No scope modifier specified for function
+     |         | "collectParamsFromPost"
+ 209 | ERROR   | No scope modifier specified for function "bind"
+ 211 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 215 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 221 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 225 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 233 | WARNING | The method parameter $userid is never used
+ 233 | ERROR   | No scope modifier specified for function
+     |         | "getFeatureContribution"
+ 245 | ERROR   | No scope modifier specified for function "isApplicable"
+ 257 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 257 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 264 | WARNING | The method parameter $userid is never used
+ 271 | ERROR   | Variable "xipt_exist" is not in valid camel caps format
+ 272 | ERROR   | Operator ! prohibited; use === FALSE instead
+ 272 | ERROR   | Variable "xipt_exist" is not in valid camel caps format
+ 277 | ERROR   | Operator == prohibited; use === instead
+ 282 | ERROR   | Operator == prohibited; use === instead
+ 297 | ERROR   | Implicit true comparisons prohibited; use === TRUE instead
+ 324 | ERROR   | Operator == prohibited; use === instead
+ 341 | ERROR   | Operator == prohibited; use === instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...c/trunk/packages/tmp/components/com_jspc/admin/addons/albums/albums.php
+--------------------------------------------------------------------------------
+FOUND 4 ERROR(S) AND 0 WARNING(S) AFFECTING 4 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR | No scope modifier specified for function "__construct"
+ 15 | ERROR | No scope modifier specified for function "getCompletionLink"
+ 27 | ERROR | String concat is not required here; use a single string instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...ckages/tmp/components/com_jspc/admin/addons/groupmember/groupmember.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR | No scope modifier specified for function "__construct"
+ 17 | ERROR | No scope modifier specified for function "getCompletionLink"
+--------------------------------------------------------------------------------
+
+
+FILE: ...c/trunk/packages/tmp/components/com_jspc/admin/addons/videos/videos.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR | No scope modifier specified for function "__construct"
+ 15 | ERROR | No scope modifier specified for function "getCompletionLink"
+--------------------------------------------------------------------------------
+
+
+FILE: ...packages/tmp/components/com_jspc/admin/addons/groupowner/groupowner.php
+--------------------------------------------------------------------------------
+FOUND 6 ERROR(S) AND 0 WARNING(S) AFFECTING 6 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR | No scope modifier specified for function "__construct"
+ 19 | ERROR | Operator == prohibited; use === instead
+ 31 | ERROR | No scope modifier specified for function "getCompletionLink"
+ 45 | ERROR | Operator == prohibited; use === instead
+ 61 | ERROR | String concat is not required here; use a single string instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...omlaxi_jspc/trunk/packages/tmp/components/com_jspc/admin/admin.jspc.php
+--------------------------------------------------------------------------------
+FOUND 6 ERROR(S) AND 0 WARNING(S) AFFECTING 6 LINE(S)
+--------------------------------------------------------------------------------
+  8 | ERROR | Logical operator "or" is prohibited; use "||" instead
+ 16 | ERROR | Operator ! prohibited; use === FALSE instead
+ 22 | ERROR | Operator == prohibited; use === instead
+ 28 | ERROR | Operator ! prohibited; use === FALSE instead
+ 33 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 42 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...laxi_jspc/trunk/packages/tmp/components/com_jspc/admin/helpers/core.php
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+  3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  8 | ERROR | No scope modifier specified for function "getModel"
+ 12 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...laxi_jspc/trunk/packages/tmp/components/com_jspc/admin/helpers/jspc.php
+--------------------------------------------------------------------------------
+FOUND 17 ERROR(S) AND 0 WARNING(S) AFFECTING 17 LINE(S)
+--------------------------------------------------------------------------------
+  4 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  9 | ERROR | No scope modifier specified for function
+    |       | "getTotalContributionOfCriteria"
+ 14 | ERROR | Operator ! prohibited; use === FALSE instead
+ 17 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 18 | ERROR | Operator ! prohibited; use === FALSE instead
+ 27 | ERROR | No scope modifier specified for function "getAllTotals"
+ 29 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 32 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 37 | ERROR | Operator == prohibited; use === instead
+ 40 | ERROR | Operator == prohibited; use === instead
+ 44 | ERROR | Operator == prohibited; use === instead
+ 51 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+ 53 | ERROR | Operator == prohibited; use === instead
+ 64 | ERROR | Operator == prohibited; use === instead
+ 73 | ERROR | No scope modifier specified for function "checkXiptExists"
+ 80 | ERROR | Operator ! prohibited; use === FALSE instead
+ 85 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...axi_jspc/trunk/packages/tmp/components/com_jspc/admin/models/addons.php
+--------------------------------------------------------------------------------
+FOUND 18 ERROR(S) AND 0 WARNING(S) AFFECTING 15 LINE(S)
+--------------------------------------------------------------------------------
+   3 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  12 | ERROR | Scope modifier not specified for member variable "$_pagination"
+  12 | ERROR | Public member variable "_pagination" must not contain a leading
+     |       | underscore
+  16 | ERROR | No scope modifier specified for function "__construct"
+  18 | ERROR | Use of the "global" keyword is forbidden; use
+     |       | "$GLOBALS['mainframe']" instead
+  28 | ERROR | The value of a comparison must not be assigned to a variable
+  28 | ERROR | Operator != prohibited; use !== instead
+  39 | ERROR | No scope modifier specified for function "getPagination"
+  41 | ERROR | Operator == prohibited; use === instead
+  53 | ERROR | No scope modifier specified for function "getAddonsInfo"
+  55 | ERROR | Use of the "global" keyword is forbidden; use
+     |       | "$GLOBALS['mainframe']" instead
+  59 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  72 | ERROR | The value of a comparison must not be assigned to a variable
+  72 | ERROR | Operator != prohibited; use !== instead
+  94 | ERROR | No scope modifier specified for function "updatePublish"
+  98 | ERROR | String concat is not required here; use a single string instead
+  99 | ERROR | String concat is not required here; use a single string instead
+ 101 | ERROR | Operator ! prohibited; use === FALSE instead
+--------------------------------------------------------------------------------
+
+
+FILE: /vobs/jspc/joomlaxi_jspc/trunk/packages/tmp/plugins/plg_jspc/jspc.php
+--------------------------------------------------------------------------------
+FOUND 52 ERROR(S) AND 0 WARNING(S) AFFECTING 33 LINE(S)
+--------------------------------------------------------------------------------
+   5 | ERROR | Logical operator "or" is prohibited; use "||" instead
+  10 | ERROR | Scope modifier not specified for member variable "$name"
+  10 | ERROR | Assignments must be the first block of code on a line
+  11 | ERROR | Scope modifier not specified for member variable "$_name"
+  11 | ERROR | Public member variable "_name" must not contain a leading
+     |       | underscore
+  11 | ERROR | Assignments must be the first block of code on a line
+  12 | ERROR | Scope modifier not specified for member variable "$_path"
+  12 | ERROR | Public member variable "_path" must not contain a leading
+     |       | underscore
+  12 | ERROR | Assignments must be the first block of code on a line
+  13 | ERROR | Scope modifier not specified for member variable "$_user"
+  13 | ERROR | Public member variable "_user" must not contain a leading
+     |       | underscore
+  13 | ERROR | Assignments must be the first block of code on a line
+  14 | ERROR | Scope modifier not specified for member variable "$_my"
+  14 | ERROR | Public member variable "_my" must not contain a leading
+     |       | underscore
+  14 | ERROR | Assignments must be the first block of code on a line
+  15 | ERROR | Scope modifier not specified for member variable "$_params"
+  15 | ERROR | Public member variable "_params" must not contain a leading
+     |       | underscore
+  15 | ERROR | Assignments must be the first block of code on a line
+  16 | ERROR | Scope modifier not specified for member variable "$plugin"
+  16 | ERROR | Assignments must be the first block of code on a line
+  17 | ERROR | Scope modifier not specified for member variable "$isIncludes"
+  17 | ERROR | Assignments must be the first block of code on a line
+  19 | ERROR | PHP4 style constructors are not allowed; use "__construct()"
+     |       | instead
+  19 | ERROR | No scope modifier specified for function "plgCommunityJspc"
+  28 | ERROR | No scope modifier specified for function "includes"
+  30 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  38 | ERROR | Operator ! prohibited; use === FALSE instead
+  45 | ERROR | Operator ! prohibited; use === FALSE instead
+  60 | ERROR | No scope modifier specified for function "onProfileDisplay"
+  63 | ERROR | Operator ! prohibited; use === FALSE instead
+  70 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+  72 | ERROR | Operator != prohibited; use !== instead
+  78 | ERROR | No scope modifier specified for function "_getJspcHTML"
+  82 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  85 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+  86 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+  86 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  90 | ERROR | Operator == prohibited; use === instead
+  90 | ERROR | Operator == prohibited; use === instead
+  90 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+  95 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 100 | ERROR | Variable "incomplete_feature" is not in valid camel caps format
+ 101 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 103 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 104 | ERROR | Operator == prohibited; use === instead
+ 104 | ERROR | Variable "profile_completion_percentage" is not in valid camel
+     |       | caps format
+ 115 | ERROR | No scope modifier specified for function "_getDisplay"
+ 147 | ERROR | Operator != prohibited; use !== instead
+ 154 | ERROR | Operator ! prohibited; use === FALSE instead
+ 154 | ERROR | Operator != prohibited; use !== instead
+ 158 | ERROR | Operator ! prohibited; use === FALSE instead
+ 172 | ERROR | Implicit true comparisons prohibited; use === TRUE instead
+--------------------------------------------------------------------------------
+
+
+FILE: ...s/jspc/joomlaxi_jspc/trunk/packages/tmp/plugins/plg_jspc/jspc/style.css
+--------------------------------------------------------------------------------
+FOUND 3 ERROR(S) AND 0 WARNING(S) AFFECTING 3 LINE(S)
+--------------------------------------------------------------------------------
+ 27 | ERROR | CSS colours must be defined in uppercase; expected #CCC but found
+    |       | #ccc
+ 55 | ERROR | Class definition is empty
+ 69 | ERROR | CSS colours must use shorthand if available; expected #999 but
+    |       | found #999999
+--------------------------------------------------------------------------------
+

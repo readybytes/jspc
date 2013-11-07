@@ -1,0 +1,24 @@
+phploc 1.2.0 by Sebastian Bergmann.
+
+
+Warning: Unexpected character in input:  ''' (ASCII=39) state=1 in /usr/share/php/PHPLOC/Analyser.php on line 131
+
+Warning: Unexpected character in input:  ''' (ASCII=39) state=1 in /usr/share/php/PHPLOC/Analyser.php on line 165
+Directories:                                6
+Files:                                     22
+
+Lines of Code (LOC):                     1741
+Comment Lines of Code (CLOC):             131
+Non-Comment Lines of Code (NCLOC):       1610
+
+Interfaces:                                 0
+Abstract Classes:                           0
+Classes:                                    2
+Non-Static Methods:                        19
+Static Methods:                             0
+Functions:                                  0
+Constants:                                 28
+Class constants:                            0
+
+Test classes:                              16
+Test methods:                              89

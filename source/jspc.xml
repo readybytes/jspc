@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="component" version="3.0" method="upgrade">
+	<name>com_jspc</name>
+	<creationDate>2009-08-01</creationDate>
+	<author>Team Joomlaxi</author>
+	<authorEmail>shyam@joomlaxi.com</authorEmail>
+	<authorUrl>http://www.joomlaxi.com</authorUrl>
+	<copyright>All rights reserved</copyright>
+	<license>GNU GPL v2.0</license>
+	<version>@global.version@.@svn.lastrevision@</version>
+	<description>Profile Completness Status is a component to show profile completion status for JomSocial</description>
+	<scriptfile>install/install.php</scriptfile>
+
+	<files folder="site">
+		<filename>index.html</filename>
+		<filename>includes.jspc.php</filename>
+		
+		<filename>jspc/index.html</filename>
+		
+		<folder>libraries</folder>
+	</files>
+
+	<languages>
+			<language tag="en-GB">languages/site/en-GB.com_jspc.ini</language>
+	</languages>
+	
+	<administration>
+		<menu link="option=com_jspc" img="../administrator/components/com_jspc/assets/images/icon-jspc.png">JSPC</menu>
+			<submenu>
+				<menu view="cpanel" 	img="../components/com_xipt/assets/images/icon-cpanel.png">Home</menu>
+				<menu view="addons" 	img="../components/com_xipt/assets/images/icon-jspc.png">Feautre</menu>
+			</submenu>
+		<languages>
+			<language tag="en-GB">languages/admin/en-GB.com_jspc.ini</language>
+		</languages>
+		
+		<files folder="admin">
+			<filename>index.html</filename>
+			<filename>jspc.php</filename>
+			<filename>includes.jspc.php</filename>
+			<folder>addons</folder>
+			<folder>assets</folder>
+			<folder>controllers</folder>
+			<folder>helpers</folder>
+			<folder>install</folder>
+			<folder>models</folder>
+			<folder>tables</folder>
+			<folder>views</folder>	
+			<folder>fields</folder>
+		</files>
+
+		<files>
+			<folder>install</folder>
+		</files>
+	</administration>
+
+	<install>
+                <sql>
+                        <file driver="mysql" charset="utf8">install/install.sql</file>
+                </sql>
+        </install>
+
+	 <uninstall>
+                <sql>
+                        <file driver="mysql" charset="utf8">install/uninstall.sql</file>
+                </sql>
+        </uninstall>
+
+	<plugins>
+		<plugin plugin="jspc" publish="true" group="community" />
+	</plugins>
+
+	<modules>
+		<module module="mod_jspc" publish="true" group="community" />
+	</modules>
+</extension>

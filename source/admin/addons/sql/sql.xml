@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fields name="addonparams">
+		<fieldset name="addonparams">
+			<field 	name="sql_total" 
+					type="text" 
+					default="" 
+					label="COM_JSPC_QUERY_RESULT_COUNT_LABEL" 
+					description="COM_JSPC_NO_OF_QUERY_RESULT_COUNT_FOR_COMPLETING_USER_PROFILE_DESC" />
+			
+			<field 	name="sql_query" 
+					type="textarea" 
+					rows="10" 
+					cols="40" 
+					default="" 
+					label="COM_JSPC_SQL_FILE" 
+					description="COM_JSPC_FILE_DESCRIPTION_DESC" />
+			
+			<field 	name="sql_url" 
+					type="text" 
+					size="48" 
+					default="index.php?option=com_community" 
+					label="COM_JSPC_URL_TO_REDIRECT" 
+					description="COM_JSPC_URL_WHERE_TO_REDIRECT_USER_DESC" />
+		</fieldset>
+	</fields>
+</config>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+	<fields name="addonparams">
+		<fieldset name="addonparams">
+			<field 	name="photos_total" 
+					type="text" 
+					default="" 
+					label="COM_JSPC_TOTAL_PHOTO_COUNT_LABEL" 
+					description="COM_JSPC_NO_OF_TOTAL_PHOTOS_REQUIRE_TO_COMPLETE_FOR_COMPLETING_USER_PROFILE_DESC" />
+		</fieldset>
+	</fields>
+</config>

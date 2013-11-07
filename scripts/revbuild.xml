@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="Copying working copy data to SVN" basedir="." default="copy_to_svn">
+ 
+        <property name="target" value="@local.repository.location@" override="true" />
+        <property name="source" value="${project.basedir}" override="true" />
+        
+        <!-- Copy Target -->
+        <target name="copy_to_svn" description="copy target">		
+								
+		<delete dir="${source}/administrator/components/com_jspc/install/extensions" />
+
+		<copy todir="${target}/source/admin">
+			<fileset dir="${source}/administrator/components/com_jspc">
+				<include name="**/*.*" />
+			</fileset>
+	        </copy>
+	        
+		<copy todir="${target}/source/site">
+			<fileset dir="${source}/components/com_jspc">
+				<include name="**/*.*" />
+			</fileset>
+                </copy>
+			
+		 <copy   file="${source}/language/en-GB/en-GB.com_jspc.ini" 
+                        tofile="${target}/source/languages/site/en-GB.com_jspc.ini" 
+                         />
+
+                <copy   file="${source}/administrator/language/en-GB/en-GB.com_jspc.ini" 
+                        tofile="${target}/source/languages/admin/en-GB.com_jspc.ini" 
+                         />
+
+		<!-- for J1.6.0 -->
+		<php function="file_exists" returnProperty="fileExist">
+                  <param value="${source}/plugins/community/jspc/jspc.php"/>
+                </php>
+
+                <if>
+                 	<equals arg1="${fileExist}" arg2="1" />		
+			<then>	
+				<copy todir="${target}/source/admin/install/extensions/plg_jspc">
+
+					<fileset dir="${source}/plugins/community/jspc/">
+					<include name="jspc.*"/>
+					<include name="jspc/**/*.*"/>
+					</fileset>
+				</copy>
+			</then>
+		</if>
+
+		
+		<!-- for J1.5 -->
+		<!--copy plugin files -->
+		<copy todir="${target}/source/admin/install/extensions/plg_jspc">
+
+			<fileset dir="${source}/plugins/community/">
+			<include name="jspc.*"/>
+			<include name="jspc/**/*.*"/>
+			</fileset>
+		</copy>
+		<copy file="${source}/administrator/language/en-GB/en-GB.plg_jspc.ini" tofile="${target}/source/admin/install/extensions/plg_jspc/en-GB.plg_jspc.ini"/>
+		<!--copy module files -->
+		<copy todir="${target}/source/admin/install/extensions/mod_jspc">
+
+			<fileset dir="${source}/modules/mod_jspc/">
+			<include name="**/*.*"/>
+			</fileset>
+		</copy>
+		<copy file="${source}/language/en-GB/en-GB.mod_jspc.ini" tofile="${target}/source/admin/install/extensions/mod_jspc/en-GB.mod_jspc.ini"/>
+
+		<!-- first copy -->
+		<move file="${target}/source/admin/install/install.php" tofile="${target}/source/install/install.php" />      
+		<move file="${target}/source/admin/install/uninstall.php" tofile="${target}/source/install/uninstall.php" />
+		<move file="${target}/source/admin/jspc.xml" tofile="${target}/source/jspc.xml" />
+
+		<copy todir="${target}/test">
+
+			<fileset dir="${source}/test/">
+			<include name="**/*.*"/>
+			</fileset>
+		</copy>
+		
+		<copy   file="${source}/build.xml" 
+                        tofile="${target}/scripts/revbuild.xml" />
+        </target>
+</project>

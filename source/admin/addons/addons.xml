@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<form>
+	
+	<fieldset name="details">
+		<field 	name="name" 
+				type="text"
+				label="Name" 
+				description="NAME_DESC"
+				readonly="true" />
+		        
+        <field 	name="featurename" 
+				type="text"
+				label="Feature Name" 
+				description="FEATURE_NAME_DESC" />
+		        		        
+        <field 	name="published" 
+				type="radio"
+				default="1"
+				class="btn-group"
+				label="Published" 
+				description="PUBLISHED_DESC">
+				<option value="0">JNO</option>
+				<option value="1">JYES</option>
+		</field>
+		        
+        <field 	name="percentage" 
+				type="text"
+				label="Contribution in Percentage" 
+				description="TOTALCONTRIBUTION_IN_PERCENTAGE"
+				default=""
+				readonly="true" />
+
+	</fieldset>
+	
+	<fields name="coreparams">
+		<fieldset name="coreparams" addfieldpath="/administrator/components/com_jspc/fields">
+			<field 	name="jspc_core_total_contribution" 
+					type="text" 
+					default="" 
+					label="COM_JSPC_TOTAL_ADDON_CONTRIBUTION" 
+					description="COM_JSPC_TOTAL_CONTRIBUTION_OF_FOLLOWING_RULE" />
+			
+			<field 	name="jspc_core_display_text" 
+					type="text" 
+					default="" 
+					label="COM_JSPC_DISPLAY_TEXT" 
+					description="COM_JSPC_WRITE_HERE_TEXT_TO_DISPLAY_WHEN_FEATURE_IS_INCOMPLETE_DESC" />
+			
+			<field 	name="integrate_with" 
+					type="list" 
+					label="COM_JSPC_INTEGRATE_WITH" 
+					description="COM_JSPC_INTEGRATE_WITH_DESC"
+					default="none">
+					<option value="none">COM_JSPC_NONE</option>
+					<option value="jspt">COM_JSPC_JSPT</option>
+					<option value="multiprofile">COM_JSPC_JS_MULTIPROFILE</option>
+			</field>
+			
+			<field 	name="jspc_profiletype" 
+					type="profiletypes" 
+					addall="true" 
+					default="" 
+					label="COM_JSPC_PROFILE_TYPE" 
+					description="COM_JSPC_SELECT_THE_PROFILE_TYPE_FOR_WHICH_THE_RULE_IS_CREATED_DESC" />
+					
+			<field 	name="jspc_multiprofile" 
+					type="multiprofiles" 
+					addall="true" 
+					default="" 
+					label="COM_JSPC_MULTI_PROFILE" 
+					description="COM_JSPC_SELECT_THE_MULTI_PROFILE_FOR_WHICH_THE_RULE_IS_CREATED_DESC" />
+		</fieldset>
+		
+	</fields>	
+</form>

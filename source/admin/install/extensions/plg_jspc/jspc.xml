@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension version="3.0" type="plugin" group="community" method="upgrade">
+	<name>Profile Completion Status</name>
+	<author>Team Joomlaxi</author>
+	<creationDate>24th July 2009</creationDate>
+	<copyright>Copyright (C) 2008. All rights reserved.</copyright>
+	<license>http://www.joomlaxi.com</license>
+	<authorEmail>shyam@joomlaxi.com</authorEmail>
+	<authorUrl>www.joomlaxi.com</authorUrl>
+	<version>@global.version@.@svn.lastrevision@</version>
+	<isapplication>true</isapplication>
+	<description>
+		This plugin Shows Profile Completion Status for JomSocial. 
+		You required to install JomSocial and ProfileCompletion to get this working.
+	</description>
+	
+	<languages>
+	    	<language tag="en-GB">en-GB.plg_jspc.ini</language>
+	    	<language tag="en-GB">en-GB.plg_community_jspc.sys.ini</language>
+	</languages>
+	
+	<files>
+		<file plugin="jspc">jspc.php</file>
+		<file plugin="jspc">jspc/index.html</file>
+		<file plugin="jspc">jspc/style.css</file>
+	</files>
+	
+	<config>
+		<fields name="params" addfieldpath="/administrator/components/com_jspc/fields">
+			<fieldset name="basic">
+				<field 	name="coreapp" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_CORE_APP_LABEL" 
+						description="COM_JSPC_PARAM_CORE_APP_DESC">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+				</field>
+				
+				<field 	name="cache" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_CACHE_LABEL" 
+						description="COM_JSPC_PARAM_CACHE_DESC">
+						<option value="1">COM_JSPC_PARAM_CACHE_GLOBAL</option>
+						<option value="0">JNO</option>
+				</field>
+				
+				<field 	name="position" 
+						type="list" 
+						default="content" 
+						label="COM_JSPC_PARAM_POSITION_LABEL" 
+						description="COM_JSPC_PARAM_POSITION_DESC Default">
+	                     <option value="content">COM_JSPC_PARAM_POSITION_CONTENT</option>
+	                     <option value="sidebar-top">COM_JSPC_PARAM_POSITION_SIDEBAR_TOP</option>
+	                     <option value="sidebar-bottom">COM_JSPC_PARAM_POSITION_SIDEBAR_BOTTOM</option>
+                </field>
+                
+				<field 	name="SPS_ShowAvatar" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_SHOW_AVTAR_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_AVTAR_DESC">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+				</field>
+				
+				<field 	name="SPS_AvatarWidth" 
+						type="text" 
+						default="75" 
+						label="COM_JSPC_PARAM_AVTAR_WIDTH_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_WIDTH_DESC "/>
+				
+				<field  name="SPS_AvatarHeight" 
+						type="text" 
+						default="75" 
+						label="COM_JSPC_PARAM_AVTAR_HEIGHT_LABEL" 
+						description="COM_JSPC_PARAM_AVTAR_HEIGHT_DESC "/>
+						
+				<field 	name="showProfile" 
+						type="list" 
+						default="1" 
+						label="COM_JSPC_PARAM_SHOW_PROFILE_LABEL" 
+						description="COM_JSPC_PARAM_SHOW_PROFILE_DESC">
+						<option value="0">No</option>
+						<option value="1">Yes</option>
+				</field>
+				
+				<field 	name="SPS_FGColor"  
+						type="colorbox" 
+						default="62C462"  
+						label="COM_JSPC_PARAM_FILL_BAR_COLOR_LABEL" 
+						description="COM_JSPC_PARAM_FILL_BAR_COLOR_DESC" />
+				
+				<field 	name="SPS_VisibleFeatureNumber" 
+						type="text" 
+						default="All" 
+						label="COM_JSPC_PARAM_VISIBLE_FEATURE_LABEL" 
+						description="COM_JSPC_PARAM_VISIBLE_FEATURE_DESC" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>

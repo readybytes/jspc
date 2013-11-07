@@ -1,0 +1,46 @@
+<phpunit 
+		backupGlobals="false" 
+		backupStaticAttributes="false" 
+		colors="true" 
+		syntaxCheck="false"
+		bootstrap="bootstrap.php"
+		stopOnFailure="true" >
+
+	<testsuite name="AllTest">
+		<file>install/installTest.php</file>
+		<file>setup/setupTest.php</file>
+		<file>test/unit/front/albumTest.php</file>
+		<file>test/unit/front/createGroupTest.php</file>
+		<file>test/unit/front/photosTest.php</file>
+		<file>test/unit/front/avtarTest.php</file>
+		<file>test/unit/front/videosTest.php</file>
+		<file>test/unit/front/profileTest.php</file>
+		<file>test/unit/front/groupMemberTest.php</file>
+		<file>test/unit/front/featureTest.php</file>
+		<file>test/unit/front/eventTest.php</file>
+		<file>test/unit/front/applicationTest.php</file>
+		<file>test/unit/front/profilevideoTest.php</file>
+		<file>test/sel/admin/profileCompletenessTest.php</file>
+		<file>test/sel/front/completenessTest.php</file>
+		<file>test/unit/front/libraries/imagegenerator.php</file>
+		<file>test/unit/front/seoTest.php</file>
+		<file>test/unit/front/sqlTest.php</file>
+		<file>install/installXiptTest.php</file>
+		<file>test/unit/front/profileTypeTest.php</file>
+		<file>install/uninstallXiptTest.php</file>
+	
+	</testsuite>
+	
+	<logging>
+	  <log type="coverage-html" target="./coverage" charset="UTF-8"
+	       yui="true" highlight="false"
+	       lowUpperBound="35" highLowerBound="70"/>
+	  <log type="coverage-xml" target="/tmp/coverage.xml"/>
+	</logging>
+
+	<listeners>
+		<listener class="XiTestListener" file="./system/XiTestListener.php" />
+	</listeners>
+</phpunit>
+
+
