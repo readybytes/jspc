@@ -7,6 +7,8 @@
 // Check to ensure this file is included in Joomla!
 defined('_JEXEC') or die();
 
+jimport( 'joomla.filesystem.folder' );
+
 $jspcPath = JPATH_ADMINISTRATOR.'/components/com_jspc';
 
 if(!JFolder::exists($jspcPath))

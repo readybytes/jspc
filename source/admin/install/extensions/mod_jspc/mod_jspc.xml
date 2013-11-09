@@ -28,6 +28,7 @@
 				<field 	name="Bootstrap_CSS"
 						type="radio"
 						default="1"
+						class="btn-group"
 						label="COM_JSPC_PARAM_BOOTSTRAP_CSS_LABEL"
 						description="COM_JSPC_PARAM_BOOTSTRAP_CSS_DESC">
 						<option value="0">JNO</option>

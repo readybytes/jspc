@@ -7,6 +7,8 @@
 // no direct access
 if(!defined('_JEXEC')) die('Restricted access');
 
+jimport( 'joomla.filesystem.folder' );
+
 if(!JFolder::exists(JPATH_ROOT.'/components/com_xipt'))
   return;
 
