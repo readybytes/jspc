@@ -95,7 +95,9 @@ function submitbutton( action )
 			</td>
 			<?php if($this->profilesExist && $this->integrate_with != 'none'){?>
 			<td>
+				<?php if(!empty($this->addonProfiletype)):?>
 				<?php echo $this->addonProfiletype[$addon->id]; ?>
+				<?php endif;?>
 			</td>
 			<?php }?>
 			<td>

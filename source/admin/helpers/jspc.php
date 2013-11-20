@@ -29,6 +29,9 @@ class JspcHelper
 	{
 		$total = $profilesExist ? array() : 0 ;
 		
+		$ptype = false;
+		$profileTypeArray = array();
+		
 		$addonsinfo = addonFactory::getAddonsInfo();		
 		if(empty($addonsinfo))
 			return $total;
@@ -49,9 +52,11 @@ class JspcHelper
 				continue;
 			}
 			
+			$isXiptExist 	   	= self::checkXiptExists();
+			
 			$integrate_with = addonFactory::getValueFromParams('integrate_with',$info->coreparams,"jspt");
 			
-			if($integrate_with == "jspt"){
+			if($isXiptExist && $integrate_with == "jspt"){
 				$ptype 			  = addonFactory::getValueFromParams('jspc_profiletype',$info->coreparams,0);
 				$profileTypeArray = XiptAPI::getProfiletypeInfo();
 			}
