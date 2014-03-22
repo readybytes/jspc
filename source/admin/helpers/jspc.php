@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 class JspcHelper 
 {
 
-	function getTotalContributionOfCriteria($criteriaID,$isCheckPublished=false)
+	static function getTotalContributionOfCriteria($criteriaID,$isCheckPublished=false)
 	{
 		$filter = array();
 		$filter['id'] = $criteriaID;
@@ -25,7 +25,7 @@ class JspcHelper
 		return $total;
 	}
 	
-	function getAllTotals($isCheckPublished=true, $profilesExist=false)
+	static function getAllTotals($isCheckPublished=true, $profilesExist=false)
 	{
 		$total = $profilesExist ? array() : 0 ;
 		
@@ -89,7 +89,7 @@ class JspcHelper
 		return $total;
 	}
 
-	function checkXiptExists()
+	static function checkXiptExists()
 	{
 		jimport( 'joomla.filesystem.file' );
 		jimport( 'joomla.filesystem.folder' );
@@ -109,7 +109,7 @@ class JspcHelper
 		return true;
 	}
 	
-	function checkMultiProfileExists()
+	static function checkMultiProfileExists()
 	{
 		$result  = MultiProfile::getProfileTypeIds();
 		

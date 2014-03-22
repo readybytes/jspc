@@ -32,7 +32,7 @@ class JFormFieldProfilefield extends JFormField
 		
 		$filter 			 = array();
 		$filter['published'] = 1;
-		$fields 			 = helper::getJomsocialProfileFields($filter);
+		$fields 			 = JspcProfileFieldHelper::getJomsocialProfileFields($this->coreparams, $this->addonparams, $filter);
 		
 		if(empty($fields)) {
 			$addonParamsHtml = "<div style=\"text-align: center; padding: 5px; \">".JspcText::_('CLICK_ON_APPLY_BUTTON_TO_SEE_THE_ADDONS_PARAMETERS')."</div>";
@@ -42,7 +42,7 @@ class JFormFieldProfilefield extends JFormField
 		$fieldsPercentage        = array();
 		$fieldsPercentageInTotal = array();
 			
-		$fieldstotal			 = helper::calculateTotal($this->addonparams,$fields,0);
+		$fieldstotal			 = JspcProfileFieldHelper::calculateTotal($this->addonparams,$fields,0);
 		$coretotal   			 = addonFactory::getValueFromParams('jspc_core_total_contribution', $this->coreparams, 0);
 		
 		//calculate percentage
@@ -60,12 +60,12 @@ class JFormFieldProfilefield extends JFormField
 			if($field->type != 'group') {
 				$fieldValue = addonFactory::getValueFromParams($field->id, $this->addonparams, 0);
 				
-				$fieldsPercentage[$field->id]        = helper::calculatePercentage($coretotal,$fieldstotal,$fieldValue);
-				$fieldsPercentageInTotal[$field->id] = helper::calculatePercentage($featureContribution,$fieldstotal,$fieldValue); 
+				$fieldsPercentage[$field->id]        = JspcProfileFieldHelper::calculatePercentage($coretotal,$fieldstotal,$fieldValue);
+				$fieldsPercentageInTotal[$field->id] = JspcProfileFieldHelper::calculatePercentage($featureContribution,$fieldstotal,$fieldValue); 
 			}
 		}
-		
-		$addonParamsHtml = helper::getFieldsHtml($this->addonparams,$fieldsPercentage,$fieldsPercentageInTotal);
+	
+		$addonParamsHtml = JspcProfileFieldHelper::getFieldsHtml($this->coreparams, $this->addonparams,$fieldsPercentage,$fieldsPercentageInTotal);
 		
 		return $addonParamsHtml;
 	}	

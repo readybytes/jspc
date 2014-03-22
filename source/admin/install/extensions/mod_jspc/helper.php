@@ -5,7 +5,7 @@ defined('_JEXEC') or die('Restricted access');
 class ProfileCompleteHelper
 {
 
-	function getJspcHTML($userId, &$mod_params)
+	static function getJspcHTML($userId, &$mod_params)
 	{
 		// if no user id return blank
 		if(empty($userId) || $userId == '0' || $userId == 0){
@@ -71,7 +71,7 @@ class ProfileCompleteHelper
 	}
 	
 	
-	function _getDisplay($data = array())
+	static function _getDisplay($data = array())
 	{
 		ob_start();	?>
 		<div id="application-group">

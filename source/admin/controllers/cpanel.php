@@ -8,7 +8,7 @@ if(!defined('_JEXEC')) die('Restricted access');
  
 class JspcControllerCPanel extends JControllerLegacy 
 {    
-	public function getModel($modelName=null)
+	public function getModel($modelName=null,  $prefix = '', $config = array())
     {
 		// support for parameter
         if($modelName===null || $modelName === $this->getName())

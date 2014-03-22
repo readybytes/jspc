@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 class JspcLibrary
 {
 	
-	function calulateFillCountOfUser($userid)
+	static function calulateFillCountOfUser($userid)
 	{
 		$totalFillFeature = 0;
 		/* 
@@ -37,7 +37,7 @@ class JspcLibrary
 	}
 	
 	
-	function calulateTotalCount($userid)
+	static function calulateTotalCount($userid)
 	{
 		$totalFeature = 0;
 		/* 
@@ -61,7 +61,7 @@ class JspcLibrary
 		return $totalFeature;
 	}
 	
-	function calculateFeatureContributionInPercentage($userid)
+	static function calculateFeatureContributionInPercentage($userid)
 	{
 		$total = self::calulateTotalCount($userid);
 		$featureContribution = JspcHelper::getTotalContributionOfCriteria($this->id);
@@ -72,7 +72,7 @@ class JspcLibrary
 	
 	//fn will return array of those feature that require to complete 
 	// to make profile 100 % complete , value should be total count of that feature
-	function getIncompleteFeatures($userid)
+	static function getIncompleteFeatures($userid)
 	{
 		$incompleteFeature = array();
 		
@@ -104,7 +104,7 @@ class JspcLibrary
 	/*
 	 * This allow you to call any function on any particular object
 	 */
-	function callAddonFunction($featureid, $functionName, $userid)
+	static function callAddonFunction($featureid, $functionName, $userid)
 	{
 		$featureObject = self::getFeatureIDAddonObject($featureid);
 		
@@ -114,7 +114,7 @@ class JspcLibrary
 	}
 	
 
-	function getDisplayInformationOfUser($userid,$whichAvatar='thumb')
+	static function getDisplayInformationOfUser($userid,$whichAvatar='thumb')
 	{
 		
 		jimport( 'joomla.filesystem.folder' );
@@ -128,7 +128,7 @@ class JspcLibrary
 		//community files
 		require_once(JPATH_ROOT.'/components/com_community/libraries/core.php' );
 	
-		$user =& CFactory::getUser($userid);		
+		$user = CFactory::getUser($userid);		
 
 		$info = array();
 		$info['userlink']	= CRoute::_('index.php?option=com_community&view=profile&userid='.$user->_userid);
@@ -140,7 +140,7 @@ class JspcLibrary
 		return $info;
 	}
 	
-	function calulatePCPercentage($userId)
+	static function calulatePCPercentage($userId)
 	{
 		$fillValue = JspcLibrary::calulateFillCountOfUser($userId);
 		$totalValue = JspcLibrary::calulateTotalCount($userId);
@@ -154,7 +154,7 @@ class JspcLibrary
 		return $profile_completion_percentage;
 	}
 	
-	function roundOffPercentage(&$featureData, $pcPercentage)
+	static function roundOffPercentage(&$featureData, $pcPercentage)
 	{
 		$total =  100 - $pcPercentage;
 		foreach($featureData as $key => $value)
@@ -169,7 +169,7 @@ class JspcLibrary
 		}
 	}
 	
-	function getFeatureIDAddonObject($featureId)
+	static function getFeatureIDAddonObject($featureId)
 	{
 		//find the params of object
 		$filter = array();

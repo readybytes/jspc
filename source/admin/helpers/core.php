@@ -9,7 +9,7 @@ defined('_JEXEC') or die('Restricted access');
 class JspcFactory 
 {
 	
-	function getModel( $name = '')
+	static function getModel( $name = '')
 	{
 		static $modelInstances = null;
 		

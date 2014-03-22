@@ -23,7 +23,7 @@ defined('_JEXEC') or die('Restricted access');
 class addonFactory
 {
 	
-	public function getAddonsInfo($filter='',$join='AND')
+	public static function getAddonsInfo($filter='',$join='AND')
 	{
 		$db			= JFactory::getDBO();
 		
@@ -47,7 +47,7 @@ class addonFactory
 		return $addonsinfo;
 	}
 
-	public function getAddons()
+	public static function getAddons()
 	{
 		$path	= JPATH_ROOT.'/administrator/components/com_jspc/addons';
 	
@@ -57,7 +57,7 @@ class addonFactory
 		return $addons;
 	}
 	
-	public function getAddonObject($addonName)
+	public static function getAddonObject($addonName)
 	{
 		$path	= dirname(__FILE__).'/'.$addonName.'/'.$addonName.'.php';
 		
@@ -82,7 +82,7 @@ class addonFactory
 		return $instance[$addonName];
 	}
 	
-	public function getValueFromParams($what,$from,$default=0)
+	public static function getValueFromParams($what,$from,$default=0)
 	{
 		$params = new XipcParameter( $from );
 		$value  = $params->get($what,$default);

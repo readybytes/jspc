@@ -14,7 +14,7 @@ JToolBarHelper::apply('apply', JspcText::_('APPLY'));
 JToolBarHelper::save('save',JspcText::_('SAVE'));
 JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 
-$doc =& JFactory::getDocument();
+$doc = JFactory::getDocument();
 $style = '#publish-values label{min-width:0px;clear:none;}'; 
 $doc->addStyleDeclaration( $style );
 ?>

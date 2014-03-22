@@ -24,7 +24,7 @@ class MultiProfile
 	/*
 	 * return array of all published Profile Type id
 	 */
-	function getProfileTypeIds()
+	static function getProfileTypeIds()
 	{
 		$db 		= JFactory::getDBO();
 		$query		= ' SELECT *'
@@ -101,7 +101,7 @@ class MultiProfile
 		return $profileType;
 	}	
 	
-	function getProfiletypeInfo($id = 0)
+	static function getProfiletypeInfo($id = 0)
 	{
 		$profileTypeInfo		= self::getProfileTypeIds();
 		

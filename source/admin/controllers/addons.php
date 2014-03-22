@@ -15,7 +15,7 @@ class JspcControllerAddons extends JControllerLegacy
 		parent::__construct($config);
 	}
 	
-    function display() 
+    function display($cachable = false, $urlparams = array()) 
     {
 		parent::display();
     }
@@ -151,7 +151,8 @@ class JspcControllerAddons extends JControllerLegacy
 		$result		= $this->processSave();
 		$link 		= JRoute::_('index.php?option=com_jspc&view=addons', false);
 		$mainframe	= JFactory::getApplication();
-		$mainframe->redirect($link, $result[0]);		
+		$mainframe->enqueueMessage($result[0]);
+		$mainframe->redirect($link);		
 		
 	}
 	
@@ -160,7 +161,8 @@ class JspcControllerAddons extends JControllerLegacy
 		$result 	= $this->processSave();
 		$link 		= JRoute::_('index.php?option=com_jspc&view=addons&task=renderaddon&editId='.$result[1], false);
 		$mainframe	= JFactory::getApplication();
-		$mainframe->redirect($link, $result[0]);				
+		$mainframe->enqueueMessage($result[0]);
+		$mainframe->redirect($link);				
 	}
 	
 	function remove()
@@ -184,7 +186,8 @@ class JspcControllerAddons extends JControllerLegacy
 				{
 					// If there are any error when deleting, we just stop and redirect user with error.
 					$message	= JspcText::_('ERROR_IN_REMOVING_CRITERIA');
-					$mainframe->redirect( 'index.php?option=com_jspc&view=addons' , $message);
+					$mainframe->enqueueMessage($message);
+					$mainframe->redirect( 'index.php?option=com_jspc&view=addons');
 					exit;
 				}
 				$i++;
@@ -196,7 +199,8 @@ class JspcControllerAddons extends JControllerLegacy
 		
 		$message	= $count.' '.JspcText::_('CRITERIA_REMOVED');		
 		$link 		= JRoute::_('index.php?option=com_jspc&view=addons', false);
-		$mainframe->redirect($link, $message);
+		$mainframe->enqueueMessage($message);
+		$mainframe->redirect($link);
 	}
 	
 	function publish()
@@ -218,7 +222,8 @@ class JspcControllerAddons extends JControllerLegacy
 		}
 		$msg  = JspcText::sprintf( $count.' ITEMS_PUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
-		$mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect($link);
 		return true;
 	}
 	
@@ -241,7 +246,8 @@ class JspcControllerAddons extends JControllerLegacy
 		}
 		$msg  = JspcText::sprintf( $count.' ITEMS_UNPUBLISHED' );
 		$link = JRoute::_('index.php?option=com_jspc&view=addons', false);
-		$mainframe->redirect($link, $msg);
+		$mainframe->enqueueMessage($msg);
+		$mainframe->redirect($link);
 		return true;
 	}
 	

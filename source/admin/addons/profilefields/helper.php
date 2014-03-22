@@ -6,18 +6,18 @@
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
-class helper
+class JspcProfileFieldHelper
 {
 	//return all fields available in jomsocial
-	function getJomsocialProfileFields($filter = '',$join='AND')
-	{
-		$integrate_with = jspcAddons::getCoreParams('integrate_with', 'jspt');
+	static function getJomsocialProfileFields($coreParams, $addonParams, $filter = '',$join='AND')
+	{	
+		$integrate_with = !empty($coreParams['integrate_with']) ? $coreParams['integrate_with'] : 'jspt' ;
 		$ptype			= 0;
 		
 		if($integrate_with == 'jspt')
-			$ptype = jspcAddons::getCoreParams('jspc_profiletype',0);
+			$ptype = !empty($coreParams['jspc_profiletype'])	? $coreParams['jspc_profiletype']	: 0;
 		elseif($integrate_with == 'multiprofile')
-			$ptype = jspcAddons::getCoreParams('jspc_multiprofile',0);
+			$ptype = !empty($coreParams['jspc_multiprofile'])	? $coreParams['jspc_multiprofile']	: 0;
 			
 		$allField = null;
 		
@@ -56,9 +56,9 @@ class helper
 		
 	}
 	
-	function getFieldsHtml($addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
+	static function getFieldsHtml($coreparams, $addonparams,$fieldsPercentage,$fieldsPercentageInTotal)
 	{
-		$fields = self::getJomsocialProfileFields();
+		$fields = self::getJomsocialProfileFields($coreparams, $addonparams);
 		
 		$html   = '';
 		if(empty($fields)) {
@@ -104,7 +104,7 @@ class helper
 	}
 
 	/* in which contain from which parameter we want to calculate */
-	function calculatePercentage($inwhich,$fieldstotal,$fieldvalue,$offset=2)
+	static function calculatePercentage($inwhich,$fieldstotal,$fieldvalue,$offset=2)
 	{
 		if(0 == $fieldstotal)
 			return 0;
@@ -114,7 +114,7 @@ class helper
 		return $percentage;
 	}
 	
-	function calculateTotal($addonparams,$fields,$userid)
+	static function calculateTotal($addonparams,$fields,$userid)
 	{
 		//if userid means we have to calculate fields percentage according to
 		//user profiletype or accseibility
