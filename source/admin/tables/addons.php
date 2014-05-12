@@ -42,14 +42,14 @@ class JspcTableAddons extends JTable
 	/**
 	 * Save the configuration
 	 **/	 	
-	function store()
+	function store($updateNulls = false)
 	{
 		parent::store();
 		return $this->id;
 	}
 	
 	
-	function bind($data)
+	function bind($data, $ignore = array())
 	{
 		$this->id				= $data['id'];
 		$this->name				= $data['name'];
