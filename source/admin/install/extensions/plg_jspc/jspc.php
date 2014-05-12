@@ -65,8 +65,8 @@ class plgCommunityJspc extends CApplications
 		if(!$this->includes())
 			return;
 		
-		$my			=& CFactory::getUser();
-		$user		=& CFactory::getActiveProfile();
+		$my			= CFactory::getUser();
+		$user		= CFactory::getActiveProfile();
 		
 		// Do not stop admins
 		if(isSuperAdministrator())
