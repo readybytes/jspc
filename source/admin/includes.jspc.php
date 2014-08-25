@@ -32,7 +32,7 @@ $version 	= new JVersion();
 $document	= JFactory::getDocument();
 if($version->RELEASE === '2.5')
 {	
-	$css	= JURI::base().'components/com_jspc/assets/css/admin.j25.css';
+	$css	= JURI::base().'administrator/components/com_jspc/assets/css/admin.j25.css';
 	$document->addStyleSheet($css);
 
 	$bootstarpCss	= JURI::base().'components/com_community/installer/css/bootstrap.min.css';
@@ -41,7 +41,7 @@ if($version->RELEASE === '2.5')
 	$bootstarpResCss	= JURI::base().'components/com_community/installer/css/bootstrap-responsive.min.css';
 	$document->addStyleSheet($bootstarpResCss);
 }else{
-	$document->addStyleSheet(JUri::base().'components/com_jspc/assets/css/admin.css');
+	$document->addStyleSheet(JUri::base().'administrator/components/com_jspc/assets/css/admin.css');
 }
 
 	
