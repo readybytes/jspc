@@ -32,18 +32,22 @@ $version 	= new JVersion();
 $document	= JFactory::getDocument();
 if($version->RELEASE === '2.5')
 {	
-	$css	= JURI::base().'administrator/components/com_jspc/assets/css/admin.j25.css';
-	$document->addStyleSheet($css);
-
 	$bootstarpCss	= JURI::base().'components/com_community/installer/css/bootstrap.min.css';
 	$document->addStyleSheet($bootstarpCss);
 		
 	$bootstarpResCss	= JURI::base().'components/com_community/installer/css/bootstrap-responsive.min.css';
 	$document->addStyleSheet($bootstarpResCss);
-}else{
-	$document->addStyleSheet(JUri::base().'administrator/components/com_jspc/assets/css/admin.css');
 }
 
+// These css files will be loaded in admin area 
+if(JFactory::getApplication()->isAdmin()) {
+	if($version->RELEASE === '2.5'){
+		$css	= JURI::base().'components/com_jspc/assets/css/admin.j25.css';
+		$document->addStyleSheet($css);
+	}else {
+		$document->addStyleSheet(JUri::base().'components/com_jspc/assets/css/admin.css');
+	}
+}
 	
 //// define our include paths to joomla
 jimport( 'joomla.application.component.model' );

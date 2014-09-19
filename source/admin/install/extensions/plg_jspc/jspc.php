@@ -52,7 +52,7 @@ class plgCommunityJspc extends CApplications
 		JPlugin::loadLanguage( 'plg_jspc', JPATH_ADMINISTRATOR );
 		
 		$document	= JFactory::getDocument();
-		$css		= JURI::base() .'plugins/community/jspc/style.css';
+		$css		= JURI::base() .'plugins/community/jspc/jspc/style.css';
 		$document->addStyleSheet($css);
 
 		return true;
