@@ -10,7 +10,7 @@ if(!defined('_JEXEC')) die('Restricted access');
 $version 	= new JVersion();
 $suffix 	= 'jom=J'.$version->RELEASE.'&utm_campaign=JSPC-Usage&jspcv=JSPC'.JSPC_VERSION.'&dom='.JURI::getInstance()->toString(array('scheme', 'host', 'port'));?>
 	<div class="row-fliud">
-		<iframe class="span12" frameborder="0" src="http://pub.joomlaxi.com/broadcast/jspc/broadcast.html?<?php echo $suffix?>"></iframe>
+		<iframe class="span12" frameborder="0" src="http://www.readybytes.net/broadcast/jspc.html?<?php echo urlencode($suffix)?>"></iframe>
 	</div>
 <?php 
 

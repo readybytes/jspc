@@ -237,9 +237,16 @@ class Com_jspcInstallerScript
 		</script>
 
 		<?php
-      	$version = new JVersion();
-      	$suffix = 'jom=J'.$version->RELEASE.'&utm_campaign=broadcast&jspc=JSPC'.JSPC_VERSION.'&dom='.JURI::getInstance()->toString(array('scheme', 'host', 'port'));?>
-      	<iframe  scrolling="no" frameborder="0" width="503px" src="http://pub.joomlaxi.com/broadcast/jspc/installation.html?<?php echo $suffix?>"></iframe>
+		$domain 		= JURI::getInstance()->toString(array('scheme', 'host', 'port'));
+		$version 		= new JVersion();
+	
+		$event 			= "product.installation";
+		$event_args 	= array('product'=>'JSPC', 'version'=>JSPC_VERSION, 'domain'=>$domain, 'joomla_version'=>$version->RELEASE, 'email'=>'');
+		$event_args 	= urlencode(json_encode($event_args));?>
+	
+		<div class="hide">		
+			<iframe src="http://www.readybytes.net/broadcast/track.html?event=<?php echo $event;?>&event_args=<?php echo $event_args;?>"></iframe>
+		</div>
 		
 		<?php 
 	}
