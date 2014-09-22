@@ -117,7 +117,7 @@ class JspcControllerAddons extends JControllerLegacy
 		$data = array();
 		
 		$data['coreparams']		= json_encode($post['coreparams']);
-		$data['addonparams']	= json_encode($post['addonparams']);
+		$data['addonparams']	= isset($post['addonparams']) ? json_encode($post['addonparams']) : '';
 		$data['id'] 			= $post['id'];
 		$data['name'] 			= $post['name'];
 		$data['featurename'] 	= $post['featurename'];
