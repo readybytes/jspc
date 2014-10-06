@@ -26,10 +26,8 @@ class JspcKunenaposts extends jspcAddons
 	{
 		if(false == $this->isKunenaExist())
 			return 0;
-			
-		require_once(JPATH_ROOT.'/components/com_kunena/lib/kunena.user.class.php' );
 		
-		$kUser = new CKunenaUserprofile($userid);
+		$kUser = KunenaUserHelper::get($userid);
 		
 		return $kUser->posts;
 	}
