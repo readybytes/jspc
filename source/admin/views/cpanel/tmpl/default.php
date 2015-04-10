@@ -18,18 +18,15 @@ if($version->RELEASE === '2.5'){
 		<td width="35%" valign="top">
 			<div id="cpanel" class="clearfix">
 				<?php echo $this->addIcon('jspc.png','index.php?option=com_jspc&view=addons', JspcText::_('ADD_FEATURE'));?>
-				<?php echo $this->addIcon('documentation.png','http://www.joomlaxi.com/jomsocial-profiles-completeness.html', JspcText::_('DOCUMENTATION'));?>
-				<?php echo $this->addIcon('support.png','http://www.joomlaxi.com/support/forum.html', JspcText::_('SUPPORT'));?>
+				<?php echo $this->addIcon('documentation.png','http://www.readybytes.net/jomsocial-profile-completeness.html?jomsocial-profiles-completeness.html', JspcText::_('DOCUMENTATION'));?>
+				<?php echo $this->addIcon('support.png','http://www.readybytes.net/support/forum.html?support/forum.html', JspcText::_('SUPPORT'));?>
 				
 			</div>
 		</td>
 		<td width="65%" valign="top">
 			<?php 
 				echo JHtmlSliders::start('slider');
-				
-				echo JHtmlSliders::panel( JspcText::_('WELCOME'), 'welcome' );
-				echo $this->loadTemplate('welcome');
-				
+								
 				echo JHtmlSliders::panel( JspcText::_('UPDATES'), 'update' );
 				echo $this->loadTemplate('update');
 				
