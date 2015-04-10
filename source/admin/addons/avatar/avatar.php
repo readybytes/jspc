@@ -88,7 +88,8 @@ class JspcAvatar extends jspcAddons
 	public function getmultiProfileAvatar($userId)
 	{
 	    $ptype = MultiProfile::getUserInfo($userId);	
-		$field = array_shift(MultiProfile::getProfiletypeInfo($ptype));
+		$profileInfo = MultiProfile::getProfiletypeInfo($ptype);
+		$field = array_shift($profileInfo);
 		return $field->avatar;
 	}
 }

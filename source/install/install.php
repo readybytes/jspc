@@ -11,7 +11,7 @@ class Com_jspcInstallerScript
 	function install($parent)
 	{
 		if($this->check_jomsocial_existance() == false)
-			return false;
+			JError::raiseError('INSTERR', "This extension is dependent on JomSocial. Please install JomSocial!");	
 			
 		if($this->setup_database() == false)
 			JError::raiseError('INSTERR', "Not able to setup JSPC database correctly");	

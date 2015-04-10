@@ -89,7 +89,7 @@ class MultiProfile
 	/**
 	 * returns user information
 	 */
-	function getUserInfo($userid)
+	static function getUserInfo($userid)
 	{
 		$db 		= JFactory::getDBO();
 		$query		= ' SELECT '.$db->quoteName('profile_id')
