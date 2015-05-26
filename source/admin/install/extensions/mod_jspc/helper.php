@@ -16,15 +16,11 @@ class ProfileCompleteHelper
 		//include proper style sheet
 		$document	= JFactory::getDocument();
 		
-		$hcss = JURI::root() .'modules/mod_jspc/style.css';
-		$vcss = JURI::root() .'modules/mod_jspc/style.vert.css';
-		
+		$css = JURI::root() .'modules/mod_jspc/style.css';		
 		//include proper style sheet
 		$document	= JFactory::getDocument();
-		if ($params->get('SPS_Layout','horizontal')=='vertical')
-			$document->addStyleSheet($vcss);
-		else
-			$document->addStyleSheet($hcss);
+		$document->addStyleSheet($css);
+		
 
 		// In joomla 2.5 Load bootstrap if not loaded
 		$version = new JVersion();
@@ -70,93 +66,132 @@ class ProfileCompleteHelper
 		return self::_getDisplay($data);
 	}
 	
-	
 	static function _getDisplay($data = array())
 	{
-		ob_start();	?>
-		<div id="application-group">
-			<?php 
-			// if avatar required
-			if ($data['params']->get('SPS_ShowAvatar',0))
-			{
-				$avatarWidth	= $data['params']->get('SPS_AvatarWidth', 100);
-				$avatarHeight	= $data['params']->get('SPS_AvatarHeight', 100);
-				?>
-					
-				<!--  show-avatar#start --> 
-				<div class="jspc_avatar">
-					<img src="<?php echo $data['avatar']; ?>" 
-						 alt="<?php echo $data['name']; ?>" 
-						 width="<?php echo $avatarWidth; ?>"
-						 height="<?php echo $avatarHeight; ?>" />
-				</div>
-				
-				<div>&nbsp;</div>
-				<!--  show-avatar#done -->
-				<?php
-				}	
-			
-				// Vertical spacing
+		ob_start();?>
+
+			<?php // Vertical spacing
 				if ($data['params']->get('SPS_Layout','horizontal')=='vertical')
 				{	?>
-					<div class="clr"></div>
-					<?php
-				}	?>
-				
-				<!-- show-completion-bar -->		
-				<div class="jspc_column2">
-					<div class="progress progress-striped">
-						<div class="bar" style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div></div> 
-					<div class="jspc_completion_text">
-						<p><?php echo $data['displayText']; ?></p>
+				<div id="application-group">
+					<div class="row-fluid">
+					<?php 
+					if ($data['params']->get('SPS_ShowAvatar',0))
+					{
+						$avatarWidth	= $data['params']->get('SPS_AvatarWidth', 100);
+						$avatarHeight	= $data['params']->get('SPS_AvatarHeight', 100);
+					?>
+							<!--  show-avatar#start -->
+							<div class="pull-left span7">
+								<img class="jspc-avatar-img" src="<?php echo $data['avatar']; ?>" 
+								 alt="<?php echo $data['name']; ?>" 
+								 width="<?php echo $avatarWidth; ?>"
+								 height="<?php echo $avatarHeight; ?>" />					
+							</div>
+							<div class="span5 pull-left">
+									<div class="row-fluid">&nbsp;</div>
+									<div class="row-fluid"><h3><?php echo $data['profile_completion_percentage'] ?>%</h3></div>
+								</div>
+							<!--  show-avatar#done -->
+					<?php 
+					}?>
 					</div>
-				</div>
-				<!-- show-completion-bar#Done -->
-			
-				<?php // Vertical spacing
-				if ($data['params']->get('SPS_Layout','horizontal')=='vertical')
-				{	?>
-					<div class="clr"></div>
+					<div class="row-fluid">
+							<h6><?php echo JspcText::_("PERCENTAGE_COMPLETED");?></h6>
+					</div>						
+					<div class="row-fluid">
+						<!-- show-completion-bar -->													
+							<div class="progress progress-striped">
+								<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div>
+							</div>
+						<!-- show-completion-bar#Done -->
+							<p><?php echo JspcText::_("CLICK_ON_LINKS");?></p>
+					</div>	
 					<?php
-				}	?>
+				}else{	?>
+					<div id="application-group" class="container-fluid">
+								<div class="row-fluid">
+								<?php 
+								// if avatar required
+								if ($data['params']->get('SPS_ShowAvatar',0))
+								{
+									$avatarWidth	= $data['params']->get('SPS_AvatarWidth', 100);
+									$avatarHeight	= $data['params']->get('SPS_AvatarHeight', 100);
+									?>
+								
+										<!--  show-avatar#start -->
+										<div class="span2">
+											<img class="jspc-avatar-img" src="<?php echo $data['avatar']; ?>" 
+											 alt="<?php echo $data['name']; ?>" 
+											 width="<?php echo $avatarWidth; ?>"
+											 height="<?php echo $avatarHeight; ?>" />					
+										</div>
+										<!--  show-avatar#done -->
+								<?php
+								}?>
+										<div class="span8">					
+											<div class="row-fluid">
+												&nbsp;
+											</div>
+											<div class="row-fluid">
+												<h3><?php echo JspcText::_("PERCENTAGE_COMPLETED");?></h3>
+											</div>						
+											<div class="row-fluid">
+												<!-- show-completion-bar -->													
+												<div class="progress progress-striped jspc_bar">
+														<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div>
+												</div>
+												<!-- show-completion-bar#Done -->
+											</div>						
+										</div>
+										
+										<div class="span2">
+											<div class="row-fluid">&nbsp;</div>
+											<div class="row-fluid"><h1><?php echo $data['profile_completion_percentage'] ?>%</h1></div>
+										</div>
+								</div>
+									
+								<div class="row-fluid jspc_completion_text">
+									<?php echo $data['displayText']; ?>
+								</div>
+				<?php 				
+				}?>	
+								<div class="row-fluid">
+									<?php 
+										if($data['profile_completion_percentage'] != 100)
+										{?>
+										<table class="table table-hover table-striped" style="margin-top:10px;">
+											<?php
+													$visibleFeatureCount=$data['params']->get('SPS_VisibleFeatureNumber','all');
+													if(!is_numeric($visibleFeatureCount) && strtolower($visibleFeatureCount)!='all')
+														$visibleFeatureCount=0;
+													foreach($data['incomplete_feature'] as $key => $value)
+													{
+														if(!$visibleFeatureCount)
+															break;
+														
+														$nextTask	      = JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
+														$nextTask['text'] = preg_replace("/COM_JSPC_/", "", $nextTask['text']);
+														?>
+														<tr>
+															<td><a id="jspc_incomplete_link_<?php echo $key;?>" href="<?php echo $nextTask['link'];?>"><i class="icon-plus"></i><?php echo $nextTask['text'];?></a></td>
+															<td><a id="jspc_incomplete_link_<?php echo $key;?>" href="<?php echo $nextTask['link'];?>"><?php echo $value."%";?></a></td>
+														</tr>
+														<?php
+														if(is_numeric($visibleFeatureCount)) 
+															$visibleFeatureCount--;
+													}?>							
+										</table>
+										<?php 
+										}?>
+								</div>	
+							</div>
 				
-				<?php 
-				if($data['profile_completion_percentage'] != 100)
-			   	{?>				
-			   		<div class="jspc_column3">
-					<ul class="unstyled" id="jspc_completion_links">
-					<?php
-						$visibleFeatureCount=$data['params']->get('SPS_VisibleFeatureNumber','all');
-						if(!is_numeric($visibleFeatureCount) && strtolower($visibleFeatureCount)!='all')
-							$visibleFeatureCount=0;
-						foreach($data['incomplete_feature'] as $key => $value)
-						{
-							if(!$visibleFeatureCount)
-								break;
-							
-							$nextTask	      = JspcLibrary::callAddonFunction($key, 'getCompletionLink', $data['userId']);
-							$nextTask['text'] = preg_replace("/COM_JSPC_/", "", $nextTask['text']);
-							?>
-							<li> 
-								 <a id="jspc_incomplete_link_<?php echo $key;?>" href="<?php echo $nextTask['link'];?>">
-								 	<i class="icon-plus"></i>
-									<?php echo $value."% &nbsp".$nextTask['text'];?> 				
-								 </a>
 			
-							</li>
-							<?php
-							if(is_numeric($visibleFeatureCount)) 
-								$visibleFeatureCount--;
-						}?>
-					</ul>
-					</div><?php 
-				}?>
-				<!-- show-column3#done -->
-		</div>
-		<div style='clear:both;'></div>
-		<?php
+		<?php 
 		$contents	= ob_get_contents();
 		ob_end_clean();
 		return $contents;
-	}
+	}	
 }
+?>
