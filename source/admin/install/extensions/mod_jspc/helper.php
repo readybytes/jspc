@@ -102,7 +102,7 @@ class ProfileCompleteHelper
 					<div class="row-fluid">
 						<!-- show-completion-bar -->													
 							<div class="progress progress-striped">
-								<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div>
+								<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'];?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0);?>;"></div>
 							</div>
 						<!-- show-completion-bar#Done -->
 							<p><?php echo JspcText::_("CLICK_ON_LINKS");?></p>
@@ -139,7 +139,7 @@ class ProfileCompleteHelper
 											<div class="row-fluid">
 												<!-- show-completion-bar -->													
 												<div class="progress progress-striped jspc_bar">
-														<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'] ?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0)?>";"></div>
+														<div class="bar jspc_bar" style="width:<?php echo $data['profile_completion_percentage'];?>%;  background-color:<?php echo "#".$data['params']->get('SPS_FGColor',0);?>;"></div>
 												</div>
 												<!-- show-completion-bar#Done -->
 											</div>						
