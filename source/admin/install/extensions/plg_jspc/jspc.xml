@@ -97,6 +97,16 @@
 						default="All" 
 						label="COM_JSPC_PARAM_VISIBLE_FEATURE_LABEL" 
 						description="COM_JSPC_PARAM_VISIBLE_FEATURE_DESC" />
+						
+				<field name="Bootstrap_CSS"
+					   type="list"
+					   default="0"
+					   label="COM_JSPC_PARAM_BOOTSTRAP_CSS_LABEL"
+					   description="COM_JSPC_PARAM_BOOTSTRAP_CSS_DESC">
+					   <option value="0">No</option>
+					   <option value="1">Yes</option>
+				</field>
+					   
 			</fieldset>
 		</fields>
 	</config>

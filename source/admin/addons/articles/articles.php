@@ -18,7 +18,7 @@ class JspcArticles extends jspcAddons
 	{
 		$result 		= array();
 		$result['text'] = $this->getDisplayText($userid); 
-		$result['link']	= JRoute::_('index.php?option=com_content&view=article&layout=form',false);
+		$result['link']	= JRoute::_('index.php?option=com_content&view=form&layout=edit',false);
 		return $result;
 	}
 

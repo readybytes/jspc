@@ -68,9 +68,8 @@
 		<copy file="${source}/language/en-GB/en-GB.mod_jspc.ini" tofile="${target}/source/admin/install/extensions/mod_jspc/en-GB.mod_jspc.ini"/>
 
 		<!-- first copy -->
-		<move file="${target}/source/admin/install/install.php" tofile="${target}/source/install/install.php" />      
-		<move file="${target}/source/admin/install/uninstall.php" tofile="${target}/source/install/uninstall.php" />
-		<move file="${target}/source/admin/jspc.xml" tofile="${target}/source/jspc.xml" />
+		<move file="${target}/source/admin/install/install.php" tofile="${target}/source/install/install.php" />    
+	    <move file="${target}/source/admin/jspc.xml" tofile="${target}/source/jspc.xml" />
 
 		<copy todir="${target}/test">
 

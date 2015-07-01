@@ -1,6 +1,9 @@
-pkg.version=J1.6.3_JS2.2.2
-pkg.location=${user.home}/Dropbox/TEAM/dev/jspc
+#pkg.version=J1.6.3_JS2.2.2
+pkg.version=J3.4.1
+#pkg.location=${user.home}/Dropbox/TEAM/dev/jspc
 
+# url for joomla kit
+pkg.location = http://10.0.0.91/intranet/downloads/SetupKits/Joomla
 
 ## joomla installation configuration
 joomla.owner=jspc

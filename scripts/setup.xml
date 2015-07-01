@@ -66,7 +66,10 @@
 
 	<!-- Copy latest JomSocial -->
 	<target name="copy_community">
-		<copy 	file="${pkg.location}/${pkg.version}/com_community.zip" 
+		<!-- Copy Community Kit from url -->
+		<httpget url="${pkg.location}/${pkg.version}/com_community.zip" dir="${joomla.rootpath}/${joomla.folder}"/>
+
+		<copy 	file="${joomla.rootpath}/${joomla.folder}/com_community.zip" 
 				tofile="${joomla.rootpath}/${joomla.folder}/com_community.zip" />
 	</target>
 

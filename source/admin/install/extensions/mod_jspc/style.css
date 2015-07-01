@@ -1,63 +1,57 @@
 /*style sheets */
 
-div.jspc_column1
-{
-	float:left
-}
-
-div.jspc_column2
-{
-	float:left;
-	margin-left:10px;	
-}
-
-div.jspc_column3
-{
-	float:left;
-}
-
-div.jspc_avatar
-{
-	float:left;
-}
-
-div.jspc_avatar img
+div#application-group img.jspc-avatar-img
 {
 	padding: 2px; 
 	border: solid 1px #ccc;
 }
 
-div.jspc_completion_bar
+div#application-group div.jspc_completion_text
 {
-	margin-bottom:10px;
+	margin-top:15px;
+}
+	
+div#application-group div.jspc_bar
+{
+	border-radius: 10px;
 }
 
-div.jspc_completion_text
-{
-	margin-top:25px;
+<!-- Including BS2 progress bar classes for Socialize Templates compatibility-->
+
+div#application-group .progress {
+    background-color: #f7f7f7;
+    background-image: linear-gradient(to bottom, #f5f5f5, #f9f9f9);
+    background-repeat: repeat-x;
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) inset;
+    height: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
 }
 
-.jspc_column3 ul#jspc_completion_links 
-{
-	list-style:none;
-	margin: 0pt;
-	padding: 0pt;
+div#application-group .progress .bar {
+    background-color: #0e90d2;
+    background-image: linear-gradient(to bottom, #149bdf, #0480be);
+    background-repeat: repeat-x;
+    box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.15) inset;
+    box-sizing: border-box;
+    color: #fff;
+    float: left;
+    font-size: 12px;
+    height: 100%;
+    text-align: center;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+    transition: width 0.6s ease 0s;
+    width: 0;
 }
 
-.jspc_column3 ul#jspc_completion_links li
-{
-	font-size: 14px;
-	color: #999999;
-	background-color: transparent;
-	margin: 0pt;
-	margin-bottom: 5px;
-	padding: 0pt;
-	padding-left: 20px;
-	margin-right:15px;
+div#application-group .progress-striped .bar {
+    background-color: #149bdf;
+    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
+    background-size: 40px 40px;
 }
 
-.jspc_percentage
-{
-	font-size: 16px;
-	font-weight: 700px;
+div#application-group .row-fluid {
+    margin-left: 0px;
+    margin-right: 0px;
 }
