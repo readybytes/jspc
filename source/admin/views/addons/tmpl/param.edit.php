@@ -19,12 +19,10 @@ $style = '#publish-values label{min-width:0px;clear:none;}';
 $doc->addStyleDeclaration( $style );
 ?>
 <script language="javascript" type="text/javascript">
-Joomla.submitbutton = function(action){
-	submitbutton( action );
-}
-	function submitbutton(pressbutton) {
+
+Joomla.submitbutton = function(pressbutton) {
 		if (pressbutton == "cancel") {
-			submitform(pressbutton);
+			Joomla.submitform(pressbutton);
 			return;
 		}
 		// validation
@@ -32,7 +30,7 @@ Joomla.submitbutton = function(action){
 		if (form.featurename.value == "") {
 			alert( "<?php echo JspcText::_( 'FEATURE_MUST_HAVE_A_NAME', true ); ?>" );
 		} else {
-			submitform(pressbutton);
+			Joomla.submitform(pressbutton);
 		}
 	}
 </script>
@@ -62,7 +60,7 @@ Joomla.submitbutton = function(action){
 })(joms.jQuery);
 </script>
 
-<form action="index.php" method="post" name="adminForm" id="adminform">
+<form action="index.php" method="post" name="adminForm" id="adminForm">
 <div>
 <div class="col span6" style="float:left;">
 	<fieldset class="adminform">

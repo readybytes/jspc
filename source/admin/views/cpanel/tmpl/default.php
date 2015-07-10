@@ -12,7 +12,7 @@ if($version->RELEASE === '2.5'){
 }
 ?>
 
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm">
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm">
 <table width="100%" border="0">
 	<tr>
 		<td width="35%" valign="top">

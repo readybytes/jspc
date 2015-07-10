@@ -12,7 +12,7 @@ defined('_JEXEC') or die('Restricted access');
 /**
  * This function needs to be here because, Joomla toolbar calls it
  **/ 
-function submitbutton( action )
+Joomla.submitbutton = function( action )
 {
 	switch( action )
 	{
@@ -24,7 +24,7 @@ function submitbutton( action )
 		case 'publish':
 		case 'unpublish':
 		default:
-			submitform( action );
+			Joomla.submitform( action );
 	}
 }
 </script>

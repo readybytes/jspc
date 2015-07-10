@@ -13,18 +13,7 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 ?>
 
 <script language="javascript" type="text/javascript">
-
-	function checkForm()
-	{
-		var form = document.adminForm;		
-		if( form.addon.value == 0 )
-		{
-			return false;
-		}
-		return true;
-	}
-	
-	function submitbutton(action) {
+	Joomla.submitbutton = function(action){
 		var form = document.adminForm;
 		switch(action)
 		{
@@ -36,7 +25,7 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 				} 
 			case 'cancel':
 			default:
-				submitform( action );
+				Joomla.submitform( action );
 		}
 	}
 </script>
@@ -46,7 +35,7 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 </div>
 <div id="error-notice" style="color: red; font-weight:700;"></div>
 <div style="clear: both;"></div>
-<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm" onSubmit="return checkForm();" >
+<form action="<?php echo JURI::base();?>index.php?option=com_jspc" method="post" name="adminForm" id="adminForm">
 <table cellspacing="0" class="admintable" border="0" width="100%">
 	<tbody>
 		<tr>
@@ -70,7 +59,7 @@ JToolBarHelper::cancel( 'cancel', JspcText::_('CLOSE' ));
 
 <div class="clr"></div>
 	<div id="next" style="width:28.5%; direction:rtl; margin-top:10px;">
-	<input type="submit" name="addonnext" value="<?php echo JspcText::_('NEXT');?>" onclick="submitbutton('renderaddon');"/>
+	<input type="submit" name="addonnext" value="<?php echo JspcText::_('NEXT');?>" onclick="Joomla.submitbutton('renderaddon');"/>
 	</div>
 	<input type="hidden" name="option" value="com_jspc" />
 	<input type="hidden" name="view" value="<?php echo JRequest::getCmd( 'view' , 'addons' );?>" />
